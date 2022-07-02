@@ -9,19 +9,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
-            android:id="@+id/main_countday_tv"
+            android:id="@+id/home_countday_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
-            android:layout_marginLeft="33dp"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/pd_semibold"
             android:text="독서 16일차"
             android:textSize="33sp"
-            android:fontFamily="@font/pd_semibold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/song_music_lyrics_01_iv"
+            android:id="@+id/home_status_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -30,7 +31,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/pd_light"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_countday_tv" />
+            app:layout_constraintTop_toBottomOf="@id/home_countday_tv" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,23 +39,22 @@
             android:layout_width="244dp"
             android:layout_height="244dp"
             android:src="@drawable/flower_image"
-            android:layout_marginTop="204dp"
+            android:layout_marginTop="58dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/home_status_tv"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/main_circle_water_btn"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/default_image"
-            android:layout_marginTop="205dp"
+            android:layout_marginTop="1dp"
             android:layout_marginLeft="188dp"
             app:civ_border_color="@color/green"
             app:civ_border_width="2dp"
             app:layout_constraintStart_toStartOf="@+id/main_circle_flower_iv"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/main_circle_flower_iv"/>
 
         <TextView
             android:id="@+id/main_flowername_tv"
