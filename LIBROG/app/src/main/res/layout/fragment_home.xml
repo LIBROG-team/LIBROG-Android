@@ -16,9 +16,8 @@
             android:layout_marginTop="75dp"
             android:layout_marginLeft="33dp"
             android:text="독서 16일차"
-            android:textStyle="bold"
             android:textSize="33sp"
-            android:textColor="@color/black"
+            android:fontFamily="@font/pd_semibold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
@@ -29,7 +28,7 @@
             android:layout_marginLeft="33dp"
             android:text="꾸준히 실천하고 계시군요!!"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:fontFamily="@font/pd_light"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/main_countday_tv" />
 
@@ -38,7 +37,7 @@
             android:id="@+id/main_circle_flower_iv"
             android:layout_width="244dp"
             android:layout_height="244dp"
-            android:src="@drawable/flowerImage"
+            android:src="@drawable/flower_image"
             android:layout_marginTop="204dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,9 +48,9 @@
             android:id="@+id/main_circle_water_btn"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:src="@drawable/default_image"
             android:layout_marginTop="205dp"
             android:layout_marginLeft="188dp"
-            android:src="@drawable/defaultImage"
             app:civ_border_color="@color/green"
             app:civ_border_width="2dp"
             app:layout_constraintStart_toStartOf="@+id/main_circle_flower_iv"
@@ -64,7 +63,7 @@
             android:layout_marginTop="20dp"
             android:text="라넌큘러스"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:fontFamily="@font/pd_light"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/main_circle_flower_iv" />
