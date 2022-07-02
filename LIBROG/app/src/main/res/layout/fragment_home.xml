@@ -8,14 +8,73 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/main_countday_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:layout_marginLeft="33dp"
+            android:text="독서 16일차"
+            android:textStyle="bold"
+            android:textSize="33sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/song_music_lyrics_01_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="33dp"
+            android:text="꾸준히 실천하고 계시군요!!"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_countday_tv" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_circle_flower_iv"
+            android:layout_width="244dp"
+            android:layout_height="244dp"
+            android:src="@drawable/flowerImage"
+            android:layout_marginTop="204dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_circle_water_btn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="205dp"
+            android:layout_marginLeft="188dp"
+            android:src="@drawable/defaultImage"
+            app:civ_border_color="@color/green"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="@+id/main_circle_flower_iv"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/main_flowername_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="라넌큘러스"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_circle_flower_iv" />
         <ImageView
             android:id="@+id/home_banner_iv"
-            android:layout_width="wrap_content"
+            android:layout_width="390dp"
             android:layout_height="247dp"
-            android:src="@drawable/homeBanner"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:background="@drawable/home_banner_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
         <ImageView
             android:id="@+id/home_banner_recentread_iv"
             android:layout_width="97dp"
@@ -38,6 +97,8 @@
             app:layout_constraintTop_toTopOf="@+id/home_banner_recentread_iv"
             app:layout_constraintStart_toStartOf="@+id/home_banner_recentread_iv"
             />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
