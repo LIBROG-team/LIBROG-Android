@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.flowerpot.FlowerpotFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/menu_flowerpot" />
+        android:id="@+id/flowerpot_main_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="75dp"
+        android:textSize="27sp"
+        android:fontFamily="@font/pd_bold"
+        android:textColor="@color/black"
+        android:text="@string/flowerpot_main_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/flowerpot_total_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/pd_medium"
+        android:text="@string/flowerpot_total"
+        app:layout_constraintTop_toBottomOf="@id/flowerpot_main_tv"
+        app:layout_constraintStart_toStartOf="@id/flowerpot_main_tv"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/flowerpot_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/flowerpot_rv_background"
+        app:layout_constraintTop_toBottomOf="@id/flowerpot_total_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
