@@ -21,4 +21,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/transparent</item>
     </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/green</item>
+    </style>
+
 </resources>
