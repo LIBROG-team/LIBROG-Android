@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="waterdrop_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">5dp</item>
+        <item name="cornerSizeTopRight">55dp</item>
+        <item name="cornerSizeBottomLeft">55dp</item>
+        <item name="cornerSizeBottomRight">55dp</item>
+
+    </style>
+
+</resources>
