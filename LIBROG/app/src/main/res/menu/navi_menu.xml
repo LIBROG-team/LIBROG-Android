@@ -1,4 +1,5 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/homeFragment"
         android:enabled="true"
@@ -9,6 +10,12 @@
         android:enabled="true"
         android:icon="@drawable/selector_navi_home"
         android:title="@string/menu_history" />
+
+    <item
+        android:id="@+id/addActivity"
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+        android:enabled="true"
+        android:title="" />
 
     <item
         android:id="@+id/flowerpotFragment"
