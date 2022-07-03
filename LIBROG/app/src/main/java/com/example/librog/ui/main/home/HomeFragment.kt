@@ -33,8 +33,8 @@ class HomeFragment : Fragment() {
 
         val readbookRVAdapter = ReadBookRVAdapter(readbookDatas)
         //리사이클러뷰에 어댑터 연결
-        binding.homeTodayMusicAlbumRv.adapter = readbookRVAdapter
-        binding.homeTodayMusicAlbumRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.homeRecentreadBookRv.adapter = readbookRVAdapter
+        binding.homeRecentreadBookRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
         return binding.root
     }
