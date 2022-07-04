@@ -24,8 +24,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        app:labelVisibilityMode="unlabeled"
+        android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         android:background="@color/white"
         app:itemRippleColor="@color/green"

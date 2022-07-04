@@ -3,28 +3,28 @@
     <item
         android:id="@+id/homeFragment"
         android:enabled="true"
-        android:icon="@drawable/selector_navi_home"
+        android:icon="@drawable/ic_home_off"
         android:title="@string/menu_home" />
     <item
         android:id="@+id/historyFragment"
         android:enabled="true"
-        android:icon="@drawable/selector_navi_home"
+        android:icon="@drawable/ic_edit"
         android:title="@string/menu_history" />
 
     <item
         android:id="@+id/addActivity"
-        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+        android:icon="@drawable/ic_plus_circle"
         android:enabled="true"
-        android:title="" />
+        android:title="@string/menu_add" />
 
     <item
         android:id="@+id/flowerpotFragment"
         android:enabled="true"
-        android:icon="@drawable/selector_navi_home"
+        android:icon="@drawable/ic_forest"
         android:title="@string/menu_flowerpot" />
     <item
         android:id="@+id/mypageFragment"
         android:enabled="true"
-        android:icon="@drawable/selector_navi_home"
+        android:icon="@drawable/ic_circle_user"
         android:title="@string/menu_mypage" />
 </menu>

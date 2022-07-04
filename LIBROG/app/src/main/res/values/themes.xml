@@ -23,7 +23,8 @@
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/green</item>
+        <item name="android:color">@color/transparent</item>
     </style>
+
 
 </resources>

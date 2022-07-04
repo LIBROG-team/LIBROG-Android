@@ -17,6 +17,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.findNavController()
 
+        binding.mainBottomNavigation.itemIconTintList = null
         binding.mainBottomNavigation.setupWithNavController(navController)
     }
 }

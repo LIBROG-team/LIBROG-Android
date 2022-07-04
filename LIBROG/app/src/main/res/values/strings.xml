@@ -8,8 +8,9 @@
     <!--메뉴-->
     <string name="menu_home">홈</string>
     <string name="menu_history">독서기록</string>
+    <string name="menu_add">기록추가</string>
     <string name="menu_flowerpot">화분관리</string>
-    <string name="menu_mypage">마이페이지</string>
+    <string name="menu_mypage">프로필</string>
 
     <!--에러처리-->
     <string name="default_fail">네트워크연결이 원활하지 않습니다</string>
