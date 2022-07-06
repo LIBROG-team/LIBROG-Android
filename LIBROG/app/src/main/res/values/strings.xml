@@ -40,7 +40,9 @@
     <string name="flowerpot_record">기록된 권수: %d권</string>
     <string name="flowerpot_most_genre">가장 많이 읽은 장르: %s</string>
 
-
-
+    <!-- 기록추가 -->
+    <string name="addbook_main_text">책 추가하기</string>
+    <string name="addbook_search">책 검색하기</string>
+    <string name="addbook_nobook">검색 결과가 없습니다.</string>
 
 </resources>
