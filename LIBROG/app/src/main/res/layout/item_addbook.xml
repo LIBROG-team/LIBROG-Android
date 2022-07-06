@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_addbook_cl"
+    android:layout_width="match_parent"
+    android:layout_height="189dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_addbook_iv"
+        android:layout_width="115dp"
+        android:layout_height="163dp"
+        android:layout_marginStart="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/home_banner_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/waterdrop_corners" />
+
+
+    <TextView
+        android:id="@+id/item_addbook_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/pd_semibold"
+        android:text="@string/flowerpot_flower"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/item_addbook_iv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_addbook_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/pd_medium"
+        android:text="@string/flowerpot_date"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/item_addbook_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/item_addbook_title_tv" />
+
+    <TextView
+        android:id="@+id/item_addbook_record_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:fontFamily="@font/pd_regular"
+        android:text="@string/flowerpot_record"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/item_addbook_date_tv"
+        app:layout_constraintTop_toBottomOf="@id/item_addbook_date_tv" />
+
+
+    <TextView
+        android:id="@+id/item_addbook_genre_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/pd_regular"
+        android:text="@string/flowerpot_most_genre"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/item_addbook_record_tv"
+        app:layout_constraintTop_toBottomOf="@id/item_addbook_record_tv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.addbook.AddBookFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addbook_main_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/addbook_main_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="46dp"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/addbook_main_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/pd_semibold"
+            android:text="@string/addbook_main_text"
+            android:textSize="27sp"
+            app:layout_constraintBottom_toBottomOf="@id/addbook_main_iv"
+            app:layout_constraintStart_toEndOf="@id/addbook_main_iv"
+            app:layout_constraintTop_toTopOf="@id/addbook_main_iv" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addbook_search_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:background="@drawable/addbook_searck_border"
+            app:layout_constraintTop_toBottomOf="@id/addbook_main_tv">
+
+            <ImageView
+                android:id="@+id/addbook_search_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginVertical="14dp"
+                android:layout_marginStart="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:autofillHints=""
+                android:background="@color/transparent"
+                android:fontFamily="@font/pd_regular"
+                android:hint="@string/addbook_search"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/addbook_search_iv"
+                app:layout_constraintEnd_toStartOf="@+id/addbook_cancel_iv"
+                app:layout_constraintStart_toEndOf="@id/addbook_search_iv"
+                app:layout_constraintTop_toTopOf="@id/addbook_search_iv"
+                />
+
+            <ImageView
+                android:id="@+id/addbook_cancel_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginVertical="13dp"
+                android:layout_marginEnd="14dp"
+                android:src="@drawable/ic_close_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addbook_content_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:background="@drawable/addbook_searck_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addbook_search_cl"
+            tools:listitem="@layout/item_addbook" />
+
+        <TextView
+            android:id="@+id/addbook_nobook_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pd_semibold"
+            android:text="@string/addbook_nobook"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
