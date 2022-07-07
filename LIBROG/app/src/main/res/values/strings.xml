@@ -41,8 +41,11 @@
     <string name="flowerpot_most_genre">가장 많이 읽은 장르: %s</string>
 
     <!-- 기록추가 -->
-    <string name="addbook_main_text">책 추가하기</string>
+    <string name="addbook_main_text">기록 추가하기</string>
     <string name="addbook_search">책 검색하기</string>
     <string name="addbook_nobook">검색 결과가 없습니다.</string>
 
+    <!-- splash -->
+    <string name="splash_tip">Tip</string>
+    <string name="splash_text">화분을 누르면 물을 줄 수 있어요.</string>
 </resources>
