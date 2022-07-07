@@ -9,13 +9,12 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--대표색-->
-    <color name="green">#7EB575</color>
+    <color name="green">#64BE78</color>
 
     <!-- 공통 -->
     <color name="primary">#F84D17</color>
     <color name="transparent">#00ff0000</color>
     <color name="form_error">#F44336</color>
-    <color name="light_gray">#EEEEEE</color>
     <color name="gray">#F5F5F5</color>
 
     <!-- 로그인 -->
