@@ -20,5 +20,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         binding.mainBottomNavigation.itemIconTintList = null
         binding.mainBottomNavigation.setupWithNavController(navController)
 
+        setTheme(R.style.Theme_LIBROG)
+
     }
 }
