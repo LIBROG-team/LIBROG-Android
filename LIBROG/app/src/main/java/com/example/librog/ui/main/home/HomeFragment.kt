@@ -25,8 +25,8 @@ class HomeFragment : Fragment() {
 
 
         readbookDatas.apply{
-            add(Readbook("사피엔스","유발 하라리","2022.05.06"))
-            add(Readbook("공정하다는 착각","마이크 센델","2022.05.17"))
+            add(Readbook("노르웨이의 숲","무라카미 하루키","2022.06.28"))
+            add(Readbook("공정하다는 착각","마이크 센델","2022.05.06"))
             add(Readbook("사피엔스","유발 하라리","2021.05.06"))
         }
 
