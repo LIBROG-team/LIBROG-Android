@@ -25,6 +25,7 @@ class ReadBookRVAdapter(private val readbookList: ArrayList<Readbook>) : Recycle
     inner class ViewHolder(val binding: ItemHomeBookBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(readbook: Readbook){
+            binding.itemHomeBookIv.setImageResource(readbook.coverImg!!)
             binding.itemHomeBookTitleTv.text = readbook.title
             binding.itemHomeBookWriterTv.text = readbook.writer
             binding.itemHomeBookDateTv.text = readbook.date
