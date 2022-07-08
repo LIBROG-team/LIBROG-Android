@@ -10,7 +10,7 @@
         android:id="@+id/item_home_book_frame_iv"
         android:layout_width="193dp"
         android:layout_height="128dp"
-        android:background="@drawable/home_big_waterdrop_border"
+        android:background="@drawable/home_item_book_border"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
