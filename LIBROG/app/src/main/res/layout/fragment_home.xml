@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.main.home.HomeFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,7 +89,7 @@
                 android:layout_width="77dp"
                 android:layout_height="19dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="29dp"
+                android:layout_marginStart="29dp"
                 android:text="최근 읽은 책"
                 android:textSize="16sp"
                 android:fontFamily="@font/pd_semibold"
@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:layout_marginTop="17dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 tools:listitem="@layout/item_home_book"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
