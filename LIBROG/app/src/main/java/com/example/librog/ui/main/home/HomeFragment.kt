@@ -11,6 +11,8 @@ import com.example.librog.R
 import com.example.librog.data.Readbook
 import com.example.librog.databinding.FragmentHomeBinding
 import com.example.librog.ui.BaseFragment
+import com.example.librog.ui.main.MainActivity
+import com.example.librog.ui.main.addbook.AddBookSelectFragment
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
@@ -34,6 +36,9 @@ class HomeFragment : Fragment() {
         //리사이클러뷰에 어댑터 연결
         binding.homeRecentreadBookRv.adapter = readbookRVAdapter
         binding.homeRecentreadBookRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+
+        binding.mainCircleFlowerIv.setOnClickListener{
+            (context as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_container,AddBookSelectFragment()).commitAllowingStateLoss()}
 
         return binding.root
     }

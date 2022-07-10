@@ -126,7 +126,27 @@
         app:layout_constraintTop_toTopOf="@id/add_book_select_area2"
         app:layout_constraintStart_toEndOf="@id/add_book_select_rate_tv"/>
 
-
+    <com.willy.ratingbar.BaseRatingBar
+        android:id="@+id/add_book_select_rb"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:srb_clearRatingEnabled="true"
+        app:srb_clickable="true"
+        app:srb_isIndicator="false"
+        app:srb_minimumStars="1"
+        app:srb_numStars="5"
+        app:srb_rating="4"
+        app:srb_scrollable="true"
+        app:srb_starHeight="22dp"
+        app:srb_starPadding="0dp"
+        app:srb_starWidth="21dp"
+        app:srb_stepSize="0.5"
+        app:srb_drawableFilled="@drawable/book_select_star_on"
+        app:srb_drawableEmpty="@drawable/book_select_star_off"
+        app:layout_constraintTop_toBottomOf="@+id/add_book_select_rate_tv"
+        app:layout_constraintStart_toStartOf="@id/add_book_select_area2"
+        app:layout_constraintEnd_toEndOf="@id/add_book_select_area2"/>
     <ImageView
         android:id="@+id/add_book_select_area3"
         android:layout_width="358dp"
