@@ -1,6 +1,8 @@
 package com.example.librog.ui.main.flowerpot
 
+import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.FlowerpotData
 import com.example.librog.databinding.FragmentFlowerpotBinding
@@ -19,9 +21,8 @@ class FlowerpotFragment : BaseFragment<FragmentFlowerpotBinding>(FragmentFlowerp
         binding.flowerpotTotalTv.text = String.format(getString(R.string.flowerpot_total),flowerpotDataList.size)
         adapter.setMyItemClickListener(object : FlowerpotRVAdapter.OnItemClickListener{
             override fun onItemClick(flowerpotData: FlowerpotData) {
-
+                startActivity(Intent(context, DetailFlowerpotActivity::class.java))
             }
-
         })
 
     }

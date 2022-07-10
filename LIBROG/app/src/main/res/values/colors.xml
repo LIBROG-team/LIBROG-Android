@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="light_gray">#D9D9D9</color>
     <!--대표색-->
     <color name="green">#64BE78</color>
 
@@ -19,5 +19,9 @@
 
     <!-- 로그인 -->
     <color name="login_button">#FFC107</color>
+
+    <!-- ProgressBar Gradient -->
+    <color name="progressbar_start">#64BE78</color>
+    <color name="progressbar_end">#71ECCE</color>
 
 </resources>
