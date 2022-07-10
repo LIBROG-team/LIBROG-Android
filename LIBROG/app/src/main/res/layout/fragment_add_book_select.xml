@@ -141,7 +141,7 @@
         app:srb_starHeight="22dp"
         app:srb_starPadding="0dp"
         app:srb_starWidth="21dp"
-        app:srb_stepSize="0.5"
+        app:srb_stepSize="1"
         app:srb_drawableFilled="@drawable/book_select_star_on"
         app:srb_drawableEmpty="@drawable/book_select_star_off"
         app:layout_constraintTop_toBottomOf="@+id/add_book_select_rate_tv"
@@ -162,6 +162,7 @@
         android:layout_height="20dp"
         android:layout_marginTop="13dp"
         android:layout_marginStart="16dp"
+        android:singleLine="true"
         android:textSize="17sp"
         android:fontFamily="@font/pd_semibold"
         app:layout_constraintTop_toTopOf="@id/add_book_select_area3"
@@ -170,10 +171,12 @@
         />
     <EditText
         android:id="@+id/add_book_select_line_write_et"
-        android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="text"
         android:textSize="14sp"
         android:fontFamily="@font/pd_medium"
         app:layout_constraintTop_toBottomOf="@+id/add_book_select_line_tv"
@@ -203,7 +206,7 @@
         app:layout_constraintStart_toStartOf="@id/add_book_select_area4" />
     <EditText
         android:id="@+id/add_book_select_review_write_et"
-        android:layout_width="wrap_content"
+        android:layout_width="326dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
@@ -243,16 +246,6 @@
         android:fontFamily="@font/pd_bold"
         app:layout_constraintTop_toTopOf="@id/add_book_select_finish_btn"
         app:layout_constraintStart_toEndOf="@id/add_book_select_check_iv"/>
-
-
-
-
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

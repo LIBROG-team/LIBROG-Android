@@ -1,6 +1,5 @@
 package com.example.librog.ui.main.addbook
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import com.example.librog.databinding.FragmentAddBookSelectBinding
 
 class AddBookSelectFragment : Fragment() {
     lateinit var binding: FragmentAddBookSelectBinding
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,12 +18,14 @@ class AddBookSelectFragment : Fragment() {
     ): View? {
         binding = FragmentAddBookSelectBinding.inflate(inflater, container, false)
 
-
-
+        binding.addBookSelectRb.setOnRatingChangeListener{
+                _, f1, _ ->
+            binding.addBookSelectRateNTv.setText("${f1.toInt()} / 5")
+        }
 
         return binding.root
-    }
 
+    }
 
 
 }
