@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.flowerpot.DetailFlowerpotActivity">
+
+    <ImageView
+        android:id="@+id/detail_flowerpot_back_btn_iv"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detail_flowerpot_main_text_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/pd_bold"
+        android:text="@string/detail_flowerpot_main"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/detail_flowerpot_back_btn_iv"
+        app:layout_constraintStart_toEndOf="@id/detail_flowerpot_back_btn_iv"
+        app:layout_constraintTop_toTopOf="@id/detail_flowerpot_back_btn_iv" />
+
+    <ImageView
+        android:id="@+id/detail_flowerpot_list_btn_iv"
+        android:layout_width="21dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_list_btn"
+        app:layout_constraintBottom_toBottomOf="@id/detail_flowerpot_main_text_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/detail_flowerpot_main_text_tv" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/detail_flowerpot_flowerimg_iv"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="37dp"
+        android:src="@drawable/flower_image"
+        app:layout_constraintEnd_toStartOf="@id/detail_flowerpot_info_ll"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_main_text_tv" />
+
+    <LinearLayout
+        android:id="@+id/detail_flowerpot_info_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/detail_flowerpot_flowerimg_iv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/detail_flowerpot_flowerimg_iv"
+        app:layout_constraintTop_toTopOf="@id/detail_flowerpot_flowerimg_iv">
+
+        <TextView
+            android:id="@+id/detail_flowerpot_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pd_semibold"
+            android:letterSpacing="0.03"
+            android:text="@string/flowerpot_flower"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/detail_flowerpot_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/pd_regular"
+            android:letterSpacing="0.01"
+            android:text="@string/flowerpot_date"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/pd_regular"
+            android:text="@string/flowerpot_record"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detail_flowerpot_exp_text_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/pd_semibold"
+        android:letterSpacing="-0.01"
+        android:text="@string/detail_flowerpot_exp_text"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_flowerimg_iv" />
+
+    <TextView
+        android:id="@+id/detail_flowerpot_exp_num_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:fontFamily="@font/pd_semibold"
+        android:letterSpacing="-0.02"
+        android:text="@string/detail_flowerpot_exp_num"
+        android:textColor="@color/green"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/detail_flowerpot_exp_text_tv"
+        app:layout_constraintStart_toEndOf="@id/detail_flowerpot_exp_text_tv"
+        app:layout_constraintTop_toTopOf="@id/detail_flowerpot_exp_text_tv" />
+
+    <LinearLayout
+        android:id="@+id/detail_flowerpot_progress_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_exp_text_tv"
+
+        >
+
+        <ProgressBar
+            android:id="@+id/detail_flowerpot_progress_pb"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/detail_flowerpot_progressbar" />
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/detail_flowerpot_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_progress_ll" />
+
+
+    <TextView
+        android:id="@+id/detail_flowerpot_book_list_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/pd_semibold"
+        android:letterSpacing="-0.01"
+        android:text="@string/detail_flowerpot_book_list"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_line" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detail_flowerpot_book_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="32dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_book_list_tv"
+        app:spanCount="3"
+        tools:listitem="@layout/item_detail_flowerpot" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
