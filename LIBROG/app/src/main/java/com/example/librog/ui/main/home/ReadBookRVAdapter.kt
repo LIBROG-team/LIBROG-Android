@@ -3,10 +3,21 @@ package com.example.librog.ui.main.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.librog.data.DetailTempFlowerpotData
 import com.example.librog.data.Readbook
 import com.example.librog.databinding.ItemHomeBookBinding
 
 class ReadBookRVAdapter(private val readbookList: ArrayList<Readbook>) : RecyclerView.Adapter<ReadBookRVAdapter.ViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(tempReadBookData: Readbook)
+    }
+
+    private lateinit var mItemClickListener: OnItemClickListener
+    fun setMyItemClickListener(itemClickListener: OnItemClickListener) {
+        mItemClickListener = itemClickListener
+    }
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ReadBookRVAdapter.ViewHolder {
         //아이템뷰 객체 생성
@@ -17,7 +28,9 @@ class ReadBookRVAdapter(private val readbookList: ArrayList<Readbook>) : Recycle
 
     override fun onBindViewHolder(holder: ReadBookRVAdapter.ViewHolder, position: Int) {
         holder.bind(readbookList[position]) //position=indexid 받아온 뷰홀더에 바인딩을 해주기 위해 해당 포지션의 데이터를 던져줌
-
+        holder.binding.itemHomeBookFrameIv.setOnClickListener {
+            mItemClickListener.onItemClick(readbookList[position])
+        }
     }
 
     override fun getItemCount(): Int = readbookList.size
@@ -30,6 +43,7 @@ class ReadBookRVAdapter(private val readbookList: ArrayList<Readbook>) : Recycle
             binding.itemHomeBookWriterTv.text = readbook.writer
             binding.itemHomeBookDateTv.text = readbook.date
         }
+
     }
 
 
