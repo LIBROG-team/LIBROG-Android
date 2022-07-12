@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.librog.R
 import com.example.librog.data.FlowerpotData
 import com.example.librog.databinding.ItemFlowerpotBinding
@@ -28,18 +29,14 @@ class FlowerpotRVAdapter(private val flowerpotDataList: ArrayList<FlowerpotData>
             binding.itemFlowerpotDateTv.text = String.format(
                 context.getString(R.string.flowerpot_date),
                 flowerpotData.startDate,
-                flowerpotData.endDate
+                flowerpotData.lastDate
             )
-            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerpotData.recordBook)
-            binding.itemFlowerpotGenreTv.text = String.format(context.getString(R.string.flowerpot_most_genre), flowerpotData.genre)
-
+            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerpotData.recordCount)
+            binding.itemFlowerpotGenreTv.text = String.format(context.getString(R.string.flowerpot_most_genre), flowerpotData.mostReadGenre)
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): FlowerpotRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlowerpotRVAdapter.ViewHolder {
         val binding =
             ItemFlowerpotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         context = parent.context
@@ -51,6 +48,9 @@ class FlowerpotRVAdapter(private val flowerpotDataList: ArrayList<FlowerpotData>
         holder.binding.itemFlowerpotCl.setOnClickListener {
             mItemClickListener.onItemClick(flowerpotDataList[position])
         }
+        Glide.with(context)
+            .load(flowerpotDataList[position].flowerpotImgUrl)
+            .into(holder.binding.itemFlowerpotIv)
     }
 
     override fun getItemCount(): Int {
