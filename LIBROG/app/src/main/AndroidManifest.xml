@@ -19,6 +19,9 @@
             android:name=".ui.main.flowerpot.DetailFlowerpotActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.main.addbook.AddBookSelectActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
