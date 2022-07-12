@@ -45,7 +45,8 @@ class HomeFragment : Fragment() {
 
         readbookRVAdapter.setMyItemClickListener(object : ReadBookRVAdapter.OnItemClickListener {
             override fun onItemClick(tempReadBookData: Readbook) {
-                (context as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_container,AddBookSelectFragment()).commitAllowingStateLoss()
+                (context as MainActivity).supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_container,AddBookSelectFragment()).commitAllowingStateLoss()
             }
         })
 
