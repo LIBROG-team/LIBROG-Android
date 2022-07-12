@@ -32,6 +32,15 @@
     <string name="signup_password_hint">비밀번호</string>
     <string name="signup_password_confirm_hint">비밀번호 확인</string>
 
+    <!--홈 화면-->
+    <string name="home_day_count">독서 16일차</string>
+    <string name="home_status_message">꾸준히 실천하고 계시군요!</string>
+    <string name="home_pot_flower">해바라기</string>
+    <string name="home_banner_title">최근 읽은 책</string>
+    <string name="home_book_title">%s</string>
+    <string name="home_book_writer">%s</string>
+    <string name="home_book_date">%s</string>
+
     <!-- 화분관리 -->
     <string name="flowerpot_main_text">화분 관리</string>
     <string name="flowerpot_total">총 %d건</string>
@@ -44,6 +53,17 @@
     <string name="addbook_main_text">기록 추가하기</string>
     <string name="addbook_search">책 검색하기</string>
     <string name="addbook_nobook">검색 결과가 없습니다.</string>
+
+    <!--기록추가 편집-->
+    <string name="addbook_select_title">사피엔스</string>
+    <string name="addbook_select_writer">유발 하라리</string>
+    <string name="addbook_select_explain">"『사피엔스』는 중요한 순간을 살고 있는 우리에게 다가올 미래에
+        대해 어떤 전망이 있는지, 지금이 전망을 가져야 할 때라고 말한다."</string>
+    <string name="addbook_select_rate_text">이 책의 별점</string>
+    <string name="addbook_select_rate_n">%s/%s</string>
+    <string name="addbook_select_line">인상 깊은 한 줄</string>
+    <string name="addbook_select_review">독후감</string>
+    <string name="addbook_select_finish">완료</string>
 
     <!-- splash -->
     <string name="splash_tip">Tip</string>

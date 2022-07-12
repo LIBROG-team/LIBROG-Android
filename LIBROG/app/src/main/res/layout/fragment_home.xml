@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="33dp"
                 android:layout_marginTop="35dp"
-                android:text="독서 16일차"
+                android:text="@string/home_day_count"
                 android:textSize="34sp"
                 android:fontFamily="@font/pd_bold"
                 android:lineSpacingExtra="40.57dp"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="33dp"
-                android:text="꾸준히 실천하고 계시군요!!"
+                android:text="@string/home_status_message"
                 android:textSize="19sp"
                 android:fontFamily="@font/pd_light"
                 android:lineSpacingExtra="22.8dp"
@@ -62,11 +62,11 @@
                 android:src="@drawable/ic_lib_home_logo"/>
 
             <TextView
-                android:id="@+id/main_flowername_tv"
+                android:id="@+id/main_flower_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="33dp"
-                android:text="해바라기"
+                android:text="@string/home_pot_flower"
                 android:textSize="20sp"
                 android:fontFamily="@font/pd_medium"
                 android:lineSpacingExtra="23.87dp"
@@ -81,7 +81,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/home_banner_rectangle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_flowername_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/main_flower_tv" />
 
 
             <TextView
@@ -90,7 +90,7 @@
                 android:layout_height="19dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="29dp"
-                android:text="최근 읽은 책"
+                android:text="@string/home_banner_title"
                 android:textSize="16sp"
                 android:fontFamily="@font/pd_semibold"
                 android:lineSpacingExtra="19.09dp"
