@@ -1,5 +1,6 @@
 package com.example.librog.ui.main.addbook
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -26,6 +27,7 @@ class AddBookSelectActivity : AppCompatActivity(){
         setContentView(binding.root)
 
         binding.addBookSelectReviewWriteEt.enableScrollText();
+
         initClickListener()
 
     }
@@ -42,6 +44,7 @@ class AddBookSelectActivity : AppCompatActivity(){
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     fun EditText.enableScrollText()
     {
         overScrollMode = View.OVER_SCROLL_ALWAYS
