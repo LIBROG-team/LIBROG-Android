@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.flowerpot.LockedFlowerpotFragment">
+    tools:context=".ui.main.addFlowerpot.LockedFlowerpotFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/locked_flowerpot_rv"
+            android:id="@+id/unlocked_flowerpot_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_unlocked_flowerpot" />

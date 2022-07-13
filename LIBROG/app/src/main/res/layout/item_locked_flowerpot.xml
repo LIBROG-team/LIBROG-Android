@@ -28,12 +28,12 @@
         android:textColor="@color/black"
         android:letterSpacing="0.02"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/locked_fp_blooming_tv"
+        app:layout_constraintBottom_toTopOf="@id/locked_fp_condition_tv"
         app:layout_constraintStart_toEndOf="@id/locked_fp_img_iv"/>
 
 
     <TextView
-        android:id="@+id/locked_fp_blooming_tv"
+        android:id="@+id/locked_fp_condition_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_flowerpot_condition"
@@ -44,6 +44,6 @@
         app:layout_constraintTop_toBottomOf="@id/locked_fp_name_tv"
         app:layout_constraintStart_toStartOf="@id/locked_fp_name_tv"
         app:layout_constraintBottom_toBottomOf="parent"/>
--
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
