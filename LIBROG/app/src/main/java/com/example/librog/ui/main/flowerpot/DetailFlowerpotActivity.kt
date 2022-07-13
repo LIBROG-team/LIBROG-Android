@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.flowerpot
 
 
+import android.content.Intent
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
@@ -71,6 +72,11 @@ class DetailFlowerpotActivity :
                 showToast("Book Clicked")
             }
         })
+
+
+        binding.detailFlowerpotListBtnIv.setOnClickListener {
+            startActivity(Intent(this, AddFlowerpotActivity::class.java))
+        }
     }
 
     private fun initData() {
