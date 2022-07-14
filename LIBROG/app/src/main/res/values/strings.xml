@@ -57,8 +57,7 @@
     <!--기록추가 편집-->
     <string name="addbook_select_title">사피엔스</string>
     <string name="addbook_select_writer">유발 하라리</string>
-    <string name="addbook_select_explain">"『사피엔스』는 중요한 순간을 살고 있는 우리에게 다가올 미래에
-        대해 어떤 전망이 있는지, 지금이 전망을 가져야 할 때라고 말한다."</string>
+    <string name="addbook_select_explain">"『사피엔스』는 중요한 순간을 살고 있는 우리에게 다가올 미래에 대해 어떤 전망이 있는지, 지금이 전망을 가져야 할 때라고 말한다."</string>
     <string name="addbook_select_rate_text">이 책의 별점</string>
     <string name="addbook_select_rate_n">%d/%d</string>
     <string name="addbook_select_line">인상 깊은 한 줄</string>
