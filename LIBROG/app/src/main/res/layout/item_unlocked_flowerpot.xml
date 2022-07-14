@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
+    android:id="@+id/item_unlocked_flowerpot_cl"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -39,7 +40,7 @@
         android:text="@string/add_flowerpot_blooming"
         android:fontFamily="@font/pd_medium"
         android:textSize="13sp"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/darker_gray"
         android:letterSpacing="0.02"
         app:layout_constraintTop_toBottomOf="@id/unlocked_fp_name_tv"
         app:layout_constraintStart_toStartOf="@id/unlocked_fp_name_tv"

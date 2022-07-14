@@ -60,7 +60,7 @@
         android:layout_marginTop="24dp"
         app:tabIndicatorFullWidth="true"
         app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/dark_gray"
+        app:tabTextColor="@color/darker_gray"
         app:tabIndicatorColor="@color/green"
         app:tabRippleColor="@color/transparent"
         app:tabTextAppearance="@style/tab_text"

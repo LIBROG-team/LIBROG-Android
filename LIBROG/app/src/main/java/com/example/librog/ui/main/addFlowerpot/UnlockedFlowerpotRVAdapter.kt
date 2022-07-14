@@ -8,8 +8,18 @@ import com.example.librog.data.FlowerpotData
 import com.example.librog.databinding.ItemUnlockedFlowerpotBinding
 
 class UnlockedFlowerpotRVAdapter() : RecyclerView.Adapter<UnlockedFlowerpotRVAdapter.ViewHolder>() {
+
     private val unlockedFpList = ArrayList<FlowerpotData>()
 
+    private lateinit var mItemClickListener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onItemClick(flowerpot: FlowerpotData)
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+        mItemClickListener = onItemClickListener
+    }
 
     inner class ViewHolder(val binding: ItemUnlockedFlowerpotBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,6 +44,9 @@ class UnlockedFlowerpotRVAdapter() : RecyclerView.Adapter<UnlockedFlowerpotRVAda
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(unlockedFpList[position])
+        holder.binding.itemUnlockedFlowerpotCl.setOnClickListener {
+            mItemClickListener.onItemClick(unlockedFpList[position])
+        }
     }
 
     override fun getItemCount(): Int {

@@ -1,5 +1,7 @@
 package com.example.librog.ui.main.addFlowerpot
 
+import android.content.Intent
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,7 @@ class UnlockedFlowerpotFragment :
     BaseFragment<FragmentUnlockedFlowerpotBinding>(FragmentUnlockedFlowerpotBinding::inflate) {
     override fun initAfterBinding() {
         initUnlockedRV()
+
     }
 
     private fun initUnlockedRV() {
@@ -19,6 +22,16 @@ class UnlockedFlowerpotFragment :
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.unlockedFlowerpotRv.adapter = adapter
         binding.unlockedFlowerpotRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
+        adapter.setOnItemClickListener(object : UnlockedFlowerpotRVAdapter.OnItemClickListener{
+            override fun onItemClick(flowerpot: FlowerpotData){
+                val intent = Intent(context, DetailUnlockedFpActivity::class.java)
+                intent.putExtra("selectedItem", flowerpot.id)
+                startActivity(intent)
+//                showToast("test")
+            }
+
+        })
 
         adapter.addUnlockedFlowerpot(
             arrayListOf(
