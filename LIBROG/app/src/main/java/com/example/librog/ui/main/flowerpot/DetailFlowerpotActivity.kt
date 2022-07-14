@@ -1,15 +1,15 @@
 package com.example.librog.ui.main.flowerpot
 
 
-import android.util.Log
+import android.content.Intent
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.DetailTempFlowerpotData
 import com.example.librog.data.FlowerpotData
 import com.example.librog.databinding.ActivityDetailFlowerpotBinding
 import com.example.librog.ui.BaseActivity
+import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
 import com.google.gson.Gson
 
 
@@ -66,13 +66,23 @@ class DetailFlowerpotActivity :
         binding.detailFlowerpotBackBtnIv.setOnClickListener {
             finish()
         }
+
+        //화분에 기록된 책 클릭한 경우 임시로 Toast 메시지
         adapter.setMyItemClickListener(object : DetailFlowerpotRVAdapter.OnItemClickListener {
             override fun onItemClick(tempFlowerpotData: DetailTempFlowerpotData) {
                 showToast("Book Clicked")
             }
         })
+
+        //화분 상세 화면에서 버튼 클릭했을 시 화분 추가 액티비티 나오도록 임시로 설계함. 추후 수정 예정
+        binding.detailFlowerpotListBtnIv.setOnClickListener {
+            startActivity(Intent(this, AddFlowerpotActivity::class.java))
+        }
     }
 
+
+
+    //화분에 기록된 책 임시로 데이터 삽입
     private fun initData() {
 
         flowerpotBookList.addAll(

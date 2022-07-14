@@ -64,6 +64,20 @@ class FlowerpotFragment :
                 "temp",
                 "temp",
                 "temp"
+            ),
+            FlowerpotData(
+                "해바라기",
+                "Sunflower",
+                "2022.05.07",
+                "2022.05.18",
+                "https://treethink.kr/prod_img/202110/20211016022328_616a61d0c3ffe.jpg",
+                "SF",
+                3,
+                9000,
+                10000,
+                "temp",
+                "temp",
+                "temp"
             )
         )
         flowerpotDataList.addAll(testList)

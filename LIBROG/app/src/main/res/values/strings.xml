@@ -75,5 +75,14 @@
     <string name="detail_flowerpot_exp_num">%d / %d</string>
     <string name="detail_flowerpot_book_list">화분에 기록된 책</string>
 
+    <!-- 화분추가 -->
+    <string name="add_flowerpot_top_text">화분추가</string>
+    <string name="add_flowerpot_unlocked">획득한 화분</string>
+    <string name="add_flowerpot_locked">미획득 화분</string>
+    <string name="add_flowerpot_name">꽃 이름</string>
+    <string name="add_flowerpot_blooming">예상 %d~%d개월</string>
+    <string name="add_flowerpot_condition">잠금 해제 조건</string>
+    <string name="add_flowerpot_status">NEW!</string>
+
 
 </resources>
