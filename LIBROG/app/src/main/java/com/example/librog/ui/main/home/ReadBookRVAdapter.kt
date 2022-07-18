@@ -3,14 +3,13 @@ package com.example.librog.ui.main.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.librog.data.DetailTempFlowerpotData
-import com.example.librog.data.Readbook
+import com.example.librog.data.ReadingRecord
 import com.example.librog.databinding.ItemHomeBookBinding
 
-class ReadBookRVAdapter(private val readbookList: ArrayList<Readbook>) : RecyclerView.Adapter<ReadBookRVAdapter.ViewHolder>() {
+class ReadBookRVAdapter(private val readingRecordList: ArrayList<ReadingRecord>) : RecyclerView.Adapter<ReadBookRVAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(tempReadBookData: Readbook)
+        fun onItemClick(tempReadBookData: ReadingRecord)
     }
 
     private lateinit var mItemClickListener: OnItemClickListener
@@ -27,21 +26,21 @@ class ReadBookRVAdapter(private val readbookList: ArrayList<Readbook>) : Recycle
     }
 
     override fun onBindViewHolder(holder: ReadBookRVAdapter.ViewHolder, position: Int) {
-        holder.bind(readbookList[position]) //position=indexid 받아온 뷰홀더에 바인딩을 해주기 위해 해당 포지션의 데이터를 던져줌
+        holder.bind(readingRecordList[position]) //position=indexid 받아온 뷰홀더에 바인딩을 해주기 위해 해당 포지션의 데이터를 던져줌
         holder.binding.itemHomeBookFrameIv.setOnClickListener {
-            mItemClickListener.onItemClick(readbookList[position])
+            mItemClickListener.onItemClick(readingRecordList[position])
         }
     }
 
-    override fun getItemCount(): Int = readbookList.size
+    override fun getItemCount(): Int = readingRecordList.size
 
     inner class ViewHolder(val binding: ItemHomeBookBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(readbook: Readbook){
-            binding.itemHomeBookIv.setImageResource(readbook.coverImg!!)
-            binding.itemHomeBookTitleTv.text = readbook.title
-            binding.itemHomeBookWriterTv.text = readbook.writer
-            binding.itemHomeBookDateTv.text = readbook.date
+        fun bind(readingRecord: ReadingRecord){
+            binding.itemHomeBookIv.setImageResource(readingRecord.coverImg!!)
+            binding.itemHomeBookTitleTv.text = readingRecord.title
+            binding.itemHomeBookWriterTv.text = readingRecord.writer
+            binding.itemHomeBookDateTv.text = readingRecord.date
         }
 
     }
