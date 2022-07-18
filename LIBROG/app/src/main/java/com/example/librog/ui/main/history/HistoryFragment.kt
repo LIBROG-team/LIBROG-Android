@@ -27,6 +27,10 @@ class HistoryFragment : Fragment() {
         initLayout()
         initData()
 
+        binding.historyMoveTopBtn.setOnClickListener {
+            binding.historyBookListRv?.smoothScrollToPosition(0)
+        }
+
         return binding.root
     }
 
@@ -46,10 +50,17 @@ class HistoryFragment : Fragment() {
         })
 
         binding.historyBookListRv.layoutManager = GridLayoutManager(context,3)
+
     }
+
 
     private fun initData(){
         historybookDatas.apply{
+            add(HistoryBookData(R.drawable.home_item_book1))
+            add(HistoryBookData(R.drawable.home_item_book2))
+            add(HistoryBookData(R.drawable.home_item_book1))
+            add(HistoryBookData(R.drawable.home_item_book2))
+            add(HistoryBookData(R.drawable.home_item_book1))
             add(HistoryBookData(R.drawable.home_item_book1))
             add(HistoryBookData(R.drawable.home_item_book2))
             add(HistoryBookData(R.drawable.home_item_book1))
