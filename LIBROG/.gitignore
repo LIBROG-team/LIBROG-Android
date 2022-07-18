@@ -9,9 +9,9 @@
 /.idea/assetWizardSettings.xml
 /.idea/misc.xml
 .idea/misc.xml
-idea/
-.idea/
-/.idea
+# idea/
+# .idea/
+# /.idea
 .DS_Store
 /build
 /captures
