@@ -13,8 +13,8 @@ data class User(
     var status: String, //유저 상태
     var createdAt: Timestamp,
     var updatedAt: Timestamp,
-    var introduction: String, //자기소개
-    var profileImgUrl: String //프사 이미지 url
+    var introduction: String?, //자기소개
+    var profileImgUrl: String? //프사 이미지 url
 ){
     @PrimaryKey(autoGenerate =true) var idx: Int =0
 }
