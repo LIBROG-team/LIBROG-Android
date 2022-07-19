@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.history
 
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.librog.data.HistoryBookData
@@ -12,6 +13,8 @@ class HistoryRVAdapter (private val historyBookList: ArrayList<HistoryBookData>)
     interface OnItemClickListener {
         fun onItemClick(tempHistoryBookData: HistoryBookData)
     }
+
+
 
     private lateinit var mItemClickListener: OnItemClickListener
     fun setMyItemClickListener(itemClickListener: OnItemClickListener) {
