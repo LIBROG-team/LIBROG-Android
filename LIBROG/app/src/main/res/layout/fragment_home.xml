@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:gravity="bottom"
     tools:context=".ui.main.home.HomeFragment"
-    app:umanoDragView="@id/slide_layout"
+    app:umanoDragView="@id/home_slide_layout"
     app:umanoShadowHeight="30dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/slide_layout"
+        android:id="@+id/home_slide_layout"
         android:layout_width="match_parent"
         android:layout_height="259dp">
         <View

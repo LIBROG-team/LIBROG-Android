@@ -1,5 +1,6 @@
 package com.example.librog.ui.main
 
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -22,5 +23,14 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
         setTheme(R.style.Theme_LIBROG)
 
+    }
+
+    fun controlBottomNavVisibility (){
+        if (binding.mainBottomNavigation.visibility == View.VISIBLE){
+            binding.mainBottomNavigation.visibility = View.GONE
+        }
+        else {
+            binding.mainBottomNavigation.visibility = View.VISIBLE
+        }
     }
 }
