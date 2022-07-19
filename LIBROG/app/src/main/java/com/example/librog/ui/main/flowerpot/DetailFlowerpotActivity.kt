@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.librog.R
 import com.example.librog.data.DetailTempFlowerpotData
-import com.example.librog.data.FlowerpotData
+import com.example.librog.data.entities.FlowerData
 import com.example.librog.databinding.ActivityDetailFlowerpotBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
@@ -28,7 +28,7 @@ class DetailFlowerpotActivity :
 
     private fun initLayout() {
         val curFpJson = intent.getStringExtra("flowerpot")
-        val curFp = gson.fromJson(curFpJson, FlowerpotData::class.java)
+        val curFp = gson.fromJson(curFpJson, FlowerData::class.java)
 
         binding.apply {
             detailFlowerpotNameTv.text = curFp.name

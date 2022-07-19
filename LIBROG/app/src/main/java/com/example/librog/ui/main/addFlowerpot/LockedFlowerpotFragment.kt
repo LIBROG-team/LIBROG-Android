@@ -2,7 +2,7 @@ package com.example.librog.ui.main.addFlowerpot
 
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.librog.data.FlowerpotData
+import com.example.librog.data.entities.FlowerData
 import com.example.librog.databinding.FragmentLockedFlowerpotBinding
 import com.example.librog.ui.BaseFragment
 
@@ -20,7 +20,7 @@ class LockedFlowerpotFragment : BaseFragment<FragmentLockedFlowerpotBinding>(Fra
 
         adapter.addLockedFlowerpot(
             arrayListOf(
-                FlowerpotData(
+                FlowerData(
                     "라넌큘러스",
                     "Ranunculus",
                     "2022.05.07",
@@ -34,7 +34,7 @@ class LockedFlowerpotFragment : BaseFragment<FragmentLockedFlowerpotBinding>(Fra
                     "temp",
                     "temp"
                 ),
-                FlowerpotData(
+                FlowerData(
                     "튤립",
                     "Tulip",
                     "2022.05.07",
