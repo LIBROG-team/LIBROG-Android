@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.data.entities.FlowerData
+import com.example.librog.data.entities.Flowerpot
 import com.example.librog.databinding.FragmentUnlockedFlowerpotBinding
 import com.example.librog.ui.BaseFragment
 
@@ -24,9 +25,8 @@ class UnlockedFlowerpotFragment :
         adapter.setOnItemClickListener(object : UnlockedFlowerpotRVAdapter.OnItemClickListener{
             override fun onItemClick(flowerpot: FlowerData){
                 val intent = Intent(context, DetailUnlockedFpActivity::class.java)
-                intent.putExtra("selectedItem", flowerpot.id)
+                intent.putExtra("selectedItem", flowerpot.idx)
                 startActivity(intent)
-//                showToast("test")
             }
 
         })

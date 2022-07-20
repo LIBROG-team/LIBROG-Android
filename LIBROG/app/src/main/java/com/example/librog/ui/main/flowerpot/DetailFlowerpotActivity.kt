@@ -37,27 +37,27 @@ class DetailFlowerpotActivity :
                 .load(curFp.flowerpotImgUrl)
                 .into(detailFlowerpotFlowerimgIv)
 
-            detailFlowerpotDateTv.text = String.format(
-                applicationContext.getString(R.string.flowerpot_date),
-                curFp.startDate,
-                curFp.lastDate
-            )
-            detailFlowerpotRecordCountTv.text = String.format(
-                applicationContext.getString(R.string.flowerpot_record), curFp.recordCount
-            )
+//            detailFlowerpotDateTv.text = String.format(
+//                applicationContext.getString(R.string.flowerpot_date),
+//                curFp.startDate,
+//                curFp.lastDate
+//            )
+//            detailFlowerpotRecordCountTv.text = String.format(
+//                applicationContext.getString(R.string.flowerpot_record), curFp.recordCount
+//            )
+//
+//            detailFlowerpotExpTextTv.text = String.format(
+//                applicationContext.getString(R.string.detail_flowerpot_exp_text), curFp.name
+//            )
+//
+//            detailFlowerpotExpNumTv.text = String.format(
+//                applicationContext.getString(R.string.detail_flowerpot_exp_num),
+//                curFp.exp,
+//                curFp.maxExp
+//            )
+//            val progress = (curFp.exp / curFp.maxExp.toFloat()) * 100
 
-            detailFlowerpotExpTextTv.text = String.format(
-                applicationContext.getString(R.string.detail_flowerpot_exp_text), curFp.name
-            )
-
-            detailFlowerpotExpNumTv.text = String.format(
-                applicationContext.getString(R.string.detail_flowerpot_exp_num),
-                curFp.exp,
-                curFp.maxExp
-            )
-            val progress = (curFp.exp / curFp.maxExp.toFloat()) * 100
-
-            detailFlowerpotProgressPb.progress = progress.toInt()
+//            detailFlowerpotProgressPb.progress = progress.toInt()
 
         }
 

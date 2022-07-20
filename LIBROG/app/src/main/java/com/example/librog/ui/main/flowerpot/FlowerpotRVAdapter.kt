@@ -26,13 +26,12 @@ class FlowerpotRVAdapter(private val flowerDataList: ArrayList<FlowerData>) : Re
         RecyclerView.ViewHolder(binding.root) {
         fun bind(flowerData: FlowerData) {
             binding.itemFlowerpotTitleTv.text = flowerData.name
-            binding.itemFlowerpotDateTv.text = String.format(
-                context.getString(R.string.flowerpot_date),
-                flowerData.startDate,
-                flowerData.lastDate
-            )
-            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerData.recordCount)
-            binding.itemFlowerpotGenreTv.text = String.format(context.getString(R.string.flowerpot_most_genre), flowerData.mostReadGenre)
+//            binding.itemFlowerpotDateTv.text = String.format(
+//                context.getString(R.string.flowerpot_date),
+//                flowerData.startDate,
+//                flowerData.lastDate
+//            )
+//            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerData.recordCount)
         }
     }
 
