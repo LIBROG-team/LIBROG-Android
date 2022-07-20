@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
         ),
         ForeignKey(
             entity = User::class,
-            parentColumns = ["userIdx"],
+            parentColumns = ["idx"],
             childColumns = ["userIdx"]
         )
     ]
