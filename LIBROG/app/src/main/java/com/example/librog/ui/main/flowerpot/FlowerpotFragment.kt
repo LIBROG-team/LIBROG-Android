@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.R
 import com.example.librog.data.entities.FlowerData
+import com.example.librog.data.entities.Flowerpot
+import com.example.librog.data.remote.data.DataService
 import com.example.librog.databinding.FragmentFlowerpotBinding
 import com.example.librog.ui.BaseFragment
 import com.google.gson.Gson
@@ -12,12 +14,14 @@ class FlowerpotFragment :
     BaseFragment<FragmentFlowerpotBinding>(FragmentFlowerpotBinding::inflate) {
 
     private var flowerDataList = ArrayList<FlowerData>()
+    private var flowerpotList = ArrayList<Flowerpot>()
+    private val dataService = DataService
 
     override fun initAfterBinding() {
         flowerDataList.clear()
         initFlowerpotData()
 
-        val adapter = FlowerpotRVAdapter(flowerDataList)
+        val adapter = FlowerpotRVAdapter(flowerDataList, flowerpotList)
         binding.flowerpotListRv.adapter = adapter
         binding.flowerpotListRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -36,6 +40,7 @@ class FlowerpotFragment :
     }
 
     private fun initFlowerpotData() {
+        dataService.getFpList(1)
 
     }
 

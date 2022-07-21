@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class FlowerData(
+    @PrimaryKey(autoGenerate = true) var idx: Int = 0,
     var name: String,
     var engName: String,
     var flowerImgUrl: String,
@@ -14,6 +15,4 @@ data class FlowerData(
     var content: String,
     var type: String,
     var status: String,
-) {
-    @PrimaryKey(autoGenerate = true) var idx: Int = 0
-}
+)

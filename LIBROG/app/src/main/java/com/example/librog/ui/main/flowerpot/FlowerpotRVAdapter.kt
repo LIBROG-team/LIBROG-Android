@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.librog.R
 import com.example.librog.data.entities.FlowerData
+import com.example.librog.data.entities.Flowerpot
 import com.example.librog.databinding.ItemFlowerpotBinding
 
-class FlowerpotRVAdapter(private val flowerDataList: ArrayList<FlowerData>) : RecyclerView.Adapter<FlowerpotRVAdapter.ViewHolder>() {
+class FlowerpotRVAdapter(private val flowerDataList: ArrayList<FlowerData>, private val flowerpotList:ArrayList<Flowerpot>) : RecyclerView.Adapter<FlowerpotRVAdapter.ViewHolder>() {
 
     lateinit var context: Context
 
@@ -24,14 +25,14 @@ class FlowerpotRVAdapter(private val flowerDataList: ArrayList<FlowerData>) : Re
 
     inner class ViewHolder(val binding: ItemFlowerpotBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(flowerData: FlowerData) {
+        fun bind(flowerData: FlowerData, flowerpot: Flowerpot) {
             binding.itemFlowerpotTitleTv.text = flowerData.name
-//            binding.itemFlowerpotDateTv.text = String.format(
-//                context.getString(R.string.flowerpot_date),
-//                flowerData.startDate,
-//                flowerData.lastDate
-//            )
-//            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerData.recordCount)
+            binding.itemFlowerpotDateTv.text = String.format(
+                context.getString(R.string.flowerpot_date),
+                flowerpot.startDate,
+                flowerpot.lastDate
+            )
+            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerpot.recordCount)
         }
     }
 
@@ -43,7 +44,7 @@ class FlowerpotRVAdapter(private val flowerDataList: ArrayList<FlowerData>) : Re
     }
 
     override fun onBindViewHolder(holder: FlowerpotRVAdapter.ViewHolder, position: Int) {
-        holder.bind(flowerDataList[position])
+        holder.bind(flowerDataList[position], flowerpotList[position])
         holder.binding.itemFlowerpotCl.setOnClickListener {
             mItemClickListener.onItemClick(flowerDataList[position])
         }

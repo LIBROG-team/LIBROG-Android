@@ -14,8 +14,8 @@ interface FlowerpotDao {
     @Query("SELECT * FROM FlowerData WHERE idx = :idx")
     fun getFlowerpotByIdx(idx: Int): List<FlowerData>
 
-    @Query("SELECT * FROM FlowerData JOIN Flowerpot ON FlowerData.idx = Flowerpot.flowerDataIdx")
-    fun getFlowerDataAndFlowerpotByIdx(idx: Int): Map<FlowerData, Flowerpot>
+    @Query("SELECT * FROM FlowerData JOIN Flowerpot ON FlowerData.idx = Flowerpot.flowerDataIdx AND FlowerData.idx = :idx")
+    fun getFlowerDataAndFlowerpotByIdx(idx: Int): List<FlowerData>
 
 
 
