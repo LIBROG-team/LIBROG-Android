@@ -3,7 +3,9 @@ package com.example.librog.ui.main.flowerpot
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.R
-import com.example.librog.data.FlowerpotData
+import com.example.librog.data.entities.FlowerData
+import com.example.librog.data.entities.Flowerpot
+import com.example.librog.data.remote.data.DataService
 import com.example.librog.databinding.FragmentFlowerpotBinding
 import com.example.librog.ui.BaseFragment
 import com.google.gson.Gson
@@ -11,23 +13,25 @@ import com.google.gson.Gson
 class FlowerpotFragment :
     BaseFragment<FragmentFlowerpotBinding>(FragmentFlowerpotBinding::inflate) {
 
-    private var flowerpotDataList = ArrayList<FlowerpotData>()
+    private var flowerDataList = ArrayList<FlowerData>()
+    private var flowerpotList = ArrayList<Flowerpot>()
+    private val dataService = DataService
 
     override fun initAfterBinding() {
-        flowerpotDataList.clear()
+        flowerDataList.clear()
         initFlowerpotData()
 
-        val adapter = FlowerpotRVAdapter(flowerpotDataList)
+        val adapter = FlowerpotRVAdapter(flowerDataList, flowerpotList)
         binding.flowerpotListRv.adapter = adapter
         binding.flowerpotListRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.flowerpotTotalTv.text =
-            String.format(getString(R.string.flowerpot_total), flowerpotDataList.size)
+            String.format(getString(R.string.flowerpot_total), flowerDataList.size)
         adapter.setMyItemClickListener(object : FlowerpotRVAdapter.OnItemClickListener {
-            override fun onItemClick(flowerpotData: FlowerpotData) {
+            override fun onItemClick(flowerData: FlowerData) {
                 val intent = Intent(context, DetailFlowerpotActivity::class.java)
                 val gson = Gson()
-                val fpJson = gson.toJson(flowerpotData)
+                val fpJson = gson.toJson(flowerData)
                 intent.putExtra("flowerpot", fpJson)
                 startActivity(intent)
             }
@@ -36,51 +40,8 @@ class FlowerpotFragment :
     }
 
     private fun initFlowerpotData() {
-        val testList = arrayListOf<FlowerpotData>(
-            FlowerpotData(
-                "라넌큘러스",
-                "Ranunculus",
-                "2022.05.07",
-                "2022.05.18",
-                "https://cdn.shopify.com/s/files/1/1419/7120/products/Ranunculus_Pink.SHUT.SQ_1024x.jpg?v=1580943589",
-                "고전",
-                3,
-                3600,
-                10000,
-                "temp",
-                "temp",
-                "temp"
-            ),
-            FlowerpotData(
-                "튤립",
-                "Tulip",
-                "2022.05.07",
-                "2022.05.18",
-                "https://treethink.kr/prod_img/202110/20211016022328_616a61d0c3ffe.jpg",
-                "SF",
-                3,
-                9000,
-                10000,
-                "temp",
-                "temp",
-                "temp"
-            ),
-            FlowerpotData(
-                "해바라기",
-                "Sunflower",
-                "2022.05.07",
-                "2022.05.18",
-                "https://treethink.kr/prod_img/202110/20211016022328_616a61d0c3ffe.jpg",
-                "SF",
-                3,
-                9000,
-                10000,
-                "temp",
-                "temp",
-                "temp"
-            )
-        )
-        flowerpotDataList.addAll(testList)
+        dataService.getFpList(1)
+
     }
 
 }

@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.librog.R
-import com.example.librog.data.FlowerpotData
+import com.example.librog.data.entities.FlowerData
+import com.example.librog.data.entities.Flowerpot
 import com.example.librog.databinding.ItemFlowerpotBinding
 
-class FlowerpotRVAdapter(private val flowerpotDataList: ArrayList<FlowerpotData>) : RecyclerView.Adapter<FlowerpotRVAdapter.ViewHolder>() {
+class FlowerpotRVAdapter(private val flowerDataList: ArrayList<FlowerData>, private val flowerpotList:ArrayList<Flowerpot>) : RecyclerView.Adapter<FlowerpotRVAdapter.ViewHolder>() {
 
     lateinit var context: Context
 
     interface OnItemClickListener {
-        fun onItemClick(flowerpotData: FlowerpotData)
+        fun onItemClick(flowerData: FlowerData)
     }
 
     private lateinit var mItemClickListener: OnItemClickListener
@@ -24,15 +25,14 @@ class FlowerpotRVAdapter(private val flowerpotDataList: ArrayList<FlowerpotData>
 
     inner class ViewHolder(val binding: ItemFlowerpotBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(flowerpotData: FlowerpotData) {
-            binding.itemFlowerpotTitleTv.text = flowerpotData.name
+        fun bind(flowerData: FlowerData, flowerpot: Flowerpot) {
+            binding.itemFlowerpotTitleTv.text = flowerData.name
             binding.itemFlowerpotDateTv.text = String.format(
                 context.getString(R.string.flowerpot_date),
-                flowerpotData.startDate,
-                flowerpotData.lastDate
+                flowerpot.startDate,
+                flowerpot.lastDate
             )
-            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerpotData.recordCount)
-            binding.itemFlowerpotGenreTv.text = String.format(context.getString(R.string.flowerpot_most_genre), flowerpotData.mostReadGenre)
+            binding.itemFlowerpotRecordTv.text = String.format(context.getString(R.string.flowerpot_record), flowerpot.recordCount)
         }
     }
 
@@ -44,17 +44,17 @@ class FlowerpotRVAdapter(private val flowerpotDataList: ArrayList<FlowerpotData>
     }
 
     override fun onBindViewHolder(holder: FlowerpotRVAdapter.ViewHolder, position: Int) {
-        holder.bind(flowerpotDataList[position])
+        holder.bind(flowerDataList[position], flowerpotList[position])
         holder.binding.itemFlowerpotCl.setOnClickListener {
-            mItemClickListener.onItemClick(flowerpotDataList[position])
+            mItemClickListener.onItemClick(flowerDataList[position])
         }
         Glide.with(context)
-            .load(flowerpotDataList[position].flowerpotImgUrl)
+            .load(flowerDataList[position].flowerpotImgUrl)
             .into(holder.binding.itemFlowerpotIv)
     }
 
     override fun getItemCount(): Int {
-        return flowerpotDataList.size
+        return flowerDataList.size
 
     }
 }

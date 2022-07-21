@@ -4,24 +4,23 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.librog.data.FlowerpotData
+import com.example.librog.data.entities.FlowerData
 import com.example.librog.databinding.ItemLockedFlowerpotBinding
-import com.example.librog.databinding.ItemUnlockedFlowerpotBinding
 
 class LockedFlowerpotRVAdapter():RecyclerView.Adapter<LockedFlowerpotRVAdapter.ViewHolder>(){
-    private val lockedFpList = ArrayList<FlowerpotData>()
+    private val lockedFpList = ArrayList<FlowerData>()
 
 
     inner class ViewHolder(val binding: ItemLockedFlowerpotBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(flowerpot: FlowerpotData) {
+        fun bind(flowerpot: FlowerData) {
             binding.lockedFpNameTv.text = flowerpot.name
             binding.lockedFpConditionTv.text = flowerpot.blooming
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addLockedFlowerpot(unlockedFlowerpots: ArrayList<FlowerpotData>) {
+    fun addLockedFlowerpot(unlockedFlowerpots: ArrayList<FlowerData>) {
         this.lockedFpList.clear()
         this.lockedFpList.addAll(unlockedFlowerpots)
         notifyDataSetChanged()
