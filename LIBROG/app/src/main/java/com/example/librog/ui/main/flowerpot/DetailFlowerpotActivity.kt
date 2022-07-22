@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.librog.R
 import com.example.librog.data.DetailTempFlowerpotData
 import com.example.librog.data.entities.FlowerData
+import com.example.librog.data.entities.Flowerpot
 import com.example.librog.databinding.ActivityDetailFlowerpotBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
@@ -27,37 +28,40 @@ class DetailFlowerpotActivity :
     }
 
     private fun initLayout() {
+        val curFdJson = intent.getStringExtra("flowerData")
+        val curFd = gson.fromJson(curFdJson, FlowerData::class.java)
         val curFpJson = intent.getStringExtra("flowerpot")
-        val curFp = gson.fromJson(curFpJson, FlowerData::class.java)
+        val curFp = gson.fromJson(curFpJson, Flowerpot::class.java)
+
 
         binding.apply {
-            detailFlowerpotNameTv.text = curFp.name
+            detailFlowerpotNameTv.text = curFd.name
 
             Glide.with(applicationContext)
-                .load(curFp.flowerpotImgUrl)
+                .load(curFd.flowerpotImgUrl)
                 .into(detailFlowerpotFlowerimgIv)
 
-//            detailFlowerpotDateTv.text = String.format(
-//                applicationContext.getString(R.string.flowerpot_date),
-//                curFp.startDate,
-//                curFp.lastDate
-//            )
-//            detailFlowerpotRecordCountTv.text = String.format(
-//                applicationContext.getString(R.string.flowerpot_record), curFp.recordCount
-//            )
-//
-//            detailFlowerpotExpTextTv.text = String.format(
-//                applicationContext.getString(R.string.detail_flowerpot_exp_text), curFp.name
-//            )
-//
-//            detailFlowerpotExpNumTv.text = String.format(
-//                applicationContext.getString(R.string.detail_flowerpot_exp_num),
-//                curFp.exp,
-//                curFp.maxExp
-//            )
-//            val progress = (curFp.exp / curFp.maxExp.toFloat()) * 100
+            detailFlowerpotDateTv.text = String.format(
+                applicationContext.getString(R.string.flowerpot_date),
+                curFp.startDate,
+                curFp.lastDate
+            )
+            detailFlowerpotRecordCountTv.text = String.format(
+                applicationContext.getString(R.string.flowerpot_record), curFp.recordCount
+            )
 
-//            detailFlowerpotProgressPb.progress = progress.toInt()
+            detailFlowerpotExpTextTv.text = String.format(
+                applicationContext.getString(R.string.detail_flowerpot_exp_text), curFd.name
+            )
+
+            detailFlowerpotExpNumTv.text = String.format(
+                applicationContext.getString(R.string.detail_flowerpot_exp_num),
+                curFp.exp,
+                curFd.maxExp
+            )
+            val progress = (curFp.exp / curFd.maxExp.toFloat()) * 100
+
+            detailFlowerpotProgressPb.progress = progress.toInt()
 
         }
 

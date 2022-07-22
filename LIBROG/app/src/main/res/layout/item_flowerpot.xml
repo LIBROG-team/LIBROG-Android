@@ -13,8 +13,8 @@
         android:id="@+id/item_flowerpot_iv"
         android:layout_width="115dp"
         android:layout_height="163dp"
-        android:scaleType="fitXY"
         android:layout_marginStart="30dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/home_banner_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/item_flowerpot_title_tv"
@@ -37,21 +37,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="40dp"
         android:fontFamily="@font/pd_semibold"
         android:text="@string/flowerpot_flower"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/item_flowerpot_date_tv"
         app:layout_constraintStart_toEndOf="@id/item_flowerpot_iv"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/item_flowerpot_date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/pd_medium"
         android:text="@string/flowerpot_date"
         android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/item_flowerpot_record_tv"
         app:layout_constraintStart_toStartOf="@id/item_flowerpot_title_tv"
         app:layout_constraintTop_toBottomOf="@id/item_flowerpot_title_tv" />
 
@@ -59,24 +62,12 @@
         android:id="@+id/item_flowerpot_record_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
         android:fontFamily="@font/pd_regular"
         android:text="@string/flowerpot_record"
         android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/item_flowerpot_date_tv"
         app:layout_constraintTop_toBottomOf="@id/item_flowerpot_date_tv" />
-
-
-    <TextView
-        android:id="@+id/item_flowerpot_genre_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/pd_regular"
-        android:text="@string/flowerpot_most_genre"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@id/item_flowerpot_record_tv"
-        app:layout_constraintTop_toBottomOf="@id/item_flowerpot_record_tv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
