@@ -5,9 +5,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.librog.data.entities.User
 import com.example.librog.data.local.AppDatabase
-import com.example.librog.data.remote.data.AuthResponse
-import com.example.librog.data.remote.data.AuthRetrofitInterface
-import com.example.librog.data.remote.data.getRetrofit
+import com.example.librog.data.remote.data.*
 import com.example.librog.databinding.ActivitySignupBinding
 import com.example.librog.ui.BaseActivity
 import retrofit2.Call
@@ -15,7 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate) {
+class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate), SignUpView {
     override fun initAfterBinding() {
 
         binding.signUpSignUpBtn.setOnClickListener {
@@ -66,27 +64,19 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
             Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
             return
         }
-        //레트로핏, 서비스 객체 생성, api 호출
-        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.signUp(getUser()).enqueue(object: Callback<AuthResponse>{
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                Log.d("SIGNUP/SUCCESS", response.toString())
-                val resp: AuthResponse = response.body()!! //response안에서 body값 가져옴 (서버에서 보낸값)
-                when(resp.code){
-                    1000->finish()
-//                    2016, 2018 -> { //이메일 관련 오류
-//                        binding.signUpEmailErrorTv.visibility = View.VISIBLE
-//                        binding.signUpEmailErrorTv.text = resp.message //서버에서 보낸 메세지
-//                    }
-                }
-            }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Log.d("SIGNUP/FAILURE", t.message.toString())
-            }
 
-        })
-        Log.d("SIGNUP","HELLO")
+        val authService = AuthService()
+        authService.setSignUpview(this)
 
+        authService.signUp(getUser()) //api호출
+    }
+
+    override fun onSignUpSuccess() {
+        finish()
+    }
+
+    override fun onSignUpFailure() {
+        TODO("Not yet implemented")
     }
 }
