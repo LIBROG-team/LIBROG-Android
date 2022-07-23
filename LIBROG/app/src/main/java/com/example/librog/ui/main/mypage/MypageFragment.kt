@@ -7,11 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.example.librog.R
-import com.example.librog.data.HistoryBookData
-import com.example.librog.databinding.FragmentHistoryBinding
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.databinding.FragmentMypageBinding
-import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
 
@@ -54,6 +51,8 @@ class MypageFragment : Fragment() {
                 startActivity(intent)
             }
         }
+
+
     }
 
     private fun logout(){

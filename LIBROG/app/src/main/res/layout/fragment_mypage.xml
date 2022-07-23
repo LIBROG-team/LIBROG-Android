@@ -9,7 +9,7 @@
         android:id="@+id/profile_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="프로필"
+        android:text="@string/menu_mypage"
         android:textSize="27sp"
         android:layout_marginStart="29dp"
         android:layout_marginTop="41dp"
