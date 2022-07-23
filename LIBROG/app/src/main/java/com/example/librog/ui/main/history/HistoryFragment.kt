@@ -21,7 +21,6 @@ import android.view.MotionEvent
 
 class HistoryFragment : Fragment() {
     lateinit var binding: FragmentHistoryBinding
-    lateinit var binding2: ItemHistoryBookBinding
     private var historybookDatas = ArrayList<HistoryBookData>()
 
     override fun onCreateView(
@@ -30,7 +29,6 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        binding2 = ItemHistoryBookBinding.inflate(inflater, container, false)
 
         initLayout()
         initData()
