@@ -1,20 +1,24 @@
 package com.example.librog.ui.main.addFlowerpot
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.librog.data.entities.FlowerData
+import com.example.librog.data.remote.data.UnlockedFpResult
 import com.example.librog.databinding.ItemUnlockedFlowerpotBinding
 
-class UnlockedFlowerpotRVAdapter() : RecyclerView.Adapter<UnlockedFlowerpotRVAdapter.ViewHolder>() {
+class UnlockedFlowerpotRVAdapter(
+    private var unlockedFpList: ArrayList<UnlockedFpResult>
+) : RecyclerView.Adapter<UnlockedFlowerpotRVAdapter.ViewHolder>() {
 
-    private val unlockedFpList = ArrayList<FlowerData>()
-
+    lateinit var context: Context
     private lateinit var mItemClickListener: OnItemClickListener
 
     interface OnItemClickListener {
-        fun onItemClick(flowerpot: FlowerData)
+        fun onItemClick(fp: UnlockedFpResult)
     }
 
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
@@ -23,22 +27,26 @@ class UnlockedFlowerpotRVAdapter() : RecyclerView.Adapter<UnlockedFlowerpotRVAda
 
     inner class ViewHolder(val binding: ItemUnlockedFlowerpotBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(flowerpot: FlowerData) {
-            binding.unlockedFpNameTv.text = flowerpot.name
-            binding.unlockedFpStatusTv.text = flowerpot.status
+        fun bind(fp: UnlockedFpResult) {
+            binding.unlockedFpNameTv.text = fp.name
+            binding.unlockedFpStatusTv.text = fp.type
+            binding.unlockedFpBloomingTv.text = fp.bloomingPeriod
+
+            Glide.with(context)
+                .load(fp.flowerImgUrl)
+                .into(binding.unlockedFpImgIv)
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addUnlockedFlowerpot(unlockedFlowerpots: ArrayList<FlowerData>) {
-        this.unlockedFpList.clear()
-        this.unlockedFpList.addAll(unlockedFlowerpots)
-        notifyDataSetChanged()
+    fun setUnlockedFpList(data: ArrayList<UnlockedFpResult>) {
+        unlockedFpList = data
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             ItemUnlockedFlowerpotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        context = parent.context
+
         return ViewHolder(binding)
     }
 

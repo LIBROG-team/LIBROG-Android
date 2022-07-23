@@ -2,14 +2,18 @@ package com.example.librog.ui.main.flowerpot
 
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.librog.R
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.Flowerpot
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.DataService
 import com.example.librog.data.remote.data.FpResult
 import com.example.librog.databinding.FragmentFlowerpotBinding
 import com.example.librog.ui.BaseFragment
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class FlowerpotFragment :
     BaseFragment<FragmentFlowerpotBinding>(FragmentFlowerpotBinding::inflate) {
@@ -18,9 +22,12 @@ class FlowerpotFragment :
     private var flowerpotList = ArrayList<Flowerpot>()
     private val dataService = DataService
     private lateinit var adapter: FlowerpotRVAdapter
+    private lateinit var db: AppDatabase
+
 
     override fun initAfterBinding() {
         flowerDataList.clear()
+        db = AppDatabase.getInstance(requireContext())!!
         initFlowerpotData()
 
         adapter = FlowerpotRVAdapter(flowerDataList, flowerpotList)
@@ -49,12 +56,8 @@ class FlowerpotFragment :
 
 
     fun setData(result: ArrayList<FpResult>){
-
-        val tempFd = ArrayList<FlowerData>()
-        val tempFp = ArrayList<Flowerpot>()
-
         for (item in result) {
-            tempFd.add(
+            flowerDataList.add(
                 FlowerData(
                     item.flowerDataIdx,
                     item.name,
@@ -69,7 +72,7 @@ class FlowerpotFragment :
 
                 )
             )
-            tempFp.add(
+            flowerpotList.add(
                 Flowerpot(
                     item.flowerPotIdx,
                     getUserIdx(),
@@ -81,22 +84,13 @@ class FlowerpotFragment :
                     "active"
                 )
             )
-
-            loadFdData(tempFd)
-            loadFpData(tempFp)
+            adapter.notifyDataSetChanged()
+            //이후 비동기 방식으로 room db에 추가할 수 있음
         }
     }
 
-    private fun loadFpData(data: ArrayList<Flowerpot>){
-        adapter.setFpList(data)
-        adapter.notifyDataSetChanged()
-    }
 
-    private fun loadFdData(data: ArrayList<FlowerData>){
-        adapter.setFdList(data)
-        adapter.notifyDataSetChanged()
-    }
-
+    // room db 구축되면 user Id 조회하는 기능 필요
     fun getUserIdx(): Int{
         return 1
     }
