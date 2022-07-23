@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.example.librog.ApplicationClass.Companion.retrofit
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.Flowerpot
+import com.example.librog.ui.main.addFlowerpot.LockedFlowerpotFragment
 import com.example.librog.ui.main.addFlowerpot.UnlockedFlowerpotFragment
 import com.example.librog.ui.main.flowerpot.FlowerpotFragment
 import retrofit2.Call
@@ -24,7 +25,7 @@ object DataService {
                 val resp = response.body()!!
                 when (resp.code) {
                     1000 -> {
-                        Log.d("resp", resp.result.toString())
+                        Log.d("resp", resp.result.size.toString())
                         fragment.setData(resp.result)
                     }
 
@@ -49,13 +50,14 @@ object DataService {
     }
 
     //획득 화분 정보 가져오기
-    fun getUnlockedFpResult(fragment: UnlockedFlowerpotFragment){
-        dataService.getUnlockedFpResult(userIdx).enqueue(object : Callback<DataResponse2>{
+    fun getUnlockedFpResult(fragment: UnlockedFlowerpotFragment) {
+        dataService.getUnlockedFpResult(userIdx).enqueue(object : Callback<DataResponse2> {
             override fun onResponse(call: Call<DataResponse2>, response: Response<DataResponse2>) {
                 val resp = response.body()!!
-                when(resp.code){
+                when (resp.code) {
                     1000 -> {
                         Log.d("resp", resp.result.toString())
+                        fragment.setUnlockedFpList(resp.result)
                     }
 
                     2019 -> {
@@ -75,6 +77,27 @@ object DataService {
 
         })
 
+    }
+
+
+    // 미획득 화분 정보 가져오기
+    fun getLockedFpResult(fragment: LockedFlowerpotFragment) {
+        dataService.getLockedFpResult(userIdx).enqueue(object : Callback<DataResponse3> {
+            override fun onResponse(call: Call<DataResponse3>, response: Response<DataResponse3>) {
+                val resp = response.body()!!
+                // 실패 시 코드 작성하기
+                when (resp.code) {
+                    1000 -> {
+                        Log.d("resp", resp.result.toString())
+                        fragment.setLockedFpList(resp.result)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<DataResponse3>, t: Throwable) {
+            }
+
+        })
     }
 
 }

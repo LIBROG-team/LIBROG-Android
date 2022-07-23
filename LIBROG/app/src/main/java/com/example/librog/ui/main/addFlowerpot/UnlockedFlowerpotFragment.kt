@@ -1,8 +1,10 @@
 package com.example.librog.ui.main.addFlowerpot
 
 import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.remote.data.DataService
 import com.example.librog.data.remote.data.UnlockedFpResult
@@ -17,14 +19,14 @@ class UnlockedFlowerpotFragment :
 
 
     override fun initAfterBinding() {
-        initUnlockedFpData()
+        unlockedFpList.clear()
+        dataService.getUnlockedFpResult(this)
         initUnlockedRV()
     }
 
-    private fun initUnlockedFpData() {
-        dataService.getUnlockedFpResult(this)
-
-
+    fun setUnlockedFpList(result: ArrayList<UnlockedFpResult>){
+        unlockedFpList.addAll(result)
+        adapter.notifyDataSetChanged()
     }
 
     private fun initUnlockedRV() {

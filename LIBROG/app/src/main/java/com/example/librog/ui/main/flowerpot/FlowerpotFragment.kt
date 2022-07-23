@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.flowerpot
 
 import android.content.Intent
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.librog.R
@@ -23,19 +24,23 @@ class FlowerpotFragment :
     private val dataService = DataService
     private lateinit var adapter: FlowerpotRVAdapter
     private lateinit var db: AppDatabase
-
+    private var fpCnt: Int = 0
 
     override fun initAfterBinding() {
         flowerDataList.clear()
         db = AppDatabase.getInstance(requireContext())!!
-        initFlowerpotData()
+        dataService.getFpList(this)
 
         adapter = FlowerpotRVAdapter(flowerDataList, flowerpotList)
         binding.flowerpotListRv.adapter = adapter
         binding.flowerpotListRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        //초기 값 0으로 나오는 문제 해결 어떻게..?
         binding.flowerpotTotalTv.text =
-            String.format(getString(R.string.flowerpot_total), flowerDataList.size)
+            String.format(getString(R.string.flowerpot_total), fpCnt)
+
+
         adapter.setMyItemClickListener(object : FlowerpotRVAdapter.OnItemClickListener {
             override fun onItemClick(flowerData: FlowerData, flowerpot: Flowerpot) {
                 val intent = Intent(context, DetailFlowerpotActivity::class.java)
@@ -50,11 +55,8 @@ class FlowerpotFragment :
 
     }
 
-    private fun initFlowerpotData() {
-        dataService.getFpList(this)
-    }
-
-
+    // getFpList() 실행 시 실행되는 코드
+    // 백엔드 api에서 받은 result 결과를 FlowerData, Flowerpot 형식에 맞게 추가하고 recyclerview에 적용
     fun setData(result: ArrayList<FpResult>){
         for (item in result) {
             flowerDataList.add(

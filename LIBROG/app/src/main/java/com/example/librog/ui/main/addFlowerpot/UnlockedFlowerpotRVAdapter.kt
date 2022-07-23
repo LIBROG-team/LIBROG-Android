@@ -2,6 +2,7 @@ package com.example.librog.ui.main.addFlowerpot
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -28,19 +29,16 @@ class UnlockedFlowerpotRVAdapter(
     inner class ViewHolder(val binding: ItemUnlockedFlowerpotBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(fp: UnlockedFpResult) {
+            Log.d("resp", fp.toString())
             binding.unlockedFpNameTv.text = fp.name
             binding.unlockedFpStatusTv.text = fp.type
             binding.unlockedFpBloomingTv.text = fp.bloomingPeriod
-
             Glide.with(context)
                 .load(fp.flowerImgUrl)
                 .into(binding.unlockedFpImgIv)
         }
     }
 
-    fun setUnlockedFpList(data: ArrayList<UnlockedFpResult>) {
-        unlockedFpList = data
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
