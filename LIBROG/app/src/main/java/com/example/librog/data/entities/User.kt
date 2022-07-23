@@ -7,7 +7,7 @@ import java.sql.Timestamp
 
 @Entity
 data class User(
-//    var name: String,
+    var name: String,
     var email: String,
 //    var id: String,
     var password: String,
