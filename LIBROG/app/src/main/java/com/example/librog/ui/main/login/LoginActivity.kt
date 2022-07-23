@@ -2,10 +2,9 @@ package com.example.librog.ui.main.login
 
 import android.util.Log
 import android.widget.Toast
-import com.example.librog.data.local.UserDatabase
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.databinding.ActivityLoginBinding
 import com.example.librog.ui.BaseActivity
-import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.signup.SignUpActivity
 
 
@@ -35,17 +34,18 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         val email: String = binding.loginIdEt.text.toString() + "@" + binding.loginDirectInputEt.text.toString()
         val pwd: String = binding.loginPasswordEt.text.toString()
 
-        val userDB = UserDatabase.getInstance(this)!!
-        val user = userDB.TempUserDao().getUser(email,pwd)
+        val userDB = AppDatabase.getInstance(this)!!
+        val user = userDB.userDao().getUser(email,pwd)
 
         //유저의 인덱스
         user?.let{
-            Log.d("LOGIN_ACT/GET_USER","userId: ${user.id}, $user") //primary key
-            saveJwt(user.id)
+            Log.d("LOGIN_ACT/GET_USER","userId: ${user.idx}, $user")
+            saveJwt(user.idx)
             //startNextActivity(MainActivity::class.java)
         }
 
         showToast("회원 정보가 존재하지 않습니다")
+        finish()
     }
 
     //인자값으로 받은 아이디(Jwt) 저장
