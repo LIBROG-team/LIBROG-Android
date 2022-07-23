@@ -80,9 +80,12 @@
     <string name="add_flowerpot_unlocked">획득한 화분</string>
     <string name="add_flowerpot_locked">미획득 화분</string>
     <string name="add_flowerpot_name">꽃 이름</string>
+    <string name="add_flowerpot_eng_name">꽃 영문 이름</string>
     <string name="add_flowerpot_blooming">예상 %d~%d개월</string>
     <string name="add_flowerpot_condition">잠금 해제 조건</string>
     <string name="add_flowerpot_status">NEW!</string>
 
-
+    <!-- 획득한 화분 상세정보 페이지 -->
+    <string name="detail_unlocked_select">선택하기</string>
+    <string name="detail_unlocked_content">해바라기는 국화가에 속하는 일년생 초본식물로, 노란색이 인상적인 꽃 입니다. 해바라기는 풍시지리에서 금전운을 상징한다고 합니다. 해를 따라서 꽃이 움직이기 때문인지, 해바라기는 ‘일편단심’이라는 꽃말을 가지고 있습니다. 테스트용 예시 텍스트 입니다. 양쪽 공백 40입니다.</string>
 </resources>

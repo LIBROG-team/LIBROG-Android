@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.addFlowerpot.DetailUnlockedFpActivity">
+
+    <ImageView
+        android:id="@+id/detail_unlocked_back_btn_iv"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/detail_unlocked_main_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/pd_semibold"
+        android:text="@string/add_flowerpot_top_text"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/detail_unlocked_back_btn_iv"
+        app:layout_constraintStart_toEndOf="@id/detail_unlocked_back_btn_iv"
+        app:layout_constraintTop_toTopOf="@id/detail_unlocked_back_btn_iv" />
+
+    <TextView
+        android:id="@+id/detail_unlocked_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/pd_semibold"
+        android:text="@string/add_flowerpot_name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_unlocked_main_tv" />
+
+
+    <TextView
+        android:id="@+id/detail_unlocked_eng_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/pd_semibold"
+        android:text="@string/add_flowerpot_eng_name"
+        android:textColor="@color/dark_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/detail_unlocked_name_tv"
+        app:layout_constraintStart_toStartOf="@id/detail_unlocked_name_tv"
+        app:layout_constraintTop_toBottomOf="@id/detail_unlocked_name_tv" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_unlocked_eng_name_tv">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detail_unlocked_scroll_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp">
+
+            <ImageView
+                android:id="@+id/detail_unlocked_img_iv"
+                android:layout_width="270dp"
+                android:layout_height="270dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/icon_flowerpot_img_border"
+                android:scaleType="center"
+                android:src="@drawable/ic_lib_home_logo"
+                app:layout_constraintBottom_toTopOf="@id/detail_unlocked_content_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <TextView
+                android:id="@+id/detail_unlocked_content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/pd_regular"
+                android:letterSpacing="0.01"
+                android:text="@string/detail_unlocked_content"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detail_unlocked_img_iv" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/addbook_select_finish_border"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/detail_unlocked_select_iv"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_unlocked_select_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pd_bold"
+            android:letterSpacing="0.01"
+            android:text="@string/detail_unlocked_select"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

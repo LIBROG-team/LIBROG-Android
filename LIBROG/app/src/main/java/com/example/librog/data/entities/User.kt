@@ -20,4 +20,3 @@ data class User(
     var introduction: String, //자기소개
     var profileImgUrl: String //프사 이미지 url
 )
-
