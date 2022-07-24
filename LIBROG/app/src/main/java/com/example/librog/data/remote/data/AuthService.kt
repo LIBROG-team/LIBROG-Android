@@ -8,9 +8,14 @@ import retrofit2.Response
 
 class AuthService { //signupview 변수 받음
     private lateinit var signUpView: SignUpView
+    private lateinit var loginView: LoginView
 
-    fun setSignUpview(signUpView: SignUpView){
+    fun setSignUpView(signUpView: SignUpView){
         this.signUpView = signUpView
+    }
+
+    fun setLoginView(loginView: LoginView){
+        this.loginView = loginView
     }
     //api를 호출하고 관리하는 메서드
     fun signUp(user : User){
@@ -22,7 +27,7 @@ class AuthService { //signupview 변수 받음
                 val resp: AuthResponse = response.body()!!
                 when(resp.code){
                     1000 ->signUpView.onSignUpSuccess() //액티비티에서 상태 처리
-                    else->signUpView.onSignUpFailure() 
+                    else->signUpView.onSignUpFailure()
                 }
             }
 
@@ -32,5 +37,26 @@ class AuthService { //signupview 변수 받음
 
         })
         Log.d("SIGNUP","HELLO")
+    }
+
+    fun login(user : User){
+        //레트로핏, 서비스 객체 생성, api 호출
+        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        authService.login(user).enqueue(object: Callback<AuthResponse>{
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                Log.d("LOGIN/SUCCESS",response.toString())
+                val resp: AuthResponse = response.body()!!
+                when(val code =resp.code){
+                    1000-> loginView.onLoginSuccess(code, resp.result!!)
+                    else -> loginView.onLoginFailure()
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Log.d("LOGIN/FAILURE", t.message.toString())
+            }
+
+        })
+        Log.d("LOGIN","HELLO")
     }
 }

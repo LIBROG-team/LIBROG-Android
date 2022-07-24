@@ -1,6 +1,8 @@
 package com.example.librog.ui.main
 
+import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -23,6 +25,8 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
         setTheme(R.style.Theme_LIBROG)
 
+        Log.d("MAIN/JWT_TO_SERVER", getJwt().toString())
+
     }
 
     fun controlBottomNavVisibility (){
@@ -32,5 +36,11 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         else {
             binding.mainBottomNavigation.visibility = View.VISIBLE
         }
+    }
+
+    private fun getJwt(): String?{
+        val spf = this.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE)
+
+        return spf!!.getString("jwt","")
     }
 }

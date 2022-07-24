@@ -67,7 +67,7 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
 
 
         val authService = AuthService()
-        authService.setSignUpview(this)
+        authService.setSignUpView(this)
 
         authService.signUp(getUser()) //api호출
     }
