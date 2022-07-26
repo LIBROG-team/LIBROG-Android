@@ -10,6 +10,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.librog.R
 import com.example.librog.databinding.ActivityMainBinding
 import com.example.librog.ui.BaseActivity
+import android.content.pm.PackageManager
+
+import android.content.pm.PackageInfo
+import android.util.Base64
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -27,6 +33,8 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
         Log.d("MAIN/JWT_TO_SERVER", getJwt().toString())
 
+        getHashKey()
+
     }
 
     fun controlBottomNavVisibility (){
@@ -42,5 +50,22 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         val spf = this.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE)
 
         return spf!!.getString("jwt","")
+    }
+
+    private fun getHashKey() {
+        try {
+            val info =
+                packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                var md: MessageDigest
+                md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val something = String(Base64.encode(md.digest(), 0))
+                Log.e("Hash key", something)
+            }
+        } catch (e: Exception) {
+
+            Log.e("name not found", e.toString())
+        }
     }
 }

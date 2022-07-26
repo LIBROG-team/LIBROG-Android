@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.librog.config.XAccessTokenInterceptor
+import com.kakao.sdk.common.KakaoSdk
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -40,6 +41,6 @@ class ApplicationClass : Application() {
 
         mSharedPreferences = applicationContext.getSharedPreferences(TAG, Context.MODE_PRIVATE)
 
-        //KakaoSdk.init(this,"61775cb2c32cd4a6566c35d7b463cb8f")
+        KakaoSdk.init(this,"61775cb2c32cd4a6566c35d7b463cb8f")
     }
 }
