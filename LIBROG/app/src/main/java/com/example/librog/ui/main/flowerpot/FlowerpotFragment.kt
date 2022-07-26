@@ -28,6 +28,7 @@ class FlowerpotFragment :
 
     override fun initAfterBinding() {
         flowerDataList.clear()
+        flowerpotList.clear()
         db = AppDatabase.getInstance(requireContext())!!
         dataService.getFpList(this)
 
@@ -36,10 +37,8 @@ class FlowerpotFragment :
         binding.flowerpotListRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        //초기 값 0으로 나오는 문제 해결 어떻게..?
         binding.flowerpotTotalTv.text =
-            String.format(getString(R.string.flowerpot_total), fpCnt)
-
+            String.format(getString(R.string.flowerpot_total), flowerpotList.size)
 
         adapter.setMyItemClickListener(object : FlowerpotRVAdapter.OnItemClickListener {
             override fun onItemClick(flowerData: FlowerData, flowerpot: Flowerpot) {
@@ -86,7 +85,11 @@ class FlowerpotFragment :
                     "active"
                 )
             )
+
+            binding.flowerpotTotalTv.text =
+                String.format(getString(R.string.flowerpot_total), flowerpotList.size)
             adapter.notifyDataSetChanged()
+
             //이후 비동기 방식으로 room db에 추가할 수 있음
         }
     }
