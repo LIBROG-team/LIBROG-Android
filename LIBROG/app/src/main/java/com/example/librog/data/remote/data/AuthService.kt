@@ -22,12 +22,15 @@ class AuthService { //signupview 변수 받음
         //레트로핏, 서비스 객체 생성, api 호출
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
         authService.signUp(user).enqueue(object: Callback<AuthResponse>{
+            //응답 왔을 때 처리
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("SIGNUP/SUCCESS",response.toString())
                 val resp: AuthResponse = response.body()!!
                 when(resp.code){
                     1000 ->signUpView.onSignUpSuccess() //액티비티에서 상태 처리
-                    else->signUpView.onSignUpFailure()
+                    else ->{
+                        signUpView.onSignUpFailure()
+                    }
                 }
             }
 

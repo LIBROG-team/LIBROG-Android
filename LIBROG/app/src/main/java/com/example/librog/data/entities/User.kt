@@ -7,10 +7,10 @@ import java.sql.Timestamp
 
 @Entity
 data class User(
-    var name: String,
     var email: String,
 //    var id: String,
     var password: String,
+    var name: String
 //    var salt: String, //로그인 암호화 도움
 //    var exp: Int, //경험치 총합
 //    var status: String, //유저 상태

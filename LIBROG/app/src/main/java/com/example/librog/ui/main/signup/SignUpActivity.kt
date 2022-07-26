@@ -27,27 +27,9 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
         val pwd: String = binding.signUpPasswordEt.text.toString()
         var name: String = binding.signUpNameEt.text.toString()
 
-        return User(email, pwd, name)
+        return User(email, pwd,name)
     }
 
-//    private fun signUp(){
-//        if (binding.signUpIdEt.text.toString().isEmpty() || binding.signUpDirectInputEt.text.toString().isEmpty()) {
-//            Toast.makeText(this, "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//
-//        if (binding.signUpPasswordEt.text.toString() != binding.signUpPasswordCheckEt.text.toString()) {
-//            Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//
-//        val userDB = AppDatabase.getInstance(this)!!
-//        userDB.userDao().insert(getUser())
-//
-//        //로그
-//        val user = userDB.userDao().getUserList()
-//        Log.d("SIGNUPACT", user.toString())
-//    }
 
     private fun signUp(){
         if (binding.signUpIdEt.text.toString().isEmpty() || binding.signUpDirectInputEt.text.toString().isEmpty()) {
@@ -77,6 +59,6 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
     }
 
     override fun onSignUpFailure() {
-        TODO("Not yet implemented")
+
     }
 }

@@ -1,13 +1,15 @@
 package com.example.librog.data.remote.data
 
+import com.google.gson.annotations.SerializedName
+
 class AuthResponse(
-    val isSuccess : Boolean,
-    val code:Int,
-    val message:String,
-    val result: Result?)
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: Result?)
 
 data class Result(
-    var userIdx: Int,
-    var jwt: String
+    @SerializedName(value = "userIdx")var userIdx: Int,
+    @SerializedName(value = "jwt")var jwt: String
 )
 

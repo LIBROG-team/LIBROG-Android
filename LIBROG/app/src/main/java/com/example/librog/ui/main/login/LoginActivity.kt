@@ -52,19 +52,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         val authService = AuthService()
         authService.setLoginView(this)
 
-        authService.login(User("",email,pwd))
+        authService.login(User(email,pwd,""))
 
-        showToast("회원 정보가 존재하지 않습니다")
     }
 
-//    //인자값으로 받은 아이디(Jwt) 저장
-//    private fun saveJwt(jwt:Int){
-//        val spf = getSharedPreferences("auth", MODE_PRIVATE)
-//        val editor = spf.edit()
-//
-//        editor.putInt("jwt",jwt)
-//        editor.apply()
-//    }
 
     private fun saveJwt2(jwt:String){
         val spf = getSharedPreferences("auth2", MODE_PRIVATE)
@@ -76,8 +67,11 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onLoginSuccess(code: Int, result: Result) {
         when (code){
-            1000-> {saveJwt2(result.jwt)
-                    startNextActivity(MainActivity::class.java)}
+            1000-> {
+                saveJwt2(result.jwt)
+                startNextActivity(MainActivity::class.java)
+                Log.d("jwt",result.jwt)
+            }
         }
     }
 

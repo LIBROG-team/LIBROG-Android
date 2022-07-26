@@ -68,6 +68,7 @@
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout-v28/fragment_home.xml" value="0.20989583333333334" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/activity_add_book_select.xml" value="0.1588089330024814" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/activity_detail_flowerpot.xml" value="0.1" />
+        <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/activity_detail_unlocked_fp.xml" value="0.1600877192982456" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/activity_signup.xml" value="0.17675438596491228" />
@@ -79,6 +80,7 @@
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/fragment_home_top.xml" value="0.4" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/fragment_locked_flowerpot.xml" value="0.1763157894736842" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/fragment_mypage.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/fragment_unlocked_flowerpot.xml" value="0.1600877192982456" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/item_addbook.xml" value="0.17675438596491228" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/item_detail_flowerpot.xml" value="0.17675438596491228" />
         <entry key="..\:/Users/Gahyun/LIBROG/LIBROG/app/src/main/res/layout/item_flowerpot.xml" value="0.17675438596491228" />

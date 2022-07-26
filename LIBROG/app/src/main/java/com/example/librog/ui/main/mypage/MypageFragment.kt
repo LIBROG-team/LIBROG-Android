@@ -29,15 +29,15 @@ class MypageFragment : Fragment() {
     }
 
 
-    private fun getJwt(): Int{
-        val spf = activity?.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
-        return spf!!.getInt("jwt",0) //기본값 0
+    private fun getJwt(): String?{
+        val spf = activity?.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
+        return spf!!.getString("jwt","0") //기본값 0
     }
 
     private fun initViews(){
-        val jwt : Int = getJwt()
+        val jwt : String? = getJwt()
 
-        if (jwt==0){ //기본값(로그인x)
+        if (jwt=="0"){ //기본값(로그인x)
             binding.mypageLoginBtn.text = "로그인"
             binding.mypageLoginBtn.setOnClickListener {
                 val intent = Intent(activity, LoginActivity::class.java)
@@ -56,7 +56,7 @@ class MypageFragment : Fragment() {
     }
 
     private fun logout(){
-        val spf = activity?.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE)
+        val spf = activity?.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE)
         val editor = spf!!.edit()
         editor.remove("jwt") //키값에 저장된값 삭제
         editor.apply()
