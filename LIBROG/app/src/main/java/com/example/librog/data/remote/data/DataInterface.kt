@@ -8,7 +8,7 @@ interface DataInterface {
     @GET("/flowerpots/{userIdx}")
     fun getFpList(@Path("userIdx") userIdx: Int): Call<DataResponse1>
 
-    @GET("/flowerpots/{userIdx}/flowerpots")
+    @GET("/flowerpots/{userIdx}/userflowerlist")
     fun getUnlockedFpResult(@Path("userIdx") userIdx: Int): Call<DataResponse2>
 
 

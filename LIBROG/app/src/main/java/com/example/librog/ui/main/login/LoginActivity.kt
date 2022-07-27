@@ -27,12 +27,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         binding2 = FragmentMypageBinding.inflate(layoutInflater)
         initClickListener()
         updateLoginInfo()
-//        val AppDB = AppDatabase.getInstance(this)!!
 
-//        //해당 정보 확인
-//        val users = AppDB.userDao().getUserList() //테이블에 저장된 정보 가져옴
-//
-//        Log.d("kakao", users.toString())
     }
 
     private fun initClickListener(){
@@ -149,9 +144,14 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 name = user.kakaoAccount?.profile?.nickname.toString()
                 email = user.kakaoAccount?.email.toString()
 
-//                val AppDB = AppDatabase.getInstance(this)!!
-////                AppDB.userDao().insertUser(email,"",name)
-//                AppDB.userDao().insert(getUser2())
+                val AppDB = AppDatabase.getInstance(this)!!
+                AppDB.userDao().insertUserLogin(email,"",name)
+                //해당 정보 확인
+                val users = AppDB.userDao().getUserList() //테이블에 저장된 정보 가져옴
+
+                Log.d("kakaoUser", users.toString())
+
+
             }
             error?.let {
                 binding.loginNickname.text = null
@@ -161,17 +161,5 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             }
         }
     }
-
-    private fun getUser2(): User {
-        UserApiClient.instance.me { user, error ->
-            user?.let {
-                Log.i(TAG, "updateLoginInfo: ${user.id} ${user.kakaoAccount?.email} ${user.kakaoAccount?.profile?.nickname} ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
-                name = user.kakaoAccount?.profile?.nickname.toString()
-                email = user.kakaoAccount?.email.toString()
-
-            }
-
-    }
-        return User(email,"",name)}
 
 }

@@ -8,12 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.data.local.AppDatabase
+import com.example.librog.data.remote.data.LoginView
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
 
 
-class MypageFragment : Fragment() {
+class MypageFragment : Fragment(){
     lateinit var binding: FragmentMypageBinding
 
     override fun onCreateView(
@@ -51,8 +52,6 @@ class MypageFragment : Fragment() {
                 startActivity(intent)
             }
         }
-
-
     }
 
     private fun logout(){
@@ -62,6 +61,8 @@ class MypageFragment : Fragment() {
         editor.apply()
     }
 
+    fun updateProfile(email:String){
 
+    }
 
 }
