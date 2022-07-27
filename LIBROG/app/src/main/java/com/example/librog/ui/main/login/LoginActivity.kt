@@ -4,28 +4,35 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.librog.ApplicationClass
 import com.example.librog.data.entities.User
-import com.kakao.sdk.auth.model.OAuthToken
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.AuthService
 import com.example.librog.data.remote.data.LoginView
 import com.example.librog.data.remote.data.Result
 import com.example.librog.databinding.ActivityLoginBinding
-import com.example.librog.databinding.FragmentHomeBinding
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient
 
+
 private const val TAG = "LoginActivity"
 
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
     lateinit var binding2: FragmentMypageBinding
+    lateinit var email: String
+    lateinit var name: String
     override fun initAfterBinding() {
         binding2 = FragmentMypageBinding.inflate(layoutInflater)
         initClickListener()
         updateLoginInfo()
+//        val AppDB = AppDatabase.getInstance(this)!!
+
+//        //해당 정보 확인
+//        val users = AppDB.userDao().getUserList() //테이블에 저장된 정보 가져옴
+//
+//        Log.d("kakao", users.toString())
     }
 
     private fun initClickListener(){
@@ -107,6 +114,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             }
             else if (token != null) {
                 Log.i(TAG, "로그인 성공 ${token.accessToken}")
+                updateLoginInfo()
                 finish()
             }
         }
@@ -137,6 +145,13 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 Glide.with(this).load(user.kakaoAccount?.profile?.thumbnailImageUrl).circleCrop().into(binding.loginProfile)
                 binding.loginKakaoSignInBtn.visibility = View.GONE
                 binding.loginKakaoLogoutTv.visibility = View.VISIBLE
+
+                name = user.kakaoAccount?.profile?.nickname.toString()
+                email = user.kakaoAccount?.email.toString()
+
+//                val AppDB = AppDatabase.getInstance(this)!!
+////                AppDB.userDao().insertUser(email,"",name)
+//                AppDB.userDao().insert(getUser2())
             }
             error?.let {
                 binding.loginNickname.text = null
@@ -146,5 +161,17 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             }
         }
     }
+
+    private fun getUser2(): User {
+        UserApiClient.instance.me { user, error ->
+            user?.let {
+                Log.i(TAG, "updateLoginInfo: ${user.id} ${user.kakaoAccount?.email} ${user.kakaoAccount?.profile?.nickname} ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                name = user.kakaoAccount?.profile?.nickname.toString()
+                email = user.kakaoAccount?.email.toString()
+
+            }
+
+    }
+        return User(email,"",name)}
 
 }
