@@ -43,12 +43,6 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
 
                 }
             }
-
-
-
-
-
-
         }
     }
 

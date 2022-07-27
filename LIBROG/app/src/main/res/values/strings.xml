@@ -88,4 +88,17 @@
     <!-- 획득한 화분 상세정보 페이지 -->
     <string name="detail_unlocked_select">선택하기</string>
     <string name="detail_unlocked_content">해바라기는 국화가에 속하는 일년생 초본식물로, 노란색이 인상적인 꽃 입니다. 해바라기는 풍시지리에서 금전운을 상징한다고 합니다. 해를 따라서 꽃이 움직이기 때문인지, 해바라기는 ‘일편단심’이라는 꽃말을 가지고 있습니다. 테스트용 예시 텍스트 입니다. 양쪽 공백 40입니다.</string>
+
+
+    <!--프로필-->
+    <string name="profile_pot">화분</string>
+    <string name="profile_book">읽은 책</string>
+    <string name="profile_rate">별점</string>
+    <string name="profile_record_line">한 줄 기록</string>
+    <string name="profile_record">독서록</string>
+
+
+
+
+
 </resources>

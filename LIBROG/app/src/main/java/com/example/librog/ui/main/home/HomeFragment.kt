@@ -37,10 +37,6 @@ class HomeFragment : Fragment() {
         binding.homeRecentreadBookRv.adapter = readbookRVAdapter
         binding.homeRecentreadBookRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
-//        //프래그먼트 이동(임시)
-//        binding.mainCircleFlowerIv.setOnClickListener{
-//            (context as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_container,AddBookSelectFragment()).commitAllowingStateLoss()}
-
 
         readbookRVAdapter.setMyItemClickListener(object : ReadBookRVAdapter.OnItemClickListener {
             override fun onItemClick(tempReadBookData: ReadBook) {
