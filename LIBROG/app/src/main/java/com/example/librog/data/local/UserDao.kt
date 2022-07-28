@@ -4,6 +4,7 @@ import android.provider.ContactsContract
 import androidx.room.*
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.User
+import org.w3c.dom.Text
 
 
 @Dao
@@ -30,8 +31,8 @@ interface UserDao {
 //    @Query("SELECT email,password FROM User WHERE email = :email AND password = :password AND name = :name")
 //    fun getUser3(email:String, password:String, name:String) : User?
 
-    @Query("INSERT INTO USER (email, password, name) VALUES (:email, :password, :name)")
-    fun insertUserLogin(email:String, password:String, name:String)
+    @Query("INSERT INTO USER (email, idx, name,profileImgUrl) VALUES (:email, :idx, :name, :profileImgUrl)")
+    fun insertUserKakaoLogin(email: String, idx: Int, name: String, profileImgUrl: String)
 
 
 }
