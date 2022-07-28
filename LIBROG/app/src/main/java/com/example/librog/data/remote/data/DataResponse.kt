@@ -40,23 +40,17 @@ data class FpResult(
 )
 
 data class UnlockedFpResult(
-    @SerializedName("idx") var idx: Int,
+    @SerializedName("flowerDataIdx") var idx: Int,
     @SerializedName("name") var name: String,
-    @SerializedName("engName") var engName: String,
     @SerializedName("type") var type: String,
     @SerializedName("bloomingPeriod") var bloomingPeriod: String,
-    @SerializedName("content") var content: String,
-    @SerializedName("flowerImgUrl") var flowerImgUrl: String,
-    @SerializedName("flowerPotImgUrl") var flowerPotImgUrl: String,
+    @SerializedName("flowerImgUrl") var flowerImgUrl: String
 )
 
 data class LockedFpResult(
     @SerializedName("flowerDataIdx") var idx: Int,
     @SerializedName("name") var name: String,
-    @SerializedName("engName") var engName: String,
     @SerializedName("type") var type: String,
-    @SerializedName("bloomingPeriod") var bloomingPeriod: String,
-    @SerializedName("content") var content: String,
-    @SerializedName("flowerImgUrl") var flowerImgUrl: String,
-    @SerializedName("flowerPotImgUrl") var flowerPotImgUrl: String,
+    @SerializedName("condition") var condition: String,
+    @SerializedName("flowerImgUrl") var flowerImgUrl: String
 )

@@ -64,14 +64,4 @@ class FlowerpotRVAdapter(
         return flowerDataList.size
     }
 
-
-    fun setFdList(result: ArrayList<FlowerData>) {
-        flowerDataList = result
-    }
-
-
-    fun setFpList(result: ArrayList<Flowerpot>) {
-        flowerpotList = result
-    }
-
 }
