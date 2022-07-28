@@ -147,14 +147,16 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     override fun onKakaoLoginSuccess(code: Int, result: KakaoResult) {
         when (code){
             1500-> {
-                showToast("kakao 로그인 성공")
-                Log.d("kakaologin",result.toString())
-                val AppDB = AppDatabase.getInstance(this)!!
-                AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name,
-                    result.profileImgUrl)
-                val users = AppDB.userDao().getUserList() //테이블에 저장된 정보 가져옴
-
-                Log.d("kakaoUser", users.toString())
+                //showToast("kakao 로그인 성공")
+                Log.d("kakaoLogin",result.toString())
+                Log.d("kakaoLogin",code.toString())
+//                val AppDB = AppDatabase.getInstance(this)!!
+//                AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name,
+//                    result.profileImgUrl)
+//                val users = AppDB.userDao().getUserList() //테이블에 저장된 정보 가져옴
+//
+//                showToast(users.toString())
+//                Log.d("userlist",users.toString())
             }
         }
     }
