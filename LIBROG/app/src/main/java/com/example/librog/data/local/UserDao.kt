@@ -34,5 +34,8 @@ interface UserDao {
     @Query("INSERT INTO USER (email, idx, name,profileImgUrl) VALUES (:email, :idx, :name, :profileImgUrl)")
     fun insertUserKakaoLogin(email: String, idx: Int, name: String, profileImgUrl: String)
 
+    @Query("SELECT EXISTS (SELECT * FROM User WHERE idx=:idx)")
+    fun isUserExist(idx: Int) : Boolean
+
 
 }
