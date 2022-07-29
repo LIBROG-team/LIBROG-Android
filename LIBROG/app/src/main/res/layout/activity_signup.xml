@@ -200,7 +200,7 @@
         android:id="@+id/sign_up_sign_up_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/btn_background_lib_color"
+        android:background="@drawable/btn_profile_login_border"
         android:text="가입완료"
         android:textColor="@color/white"
         android:textSize="16sp"

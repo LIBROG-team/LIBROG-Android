@@ -21,7 +21,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     lateinit var binding2: FragmentMypageBinding
     lateinit var email: String
     lateinit var name: String
-    val AppDB = AppDatabase.getInstance(this)!!
     override fun initAfterBinding() {
         binding2 = FragmentMypageBinding.inflate(layoutInflater)
         initClickListener()
@@ -154,9 +153,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 //showToast("kakao 로그인 성공")
                 Log.d("kakaoLogin",result.toString())
                 Log.d("kakaoLogin",code.toString())
+                val AppDB = AppDatabase.getInstance(this)!!
                 if(!AppDB.userDao().isUserExist(result.idx))
-                    {AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name,
-                        result.profileImgUrl)}
+                    {   Log.d("kakaoLogin","데이터 삽입")
+                        AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name, result.profileImgUrl)}
 
             }
         }

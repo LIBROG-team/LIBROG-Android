@@ -131,7 +131,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/btn_background_lib_color"
+        android:background="@drawable/btn_profile_login_border"
         android:text="로그인"
         android:textColor="@color/white"
         android:textSize="16sp"
