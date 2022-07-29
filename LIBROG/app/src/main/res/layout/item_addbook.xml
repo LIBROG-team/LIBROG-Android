@@ -1,26 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_addbook_cl"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp">
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="22dp"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/item_addbook_title_tv"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/item_addbook_book_img_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:src="@drawable/test_flower_img"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@id/item_addbook_text_ll"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/item_addbook_text_ll"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pd_semibold"
-        android:text="@string/flowerpot_flower"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/item_addbook_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pd_semibold"
+            android:text="@string/addbook_select_title"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/item_addbook_author_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pd_medium"
+            android:text="@string/addbook_select_writer"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/item_addbook_content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/pd_regular"
+            android:text="@string/addbook_select_explain"
+            android:textSize="12sp"
+            android:maxLines="3"
+            android:lineHeight="16sp"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -52,6 +52,8 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="16sp"
+            android:imeOptions="actionSearch"
+            android:lines="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/addbook_cancel_iv"
             app:layout_constraintStart_toEndOf="@id/addbook_search_iv"
