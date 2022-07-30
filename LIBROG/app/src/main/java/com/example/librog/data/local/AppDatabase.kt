@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.librog.data.entities.*
+import com.example.librog.ui.main.login.LoginActivity
 
 @Database(
     entities = [User::class, Book::class, FlowerData::class, Flowerpot::class, ReadingRecord::class],

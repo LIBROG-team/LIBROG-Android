@@ -1,14 +1,15 @@
 package com.example.librog.ui.main.mypage
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.data.local.AppDatabase
-import com.example.librog.data.remote.data.LoginView
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
@@ -16,7 +17,8 @@ import com.example.librog.ui.main.login.LoginActivity
 
 class MypageFragment : Fragment(){
     lateinit var binding: FragmentMypageBinding
-
+    lateinit var fcontext: Context
+    val AppDB = AppDatabase.getInstance(fcontext)!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,8 +27,14 @@ class MypageFragment : Fragment(){
         binding = FragmentMypageBinding.inflate(inflater, container, false)
 
         initViews()
-
+        Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        fcontext=context
     }
 
 
@@ -34,6 +42,18 @@ class MypageFragment : Fragment(){
         val spf = activity?.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
         return spf!!.getString("jwt","0") //기본값 0
     }
+
+    private fun getIdx(): Int?{
+        val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
+        return spf!!.getInt("idx",-1)
+    }
+
+    private fun initData(){
+
+
+    }
+
+
 
     private fun initViews(){
         val jwt : String? = getJwt()
@@ -61,8 +81,6 @@ class MypageFragment : Fragment(){
         editor.apply()
     }
 
-    fun updateProfile(email:String){
 
-    }
 
 }

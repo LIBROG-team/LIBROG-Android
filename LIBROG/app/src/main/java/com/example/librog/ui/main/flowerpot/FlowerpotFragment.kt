@@ -1,9 +1,7 @@
 package com.example.librog.ui.main.flowerpot
 
 import android.content.Intent
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
 import com.example.librog.R
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.Flowerpot
@@ -13,8 +11,6 @@ import com.example.librog.data.remote.data.FpResult
 import com.example.librog.databinding.FragmentFlowerpotBinding
 import com.example.librog.ui.BaseFragment
 import com.google.gson.Gson
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class FlowerpotFragment :
     BaseFragment<FragmentFlowerpotBinding>(FragmentFlowerpotBinding::inflate) {
