@@ -34,13 +34,13 @@ interface UserDao {
     fun isUserExist(idx: Int) : Boolean
 
     //프로필에 정보 업데이트
-    @Query("SELECT EXISTS (SELECT profileImgUrl FROM User WHERE idx=:idx)")
+    @Query("SELECT profileImgUrl FROM User WHERE idx=:idx")
     fun getUserImg(idx: Int) : String
 
-    @Query("SELECT EXISTS (SELECT name FROM User WHERE idx=:idx)")
+    @Query("SELECT name FROM User WHERE idx=:idx")
     fun getUserName(idx: Int) : String
 
-    @Query("SELECT EXISTS (SELECT introduction FROM User WHERE idx=:idx)")
+    @Query("SELECT introduction FROM User WHERE idx=:idx")
     fun getUserIntro(idx: Int) : String
 
 
