@@ -36,6 +36,7 @@
             android:text="@string/addbook_select_title"
             android:textSize="15sp"
             android:textColor="@color/black"
+            android:maxLines="1"
             android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

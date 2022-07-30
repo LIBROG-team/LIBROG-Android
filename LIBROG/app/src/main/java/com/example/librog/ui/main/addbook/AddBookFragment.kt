@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.BuildConfig
-import com.example.librog.data.entities.Book
 import com.example.librog.data.remote.book.BookInterface
 import com.example.librog.data.remote.book.BookResponse
 import com.example.librog.data.remote.book.Documents
@@ -34,7 +33,7 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
 
     override fun initAfterBinding() {
         initBookService()
-
+        showLogoCl()
 
         adapter = AddBookRVAdapter(bookList)
         binding.addbookContentRv.adapter = adapter
@@ -51,8 +50,9 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
             imm.showSoftInput(binding.addbookSearchEt, InputMethodManager.SHOW_IMPLICIT)
         }
 
-        binding.addbookCancelIv.setOnClickListener {
+        binding.addbookCancelCl.setOnClickListener {
             binding.addbookSearchEt.text.clear()
+            bookList.clear()
         }
 
         binding.addbookSearchEt.setOnEditorActionListener { v, actionId, event ->
@@ -62,12 +62,15 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
                 val input = binding.addbookSearchEt.text.toString()
                 hideKeyboard(v)
                 getBooksByName(input)
-                afterDataInserted()
                 handled = true
             }
             handled
         }
 
+        binding.addbookMoreBtn.setOnClickListener {
+            pageCount += 1
+            getBooksByName(binding.addbookSearchEt.text.toString())
+        }
     }
 
 
@@ -78,45 +81,71 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
             .build()
 
         bookService = bookRetrofit.create(BookInterface::class.java)
+        bookList.clear()
     }
 
 
     private fun getBooksByName(name: String) {
         val searchQuery = "\"$name\""
-        Log.d("search", searchQuery)
 
-        bookService.getBooksByName("KakaoAK ${BuildConfig.REST_API_KEY}", query = searchQuery, pageCount, "title")
-            .enqueue(object : Callback<BookResponse> {
-                override fun onResponse(call: Call<BookResponse>, response: Response<BookResponse>) {
-                    if(response.isSuccessful.not()){
-                        Log.e("result", "NOT SUCCESS")
-                        Log.e("result", response.toString())
+        bookService.getBooksByName(
+            "KakaoAK ${BuildConfig.REST_API_KEY}",
+            query = searchQuery,
+            pageCount,
+            "title"
+        ).enqueue(object : Callback<BookResponse> {
+            override fun onResponse(
+                call: Call<BookResponse>,
+                response: Response<BookResponse>
+            ) {
+                if (response.isSuccessful.not()) {
+                    Log.e("result", "NOT SUCCESS")
+                    Log.e("result", response.toString())
 
-                    }else{
-                        val resp = response.body()!!
-                        if (resp.documents != null) {
-                            adapter.setDataList(resp.documents!!)
+                } else {
+                    val resp = response.body()!!
+                    if (resp.documents!!.isEmpty()) {
+                        showNobookTv()
+                    } else {
+                        adapter.addDataList(resp.documents!!)
+                        showBookList()
+                    }
 
-
-                        }
-
+                    if (resp.meta!!.isEnd == true) {
+                        binding.addbookMoreBtn.visibility = View.GONE
                     }
 
 
-
-
                 }
 
-                override fun onFailure(call: Call<BookResponse>, t: Throwable) {
-                    Log.e("result", t.toString())
-                }
-            })
+            }
+
+            override fun onFailure(call: Call<BookResponse>, t: Throwable) {
+                Log.e("result", t.toString())
+            }
+        })
 
 
     }
 
+    private fun showLogoCl() {
+        binding.addbookContentRv.visibility = View.GONE
+        binding.addbookNobookTv.visibility = View.GONE
+        binding.addbookMoreBtn.visibility = View.GONE
+        binding.addbookLogoCl.visibility = View.VISIBLE
+    }
 
-    fun afterDataInserted() {
+    private fun showNobookTv() {
+        binding.addbookMoreBtn.visibility = View.GONE
+        binding.addbookNobookTv.visibility = View.VISIBLE
+        binding.addbookContentRv.visibility = View.GONE
+        binding.addbookLogoCl.visibility = View.GONE
+
+    }
+
+    private fun showBookList() {
+        binding.addbookMoreBtn.visibility = View.VISIBLE
+        binding.addbookLogoCl.visibility = View.GONE
         binding.addbookNobookTv.visibility = View.GONE
         binding.addbookContentRv.visibility = View.VISIBLE
     }

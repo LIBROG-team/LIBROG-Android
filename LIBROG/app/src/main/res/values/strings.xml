@@ -53,6 +53,8 @@
     <string name="addbook_main_text">기록 추가하기</string>
     <string name="addbook_search">책 검색하기</string>
     <string name="addbook_nobook">검색 결과가 없습니다.</string>
+    <string name="addbook_insert">검색창에 책 제목을 입력해주세요</string>
+    <string name="addbook_more">더보기</string>
 
     <!--기록추가 편집-->
     <string name="addbook_select_title">사피엔스</string>

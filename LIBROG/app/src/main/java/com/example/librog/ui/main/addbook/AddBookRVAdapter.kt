@@ -49,4 +49,9 @@ class AddBookRVAdapter(private var bookList: ArrayList<Documents>) :
         bookList = list
         notifyDataSetChanged()
     }
+
+    fun addDataList(list: ArrayList<Documents>){
+        bookList.addAll(list)
+        notifyDataSetChanged()
+    }
 }
