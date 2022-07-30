@@ -156,10 +156,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 Log.d("kakaoLogin",code.toString())
                 saveIdx(result.idx)
                 val AppDB = AppDatabase.getInstance(this)!!
-                if(!AppDB.userDao().isUserExist(result.idx))
+                if(result.message!="이미 가입된 유저입니다.")
                     {   Log.d("kakaoLogin","데이터 삽입")
                         AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name, result.profileImgUrl)}
-
+                finish()
             }
         }
     }
