@@ -15,7 +15,7 @@ import com.example.librog.databinding.ActivityAddBookSelectBinding
 import com.example.librog.ui.main.MainActivity
 
 
-class AddBookSelectActivity : AppCompatActivity(){
+class AddBookSelectActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityAddBookSelectBinding
 
@@ -26,36 +26,36 @@ class AddBookSelectActivity : AppCompatActivity(){
         binding = ActivityAddBookSelectBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.addBookSelectReviewWriteEt.enableScrollText();
-
+        binding.addBookSelectReviewWriteEt.enableScrollText()
+        binding.addBookSelectRateNTv.text =
+            String.format(this.getString(R.string.addbook_select_rate_n), 0)
         initClickListener()
 
     }
 
-    private fun initClickListener(){
-        binding.addBookSelectRb.setOnRatingChangeListener{
-                _, f1, _ ->
-            binding.addBookSelectRateNTv.setText("${f1.toInt()} / 5")
+    private fun initClickListener() {
+        binding.addBookSelectRb.setOnRatingChangeListener { _, f1, _ ->
+            binding.addBookSelectRateNTv.text = "${f1.toInt()} / 5"
         }
 
         binding.addBookSelectBackBtn.setOnClickListener {
             finish()
-
         }
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    fun EditText.enableScrollText()
-    {
+    fun EditText.enableScrollText() {
         overScrollMode = View.OVER_SCROLL_ALWAYS
         scrollBarStyle = View.SCROLLBARS_INSIDE_INSET
         isVerticalScrollBarEnabled = true
         setOnTouchListener { view, event ->
             if (view is EditText) {
-                if(!view.text.isNullOrEmpty()) {
+                if (!view.text.isNullOrEmpty()) {
                     view.parent.requestDisallowInterceptTouchEvent(true)
                     when (event.action and MotionEvent.ACTION_MASK) {
-                        MotionEvent.ACTION_UP -> view.parent.requestDisallowInterceptTouchEvent(false)
+                        MotionEvent.ACTION_UP -> view.parent.requestDisallowInterceptTouchEvent(
+                            false
+                        )
                     }
                 }
             }

@@ -44,7 +44,7 @@ class MypageFragment : Fragment(){
 
     private fun initData(){
         Log.d("GETIDX",getIdx().toString())
-        Log.d("getname",AppDB.userDao().getUserName(getIdx()))
+//        Log.d("getname",AppDB.userDao().getUserName(getIdx()))
         binding.profileName.text=AppDB.userDao().getUserName(getIdx())
 
     }
