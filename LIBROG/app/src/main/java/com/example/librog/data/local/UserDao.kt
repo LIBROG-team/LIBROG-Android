@@ -4,6 +4,7 @@ import android.provider.ContactsContract
 import androidx.room.*
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.User
+import org.w3c.dom.Text
 
 
 @Dao
@@ -24,14 +25,23 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE email = :email")
     fun getUserByEmail(email:String) : User?
 
-//    @Query("SELECT * FROM User WHERE email = :email AND password = :password AND name = :name")
-//    fun getUser2(email:String, password:String, name:String) : User?
-//
-//    @Query("SELECT email,password FROM User WHERE email = :email AND password = :password AND name = :name")
-//    fun getUser3(email:String, password:String, name:String) : User?
 
-    @Query("INSERT INTO USER (email, password, name) VALUES (:email, :password, :name)")
-    fun insertUserLogin(email:String, password:String, name:String)
+    @Query("INSERT INTO USER (email, idx, name,profileImgUrl) VALUES (:email, :idx, :name, :profileImgUrl)")
+    fun insertUserKakaoLogin(email: String, idx: Int, name: String, profileImgUrl: String)
+
+    //존재할 경우만 DB에 넣어주도록
+    @Query("SELECT EXISTS (SELECT * FROM User WHERE idx=:idx)")
+    fun isUserExist(idx: Int) : Boolean
+
+    //프로필에 정보 업데이트
+    @Query("SELECT profileImgUrl FROM User WHERE idx=:idx")
+    fun getUserImg(idx: Int) : String
+
+    @Query("SELECT name FROM User WHERE idx=:idx")
+    fun getUserName(idx: Int) : String
+
+    @Query("SELECT introduction FROM User WHERE idx=:idx")
+    fun getUserIntro(idx: Int) : String
 
 
 }

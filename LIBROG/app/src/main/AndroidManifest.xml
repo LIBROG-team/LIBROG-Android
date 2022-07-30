@@ -30,9 +30,9 @@
         <activity
             android:name=".ui.main.login.LoginActivity"
             android:exported="true" />
-        <activity
-            android:name=".ui.main.signup.SignUpActivity"
-            android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".ui.main.signup.SignUpActivity"-->
+<!--            android:exported="true" />-->
         <activity
             android:name=".ui.main.splash.SplashActivity"
             android:exported="true"

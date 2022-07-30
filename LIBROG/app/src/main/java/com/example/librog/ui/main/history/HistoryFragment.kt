@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.R
 import com.example.librog.data.HistoryBookData
 import com.example.librog.databinding.FragmentHistoryBinding
-import com.example.librog.databinding.ItemHistoryBookBinding
 import com.example.librog.ui.main.MainActivity
-import android.view.MotionEvent
 
 
 
@@ -27,7 +24,7 @@ class HistoryFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
         initLayout()
@@ -52,7 +49,7 @@ class HistoryFragment : Fragment() {
                 if (binding.historySortBanner.visibility == View.VISIBLE)
                     return
 
-                Toast.makeText(activity,"Book Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity,"Book Clicked",Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -78,7 +75,7 @@ class HistoryFragment : Fragment() {
     private fun initClickListener(){
         //최상단 이동
         binding.historyMoveTopBtn.setOnClickListener {
-            binding.historyBookListRv?.smoothScrollToPosition(0)
+            binding.historyBookListRv.smoothScrollToPosition(0)
         }
 
         //정렬 박스 클릭
