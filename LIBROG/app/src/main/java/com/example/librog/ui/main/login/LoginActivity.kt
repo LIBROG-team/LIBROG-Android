@@ -42,6 +42,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
         binding.loginKakaoLogoutTv.setOnClickListener{
             kakaoLogout()
+            showToast("kakao logout")
         }
 
         binding.loginKakaoSignInBtn.setOnClickListener {
