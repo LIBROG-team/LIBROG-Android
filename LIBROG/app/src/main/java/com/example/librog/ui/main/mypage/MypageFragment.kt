@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.main.MainActivity
@@ -36,11 +37,6 @@ class MypageFragment : Fragment(){
         initViews()
     }
 
-    private fun getJwt(): String?{
-        val spf = activity?.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
-        return spf!!.getString("jwt","0") //기본값 0
-    }
-
     private fun getIdx(): Int{
         val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
         return spf!!.getInt("idx",-1)
@@ -49,16 +45,17 @@ class MypageFragment : Fragment(){
 
     private fun initViews(){
         val id = getIdx()
-        Log.d("getidx",id.toString())
-        if (id==-1){ //기본값(로그인x)
+
+        if (id==-1){ //기본값(로그아웃 상태)
             binding.mypageLoginBtn.text = "로그인"
             binding.mypageLoginBtn.setOnClickListener {
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
             }
-        } else {
+        } else { //로그인 상태
             binding.mypageLoginBtn.text = "로그아웃"
             binding.profileName.text=AppDB.userDao().getUserName(id)
+            Glide.with(this).load(AppDB.userDao().getUserImg(id)).circleCrop().into(binding.profileIv)
             binding.mypageLoginBtn.setOnClickListener {
                 logout()
                 val intent = Intent(activity, MainActivity::class.java)
@@ -70,7 +67,7 @@ class MypageFragment : Fragment(){
     private fun logout(){
         val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE)
         val editor = spf!!.edit()
-        editor.remove("idx") //키값에 저장된값 삭제
+        editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
         editor.apply()
         binding.mypageLoginBtn.text = "로그인"
     }

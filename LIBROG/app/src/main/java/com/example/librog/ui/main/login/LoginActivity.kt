@@ -16,11 +16,8 @@ import com.kakao.sdk.user.UserApiClient
 private const val TAG = "LoginActivity"
 
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
-    lateinit var binding2: FragmentMypageBinding
-    lateinit var email: String
     lateinit var name: String
     override fun initAfterBinding() {
-        binding2 = FragmentMypageBinding.inflate(layoutInflater)
         initClickListener()
         val AppDB = AppDatabase.getInstance(this)!!
         val users = AppDB.userDao().getUserList()
@@ -36,12 +33,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         binding.loginLogInBtn.setOnClickListener {
 //            login()
         }
-
-        binding.loginKakaoLogoutTv.setOnClickListener{
-            kakaoLogout()
-            showToast("kakao logout")
-        }
-
+        
         binding.loginKakaoSignInBtn.setOnClickListener {
             kakaoLogin()
         }
