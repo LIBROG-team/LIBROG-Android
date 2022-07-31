@@ -38,7 +38,7 @@ class MypageFragment : Fragment(){
     }
 
     private fun getIdx(): Int{
-        val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
+        val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE)
         return spf!!.getInt("idx",-1)
     }
 

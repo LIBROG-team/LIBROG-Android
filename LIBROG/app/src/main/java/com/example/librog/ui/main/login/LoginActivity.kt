@@ -9,6 +9,7 @@ import com.example.librog.data.remote.data.LoginView
 import com.example.librog.databinding.ActivityLoginBinding
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.BaseActivity
+import com.example.librog.ui.main.signup.SignUpActivity
 //import com.example.librog.ui.main.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient
 
@@ -26,14 +27,14 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     }
 
     private fun initClickListener(){
-//        binding.loginSignUpTv.setOnClickListener {
-//            startNextActivity(SignUpActivity::class.java)
-//        }
+        binding.loginSignUpBtn.setOnClickListener {
+            startNextActivity(SignUpActivity::class.java)
+        }
 
         binding.loginLogInBtn.setOnClickListener {
 //            login()
         }
-        
+
         binding.loginKakaoSignInBtn.setOnClickListener {
             kakaoLogin()
         }
