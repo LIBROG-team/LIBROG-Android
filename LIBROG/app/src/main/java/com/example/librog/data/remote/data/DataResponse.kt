@@ -24,27 +24,27 @@ data class DataResponse3(
 )
 
 data class FpResult(
-    @SerializedName("flowerDataIdx") var flowerDataIdx: Int,
-    @SerializedName("flowerPotIdx") var flowerPotIdx: Int,
-    @SerializedName("name") var name: String,
-    @SerializedName("engName") var engName: String,
-    @SerializedName("flowerImgUrl") var flowerImgUrl: String,
-    @SerializedName("maxExp") var maxExp: Int,
-    @SerializedName("bloomingPeriod") var bloomingPeriod: String,
-    @SerializedName("content") var content: String,
-    @SerializedName("type") var type: String,
-    @SerializedName("startDate") var startDate: String,
-    @SerializedName("lastDate") var lastDate: String,
-    @SerializedName("exp") var exp: Int,
-    @SerializedName("recordCount") var recordCount: Int
+    @SerializedName("flowerDataIdx") var flowerDataIdx: Int?,
+    @SerializedName("flowerPotIdx") var flowerPotIdx: Int?,
+    @SerializedName("name") var name: String?,
+    @SerializedName("engName") var engName: String?,
+    @SerializedName("flowerImgUrl") var flowerImgUrl: String?,
+    @SerializedName("maxExp") var maxExp: Int?,
+    @SerializedName("bloomingPeriod") var bloomingPeriod: String?,
+    @SerializedName("content") var content: String?,
+    @SerializedName("type") var type: String?,
+    @SerializedName("startDate") var startDate: String?,
+    @SerializedName("lastDate") var lastDate: String?,
+    @SerializedName("exp") var exp: Int?,
+    @SerializedName("recordCount") var recordCount: Int?
 )
 
 data class UnlockedFpResult(
-    @SerializedName("flowerDataIdx") var idx: Int,
-    @SerializedName("name") var name: String,
-    @SerializedName("type") var type: String,
-    @SerializedName("bloomingPeriod") var bloomingPeriod: String,
-    @SerializedName("flowerImgUrl") var flowerImgUrl: String
+    @SerializedName("flowerDataIdx") var idx: Int?,
+    @SerializedName("name") var name: String?,
+    @SerializedName("type") var type: String?,
+    @SerializedName("bloomingPeriod") var bloomingPeriod: String?,
+    @SerializedName("flowerImgUrl") var flowerImgUrl: String?
 )
 
 data class LockedFpResult(

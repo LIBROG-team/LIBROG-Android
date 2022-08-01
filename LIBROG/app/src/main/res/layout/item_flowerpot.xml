@@ -9,28 +9,20 @@
     android:layout_marginEnd="8dp"
     android:background="@drawable/flowerpot_list_border">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/item_flowerpot_iv"
-        android:layout_width="115dp"
-        android:layout_height="163dp"
+        android:layout_width="106dp"
+        android:layout_height="106dp"
         android:layout_marginStart="30dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/home_banner_rectangle"
+        android:scaleType="center"
+        android:background="@drawable/flowerpot_rv_background"
+        android:src="@drawable/test_flower_img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/item_flowerpot_title_tv"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/waterdrop_corners" />
-    <!--    <ImageView-->
-    <!--        android:id="@+id/item_flowerpot_iv"-->
-    <!--        android:layout_width="115dp"-->
-    <!--        android:layout_height="163dp"-->
-    <!--        android:layout_marginStart="30dp"-->
-    <!--        android:background="@drawable/flowerpot_waterdrop_border"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/item_flowerpot_title_tv"

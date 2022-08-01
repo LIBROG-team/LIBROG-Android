@@ -35,9 +35,15 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
 
     override fun initAfterBinding() {
         initBookService()
-        showLogoCl()
+
+        if (bookList.isEmpty()){
+            showLogoTv()
+        }else{
+            showBookList()
+        }
 
         adapter = AddBookRVAdapter(bookList)
+
         binding.addbookContentRv.adapter = adapter
         binding.addbookContentRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -57,7 +63,7 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
             bookList.clear()
         }
 
-        binding.addbookSearchEt.setOnEditorActionListener { v, actionId, event ->
+        binding.addbookSearchEt.setOnEditorActionListener { v, actionId, _ ->
             var handled = false
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -95,7 +101,7 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
             .build()
 
         bookService = bookRetrofit.create(BookInterface::class.java)
-        bookList.clear()
+//        bookList.clear()
     }
 
 
@@ -142,29 +148,29 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
 
     }
 
-    private fun showLogoCl() {
+    private fun showLogoTv() {
         binding.addbookContentRv.visibility = View.GONE
         binding.addbookNobookTv.visibility = View.GONE
         binding.addbookMoreBtn.visibility = View.GONE
-        binding.addbookLogoCl.visibility = View.VISIBLE
+        binding.addbookLogoTv.visibility = View.VISIBLE
     }
 
     private fun showNobookTv() {
         binding.addbookMoreBtn.visibility = View.GONE
         binding.addbookNobookTv.visibility = View.VISIBLE
         binding.addbookContentRv.visibility = View.GONE
-        binding.addbookLogoCl.visibility = View.GONE
+        binding.addbookLogoTv.visibility = View.GONE
 
     }
 
     private fun showBookList() {
         binding.addbookMoreBtn.visibility = View.VISIBLE
-        binding.addbookLogoCl.visibility = View.GONE
+        binding.addbookLogoTv.visibility = View.GONE
         binding.addbookNobookTv.visibility = View.GONE
         binding.addbookContentRv.visibility = View.VISIBLE
     }
 
-    fun hideKeyboard(v: View) {
+    private fun hideKeyboard(v: View) {
         imm.hideSoftInputFromWindow(v.windowToken, 0)
     }
 
