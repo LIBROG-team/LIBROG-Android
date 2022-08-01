@@ -12,12 +12,21 @@ import com.example.librog.databinding.ItemAddbookBinding
 class AddBookRVAdapter(private var bookList: ArrayList<Documents>) :
     RecyclerView.Adapter<AddBookRVAdapter.ViewHolder>() {
 
+
+    interface OnItemClickListener{
+        fun onItemClick(bookData: Documents)
+    }
+
     lateinit var context: Context
+    private lateinit var mItemClickListener: OnItemClickListener
+    fun setMyItemClickListener(itemClickListener: OnItemClickListener){
+        mItemClickListener = itemClickListener
+    }
 
     inner class ViewHolder(val binding: ItemAddbookBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(book: Documents) {
-            var authorList = book.authors.joinToString(separator = ",")
+            val authorList = book.authors.joinToString(separator = ",")
 
             binding.itemAddbookTitleTv.text = book.title
             binding.itemAddbookAuthorTv.text = authorList
@@ -39,6 +48,9 @@ class AddBookRVAdapter(private var bookList: ArrayList<Documents>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(bookList[position])
+        holder.binding.itemAddbookCl.setOnClickListener {
+            mItemClickListener.onItemClick(bookList[position])
+        }
     }
 
     override fun getItemCount(): Int {

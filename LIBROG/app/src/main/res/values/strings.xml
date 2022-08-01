@@ -74,7 +74,7 @@
     <!-- 화분 상세정보 -->
     <string name="detail_flowerpot_main">화분 상세정보</string>
     <string name="detail_flowerpot_exp_text">%s의 성장치</string>
-    <string name="detail_flowerpot_exp_num">%d / 5</string>
+    <string name="detail_flowerpot_exp_num">%d / %d</string>
     <string name="detail_flowerpot_book_list">화분에 기록된 책</string>
 
     <!-- 화분추가 -->

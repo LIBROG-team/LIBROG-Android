@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.addbook
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -13,6 +14,7 @@ import com.example.librog.data.remote.book.BookResponse
 import com.example.librog.data.remote.book.Documents
 import com.example.librog.databinding.FragmentAddBookBinding
 import com.example.librog.ui.BaseFragment
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -71,6 +73,18 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
             pageCount += 1
             getBooksByName(binding.addbookSearchEt.text.toString())
         }
+
+
+        adapter.setMyItemClickListener(object : AddBookRVAdapter.OnItemClickListener {
+            override fun onItemClick(bookData: Documents) {
+                val intent = Intent(context, AddBookSelectActivity::class.java)
+                val gson = Gson()
+                val doc = gson.toJson(bookData)
+                intent.putExtra("doc", doc)
+                startActivity(intent)
+            }
+        })
+
     }
 
 
