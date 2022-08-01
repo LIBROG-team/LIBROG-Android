@@ -1,22 +1,12 @@
 package com.example.librog.ui.main.signup
 
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import com.example.librog.R
-import com.example.librog.data.entities.User
-import com.example.librog.data.local.AppDatabase
-import com.example.librog.data.remote.data.*
+import com.example.librog.data.remote.data.auth.SignUpView
 import com.example.librog.databinding.ActivitySignupBinding
-import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseActivity
-import com.example.librog.ui.main.home.HomeFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 
-class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate), SignUpView {
+class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate),
+    SignUpView {
     override fun initAfterBinding() {
 
         supportFragmentManager.beginTransaction()

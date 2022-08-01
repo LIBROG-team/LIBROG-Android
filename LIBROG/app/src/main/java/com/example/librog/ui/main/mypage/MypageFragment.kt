@@ -12,6 +12,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.librog.data.local.AppDatabase
+import com.example.librog.data.remote.data.DataService
+import com.example.librog.data.remote.data.UserDataService
+import com.example.librog.data.remote.data.UserStatResult
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
@@ -20,6 +23,7 @@ import com.example.librog.ui.main.login.LoginActivity
 class MypageFragment : Fragment(){
     lateinit var binding: FragmentMypageBinding
     lateinit var AppDB: AppDatabase
+    private val userDataService = UserDataService
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,6 +66,10 @@ class MypageFragment : Fragment(){
                 startActivity(intent)
             }
         }
+
+        //유저 통계 불러오기
+
+        userDataService.getUserStat(this)
     }
 
     private fun logout(){
@@ -72,6 +80,14 @@ class MypageFragment : Fragment(){
         binding.mypageLoginBtn.text = "로그인"
     }
 
+    fun setData(result: UserStatResult, code:Int) {
+        Log.d("GETUSERDATA",code.toString())
+        binding.mypageFlowerCnt.text = result.flowerCnt.toString()
+        binding.mypageReadingCnt.text = result.readingCnt.toString()
+        binding.mypageStarCnt.text = result.starRatingCnt.toString()
+        binding.mypageQuoteCnt.text = result.quoteCnt.toString()
+        binding.mypageContentCnt.text = result.contentCnt.toString()
+    }
 
 
 }

@@ -3,11 +3,10 @@ package com.example.librog.ui.main.login
 import android.util.Log
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.AccessToken
-import com.example.librog.data.remote.data.AuthService
+import com.example.librog.data.remote.data.auth.AuthService
 import com.example.librog.data.remote.data.KakaoResult
-import com.example.librog.data.remote.data.LoginView
+import com.example.librog.data.remote.data.auth.LoginView
 import com.example.librog.databinding.ActivityLoginBinding
-import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.signup.SignUpActivity
 //import com.example.librog.ui.main.signup.SignUpActivity
