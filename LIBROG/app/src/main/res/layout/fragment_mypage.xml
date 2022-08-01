@@ -388,7 +388,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="49dp"
             android:background="@drawable/btn_profile_login_border"
-            android:text="로그인"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.main.MainActivity
@@ -27,54 +28,48 @@ class MypageFragment : Fragment(){
         binding = FragmentMypageBinding.inflate(inflater, container, false)
         AppDB =AppDatabase.getInstance(requireContext())!!
         initViews()
-        initData()
         Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
         return binding.root
     }
 
-    private fun getJwt(): String?{
-        val spf = activity?.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
-        return spf!!.getString("jwt","0") //기본값 0
+    override fun onStart() {
+        super.onStart()
+        initViews()
     }
 
     private fun getIdx(): Int{
-        val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE) //fragment->?추가
+        val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE)
         return spf!!.getInt("idx",-1)
     }
 
-    private fun initData(){
-        Log.d("GETIDX",getIdx().toString())
-//        Log.d("getname",AppDB.userDao().getUserName(getIdx()))
-        binding.profileName.text=AppDB.userDao().getUserName(getIdx())
-
-    }
-
-
 
     private fun initViews(){
-        val jwt : String? = getJwt()
+        val id = getIdx()
 
-        if (jwt=="0"){ //기본값(로그인x)
+        if (id==-1){ //기본값(로그아웃 상태)
             binding.mypageLoginBtn.text = "로그인"
             binding.mypageLoginBtn.setOnClickListener {
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
             }
-        } else {
+        } else { //로그인 상태
             binding.mypageLoginBtn.text = "로그아웃"
+            binding.profileName.text=AppDB.userDao().getUserName(id)
+            Glide.with(this).load(AppDB.userDao().getUserImg(id)).circleCrop().into(binding.profileIv)
             binding.mypageLoginBtn.setOnClickListener {
-                val intent = Intent(activity, MainActivity::class.java)
                 logout()
+                val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             }
         }
     }
 
     private fun logout(){
-        val spf = activity?.getSharedPreferences("auth2",AppCompatActivity.MODE_PRIVATE)
+        val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE)
         val editor = spf!!.edit()
-        editor.remove("jwt") //키값에 저장된값 삭제
+        editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
         editor.apply()
+        binding.mypageLoginBtn.text = "로그인"
     }
 
 

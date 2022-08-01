@@ -9,6 +9,7 @@ import com.example.librog.data.remote.data.LoginView
 import com.example.librog.databinding.ActivityLoginBinding
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.BaseActivity
+import com.example.librog.ui.main.signup.SignUpActivity
 //import com.example.librog.ui.main.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient
 
@@ -16,11 +17,8 @@ import com.kakao.sdk.user.UserApiClient
 private const val TAG = "LoginActivity"
 
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
-    lateinit var binding2: FragmentMypageBinding
-    lateinit var email: String
     lateinit var name: String
     override fun initAfterBinding() {
-        binding2 = FragmentMypageBinding.inflate(layoutInflater)
         initClickListener()
         val AppDB = AppDatabase.getInstance(this)!!
         val users = AppDB.userDao().getUserList()
@@ -29,17 +27,12 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     }
 
     private fun initClickListener(){
-//        binding.loginSignUpTv.setOnClickListener {
-//            startNextActivity(SignUpActivity::class.java)
-//        }
+        binding.loginSignUpBtn.setOnClickListener {
+            startNextActivity(SignUpActivity::class.java)
+        }
 
         binding.loginLogInBtn.setOnClickListener {
 //            login()
-        }
-
-        binding.loginKakaoLogoutTv.setOnClickListener{
-            kakaoLogout()
-            showToast("kakao logout")
         }
 
         binding.loginKakaoSignInBtn.setOnClickListener {
@@ -156,10 +149,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 Log.d("kakaoLogin",code.toString())
                 saveIdx(result.idx)
                 val AppDB = AppDatabase.getInstance(this)!!
-                if(!AppDB.userDao().isUserExist(result.idx))
+                if(result.message!="이미 가입된 유저입니다.")
                     {   Log.d("kakaoLogin","데이터 삽입")
                         AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name, result.profileImgUrl)}
-
+                finish()
             }
         }
     }
