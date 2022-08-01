@@ -2,12 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="65dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/login_email_title"
+        android:id="@+id/su_id_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
@@ -20,7 +19,7 @@
 
 
     <EditText
-        android:id="@+id/login_id_et"
+        android:id="@+id/su_id_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
@@ -30,10 +29,10 @@
         android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_email_title" />
+        app:layout_constraintTop_toBottomOf="@id/su_id_title" />
 
     <View
-        android:id="@+id/login_id_underscore_view"
+        android:id="@+id/su_id_underscore_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="6dp"
@@ -42,9 +41,9 @@
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_id_et" />
+        app:layout_constraintTop_toBottomOf="@+id/su_id_et" />
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sign_in_valid_btn"
+        android:id="@+id/su_valid_btn"
         android:layout_width="59dp"
         android:layout_height="22dp"
         android:layout_marginTop="22dp"
@@ -53,11 +52,11 @@
         android:text="중복확인"
         android:textColor="@color/white"
         android:textSize="11sp"
-        app:layout_constraintTop_toBottomOf="@id/login_email_title"
+        app:layout_constraintTop_toBottomOf="@id/su_id_title"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/login_pwd_title"
+        android:id="@+id/su_pwd_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
@@ -66,11 +65,11 @@
         android:textColor="@color/black"
         android:text="비밀번호"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_id_underscore_view"/>
+        app:layout_constraintTop_toBottomOf="@id/su_id_underscore_view"/>
 
 
     <EditText
-        android:id="@+id/login_pwd_et"
+        android:id="@+id/su_pwd_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
@@ -80,10 +79,10 @@
         android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_pwd_title" />
+        app:layout_constraintTop_toBottomOf="@id/su_pwd_title" />
 
     <View
-        android:id="@+id/login_pwd_underscore_view"
+        android:id="@+id/su_pwd_underscore_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="6dp"
@@ -92,9 +91,9 @@
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_pwd_et" />
+        app:layout_constraintTop_toBottomOf="@+id/su_pwd_et" />
     <TextView
-        android:id="@+id/login_name_title"
+        android:id="@+id/su_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
@@ -103,11 +102,11 @@
         android:textColor="@color/black"
         android:text="닉네임"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_pwd_underscore_view"/>
+        app:layout_constraintTop_toBottomOf="@id/su_pwd_underscore_view"/>
 
 
     <EditText
-        android:id="@+id/login_name_et"
+        android:id="@+id/su_name_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
@@ -117,10 +116,10 @@
         android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_name_title" />
+        app:layout_constraintTop_toBottomOf="@id/su_name_title" />
 
     <View
-        android:id="@+id/login_name_underscore_view"
+        android:id="@+id/su_name_underscore_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="6dp"
@@ -129,13 +128,13 @@
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_name_et" />
+        app:layout_constraintTop_toBottomOf="@+id/su_name_et" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sign_in_next_btn"
+        android:id="@+id/su_first_next_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="490dp"
         android:layout_marginStart="34dp"
         android:layout_marginEnd="34dp"
         android:background="@drawable/btn_login_login_border"
@@ -144,6 +143,6 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

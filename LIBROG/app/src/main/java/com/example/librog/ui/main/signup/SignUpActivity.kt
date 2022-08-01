@@ -10,7 +10,7 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
     override fun initAfterBinding() {
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.sign_up_frame, SignUpFirstFragment())
+            .replace(R.id.sign_up_frame, SignUpConsentFragment())
             .commitAllowingStateLoss()
 
         binding.signUpBackBtn.setOnClickListener {

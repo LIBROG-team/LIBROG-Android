@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="56dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
-        android:id="@+id/su_last_nickname"
+        android:id="@+id/su_nickname_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
@@ -17,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
-        android:id="@+id/su_last_explain1"
+        android:id="@+id/su_explain1_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" 님,"
@@ -25,7 +24,7 @@
         android:textSize="20sp"
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/su_last_nickname"/>
+        app:layout_constraintStart_toEndOf="@id/su_nickname_tv"/>
     <TextView
         android:id="@+id/su_last_explain2"
         android:layout_width="wrap_content"
@@ -35,10 +34,10 @@
         android:layout_marginStart="34dp"
         android:textSize="20sp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/su_last_explain1"
+        app:layout_constraintTop_toBottomOf="@id/su_explain1_tv"
         app:layout_constraintStart_toStartOf="parent"/>
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/su_last_profile_iv"
+        android:id="@+id/su_profile_iv"
         android:layout_width="117dp"
         android:layout_height="117dp"
         android:layout_marginTop="65dp"
@@ -58,8 +57,8 @@
         android:layout_marginStart="91dp"
         app:civ_border_overlay="false"
         android:src="@drawable/ic_sign_up_camera"
-        app:layout_constraintStart_toStartOf="@id/su_last_profile_iv"
-        app:layout_constraintTop_toTopOf="@id/su_last_profile_iv"
+        app:layout_constraintStart_toStartOf="@id/su_profile_iv"
+        app:layout_constraintTop_toTopOf="@id/su_profile_iv"
         />
     <TextView
         android:id="@+id/su_nickname_title"
@@ -69,7 +68,7 @@
         android:layout_marginStart="34dp"
         android:text="자기소개"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/su_last_profile_iv"
+        app:layout_constraintTop_toBottomOf="@id/su_profile_iv"
         app:layout_constraintStart_toStartOf="parent"/>
     <EditText
         android:id="@+id/su_nickname_et"
@@ -85,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@id/su_nickname_title" />
 
     <View
-        android:id="@+id/login_id_underscore_view"
+        android:id="@+id/su_nickname_underscore_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="6dp"
@@ -96,19 +95,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_nickname_et" />
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/su_finish_btn"
+        android:id="@+id/su_last_finish_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginBottom="56dp"
         android:layout_marginStart="34dp"
         android:layout_marginEnd="34dp"
+        android:layout_marginTop="490dp"
         android:background="@drawable/btn_login_login_border"
         android:text="리브로그 시작하기"
         android:textColor="@color/green"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
