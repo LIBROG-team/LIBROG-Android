@@ -269,6 +269,7 @@
                     android:textSize="16sp"
                     android:text="총 "/>
                 <TextView
+                    android:id="@+id/mypage_flower_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -291,6 +292,7 @@
                     android:textSize="16sp"
                     android:text="총 "/>
                 <TextView
+                    android:id="@+id/mypage_reading_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -313,6 +315,7 @@
                     android:textSize="16sp"
                     android:text="총 "/>
                 <TextView
+                    android:id="@+id/mypage_star_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -335,6 +338,7 @@
                     android:textSize="16sp"
                     android:text="총 "/>
                 <TextView
+                    android:id="@+id/mypage_quote_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -357,6 +361,7 @@
                     android:textSize="16sp"
                     android:text="총 "/>
                 <TextView
+                    android:id="@+id/mypage_content_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"

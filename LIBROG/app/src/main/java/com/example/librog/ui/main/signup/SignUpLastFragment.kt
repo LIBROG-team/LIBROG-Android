@@ -6,7 +6,7 @@ import com.example.librog.ui.BaseFragment
 
 class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignupLastBinding::inflate) {
     override fun initAfterBinding() {
-        binding.suFinishBtn.setOnClickListener {
+        binding.suLastFinishBtn.setOnClickListener {
             activity?.finish()
         }
     }

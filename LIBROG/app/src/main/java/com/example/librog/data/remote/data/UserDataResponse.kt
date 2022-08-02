@@ -7,10 +7,10 @@ data class UserStatResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
     @SerializedName("code") val code: Int,
     @SerializedName("message") val message: String,
-    @SerializedName("result") val result: UserStat
+    @SerializedName("result") val result: UserStatResult
 )
 
-data class UserStat(
+data class UserStatResult(
     @SerializedName("userIdx") var userIdx: Int,
     @SerializedName("flowerCnt") var flowerCnt: Int,
     @SerializedName("readingCnt") var readingCnt: Int,

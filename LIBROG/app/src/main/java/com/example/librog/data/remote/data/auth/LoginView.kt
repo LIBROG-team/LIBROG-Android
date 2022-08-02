@@ -1,4 +1,6 @@
-package com.example.librog.data.remote.data
+package com.example.librog.data.remote.data.auth
+
+import com.example.librog.data.remote.data.KakaoResult
 
 interface LoginView {
 //    fun onLoginSuccess(code : Int, result: Result)
