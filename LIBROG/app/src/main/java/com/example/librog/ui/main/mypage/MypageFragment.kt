@@ -40,8 +40,6 @@ class MypageFragment : Fragment(){
     override fun onStart() {
         super.onStart()
         initViews()
-        //유저 통계 불러오기
-        userDataService.getUserStat(this)
     }
 
     private fun getIdx(): Int{
@@ -60,8 +58,6 @@ class MypageFragment : Fragment(){
                 startActivity(intent)
             }
         } else { //로그인 상태
-            Log.d("USERSTATUS", AppDB.userDao().getUserList().toString())
-            Log.d("USERSTATUS", id.toString())
             binding.mypageLoginBtn.text = "로그아웃"
             binding.profileName.text=AppDB.userDao().getUserName(id)
             Glide.with(this).load(AppDB.userDao().getUserImg(id)).circleCrop().into(binding.profileIv)
@@ -75,6 +71,8 @@ class MypageFragment : Fragment(){
             }
 
         }
+        //유저 통계 불러오기
+        userDataService.getUserStat(this,getIdx())
 
     }
 

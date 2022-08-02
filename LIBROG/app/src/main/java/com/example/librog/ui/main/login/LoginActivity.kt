@@ -147,7 +147,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             1500-> {
                 showToast("kakao 로그인 성공")
                 Log.d("kakaoLogin",result.toString())
-                Log.d("kakaoLogin",code.toString())
                 saveIdx(result.idx)
                 val AppDB = AppDatabase.getInstance(this)!!
                 if(!AppDB.userDao().isUserExist(result.idx))
