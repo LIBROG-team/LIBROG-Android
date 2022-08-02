@@ -1,5 +1,6 @@
 package com.example.librog.ui.main.login
 
+import android.content.Context
 import android.util.Log
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.AccessToken
@@ -18,6 +19,7 @@ private const val TAG = "LoginActivity"
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
     lateinit var name: String
     override fun initAfterBinding() {
+
         initClickListener()
         val AppDB = AppDatabase.getInstance(this)!!
         val users = AppDB.userDao().getUserList()
@@ -128,7 +130,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
-    private fun kakaoLogout(){
+    fun kakaoLogout(){
         UserApiClient.instance.logout { error ->
             if (error != null) {
                 Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
@@ -148,7 +150,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 Log.d("kakaoLogin",code.toString())
                 saveIdx(result.idx)
                 val AppDB = AppDatabase.getInstance(this)!!
-                if(result.message!="이미 가입된 유저입니다.")
+                if(!AppDB.userDao().isUserExist(result.idx))
                     {   Log.d("kakaoLogin","데이터 삽입")
                         AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name, result.profileImgUrl)}
                 finish()

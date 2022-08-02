@@ -21,7 +21,7 @@ object UserDataService {
                 Log.d("GETUSERDATA/SUCCESS",resp.code.toString())
                 when(val code = resp.code){
                     1000->{
-                        fragment.setData(resp.result, code)
+                        fragment.setData(resp.result)
                     }
                     else ->{
 

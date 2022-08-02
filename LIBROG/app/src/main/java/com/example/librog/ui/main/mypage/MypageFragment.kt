@@ -18,6 +18,7 @@ import com.example.librog.data.remote.data.UserStatResult
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
+import com.kakao.sdk.common.util.SdkLogLevel
 
 
 class MypageFragment : Fragment(){
@@ -39,6 +40,8 @@ class MypageFragment : Fragment(){
     override fun onStart() {
         super.onStart()
         initViews()
+        //유저 통계 불러오기
+        userDataService.getUserStat(this)
     }
 
     private fun getIdx(): Int{
@@ -57,19 +60,22 @@ class MypageFragment : Fragment(){
                 startActivity(intent)
             }
         } else { //로그인 상태
+            Log.d("USERSTATUS", AppDB.userDao().getUserList().toString())
+            Log.d("USERSTATUS", id.toString())
             binding.mypageLoginBtn.text = "로그아웃"
             binding.profileName.text=AppDB.userDao().getUserName(id)
             Glide.with(this).load(AppDB.userDao().getUserImg(id)).circleCrop().into(binding.profileIv)
+
+            //로그아웃
             binding.mypageLoginBtn.setOnClickListener {
+                //(activity as LoginActivity).kakaoLogout()
                 logout()
                 val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             }
+
         }
 
-        //유저 통계 불러오기
-
-        userDataService.getUserStat(this)
     }
 
     private fun logout(){
@@ -80,8 +86,7 @@ class MypageFragment : Fragment(){
         binding.mypageLoginBtn.text = "로그인"
     }
 
-    fun setData(result: UserStatResult, code:Int) {
-        Log.d("GETUSERDATA",code.toString())
+    fun setData(result: UserStatResult) {
         binding.mypageFlowerCnt.text = result.flowerCnt.toString()
         binding.mypageReadingCnt.text = result.readingCnt.toString()
         binding.mypageStarCnt.text = result.starRatingCnt.toString()
