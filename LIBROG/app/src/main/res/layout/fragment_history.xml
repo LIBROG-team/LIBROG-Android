@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/history_without_banner"
         android:layout_width="match_parent"
@@ -16,6 +18,8 @@
             android:layout_marginStart="29dp"
             android:layout_marginTop="37dp"
             android:text="@string/menu_history"
+            android:fontFamily="@font/pd_bold"
+            android:textColor="@color/black"
             android:textSize="27sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
