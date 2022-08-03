@@ -110,5 +110,7 @@ class HistoryFragment : Fragment() {
         binding.historySortBoxIv.isClickable = true
     }
 
+
+
 }
 

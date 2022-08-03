@@ -25,7 +25,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.findNavController()
-
         binding.mainBottomNavigation.itemIconTintList = null
         binding.mainBottomNavigation.setupWithNavController(navController)
 
@@ -37,7 +36,11 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
     }
 
-    fun controlBottomNavVisibility (){
+    fun showBottomNav(){
+        binding.mainBottomNavigation.visibility = View.VISIBLE
+    }
+
+    fun controlBottomNavVisibility(){
         if (binding.mainBottomNavigation.visibility == View.VISIBLE){
             binding.mainBottomNavigation.visibility = View.GONE
         }

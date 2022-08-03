@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.R
 import com.example.librog.data.ReadBook
 import com.example.librog.databinding.FragmentHomeBinding
+import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.addbook.AddBookSelectActivity
 
 
@@ -24,7 +25,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        (activity as MainActivity).showBottomNav()
 
         readBookData.apply{
             add(ReadBook(R.drawable.home_item_book1,"노르웨이의 숲","무라카미 하루키","2022.06.28"))
