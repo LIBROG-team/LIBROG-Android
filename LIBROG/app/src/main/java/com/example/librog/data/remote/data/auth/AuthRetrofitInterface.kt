@@ -1,9 +1,6 @@
 package com.example.librog.data.remote.data.auth
 
 import com.example.librog.data.entities.User
-import com.example.librog.data.remote.data.AccessToken
-import com.example.librog.data.remote.data.AuthResponse
-import com.example.librog.data.remote.data.AuthResponse2
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

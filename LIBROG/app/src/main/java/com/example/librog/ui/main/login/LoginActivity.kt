@@ -1,11 +1,10 @@
 package com.example.librog.ui.main.login
 
-import android.content.Context
 import android.util.Log
 import com.example.librog.data.local.AppDatabase
-import com.example.librog.data.remote.data.AccessToken
+import com.example.librog.data.remote.data.auth.AccessToken
 import com.example.librog.data.remote.data.auth.AuthService
-import com.example.librog.data.remote.data.KakaoResult
+import com.example.librog.data.remote.data.auth.KakaoResult
 import com.example.librog.data.remote.data.auth.LoginView
 import com.example.librog.databinding.ActivityLoginBinding
 import com.example.librog.ui.BaseActivity
@@ -125,7 +124,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
                 authService.kakaoLogin(kakaoAccessToken)
-                Log.d("accesstoken",AccessToken(token.accessToken).toString())
+                Log.d("accesstoken", AccessToken(token.accessToken).toString())
             }
         }
     }

@@ -26,6 +26,7 @@
         app:layout_constraintTop_toBottomOf="@id/su_consent_title"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
+        android:id="@+id/su_consent_warning_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -39,7 +40,7 @@
 
 
     <View
-        android:id="@+id/su_consent_check1_unchecked"
+        android:id="@+id/check_top_unchecked"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="55dp"
@@ -48,20 +49,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_explain1"/>
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/su_consent_check1_checked"
+        android:id="@+id/check_top_checked"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="55dp"
         android:layout_marginStart="36dp"
         android:background="@drawable/sign_up_check_border"
         android:src="@drawable/su_consent_check"
-        android:paddingHorizontal="2dp"
         android:visibility="invisible"
+        android:paddingHorizontal="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_explain1"/>
 
     <TextView
-        android:id="@+id/su_consent_check1_tv1"
+        android:id="@+id/check_top_tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -71,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/su_consent_explain1"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
-        android:id="@+id/su_consent_check1_tv2"
+        android:id="@+id/check_top_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -80,7 +81,7 @@
         android:textSize="12sp"
         android:textColor="@color/green"
         app:layout_constraintTop_toBottomOf="@id/su_consent_explain1"
-        app:layout_constraintStart_toEndOf="@id/su_consent_check1_tv1"/>
+        app:layout_constraintStart_toEndOf="@id/check_top_tv1"/>
     <FrameLayout
         android:id="@+id/su_consent_frame1"
         android:layout_width="match_parent"
@@ -91,7 +92,7 @@
         android:background="@drawable/su_consent_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/su_consent_check1_tv1">
+        app:layout_constraintTop_toBottomOf="@id/check_top_tv1">
         <TextView
             android:id="@+id/su_consent_content1"
             android:layout_width="wrap_content"
@@ -106,7 +107,7 @@
             />
     </FrameLayout>
     <View
-        android:id="@+id/su_consent_check2_unchecked"
+        android:id="@+id/check_bottom_unchecked"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="40dp"
@@ -114,20 +115,21 @@
         android:background="@drawable/sign_up_uncheck_border"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_frame1"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/su_consent_check2_checked"
+        android:id="@+id/check_bottom_checked"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="36dp"
         android:background="@drawable/sign_up_check_border"
         android:src="@drawable/su_consent_check"
-        android:paddingHorizontal="2dp"
         android:visibility="invisible"
+        android:paddingHorizontal="2dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/su_consent_explain1"/>
+        app:layout_constraintTop_toBottomOf="@+id/su_consent_frame1"/>
     <TextView
-        android:id="@+id/su_consent_check2_tv1"
+        android:id="@+id/check_bottom_tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
@@ -137,7 +139,7 @@
         app:layout_constraintTop_toBottomOf="@id/su_consent_frame1"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
-        android:id="@+id/su_consent_check2_tv2"
+        android:id="@+id/check_bottom_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
@@ -146,7 +148,7 @@
         android:textSize="12sp"
         android:textColor="@color/green"
         app:layout_constraintTop_toBottomOf="@id/su_consent_frame1"
-        app:layout_constraintStart_toEndOf="@id/su_consent_check2_tv1"/>
+        app:layout_constraintStart_toEndOf="@id/check_bottom_tv1"/>
     <FrameLayout
         android:id="@+id/su_consent_content2"
         android:layout_width="match_parent"
@@ -157,7 +159,7 @@
         android:background="@drawable/su_consent_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/su_consent_check2_tv1">
+        app:layout_constraintTop_toBottomOf="@id/check_bottom_tv1">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -171,7 +173,7 @@
             />
     </FrameLayout>
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/su_consent_finish_btn1"
+        android:id="@+id/finish_active_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="34dp"
@@ -188,7 +190,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_content2"/>
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/su_consent_finish_btn2"
+        android:id="@+id/finish_inactive_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="34dp"

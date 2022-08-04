@@ -2,8 +2,6 @@ package com.example.librog.data.remote.data.auth
 
 import android.util.Log
 import com.example.librog.ApplicationClass.Companion.retrofit
-import com.example.librog.data.remote.data.AccessToken
-import com.example.librog.data.remote.data.AuthResponse2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

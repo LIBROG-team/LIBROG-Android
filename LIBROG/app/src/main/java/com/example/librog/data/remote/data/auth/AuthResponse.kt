@@ -1,7 +1,6 @@
-package com.example.librog.data.remote.data
+package com.example.librog.data.remote.data.auth
 
 import com.google.gson.annotations.SerializedName
-import org.w3c.dom.Text
 
 class AuthResponse(
     @SerializedName(value = "isSuccess")val isSuccess : Boolean,
