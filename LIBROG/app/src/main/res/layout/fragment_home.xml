@@ -124,5 +124,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/home_banner_recentread_tv"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -7,10 +7,8 @@ import retrofit2.http.POST
 
 interface AuthRetrofitInterface {
     @POST("/users")
-    fun signUp(@Body user: User): Call<AuthResponse>
+    fun signUp(@Body signUpInfo:SignUpInfo): Call<SignUpResponse>
 
-    @POST("/users/login") //추후 수정
-    fun login(@Body user: User): Call<AuthResponse>
 
     @POST("/users/kakao/certificate")
     fun kakaoLogin(@Body accessToken: AccessToken): Call<AuthResponse2>

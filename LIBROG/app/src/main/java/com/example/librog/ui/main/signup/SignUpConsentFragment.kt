@@ -18,12 +18,6 @@ class SignUpConsentFragment : BaseFragment<FragmentSignupConsentBinding>(Fragmen
         finishBtnClickListner()
     }
 
-    private fun changeFragment(){
-        (context as SignUpActivity).supportFragmentManager.beginTransaction()
-            .replace(R.id.sign_up_frame, SignUpFirstFragment())
-            .commitAllowingStateLoss()
-    }
-
     private fun checkBtnClickListener(){
         binding.checkTopUnchecked.setOnClickListener {
             isChecked1=true
@@ -61,7 +55,19 @@ class SignUpConsentFragment : BaseFragment<FragmentSignupConsentBinding>(Fragmen
             checkValidation()
         }
 
+    }
 
+    private fun checkValidation(){
+        var isValid:Boolean =isChecked1&&isChecked2
+        if (isValid){
+            binding.suConsentWarningTv.visibility = View.INVISIBLE
+            binding.finishInactiveBtn.visibility = View.INVISIBLE
+            binding.finishActiveBtn.visibility = View.VISIBLE
+        }
+        else {
+            binding.finishInactiveBtn.visibility = View.VISIBLE
+            binding.finishActiveBtn.visibility = View.INVISIBLE
+        }
 
     }
 
@@ -83,19 +89,14 @@ class SignUpConsentFragment : BaseFragment<FragmentSignupConsentBinding>(Fragmen
         }
     }
 
-    private fun checkValidation(){
-        var isValid:Boolean =isChecked1&&isChecked2
-        if (isValid){
-            binding.suConsentWarningTv.visibility = View.INVISIBLE
-            binding.finishInactiveBtn.visibility = View.INVISIBLE
-            binding.finishActiveBtn.visibility = View.VISIBLE
-        }
-        else {
-            binding.finishInactiveBtn.visibility = View.VISIBLE
-            binding.finishActiveBtn.visibility = View.INVISIBLE
-        }
-
+    private fun changeFragment(){
+        (context as SignUpActivity).supportFragmentManager.beginTransaction()
+            .replace(R.id.sign_up_frame, SignUpFirstFragment())
+            .commitAllowingStateLoss()
     }
+
+
+
 
 
 }
