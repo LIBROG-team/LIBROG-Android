@@ -10,7 +10,7 @@ import com.example.librog.ui.BaseFragment
 class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSignupFirstBinding::inflate),SignUpView {
     override fun initAfterBinding() {
         binding.suFirstNextBtn.setOnClickListener {
-            signUp()
+            changeFragment()
         }
     }
 
