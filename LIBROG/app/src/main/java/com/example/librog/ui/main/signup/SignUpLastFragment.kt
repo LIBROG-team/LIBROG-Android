@@ -11,10 +11,15 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.getSystemService
+import com.example.librog.R
 import com.example.librog.databinding.ActivitySignupBinding
 import com.example.librog.databinding.FragmentHomeBinding
 import com.example.librog.databinding.FragmentSignupLastBinding
 import com.example.librog.ui.BaseFragment
+import com.example.librog.ui.main.MainActivity
+
+
+
 
 
 class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignupLastBinding::inflate) {
@@ -34,7 +39,12 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         }
 
         binding.imgOptionAlbumTv.setOnClickListener{
+            hideBanner()
             pickImageGallery()
+        }
+
+        binding.imgOptionDefaultTv.setOnClickListener {
+            binding.suProfileIv.setImageResource(R.drawable.ic_profile_logo)
             hideBanner()
         }
 
@@ -46,13 +56,15 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     private fun showBanner(){
         binding.imgOptionBanner.visibility = View.VISIBLE
         binding.suLastFinishBtn.visibility = View.INVISIBLE
-
+        (activity as SignUpActivity).fadeBackground(true)
+        binding.suNicknameEt.isEnabled= false
     }
 
     private fun hideBanner(){
         binding.imgOptionBanner.visibility = View.INVISIBLE
         binding.suLastFinishBtn.visibility = View.VISIBLE
-
+        (activity as SignUpActivity).fadeBackground(false)
+        binding.suNicknameEt.isEnabled= true
     }
 
     private fun pickImageGallery() {
