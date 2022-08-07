@@ -26,7 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         initRVAdapter()
-        initAdVp()
+        initNoticeVp()
 
     }
     private fun initRVAdapter(){
@@ -42,7 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         })
     }
 
-    private fun initAdVp(){
+    private fun initNoticeVp(){
         val bannerAdapter = HomeNoticeVPAdapter(this)
         //추가할 프래그먼트를 넣어줌
         bannerAdapter.addFragment(HomeNoticeFragment(R.drawable.home_banner_notice_temp))

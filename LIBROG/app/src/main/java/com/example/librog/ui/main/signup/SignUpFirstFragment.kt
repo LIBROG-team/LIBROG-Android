@@ -1,5 +1,6 @@
 package com.example.librog.ui.main.signup
 
+import android.util.Log
 import com.example.librog.R
 import com.example.librog.data.remote.data.auth.AuthService
 import com.example.librog.data.remote.data.auth.SignUpInfo
@@ -10,7 +11,7 @@ import com.example.librog.ui.BaseFragment
 class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSignupFirstBinding::inflate),SignUpView {
     override fun initAfterBinding() {
         binding.suFirstNextBtn.setOnClickListener {
-            changeFragment()
+            signUp()
         }
     }
 
@@ -23,14 +24,10 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
         return SignUpInfo(email, pwd,name)
     }
 
-
-
-
     private fun signUp(){
-
         val authService = AuthService()
         authService.setSignUpView(this)
-        showToast(getSignUpInfo().toString())
+        Log.d("SIGNUP/",getSignUpInfo().toString())
         authService.signUp(getSignUpInfo()) //api호출
     }
 
