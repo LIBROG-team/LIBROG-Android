@@ -74,7 +74,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     }
 
 
-    
     private fun kakaoLogin(){
         UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
             if (error != null) {
