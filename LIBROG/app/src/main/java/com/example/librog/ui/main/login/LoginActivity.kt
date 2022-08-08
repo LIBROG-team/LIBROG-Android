@@ -74,17 +74,13 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     }
 
 
+    
     private fun kakaoLogin(){
         UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
             if (error != null) {
                 Log.e(TAG, "로그인 실패", error)
             }
             else if (token != null) {
-                Log.i(TAG, "로그인 성공 ${token.accessToken}")
-
-                Log.d("accesstoken",token.accessToken)
-
-                //데이터 클래스
                 val authService = AuthService()
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
@@ -110,14 +106,12 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
-                Log.d("kakaoLogin",result.toString())
                 saveIdx(result.idx)
 
                 //최초 로그인시에만 유저 정보 DB에 저장
                 val AppDB = AppDatabase.getInstance(this)!!
                 if(!AppDB.userDao().isUserExist(result.idx))
-                    {   Log.d("kakaoLogin","데이터 삽입")
-                        AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name, result.profileImgUrl)}
+                    AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name, result.profileImgUrl)
                 finish()
             }
         }

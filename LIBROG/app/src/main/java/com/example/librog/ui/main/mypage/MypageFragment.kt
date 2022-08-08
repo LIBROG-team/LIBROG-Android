@@ -2,6 +2,7 @@ package com.example.librog.ui.main.mypage
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -73,6 +74,7 @@ class MypageFragment : Fragment(){
         }
         //유저 통계 불러오기
         userDataService.getUserStat(this,getIdx())
+        initLoginStatus()
 
     }
 
@@ -90,6 +92,17 @@ class MypageFragment : Fragment(){
         binding.mypageStarCnt.text = result.starRatingCnt.toString()
         binding.mypageQuoteCnt.text = result.quoteCnt.toString()
         binding.mypageContentCnt.text = result.contentCnt.toString()
+    }
+
+    private fun initLoginStatus(){
+        if (getIdx()==-1){
+            binding.kakaoLoginStatus.text = "연결하기"
+            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#969696"))
+        }
+        else {
+            binding.kakaoLoginStatus.text = "연결완료"
+            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+        }
     }
 
 
