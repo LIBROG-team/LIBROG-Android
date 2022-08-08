@@ -17,30 +17,36 @@ import com.example.librog.data.remote.data.DataService
 import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.data.remote.data.UserStatResult
 import com.example.librog.databinding.FragmentMypageBinding
+import com.example.librog.databinding.FragmentSignupFirstBinding
+import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
 import com.kakao.sdk.common.util.SdkLogLevel
 
 
-class MypageFragment : Fragment(){
-    lateinit var binding: FragmentMypageBinding
+class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
     lateinit var AppDB: AppDatabase
     private val userDataService = UserDataService
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMypageBinding.inflate(inflater, container, false)
+
+    override fun initAfterBinding() {
         AppDB =AppDatabase.getInstance(requireContext())!!
         initViews()
+        initClickListener()
         Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
-        return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        initViews()
+    private fun initClickListener(){
+        binding.mypageLoginBtn.setOnClickListener {
+            if (binding.mypageLoginBtn.text =="로그인"){
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+            }
+            else {
+                logout()
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun getIdx(): Int{
@@ -54,26 +60,16 @@ class MypageFragment : Fragment(){
 
         if (id==-1){ //기본값(로그아웃 상태)
             binding.mypageLoginBtn.text = "로그인"
-            binding.mypageLoginBtn.setOnClickListener {
-                val intent = Intent(activity, LoginActivity::class.java)
-                startActivity(intent)
-            }
+
         } else { //로그인 상태
             binding.mypageLoginBtn.text = "로그아웃"
             binding.profileName.text=AppDB.userDao().getUserName(id)
             Glide.with(this).load(AppDB.userDao().getUserImg(id)).circleCrop().into(binding.profileIv)
 
-            //로그아웃
-            binding.mypageLoginBtn.setOnClickListener {
-                //(activity as LoginActivity).kakaoLogout()
-                logout()
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
-            }
-
         }
         //유저 통계 불러오기
         userDataService.getUserStat(this,getIdx())
+        //로그인 계정 확인
         initLoginStatus()
 
     }
@@ -84,14 +80,6 @@ class MypageFragment : Fragment(){
         editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
         editor.apply()
         binding.mypageLoginBtn.text = "로그인"
-    }
-
-    fun setData(result: UserStatResult) {
-        binding.mypageFlowerCnt.text = result.flowerCnt.toString()
-        binding.mypageReadingCnt.text = result.readingCnt.toString()
-        binding.mypageStarCnt.text = result.starRatingCnt.toString()
-        binding.mypageQuoteCnt.text = result.quoteCnt.toString()
-        binding.mypageContentCnt.text = result.contentCnt.toString()
     }
 
     private fun initLoginStatus(){
@@ -105,5 +93,14 @@ class MypageFragment : Fragment(){
         }
     }
 
+    //UserDataService에서 호출
+    fun setData(result: UserStatResult) {
+        binding.mypageFlowerCnt.text = result.flowerCnt.toString()
+        binding.mypageReadingCnt.text = result.readingCnt.toString()
+        binding.mypageStarCnt.text = result.starRatingCnt.toString()
+        binding.mypageQuoteCnt.text = result.quoteCnt.toString()
+        binding.mypageContentCnt.text = result.contentCnt.toString()
+    }
 
 }
+
