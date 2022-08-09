@@ -11,9 +11,9 @@ import retrofit2.Response
 object UserDataService {
 
     private val userDataService=retrofit.create(UserDataInterface::class.java)
-    private val userIdx = 1
+    //private val userIdx = 1
 
-    fun getUserStat(fragment: MypageFragment){
+    fun getUserStat(fragment: MypageFragment, userIdx: Int){
 
         userDataService.getUserStat(userIdx).enqueue(object: Callback<UserStatResponse> {
             override fun onResponse(call: Call<UserStatResponse>, response: Response<UserStatResponse>) {

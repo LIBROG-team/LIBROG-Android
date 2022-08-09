@@ -1,19 +1,15 @@
 package com.example.librog.data.remote.data.auth
 
-import com.example.librog.data.entities.User
-import com.example.librog.data.remote.data.AccessToken
-import com.example.librog.data.remote.data.AuthResponse
-import com.example.librog.data.remote.data.AuthResponse2
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthRetrofitInterface {
     @POST("/users")
-    fun signUp(@Body user: User): Call<AuthResponse>
+    fun signUp(@Body signUpInfo:SignUpInfo): Call<SignUpResponse>
 
-    @POST("/users/login") //추후 수정
-    fun login(@Body user: User): Call<AuthResponse>
+    @POST("/auth/login")
+    fun login(@Body appLoginInfo:AppLoginInfo): Call<AppLoginResponse>
 
     @POST("/users/kakao/certificate")
     fun kakaoLogin(@Body accessToken: AccessToken): Call<AuthResponse2>

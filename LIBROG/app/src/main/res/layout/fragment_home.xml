@@ -80,7 +80,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home_slide_layout"
         android:layout_width="match_parent"
-        android:layout_height="259dp">
+        android:layout_height="wrap_content"
+        >
         <View
             android:id="@+id/home_banner_iv"
             android:layout_width="match_parent"
@@ -108,9 +109,9 @@
             android:layout_marginTop="3dp"
             android:layout_marginStart="29dp"
             android:text="@string/home_banner_title"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:fontFamily="@font/pd_semibold"
-            android:lineSpacingExtra="19.09dp"
+            android:lineSpacingExtra="18dp"
             app:layout_constraintTop_toBottomOf="@id/home_banner_tip"
             app:layout_constraintStart_toStartOf="@+id/home_banner_iv"
             />
@@ -124,5 +125,77 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/home_banner_recentread_tv"/>
+        <View
+            android:id="@+id/home_banner_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="#D9D9D9"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintTop_toBottomOf="@id/home_recentread_book_rv"/>
+        <TextView
+            android:id="@+id/home_banner_notice_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="25dp"
+            android:text="공지사항"
+            android:textSize="15sp"
+            android:fontFamily="@font/pd_semibold"
+            android:lineSpacingExtra="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_banner_line1" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/home_banner_notice_vp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_banner_notice_tv"
+            />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/home_tab_layout"
+            android:layout_width="40dp"
+            android:layout_height="7dp"
+            android:layout_marginBottom="5dp"
+            app:tabBackground="@drawable/home_notice_vp_selector"
+            app:tabIndicatorHeight="0dp"
+            app:tabPaddingStart="5dp"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/home_banner_notice_vp"
+            app:layout_constraintStart_toStartOf="@id/home_banner_notice_vp"
+            app:layout_constraintEnd_toEndOf="@id/home_banner_notice_vp"/>
+
+        <View
+            android:id="@+id/home_banner_line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="#D9D9D9"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintTop_toBottomOf="@+id/home_banner_notice_vp"/>
+
+        <TextView
+            android:id="@+id/home_banner_recommend_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="25dp"
+            android:text="추천도서"
+            android:textSize="15sp"
+            android:fontFamily="@font/pd_semibold"
+            android:lineSpacingExtra="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_banner_line2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

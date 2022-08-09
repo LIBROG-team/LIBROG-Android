@@ -103,6 +103,7 @@
             android:id="@+id/history_sort_banner_tip"
             android:layout_width="50dp"
             android:layout_height="3dp"
+            android:background="@drawable/sign_up_tip_bg"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -2,6 +2,7 @@ package com.example.librog.ui.main.mypage
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,32 +17,36 @@ import com.example.librog.data.remote.data.DataService
 import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.data.remote.data.UserStatResult
 import com.example.librog.databinding.FragmentMypageBinding
+import com.example.librog.databinding.FragmentSignupFirstBinding
+import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
 import com.kakao.sdk.common.util.SdkLogLevel
 
 
-class MypageFragment : Fragment(){
-    lateinit var binding: FragmentMypageBinding
+class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
     lateinit var AppDB: AppDatabase
     private val userDataService = UserDataService
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMypageBinding.inflate(inflater, container, false)
+
+    override fun initAfterBinding() {
         AppDB =AppDatabase.getInstance(requireContext())!!
         initViews()
+        initClickListener()
         Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
-        return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        initViews()
-        //유저 통계 불러오기
-        userDataService.getUserStat(this)
+    private fun initClickListener(){
+        binding.mypageLoginBtn.setOnClickListener {
+            if (binding.mypageLoginBtn.text =="로그인"){
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+            }
+            else {
+                logout()
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun getIdx(): Int{
@@ -55,26 +60,17 @@ class MypageFragment : Fragment(){
 
         if (id==-1){ //기본값(로그아웃 상태)
             binding.mypageLoginBtn.text = "로그인"
-            binding.mypageLoginBtn.setOnClickListener {
-                val intent = Intent(activity, LoginActivity::class.java)
-                startActivity(intent)
-            }
+
         } else { //로그인 상태
-            Log.d("USERSTATUS", AppDB.userDao().getUserList().toString())
-            Log.d("USERSTATUS", id.toString())
             binding.mypageLoginBtn.text = "로그아웃"
             binding.profileName.text=AppDB.userDao().getUserName(id)
             Glide.with(this).load(AppDB.userDao().getUserImg(id)).circleCrop().into(binding.profileIv)
 
-            //로그아웃
-            binding.mypageLoginBtn.setOnClickListener {
-                //(activity as LoginActivity).kakaoLogout()
-                logout()
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
-            }
-
         }
+        //유저 통계 불러오기
+        userDataService.getUserStat(this,getIdx())
+        //로그인 계정 확인
+        initLoginStatus()
 
     }
 
@@ -86,6 +82,18 @@ class MypageFragment : Fragment(){
         binding.mypageLoginBtn.text = "로그인"
     }
 
+    private fun initLoginStatus(){
+        if (getIdx()==-1){
+            binding.kakaoLoginStatus.text = "연결하기"
+            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#969696"))
+        }
+        else {
+            binding.kakaoLoginStatus.text = "연결완료"
+            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+        }
+    }
+
+    //UserDataService에서 호출
     fun setData(result: UserStatResult) {
         binding.mypageFlowerCnt.text = result.flowerCnt.toString()
         binding.mypageReadingCnt.text = result.readingCnt.toString()
@@ -94,5 +102,5 @@ class MypageFragment : Fragment(){
         binding.mypageContentCnt.text = result.contentCnt.toString()
     }
 
-
 }
+
