@@ -1,14 +1,19 @@
 package com.example.librog.ui.main.history
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.librog.data.HistoryBookData
 import com.example.librog.databinding.ItemHistoryBookBinding
 
 
 class HistoryRVAdapter (private val historyBookList: ArrayList<HistoryBookData>) : RecyclerView.Adapter<HistoryRVAdapter.ViewHolder>(){
+
+    private lateinit var context: Context
+    private lateinit var mItemClickListener: OnItemClickListener
 
     interface OnItemClickListener {
         fun onItemClick(tempHistoryBookData: HistoryBookData)
@@ -16,7 +21,6 @@ class HistoryRVAdapter (private val historyBookList: ArrayList<HistoryBookData>)
 
 
 
-    private lateinit var mItemClickListener: OnItemClickListener
     fun setMyItemClickListener(itemClickListener: OnItemClickListener) {
         mItemClickListener = itemClickListener
     }
@@ -24,8 +28,8 @@ class HistoryRVAdapter (private val historyBookList: ArrayList<HistoryBookData>)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): HistoryRVAdapter.ViewHolder {
         //아이템뷰 객체 생성
+        context= viewGroup.context
         val binding: ItemHistoryBookBinding = ItemHistoryBookBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-
         return ViewHolder(binding) //아이템뷰 객체를 재활용하도록 뷰 홀더에게 던져줌
     }
 
@@ -41,7 +45,13 @@ class HistoryRVAdapter (private val historyBookList: ArrayList<HistoryBookData>)
     inner class ViewHolder(val binding: ItemHistoryBookBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(historybook: HistoryBookData){
-            binding.itemHistoryBookIv.setImageResource(historybook.coverImg!!)
+            // 백엔드 더미 데이터에 이미지가 없음
+//            Glide.with(context)
+//                .load(historybook.thumbnail)
+//                .into(binding.itemHistoryBookIv)
+//
+
+
         }
 
     }
