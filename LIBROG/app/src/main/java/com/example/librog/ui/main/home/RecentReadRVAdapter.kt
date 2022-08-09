@@ -3,13 +3,13 @@ package com.example.librog.ui.main.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.librog.data.ReadBook
+import com.example.librog.data.RecentReadData
 import com.example.librog.databinding.ItemHomeBookBinding
 
-class ReadBookRVAdapter(private val readBookList: ArrayList<ReadBook>) : RecyclerView.Adapter<ReadBookRVAdapter.ViewHolder>() {
+class ReadBookRVAdapter(private val readBookList: ArrayList<RecentReadData>) : RecyclerView.Adapter<ReadBookRVAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(tempReadBookData: ReadBook)
+        fun onItemClick(tempReadBookData: RecentReadData)
     }
 
     private lateinit var mItemClickListener: OnItemClickListener
@@ -36,7 +36,7 @@ class ReadBookRVAdapter(private val readBookList: ArrayList<ReadBook>) : Recycle
 
     inner class ViewHolder(val binding: ItemHomeBookBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(readBook: ReadBook){
+        fun bind(readBook: RecentReadData){
             binding.itemHomeBookIv.setImageResource(readBook.coverImg!!)
             binding.itemHomeBookTitleTv.text = readBook.title
             binding.itemHomeBookWriterTv.text = readBook.writer

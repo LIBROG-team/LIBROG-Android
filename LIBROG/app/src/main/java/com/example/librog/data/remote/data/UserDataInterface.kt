@@ -7,4 +7,7 @@ import retrofit2.http.Path
 interface UserDataInterface {
     @GET("/records/statistics/{userIdx}")
     fun getUserStat(@Path("userIdx") userIdx: Int): Call<UserStatResponse>
+
+    @GET("/contents/notice")
+    fun getHomeNotice(): Call<HomeNoticeResponse>
 }
