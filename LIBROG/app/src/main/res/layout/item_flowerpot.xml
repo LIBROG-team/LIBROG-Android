@@ -14,7 +14,7 @@
         android:layout_width="106dp"
         android:layout_height="106dp"
         android:layout_marginStart="30dp"
-        android:scaleType="center"
+        android:scaleType="fitCenter"
         android:background="@drawable/flowerpot_rv_background"
         android:src="@drawable/test_flower_img"
         app:layout_constraintBottom_toBottomOf="parent"

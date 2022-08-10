@@ -1,45 +1,40 @@
 package com.example.librog.ui.main.history
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.librog.R
 import com.example.librog.data.HistoryBookData
+import com.example.librog.data.remote.history.FilteredHistoryResult
+import com.example.librog.data.remote.history.HistoryResult
+import com.example.librog.data.remote.history.HistoryService
 import com.example.librog.databinding.FragmentHistoryBinding
+import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 
 
+class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBinding::inflate) {
 
-
-class HistoryFragment : Fragment() {
-    lateinit var binding: FragmentHistoryBinding
-    private var historybookDatas = ArrayList<HistoryBookData>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHistoryBinding.inflate(inflater, container, false)
-
+    //HistoryBookData가 아닌 다른 데이터 클래스로 넣는 과정 필요한가?
+    private var historyBookDataList = ArrayList<HistoryBookData>()
+    private val historyService = HistoryService
+    private lateinit var historyRVAdapter: HistoryRVAdapter
+    override fun initAfterBinding() {
+        historyService.getHistoryFilteredByRecent(this)
         initLayout()
-        initData()
         initClickListener()
 
-        return binding.root
     }
 
-    private fun initLayout(){
-        val historyRVAdapter = HistoryRVAdapter(historybookDatas)
+
+    private fun initLayout() {
+        historyRVAdapter = HistoryRVAdapter(historyBookDataList)
         //리사이클러뷰에 어댑터 연결
         binding.historyBookListRv.adapter = historyRVAdapter
-        binding.historyBookListRv.layoutManager = LinearLayoutManager(context,
-            LinearLayoutManager.HORIZONTAL,false)
+        binding.historyBookListRv.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL, false
+        )
 
 
 
@@ -49,30 +44,16 @@ class HistoryFragment : Fragment() {
                 if (binding.historySortBanner.visibility == View.VISIBLE)
                     return
 
-                Toast.makeText(activity,"Book Clicked",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Book Clicked", Toast.LENGTH_SHORT).show()
             }
         })
 
-        binding.historyBookListRv.layoutManager = GridLayoutManager(context,3)
+        binding.historyBookListRv.layoutManager = GridLayoutManager(context, 3)
 
     }
 
 
-    private fun initData(){
-        historybookDatas.apply{
-            add(HistoryBookData(R.drawable.home_item_book1))
-            add(HistoryBookData(R.drawable.home_item_book2))
-            add(HistoryBookData(R.drawable.home_item_book1))
-            add(HistoryBookData(R.drawable.home_item_book2))
-            add(HistoryBookData(R.drawable.home_item_book1))
-            add(HistoryBookData(R.drawable.home_item_book2))
-            add(HistoryBookData(R.drawable.home_item_book1))
-            add(HistoryBookData(R.drawable.home_item_book2))
-            add(HistoryBookData(R.drawable.home_item_book1))
-        }
-    }
-
-    private fun initClickListener(){
+    private fun initClickListener() {
         //최상단 이동
         binding.historyMoveTopBtn.setOnClickListener {
             binding.historyBookListRv.smoothScrollToPosition(0)
@@ -90,20 +71,46 @@ class HistoryFragment : Fragment() {
         //배너 정렬 텍스트 클릭
         binding.historyBannerRecentTv.setOnClickListener {
             clickSortTv()
-            binding.historySelectedSortTv.text=binding.historyBannerRecentTv.text
+            binding.historySelectedSortTv.text = binding.historyBannerRecentTv.text
+            historyService.getHistoryFilteredByRecent(this)
 
         }
         binding.historyBannerRateTv.setOnClickListener {
             clickSortTv()
-            binding.historySelectedSortTv.text=binding.historyBannerRateTv.text
+            binding.historySelectedSortTv.text = binding.historyBannerRateTv.text
+            historyService.getHistorySortedByRate(this)
+
         }
         binding.historyBannerTitleTv.setOnClickListener {
             clickSortTv()
-            binding.historySelectedSortTv.text=binding.historyBannerTitleTv.text
+            binding.historySelectedSortTv.text = binding.historyBannerTitleTv.text
+            historyService.getHistoryFilteredByTitle(this)
         }
     }
 
-    private fun clickSortTv(){
+
+    fun getRecentBookRecord(result: ArrayList<HistoryResult>) {
+        historyBookDataList.clear()
+        for (item in result) {
+            historyBookDataList.add(HistoryBookData(item.bookImgUrl))
+        }
+        historyRVAdapter.notifyDataSetChanged()
+    }
+
+
+    fun changeBookDataList(result: ArrayList<FilteredHistoryResult>) {
+        historyBookDataList.clear()
+        for (item in result){
+            historyBookDataList.add(
+                HistoryBookData(item.bookImgUrl)
+            )
+        }
+        historyRVAdapter.notifyDataSetChanged()
+    }
+
+
+
+    private fun clickSortTv() {
         binding.historySortBanner.visibility = View.INVISIBLE
         binding.historyBannerSelected.visibility = View.INVISIBLE
         (activity as MainActivity).controlBottomNavVisibility()

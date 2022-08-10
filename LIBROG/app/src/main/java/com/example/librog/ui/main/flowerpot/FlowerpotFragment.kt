@@ -50,6 +50,7 @@ class FlowerpotFragment :
                 val fpJson = gson.toJson(flowerpot)
                 intent.putExtra("flowerData", fdJson)
                 intent.putExtra("flowerpot", fpJson)
+                intent.putExtra("flowerpotIdx", flowerpot.idx)
                 startActivity(intent)
             }
         })
