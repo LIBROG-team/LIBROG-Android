@@ -6,7 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.librog.R
-import com.example.librog.data.ReadBook
+import com.example.librog.data.RecentReadData
+import com.example.librog.data.entities.User
+import com.example.librog.data.remote.data.DataService
+import com.example.librog.data.remote.data.HomeNoticeResult
+import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.databinding.FragmentHomeBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
@@ -15,18 +19,18 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    private var readBookData = ArrayList<ReadBook>() //album data class
-
+    private var readBookData = ArrayList<RecentReadData>() //album data class
+    private val service = UserDataService
     override fun initAfterBinding() {
         (activity as MainActivity).showBottomNav()
 
         readBookData.apply{
-            add(ReadBook(R.drawable.home_item_book1,"노르웨이의 숲","무라카미 하루키","2022.06.28"))
-            add(ReadBook(R.drawable.home_item_book2,"공정하다는 착각","마이크 센델","2022.05.06"))
+            add(RecentReadData(R.drawable.home_item_book1,"노르웨이의 숲","무라카미 하루키","2022.06.28"))
+            add(RecentReadData(R.drawable.home_item_book2,"공정하다는 착각","마이크 센델","2022.05.06"))
         }
 
         initRVAdapter()
-        initNoticeVp()
+        service.getUserStat(this)
 
     }
     private fun initRVAdapter(){
@@ -36,24 +40,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.homeRecentreadBookRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
         readbookRVAdapter.setMyItemClickListener(object : ReadBookRVAdapter.OnItemClickListener {
-            override fun onItemClick(tempReadBookData: ReadBook) {
+            override fun onItemClick(tempReadBookData: RecentReadData) {
                 startActivity(Intent(context, AddBookSelectActivity::class.java))
             }
         })
     }
 
-    private fun initNoticeVp(){
-        val bannerAdapter = HomeNoticeVPAdapter(this)
-        //추가할 프래그먼트를 넣어줌
-        bannerAdapter.addFragment(HomeNoticeFragment(R.drawable.home_banner_notice_temp))
-        bannerAdapter.addFragment(HomeNoticeFragment(R.drawable.home_banner_notice_temp))
-        bannerAdapter.addFragment(HomeNoticeFragment(R.drawable.home_banner_notice_temp))
 
-        binding.homeBannerNoticeVp.adapter = bannerAdapter
-        binding.homeBannerNoticeVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-        setIndicator()
-    }
 
     private fun setIndicator(){
         val viewPager2 = binding.homeBannerNoticeVp
@@ -68,6 +61,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             p.setMargins(0, 0, 20, 0)
             tab.requestLayout()
         }
+    }
+
+    fun setNotice(result: ArrayList<HomeNoticeResult>){
+        val bannerAdapter = HomeNoticeVPAdapter(this)
+
+        for (item in result){
+            bannerAdapter.addFragment(HomeNoticeFragment(item.noticeImgUrl,item.connectUrl))
+        }
+
+        binding.homeBannerNoticeVp.adapter = bannerAdapter
+        binding.homeBannerNoticeVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        setIndicator()
     }
 
 
