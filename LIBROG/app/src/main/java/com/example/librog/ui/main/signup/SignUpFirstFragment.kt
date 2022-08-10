@@ -21,7 +21,7 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
         val pwd: String = binding.suPwdEt.text.toString()
         val name: String = binding.suNameEt.text.toString()
 
-        return SignUpInfo(email, pwd,name)
+        return SignUpInfo(email, pwd,name,"","")
     }
 
     private fun signUp(){
