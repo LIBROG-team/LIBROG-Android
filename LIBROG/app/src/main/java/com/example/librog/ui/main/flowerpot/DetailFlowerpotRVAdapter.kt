@@ -1,31 +1,38 @@
 package com.example.librog.ui.main.flowerpot
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.librog.data.DetailTempFlowerpotData
+import com.example.librog.data.entities.BookImgUrl
 import com.example.librog.databinding.ItemDetailFlowerpotBinding
 
 
-class DetailFlowerpotRVAdapter(private val items: ArrayList<DetailTempFlowerpotData>): RecyclerView.Adapter<DetailFlowerpotRVAdapter.ViewHolder>() {
+class DetailFlowerpotRVAdapter(private val items: ArrayList<BookImgUrl>): RecyclerView.Adapter<DetailFlowerpotRVAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(tempFlowerpotData: DetailTempFlowerpotData)
+        fun onItemClick(bookImgUrl: BookImgUrl)
     }
 
     private lateinit var mItemClickListener: OnItemClickListener
+    private lateinit var context: Context
     fun setMyItemClickListener(itemClickListener: OnItemClickListener) {
         mItemClickListener = itemClickListener
     }
 
     inner class ViewHolder(val binding: ItemDetailFlowerpotBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(item: DetailTempFlowerpotData){
-            binding.itemDetailFlowerpotIv.setImageResource(item.img)
+        fun bind(item: BookImgUrl){
+            Glide.with(context)
+                .load(item.imgUrl)
+                .into(binding.itemDetailFlowerpotIv)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemDetailFlowerpotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        context = parent.context
         return ViewHolder(binding)
     }
 

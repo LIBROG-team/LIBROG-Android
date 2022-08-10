@@ -76,6 +76,7 @@
     <string name="detail_flowerpot_exp_text">%s의 성장치</string>
     <string name="detail_flowerpot_exp_num">%d / %d</string>
     <string name="detail_flowerpot_book_list">화분에 기록된 책</string>
+    <string name="detail_flowerpot_no_book">화분에 책이 없습니다.</string>
 
     <!-- 화분추가 -->
     <string name="add_flowerpot_top_text">화분추가</string>

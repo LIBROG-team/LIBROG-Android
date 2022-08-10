@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.data.HistoryBookData
+import com.example.librog.data.remote.history.FilteredHistoryResult
 import com.example.librog.data.remote.history.HistoryResult
 import com.example.librog.data.remote.history.HistoryService
 import com.example.librog.databinding.FragmentHistoryBinding
@@ -19,7 +20,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
     private val historyService = HistoryService
     private lateinit var historyRVAdapter: HistoryRVAdapter
     override fun initAfterBinding() {
-        historyService.getCurrentHistory(this)
+        historyService.getHistoryFilteredByRecent(this)
         initLayout()
         initClickListener()
 
@@ -51,13 +52,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
 
     }
 
-    //데이터 받아오는 것까지 성공, recycler에 채워넣는 과정
-    fun initData(result: ArrayList<HistoryResult>) {
-        for (item in result) {
-            historyBookDataList.add(HistoryBookData(item.bookImgUrl))
-        }
-        historyRVAdapter.notifyDataSetChanged()
-    }
 
     private fun initClickListener() {
         //최상단 이동
@@ -78,17 +72,43 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         binding.historyBannerRecentTv.setOnClickListener {
             clickSortTv()
             binding.historySelectedSortTv.text = binding.historyBannerRecentTv.text
+            historyService.getHistoryFilteredByRecent(this)
 
         }
         binding.historyBannerRateTv.setOnClickListener {
             clickSortTv()
             binding.historySelectedSortTv.text = binding.historyBannerRateTv.text
+            historyService.getHistorySortedByRate(this)
+
         }
         binding.historyBannerTitleTv.setOnClickListener {
             clickSortTv()
             binding.historySelectedSortTv.text = binding.historyBannerTitleTv.text
+            historyService.getHistoryFilteredByTitle(this)
         }
     }
+
+
+    fun getRecentBookRecord(result: ArrayList<HistoryResult>) {
+        historyBookDataList.clear()
+        for (item in result) {
+            historyBookDataList.add(HistoryBookData(item.bookImgUrl))
+        }
+        historyRVAdapter.notifyDataSetChanged()
+    }
+
+
+    fun changeBookDataList(result: ArrayList<FilteredHistoryResult>) {
+        historyBookDataList.clear()
+        for (item in result){
+            historyBookDataList.add(
+                HistoryBookData(item.bookImgUrl)
+            )
+        }
+        historyRVAdapter.notifyDataSetChanged()
+    }
+
+
 
     private fun clickSortTv() {
         binding.historySortBanner.visibility = View.INVISIBLE

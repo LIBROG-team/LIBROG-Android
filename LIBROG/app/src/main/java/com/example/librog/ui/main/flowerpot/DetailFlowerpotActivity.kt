@@ -2,12 +2,17 @@ package com.example.librog.ui.main.flowerpot
 
 
 import android.content.Intent
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.librog.R
 import com.example.librog.data.DetailTempFlowerpotData
+import com.example.librog.data.entities.BookImgUrl
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.Flowerpot
+import com.example.librog.data.remote.history.FilteredHistoryResult
+import com.example.librog.data.remote.history.HistoryService
 import com.example.librog.databinding.ActivityDetailFlowerpotBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
@@ -17,14 +22,52 @@ import com.google.gson.Gson
 class DetailFlowerpotActivity :
     BaseActivity<ActivityDetailFlowerpotBinding>(ActivityDetailFlowerpotBinding::inflate) {
 
-    private var flowerpotBookList = ArrayList<DetailTempFlowerpotData>()
+    private var flowerpotBookList = ArrayList<BookImgUrl>()
     private var adapter = DetailFlowerpotRVAdapter(flowerpotBookList)
     private var gson = Gson()
+    private val historyService = HistoryService
+
 
     override fun initAfterBinding() {
-        initData()
+        val idx = intent.getIntExtra("flowerpotIdx", 1)
+        historyService.getFlowerpotBookRecord(this, idx)
         initLayout()
 
+    }
+
+
+
+    fun noBookInFlowerpot(){
+        binding.detailFlowerpotBookListRv.visibility = View.GONE
+        binding.detailFlowerpotNoBookTv.visibility = View.VISIBLE
+    }
+
+    fun initData(result: ArrayList<FilteredHistoryResult>) {
+        flowerpotBookList.clear()
+        binding.detailFlowerpotNoBookTv.visibility = View.GONE
+        binding.detailFlowerpotBookListRv.visibility = View.VISIBLE
+
+        for (item in result) {
+
+            if (item.bookImgUrl != null) {
+                Log.d("resp", item.bookImgUrl.toString())
+
+                flowerpotBookList.add(
+                    BookImgUrl(bookIdx = item.bookIdx!!, imgUrl = item.bookImgUrl!!)
+                )
+            } else {
+                Log.d("resp", "test")
+
+                flowerpotBookList.add(
+                    BookImgUrl(
+                        bookIdx = item.bookIdx!!,
+                        imgUrl = "https://sadad64.shop/images/sunflower_test.png"
+                    )
+                )
+            }
+
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun initLayout() {
@@ -32,7 +75,6 @@ class DetailFlowerpotActivity :
         val curFd = gson.fromJson(curFdJson, FlowerData::class.java)
         val curFpJson = intent.getStringExtra("flowerpot")
         val curFp = gson.fromJson(curFpJson, Flowerpot::class.java)
-
 
         binding.apply {
             detailFlowerpotNameTv.text = curFd.name
@@ -73,7 +115,7 @@ class DetailFlowerpotActivity :
 
         //화분에 기록된 책 클릭한 경우 임시로 Toast 메시지
         adapter.setMyItemClickListener(object : DetailFlowerpotRVAdapter.OnItemClickListener {
-            override fun onItemClick(tempFlowerpotData: DetailTempFlowerpotData) {
+            override fun onItemClick(bookImgUrl: BookImgUrl) {
                 showToast("Book Clicked")
             }
         })
@@ -84,21 +126,4 @@ class DetailFlowerpotActivity :
         }
     }
 
-
-
-    //화분에 기록된 책 임시로 데이터 삽입
-    private fun initData() {
-
-        flowerpotBookList.addAll(
-            arrayListOf(
-                DetailTempFlowerpotData(R.drawable.home_item_book1),
-                DetailTempFlowerpotData(R.drawable.home_item_book2),
-                DetailTempFlowerpotData(R.drawable.home_item_book1),
-                DetailTempFlowerpotData(R.drawable.home_item_book2),
-                DetailTempFlowerpotData(R.drawable.home_item_book1),
-                DetailTempFlowerpotData(R.drawable.home_item_book2),
-                DetailTempFlowerpotData(R.drawable.home_item_book1),
-            )
-        )
-    }
 }
