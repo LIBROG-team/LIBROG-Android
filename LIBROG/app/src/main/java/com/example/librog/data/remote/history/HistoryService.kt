@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.librog.ApplicationClass.Companion.retrofit
 import com.example.librog.ui.main.flowerpot.DetailFlowerpotActivity
 import com.example.librog.ui.main.history.HistoryFragment
+import com.example.librog.ui.main.home.HomeFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,8 +53,49 @@ object HistoryService {
         })
     }
 
+
+    // 2.5 독서기록 추가 api
+    fun addUserBookRecord(userBookRecord: UserBookRecord){
+        historyService.addUserBookRecord(userBookRecord).enqueue(object : Callback<AddBookResponse>{
+            override fun onResponse(call: Call<AddBookResponse>, response: Response<AddBookResponse>) {
+                val resp = response.body()!!
+                Log.d("AddBook/SUCCESS", response.toString())
+                when(resp.code){
+                    1000 ->{
+                        Log.d("AddBook/SUCCESS" ,resp.toString())
+                    }
+                    2025 ->{
+
+                    }
+                    3005 ->{
+
+                    }
+                    else ->{
+
+                    }
+                }
+
+            }
+
+            override fun onFailure(call: Call<AddBookResponse>, t: Throwable) {
+                t.printStackTrace()
+            }
+
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
     //  API 명세서 2.7 최근 읽은 책 조회 API
-    fun getRecentBookRecord(fragment: HistoryFragment) {
+    fun getRecentBookRecord(fragment: HomeFragment) {
 //        val userIdx = getUserIdx(fragment)
 
         historyService.getRecentBookRecord(userIdx)
@@ -66,7 +108,6 @@ object HistoryService {
                     if (resp.isNotEmpty()) {
                         for (item in resp) {
                             Log.d("resp", item.toString())
-                            fragment.getRecentBookRecord(resp)
                         }
                     }
 

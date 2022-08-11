@@ -1,7 +1,9 @@
 package com.example.librog.data.remote.history
 
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface HistoryInterface {
@@ -20,4 +22,6 @@ interface HistoryInterface {
     @GET("/records/flowerpot/{flowerPotIdx}")
     fun getFlowerpotBookRecord(@Path("flowerPotIdx") flowerpotIdx: Int): Call<HistoryResponse>
 
+    @POST("/records/addition")
+    fun addUserBookRecord(@Body userBookRecord: UserBookRecord): Call<AddBookResponse>
 }
