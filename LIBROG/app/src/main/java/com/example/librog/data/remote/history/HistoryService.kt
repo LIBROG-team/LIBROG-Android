@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.librog.ApplicationClass.Companion.retrofit
+import com.example.librog.ui.main.addbook.AddBookSelectActivity
 import com.example.librog.ui.main.flowerpot.DetailFlowerpotActivity
 import com.example.librog.ui.main.history.HistoryFragment
 import com.example.librog.ui.main.home.HomeFragment
@@ -55,23 +56,27 @@ object HistoryService {
 
 
     // 2.5 독서기록 추가 api
-    fun addUserBookRecord(userBookRecord: UserBookRecord){
+    fun addUserBookRecord(activity: AddBookSelectActivity, userBookRecord: UserBookRecord){
         historyService.addUserBookRecord(userBookRecord).enqueue(object : Callback<AddBookResponse>{
             override fun onResponse(call: Call<AddBookResponse>, response: Response<AddBookResponse>) {
                 val resp = response.body()!!
-                Log.d("AddBook/SUCCESS", response.toString())
+                Log.d("AddBook/SUCCESS", resp.toString())
                 when(resp.code){
                     1000 ->{
                         Log.d("AddBook/SUCCESS" ,resp.toString())
+                        activity.readingRecord.bookIdx = resp.result.createdRecordId!!
                     }
                     2025 ->{
-
+                        activity.showToast(resp.message)
                     }
                     3005 ->{
-
+                        activity.showToast(resp.message)
+                    }
+                    3007 ->{
+                        activity.showToast(resp.message)
                     }
                     else ->{
-
+                        activity.showToast(resp.message)
                     }
                 }
 

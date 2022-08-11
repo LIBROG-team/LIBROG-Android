@@ -16,8 +16,6 @@ import retrofit2.Response
 object DataService {
     private val dataService = retrofit.create(DataInterface::class.java)
 
-    //현재 화분추가 api가 백엔드에서 구현되지 않은 상태여서 임의로 userIdx를 1로 설정.
-    private val userIdx = 1
 
     private fun getUserIdx(fragment: Fragment): Int{
         val spf = fragment.activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
@@ -27,7 +25,7 @@ object DataService {
 
     //화분 정보 가져오기
     fun getFpList(fragment: FlowerpotFragment) {
-//        val userIdx = getUserIdx(fragment)
+        val userIdx = getUserIdx(fragment)
 
         dataService.getFpList(userIdx).enqueue(object : Callback<DataResponse1> {
             override fun onResponse(call: Call<DataResponse1>, response: Response<DataResponse1>) {
@@ -60,7 +58,7 @@ object DataService {
 
     //획득 화분 정보 가져오기
     fun getUnlockedFpResult(fragment: UnlockedFlowerpotFragment) {
-//        val userIdx = getUserIdx(fragment)
+        val userIdx = getUserIdx(fragment)
 
         dataService.getUnlockedFpResult(userIdx).enqueue(object : Callback<DataResponse2> {
             override fun onResponse(call: Call<DataResponse2>, response: Response<DataResponse2>) {
@@ -93,7 +91,7 @@ object DataService {
 
     // 미획득 화분 정보 가져오기
     fun getLockedFpResult(fragment: LockedFlowerpotFragment) {
-//        val userIdx = getUserIdx(fragment)
+        val userIdx = getUserIdx(fragment)
 
         dataService.getLockedFpResult(userIdx).enqueue(object : Callback<DataResponse3> {
             override fun onResponse(call: Call<DataResponse3>, response: Response<DataResponse3>) {

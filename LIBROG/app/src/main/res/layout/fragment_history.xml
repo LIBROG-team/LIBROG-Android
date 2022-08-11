@@ -102,7 +102,7 @@
         android:layout_height="197dp"
         android:background="@drawable/history_banner_border"
         android:layout_gravity="bottom"
-        android:visibility="visible">
+        android:visibility="invisible">
         <View
             android:id="@+id/history_sort_banner_tip"
             android:layout_width="50dp"
