@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.librog.R
 import com.example.librog.data.RecentReadData
+import com.example.librog.data.RecommendData
 import com.example.librog.data.entities.User
 import com.example.librog.data.remote.data.DataService
 import com.example.librog.data.remote.data.HomeNoticeResult
@@ -20,6 +21,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var readBookData = ArrayList<RecentReadData>() //album data class
+    private var recommendData = ArrayList<RecommendData>() //album data class
     private val service = UserDataService
     override fun initAfterBinding() {
         (activity as MainActivity).showBottomNav()
@@ -29,8 +31,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             add(RecentReadData(R.drawable.home_item_book2,"공정하다는 착각","마이크 센델","2022.05.06"))
         }
 
+        recommendData.apply{
+            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1))
+            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1,))
+        }
+
         initRVAdapter()
-        service.getUserStat(this)
+        service.getUserNotice(this)
 
     }
     private fun initRVAdapter(){

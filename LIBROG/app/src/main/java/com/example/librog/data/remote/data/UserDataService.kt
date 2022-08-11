@@ -34,7 +34,7 @@ object UserDataService {
         })
     }
 
-    fun getUserStat(fragment: HomeFragment){
+    fun getUserNotice(fragment: HomeFragment){
 
         userDataService.getHomeNotice().enqueue(object: Callback<HomeNoticeResponse> {
             override fun onResponse(call: Call<HomeNoticeResponse>, response: Response<HomeNoticeResponse>) {
