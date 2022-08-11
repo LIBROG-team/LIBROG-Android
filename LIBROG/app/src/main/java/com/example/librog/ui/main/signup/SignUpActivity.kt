@@ -26,10 +26,12 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
             binding.imgOptionBannerSelected.setBackgroundColor(Color.parseColor("#8A414141"))
             //색감 조정
             binding.signUpTitleLine.setBackgroundColor(Color.parseColor("#8F8F8F"))
+            binding.signUpBackBtn.isEnabled=false
          }
         else {
             binding.imgOptionBannerSelected.setBackgroundColor(Color.TRANSPARENT)
             binding.signUpTitleLine.setBackgroundColor(Color.parseColor("#D9D9D9"))
+            binding.signUpBackBtn.isEnabled=true
         }
     }
 

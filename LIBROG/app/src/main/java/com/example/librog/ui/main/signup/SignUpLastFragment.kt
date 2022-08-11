@@ -10,30 +10,32 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.librog.R
+import com.example.librog.data.remote.data.auth.AuthService
+import com.example.librog.data.remote.data.auth.SignUpInfo
+import com.example.librog.data.remote.data.auth.SignUpView
 import com.example.librog.databinding.ActivitySignupBinding
 import com.example.librog.databinding.FragmentHomeBinding
 import com.example.librog.databinding.FragmentSignupLastBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 
-
-
-
-
-class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignupLastBinding::inflate) {
-    lateinit var binding2: ActivitySignupBinding
+class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignupLastBinding::inflate), SignUpView {
+    lateinit var email:String
+    lateinit var pwd:String
+    lateinit var name: String
+    lateinit var introduce: String
 
     companion object {
         const val IMAGE_REQUEST_CODE = 100
     }
     override fun initAfterBinding() {
+        initClickListener()
+    }
 
-        binding.suLastFinishBtn.setOnClickListener {
-            activity?.finish()
-        }
-
+    private fun initClickListener(){
         binding.suLastCameraIv.setOnClickListener {
             showBanner()
         }
@@ -48,10 +50,39 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
             hideBanner()
         }
 
-        binding2 = ActivitySignupBinding.inflate(layoutInflater)
-
-
+        binding.suLastFinishBtn.setOnClickListener {
+            signUp()
+        }
     }
+
+    private fun signUp(){
+        val authService = AuthService()
+        authService.setSignUpView(this)
+        Log.d("SIGNUP/",getSignUpInfo().toString())
+        authService.signUp(getSignUpInfo()) //api호출
+    }
+
+
+    private fun getSignUpInfo():SignUpInfo {
+        val spf = activity?.getSharedPreferences("signUp", AppCompatActivity.MODE_PRIVATE)
+
+        email= spf!!.getString("email","0").toString()
+        pwd = spf.getString("pwd","0").toString()
+        name = spf.getString("name","0").toString()
+        introduce = binding.suNicknameEt.text.toString()
+
+        showToast(email)
+        return SignUpInfo(email,pwd,name,"",introduce)
+    }
+
+    override fun onSignUpSuccess(message: String) {
+        activity?.finish()
+    }
+
+    override fun onSignUpFailure(message: String) {
+        showToast(message)
+    }
+
 
     private fun showBanner(){
         binding.imgOptionBanner.visibility = View.VISIBLE
@@ -80,10 +111,6 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
             showToast(data?.data.toString())
         }
     }
-
-
-
-
 
 
 }
