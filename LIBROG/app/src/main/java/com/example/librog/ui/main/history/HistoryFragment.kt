@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.data.HistoryBookData
+import com.example.librog.data.entities.BookImgUrl
 import com.example.librog.data.remote.history.FilteredHistoryResult
 import com.example.librog.data.remote.history.HistoryResult
 import com.example.librog.data.remote.history.HistoryService
@@ -15,8 +16,7 @@ import com.example.librog.ui.main.MainActivity
 
 class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBinding::inflate) {
 
-    //HistoryBookData가 아닌 다른 데이터 클래스로 넣는 과정 필요한가?
-    private var historyBookDataList = ArrayList<HistoryBookData>()
+    private var historyBookDataList = ArrayList<BookImgUrl>()
     private val historyService = HistoryService
     private lateinit var historyRVAdapter: HistoryRVAdapter
     override fun initAfterBinding() {
@@ -31,19 +31,15 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         historyRVAdapter = HistoryRVAdapter(historyBookDataList)
         //리사이클러뷰에 어댑터 연결
         binding.historyBookListRv.adapter = historyRVAdapter
-        binding.historyBookListRv.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.HORIZONTAL, false
-        )
-
-
+        binding.historyBookListRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         historyRVAdapter.setMyItemClickListener(object : HistoryRVAdapter.OnItemClickListener {
-            override fun onItemClick(tempHistoryBookData: HistoryBookData) {
-                //정렬 배너 띄워져있을 때 클릭x
-                if (binding.historySortBanner.visibility == View.VISIBLE)
+            override fun onItemClick(bookImgUrl: BookImgUrl) {
+                //정렬 배너 띄워져있을 때 클릭 시 정렬 배너 내려감
+                if (binding.historySortBanner.visibility == View.VISIBLE){
+                    clickSortTv()
                     return
-
+                }
                 Toast.makeText(activity, "Book Clicked", Toast.LENGTH_SHORT).show()
             }
         })
@@ -89,12 +85,13 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
     }
 
 
+    //homeFragment에 작성되어야 하는 코드. api에서 제공하는 데이터 중 bookIdx가 없어서 임시로 주석 처리
     fun getRecentBookRecord(result: ArrayList<HistoryResult>) {
-        historyBookDataList.clear()
-        for (item in result) {
-            historyBookDataList.add(HistoryBookData(item.bookImgUrl))
-        }
-        historyRVAdapter.notifyDataSetChanged()
+//        historyBookDataList.clear()
+//        for (item in result) {
+//            historyBookDataList.add(BookImgUrl(bookIdx = , imgUrl = item.bookImgUrl?:"no image"))
+//        }
+//        historyRVAdapter.notifyDataSetChanged()
     }
 
 
@@ -102,7 +99,9 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         historyBookDataList.clear()
         for (item in result){
             historyBookDataList.add(
-                HistoryBookData(item.bookImgUrl)
+                // bookIdx, imgUrl 값이 null인 경우 임시 데이터 반영
+                // 현재 더미 데이터 "bookimg.url" 이라서 앱 실행 시 화면에는 나타나지 않음
+                BookImgUrl(bookIdx = item.bookIdx?:1, imgUrl = item.bookImgUrl?:"https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F345555%3Ftimestamp%3D20220726170305")
             )
         }
         historyRVAdapter.notifyDataSetChanged()

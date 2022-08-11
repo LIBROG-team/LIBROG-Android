@@ -7,16 +7,17 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.librog.data.HistoryBookData
+import com.example.librog.data.entities.BookImgUrl
 import com.example.librog.databinding.ItemHistoryBookBinding
 
 
-class HistoryRVAdapter (private val historyBookList: ArrayList<HistoryBookData>) : RecyclerView.Adapter<HistoryRVAdapter.ViewHolder>(){
+class HistoryRVAdapter (private val historyBookList: ArrayList<BookImgUrl>) : RecyclerView.Adapter<HistoryRVAdapter.ViewHolder>(){
 
     private lateinit var context: Context
     private lateinit var mItemClickListener: OnItemClickListener
 
     interface OnItemClickListener {
-        fun onItemClick(tempHistoryBookData: HistoryBookData)
+        fun onItemClick(bookImgUrl: BookImgUrl)
     }
 
 
@@ -44,12 +45,11 @@ class HistoryRVAdapter (private val historyBookList: ArrayList<HistoryBookData>)
 
     inner class ViewHolder(val binding: ItemHistoryBookBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(historybook: HistoryBookData){
-            // 백엔드 더미 데이터에 이미지가 없음
-//            Glide.with(context)
-//                .load(historybook.thumbnail)
-//                .into(binding.itemHistoryBookIv)
-//
+        fun bind(bookImgUrl: BookImgUrl){
+            Glide.with(context)
+                .load(bookImgUrl.imgUrl)
+                .into(binding.itemHistoryBookIv)
+
 
 
         }

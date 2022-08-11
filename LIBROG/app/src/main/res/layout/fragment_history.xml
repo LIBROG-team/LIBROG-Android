@@ -98,11 +98,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/history_sort_banner"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="197dp"
         android:background="@drawable/history_banner_border"
         android:layout_gravity="bottom"
-        android:visibility="invisible">
+        android:visibility="visible">
         <View
             android:id="@+id/history_sort_banner_tip"
             android:layout_width="50dp"
