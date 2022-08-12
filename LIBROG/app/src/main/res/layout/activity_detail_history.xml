@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.history.DetailHistoryActivity">
+
+    <ImageView
+        android:id="@+id/detail_history_back_btn_iv"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detail_history_top_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/pd_bold"
+        android:text="@string/detail_history_top_text"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/detail_history_back_btn_iv"
+        app:layout_constraintStart_toEndOf="@id/detail_history_back_btn_iv"
+        app:layout_constraintTop_toTopOf="@id/detail_history_back_btn_iv" />
+
+
+    <ImageView
+        android:id="@+id/detail_history_fix_iv"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_pencil"
+        app:layout_constraintBottom_toBottomOf="@id/detail_history_top_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/detail_history_top_tv" />
+
+    <View
+        android:id="@+id/detail_history_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/light_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_top_tv" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_history_book_info_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_line1">
+
+        <ImageView
+            android:id="@+id/detail_history_book_thumbnail_iv"
+            android:layout_width="77dp"
+            android:layout_height="111dp"
+            android:src="@drawable/addbook_select_book_iv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/detail_history_book_info_ll"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/detail_history_book_info_ll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/detail_history_book_thumbnail_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detail_history_book_thumbnail_iv"
+            app:layout_constraintTop_toTopOf="@id/detail_history_book_thumbnail_iv">
+
+            <TextView
+                android:id="@+id/detail_history_book_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/pd_semibold"
+                android:maxLines="2"
+                android:text="@string/detail_history_book_name"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/detail_history_book_author_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pd_medium"
+                android:text="@string/detail_history_author_name"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/detail_history_book_contents_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:fontFamily="@font/pd_regular"
+                android:lineHeight="16sp"
+                android:text="@string/detail_history_description"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/detail_history_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_book_info_cl" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_history_rating_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_line2">
+
+        <TextView
+            android:id="@+id/detail_history_rating_frame_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pd_semibold"
+            android:text="@string/detail_history_rating_description"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/add_book_select_rate_n_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:fontFamily="@font/pd_semibold"
+            android:text="@string/addbook_select_rate_n"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/detail_history_rating_frame_tv"
+            app:layout_constraintStart_toEndOf="@id/detail_history_rating_frame_tv"
+            app:layout_constraintTop_toTopOf="@id/detail_history_rating_frame_tv" />
+
+        <com.willy.ratingbar.BaseRatingBar
+            android:id="@+id/detail_history_rating_bar_rb"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_history_rating_frame_tv"
+            app:srb_clearRatingEnabled="true"
+            app:srb_clickable="false"
+            app:srb_drawableEmpty="@drawable/book_select_star_off"
+            app:srb_drawableFilled="@drawable/book_select_star_on"
+            app:srb_isIndicator="false"
+            app:srb_minimumStars="1"
+            app:srb_numStars="5"
+            app:srb_rating="4"
+            app:srb_scrollable="true"
+            app:srb_starHeight="22dp"
+            app:srb_starPadding="0dp"
+            app:srb_starWidth="21dp"
+            app:srb_stepSize="1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/detail_history_line3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_rating_cl" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_history_quote_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_line3">
+
+        <TextView
+            android:id="@+id/detail_history_quote_frame_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pd_semibold"
+            android:singleLine="true"
+            android:text="@string/detail_history_quote"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_history_quote_write_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/pd_regular"
+            android:text="@string/detail_history_quote"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_history_quote_frame_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/detail_history_line4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_quote_cl" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_history_content_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/detail_history_line4">
+
+        <TextView
+            android:id="@+id/detail_history_content_frame_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pd_semibold"
+            android:text="@string/detail_history_contents"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_history_content_write_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/pd_regular"
+            android:text="@string/detail_history_contents"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_history_content_frame_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
