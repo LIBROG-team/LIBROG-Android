@@ -8,8 +8,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.librog.R
 import com.example.librog.data.RecentReadData
 import com.example.librog.data.RecommendData
-import com.example.librog.data.entities.User
-import com.example.librog.data.remote.data.DataService
 import com.example.librog.data.remote.data.HomeNoticeResult
 import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.databinding.FragmentHomeBinding
@@ -20,8 +18,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    private var readBookData = ArrayList<RecentReadData>() //album data class
-    private var recommendData = ArrayList<RecommendData>() //album data class
+    private var readBookData = ArrayList<RecentReadData>()
+    private var recommendData = ArrayList<RecommendData>()
     private val service = UserDataService
     override fun initAfterBinding() {
         (activity as MainActivity).showBottomNav()
@@ -74,7 +72,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val bannerAdapter = HomeNoticeVPAdapter(this)
 
         for (item in result){
-            bannerAdapter.addFragment(HomeNoticeFragment(item.noticeImgUrl,item.connectUrl))
+            bannerAdapter.addFragment(HomeNoticeFragment(item))
         }
 
         binding.homeBannerNoticeVp.adapter = bannerAdapter
