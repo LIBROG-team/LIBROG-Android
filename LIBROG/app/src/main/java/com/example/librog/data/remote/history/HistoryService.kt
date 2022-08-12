@@ -15,7 +15,6 @@ import retrofit2.Response
 object HistoryService {
     private val historyService = retrofit.create(HistoryInterface::class.java)
 
-    private val userIdx = 1
 
     private fun getUserIdx(fragment: Fragment): Int {
         val spf =
@@ -101,7 +100,7 @@ object HistoryService {
 
     //  API 명세서 2.7 최근 읽은 책 조회 API
     fun getRecentBookRecord(fragment: HomeFragment) {
-//        val userIdx = getUserIdx(fragment)
+        val userIdx = getUserIdx(fragment)
 
         historyService.getRecentBookRecord(userIdx)
             .enqueue(object : Callback<ArrayList<HistoryResult>> {
@@ -127,6 +126,8 @@ object HistoryService {
 
     // API 명세서 2.9 유저 전체 독서기록 필터(최근 순) api
     fun getHistoryFilteredByRecent(fragment: HistoryFragment) {
+        val userIdx = getUserIdx(fragment)
+
         historyService.getHistoryFilteredByRecent(userIdx)
             .enqueue(object : Callback<HistoryResponse> {
                 override fun onResponse(
@@ -152,6 +153,8 @@ object HistoryService {
 
     // API 명세서 2.10 유저 전체 독서기록 필터(별점 순) api
     fun getHistorySortedByRate(fragment: HistoryFragment) {
+        val userIdx = getUserIdx(fragment)
+
         historyService.getHistoryFilteredByRate(userIdx)
             .enqueue(object : Callback<HistoryResponse> {
                 override fun onResponse(
@@ -178,6 +181,8 @@ object HistoryService {
 
     // API 명세서 2.11 전체 독서기록 필터(제목 순) api
     fun getHistoryFilteredByTitle(fragment: HistoryFragment) {
+        val userIdx = getUserIdx(fragment)
+
         historyService.getHistoryFilteredByTitle(userIdx)
             .enqueue(object : Callback<HistoryResponse> {
                 override fun onResponse(
