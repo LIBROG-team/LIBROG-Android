@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.librog.R
 import com.example.librog.data.entities.Book
+import com.example.librog.data.entities.ReadingRecord
 import com.example.librog.data.remote.book.Documents
 import com.example.librog.data.remote.history.HistoryService
 import com.example.librog.data.remote.history.UserBookRecord
@@ -24,6 +25,7 @@ class AddBookSelectActivity :
     private var historyService = HistoryService
     private lateinit var curBook: Book
     private lateinit var curUserBookRecord: UserBookRecord
+    lateinit var readingRecord: ReadingRecord
 
     override fun initAfterBinding() {
         val userIdx = getIdx()
@@ -42,6 +44,7 @@ class AddBookSelectActivity :
         val bookData = gson.fromJson(doc, Documents::class.java)
         val authorList = bookData.authors.joinToString(separator = ",")
         val publishedDate = bookData.datetime!!.slice(IntRange(0, 9))
+
 
         curBook = Book(
             name = bookData.title!!,
@@ -92,8 +95,8 @@ class AddBookSelectActivity :
 
         binding.addBookSelectFinishBtn.setOnClickListener {
             postUserInput()
-            Log.d("result" , curUserBookRecord.toString())
-            historyService.addUserBookRecord(curUserBookRecord)
+            Log.d("result", curUserBookRecord.toString())
+            historyService.addUserBookRecord(this, curUserBookRecord)
             finish()
         }
 
@@ -105,13 +108,10 @@ class AddBookSelectActivity :
         val quote = binding.addBookSelectLineWriteEt.text.toString()
         val content = binding.addBookSelectReviewWriteEt.text.toString()
 
-        if (quote.isNotEmpty() or content.isNotEmpty()){
+        if (quote.isNotEmpty() or content.isNotEmpty()) {
             curUserBookRecord.quote = quote
             curUserBookRecord.content = content
         }
-
-
-
 
 
     }

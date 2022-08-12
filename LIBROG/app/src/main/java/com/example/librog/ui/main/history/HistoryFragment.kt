@@ -40,7 +40,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
                     clickSortTv()
                     return
                 }
-                Toast.makeText(activity, "Book Clicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "${bookImgUrl.bookIdx}", Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -84,15 +84,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         }
     }
 
-
-    //homeFragment에 작성되어야 하는 코드. api에서 제공하는 데이터 중 bookIdx가 없어서 임시로 주석 처리
-    fun getRecentBookRecord(result: ArrayList<HistoryResult>) {
-//        historyBookDataList.clear()
-//        for (item in result) {
-//            historyBookDataList.add(BookImgUrl(bookIdx = , imgUrl = item.bookImgUrl?:"no image"))
-//        }
-//        historyRVAdapter.notifyDataSetChanged()
-    }
 
 
     fun changeBookDataList(result: ArrayList<FilteredHistoryResult>) {

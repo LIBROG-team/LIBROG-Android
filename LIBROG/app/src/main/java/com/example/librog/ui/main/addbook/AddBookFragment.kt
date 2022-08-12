@@ -67,6 +67,7 @@ class AddBookFragment : BaseFragment<FragmentAddBookBinding>(FragmentAddBookBind
             var handled = false
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                bookList.clear()
                 val input = binding.addbookSearchEt.text.toString()
                 hideKeyboard(v)
                 getBooksByName(input)
