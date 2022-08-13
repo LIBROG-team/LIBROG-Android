@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/su_nickname_et" />
     <LinearLayout
         android:id="@+id/img_option_banner"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="197dp"
         android:orientation="vertical"
         android:layout_marginTop="12dp"

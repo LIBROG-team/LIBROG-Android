@@ -5,6 +5,11 @@ import com.example.librog.ui.BaseActivity
 
 class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBinding::inflate) {
     override fun initAfterBinding() {
-        TODO("Not yet implemented")
+        binding.settingBackBtn.setOnClickListener {
+            finish()
+        }
+        binding.settingProfileBtn.setOnClickListener {
+            startNextActivity(EditProfileActivity::class.java)
+        }
     }
 }

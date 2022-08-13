@@ -23,8 +23,9 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
 
     fun fadeBackground(isFaded:Boolean){
         if (isFaded){
+            //banner 선택 됐을 때
             binding.imgOptionBannerSelected.setBackgroundColor(Color.parseColor("#8A414141"))
-            //색감 조정
+            //타이틀 선 색감 조정
             binding.signUpTitleLine.setBackgroundColor(Color.parseColor("#8F8F8F"))
             binding.signUpBackBtn.isEnabled=false
          }
