@@ -3,12 +3,11 @@ package com.example.librog.ui.main.home
 import android.content.Intent
 import android.net.Uri
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.librog.R
-import com.example.librog.data.RecentReadData
 import com.example.librog.data.remote.HomeService
 import com.example.librog.data.remote.RecentReadResult
 import com.example.librog.data.remote.RecommendResult
@@ -18,22 +17,17 @@ import com.example.librog.databinding.FragmentHomeBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.addbook.AddBookSelectActivity
+import com.example.librog.ui.main.history.DetailHistoryActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    private var readBookData = ArrayList<RecentReadData>()
     private val service= UserDataService
     private val homeService = HomeService
 
 
     override fun initAfterBinding() {
         (activity as MainActivity).showBottomNav()
-
-        readBookData.apply{
-            add(RecentReadData(R.drawable.home_item_book1,"노르웨이의 숲","무라카미 하루키","2022.06.28"))
-            add(RecentReadData(R.drawable.home_item_book2,"공정하다는 착각","마이크 센델","2022.05.06"))
-        }
 
         service.getUserNotice(this)
         homeService.getRecommend(this)
@@ -93,11 +87,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.homeRecentreadBookRv.adapter = recentReadRVAdapter
         binding.homeRecentreadBookRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
-//        readbookRVAdapter.setMyItemClickListener(object : ReadBookRVAdapter.OnItemClickListener {
-//            override fun onItemClick(tempReadBookData: RecentReadData) {
-//                startActivity(Intent(context, AddBookSelectActivity::class.java))
-//            }
-//        })
+        recentReadRVAdapter.setMyItemClickListener(object : RecentReadRVAdapter.OnItemClickListener {
+            override fun onItemClick(recentReadResult: RecentReadResult) {
+                saveRecentIdx(recentReadResult.readingRecordIdx)
+                startActivity(Intent(context, DetailHistoryActivity::class.java))
+            }
+        })
+    }
+
+    private fun saveRecentIdx(recentId: Int){
+        val spf = activity?.getSharedPreferences("bookId", AppCompatActivity.MODE_PRIVATE)
+        val editor = spf?.edit()
+
+        editor?.putInt("recentRead",recentId)
+        editor?.apply()
     }
 
 

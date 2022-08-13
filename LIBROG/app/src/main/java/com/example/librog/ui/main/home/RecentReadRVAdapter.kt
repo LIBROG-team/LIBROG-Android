@@ -13,7 +13,7 @@ class RecentReadRVAdapter(private val recentReadList: ArrayList<RecentReadResult
     private lateinit var context: Context
 
     interface OnItemClickListener {
-        fun onItemClick(recentReadData: RecentReadResult)
+        fun onItemClick(recentReadResult: RecentReadResult)
     }
 
     private lateinit var mItemClickListener: OnItemClickListener

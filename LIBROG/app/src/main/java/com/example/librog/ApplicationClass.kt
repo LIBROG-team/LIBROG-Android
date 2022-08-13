@@ -18,7 +18,7 @@ class ApplicationClass : Application() {
 
         const val DEV_URL: String = "https://dev.siejwkaodj.shop";       // 테스트 서버 주소
         const val PROD_URL: String = "https://prod.librog.shop"    // 실서버 주소
-        const val BASE_URL: String = "https://dev.librog.shop"
+        const val BASE_URL: String = DEV_URL
 
         lateinit var mSharedPreferences: SharedPreferences
         lateinit var retrofit: Retrofit
