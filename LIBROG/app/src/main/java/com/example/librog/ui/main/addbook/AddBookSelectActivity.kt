@@ -7,22 +7,27 @@ import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.entities.Book
 import com.example.librog.data.entities.ReadingRecord
 import com.example.librog.data.remote.book.Documents
-import com.example.librog.data.remote.history.HistoryService
+import com.example.librog.data.remote.history.AddBookResponse
+import com.example.librog.data.remote.history.HistoryInterface
 import com.example.librog.data.remote.history.UserBookRecord
 import com.example.librog.databinding.ActivityAddBookSelectBinding
 import com.example.librog.ui.BaseActivity
 import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class AddBookSelectActivity :
     BaseActivity<ActivityAddBookSelectBinding>(ActivityAddBookSelectBinding::inflate) {
 
     private var gson = Gson()
-    private var historyService = HistoryService
+    private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
     private lateinit var curBook: Book
     private lateinit var curUserBookRecord: UserBookRecord
     lateinit var readingRecord: ReadingRecord
@@ -95,12 +100,50 @@ class AddBookSelectActivity :
 
         binding.addBookSelectFinishBtn.setOnClickListener {
             postUserInput()
-            Log.d("result", curUserBookRecord.toString())
-            historyService.addUserBookRecord(this, curUserBookRecord)
+            addUserBookRecord(curUserBookRecord)
             finish()
         }
 
     }
+
+
+    // 2.5 독서기록 추가 api
+    private fun addUserBookRecord(userBookRecord: UserBookRecord) {
+        historyService.addUserBookRecord(userBookRecord).enqueue(object :
+            Callback<AddBookResponse> {
+            override fun onResponse(
+                call: Call<AddBookResponse>,
+                response: Response<AddBookResponse>
+            ) {
+                val resp = response.body()!!
+                when (resp.code) {
+                    1000 -> {
+                        Log.d("AddBookSelect", resp.toString())
+                        readingRecord.bookIdx = resp.result.createdRecordId!!
+                    }
+                    2025 -> {
+                        showToast(resp.message)
+                    }
+                    3005 -> {
+                        showToast(resp.message)
+                    }
+                    3007 -> {
+                        showToast(resp.message)
+                    }
+                    else -> {
+                        showToast(resp.message)
+                    }
+                }
+
+            }
+
+            override fun onFailure(call: Call<AddBookResponse>, t: Throwable) {
+                t.printStackTrace()
+            }
+
+        })
+    }
+
 
     private fun postUserInput() {
         curUserBookRecord.starRating = binding.addBookSelectRb.rating.toInt()

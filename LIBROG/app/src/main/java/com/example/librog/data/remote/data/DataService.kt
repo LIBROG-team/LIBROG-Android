@@ -4,8 +4,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.librog.ApplicationClass.Companion.retrofit
-import com.example.librog.data.entities.FlowerData
-import com.example.librog.data.entities.Flowerpot
 import com.example.librog.ui.main.addFlowerpot.LockedFlowerpotFragment
 import com.example.librog.ui.main.addFlowerpot.UnlockedFlowerpotFragment
 import com.example.librog.ui.main.flowerpot.FlowerpotFragment
@@ -24,8 +22,8 @@ object DataService {
 
 
     //화분 정보 가져오기
-    fun getFpList(fragment: FlowerpotFragment) {
-        val userIdx = getUserIdx(fragment)
+    fun getFpList(flowerpotFragment: FlowerpotFragment) {
+        val userIdx = getUserIdx(flowerpotFragment)
 
         dataService.getFpList(userIdx).enqueue(object : Callback<DataResponse1> {
             override fun onResponse(call: Call<DataResponse1>, response: Response<DataResponse1>) {
@@ -33,7 +31,7 @@ object DataService {
                 when (resp.code) {
                     1000 -> {
                         Log.d("resp", resp.result.size.toString())
-                        fragment.setData(resp.result)
+                        flowerpotFragment.setData(resp.result)
                     }
 
                     2019 -> {
