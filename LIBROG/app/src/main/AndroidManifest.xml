@@ -34,6 +34,9 @@
             android:name=".ui.main.signup.SignUpActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.main.mypage.SettingActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.main.splash.SplashActivity"
             android:exported="true"
             android:noHistory="true">
