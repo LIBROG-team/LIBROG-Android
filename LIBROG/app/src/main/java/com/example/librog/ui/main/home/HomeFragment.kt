@@ -35,23 +35,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     }
 
-
-
-    private fun setIndicator(){
-        val viewPager2 = binding.homeBannerNoticeVp
-        val tabLayout = binding.homeTabLayout
-
-        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-        }.attach()
-
-        for (i in 0 until binding.homeTabLayout.tabCount) {
-            val tab = (binding.homeTabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
-            val p = tab.layoutParams as ViewGroup.MarginLayoutParams
-            p.setMargins(0, 0, 20, 0)
-            tab.requestLayout()
-        }
-    }
-
     fun setNotice(result: ArrayList<HomeNoticeResult>){
         val bannerAdapter = HomeNoticeVPAdapter(this)
 
@@ -95,12 +78,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         })
     }
 
+    //readingRecord 조회할 때 클릭한 데이터 뜨도록
     private fun saveRecentIdx(recentId: Int){
         val spf = activity?.getSharedPreferences("bookId", AppCompatActivity.MODE_PRIVATE)
         val editor = spf?.edit()
 
         editor?.putInt("recentRead",recentId)
         editor?.apply()
+    }
+
+    private fun setIndicator(){
+        val viewPager2 = binding.homeBannerNoticeVp
+        val tabLayout = binding.homeTabLayout
+
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+        }.attach()
+
+        for (i in 0 until binding.homeTabLayout.tabCount) {
+            val tab = (binding.homeTabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
+            val p = tab.layoutParams as ViewGroup.MarginLayoutParams
+            p.setMargins(0, 0, 20, 0)
+            tab.requestLayout()
+        }
     }
 
 
