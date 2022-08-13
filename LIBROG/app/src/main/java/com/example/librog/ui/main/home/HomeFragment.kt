@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.home
 
 import android.content.Intent
+import android.service.autofill.UserData
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 
@@ -9,6 +10,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.librog.R
 import com.example.librog.data.RecentReadData
 import com.example.librog.data.RecommendData
+import com.example.librog.data.entities.User
+import com.example.librog.data.remote.HomeService
+import com.example.librog.data.remote.RecommendResult
 import com.example.librog.data.remote.data.HomeNoticeResult
 import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.databinding.FragmentHomeBinding
@@ -21,7 +25,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var readBookData = ArrayList<RecentReadData>()
     private var recommendData = ArrayList<RecommendData>()
-    private val service = UserDataService
+    private val service= UserDataService
+    private val homeService = HomeService
+
+
     override fun initAfterBinding() {
         (activity as MainActivity).showBottomNav()
 
@@ -95,6 +102,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.homeBannerNoticeVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         setIndicator()
+    }
+
+    fun setRecommend(result: ArrayList<RecommendResult>){
+
     }
 
 
