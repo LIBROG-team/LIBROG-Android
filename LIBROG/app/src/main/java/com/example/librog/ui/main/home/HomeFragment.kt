@@ -2,7 +2,6 @@ package com.example.librog.ui.main.home
 
 import android.content.Intent
 import android.net.Uri
-import android.service.autofill.UserData
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 
@@ -10,9 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.librog.R
 import com.example.librog.data.RecentReadData
-import com.example.librog.data.RecommendData
-import com.example.librog.data.entities.User
 import com.example.librog.data.remote.HomeService
+import com.example.librog.data.remote.RecentReadResult
 import com.example.librog.data.remote.RecommendResult
 import com.example.librog.data.remote.data.HomeNoticeResult
 import com.example.librog.data.remote.data.UserDataService
@@ -37,22 +35,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             add(RecentReadData(R.drawable.home_item_book2,"공정하다는 착각","마이크 센델","2022.05.06"))
         }
 
-        initRVAdapter()
         service.getUserNotice(this)
         homeService.getRecommend(this)
-
-    }
-    private fun initRVAdapter(){
-        val readbookRVAdapter = ReadBookRVAdapter(readBookData)
-        //리사이클러뷰에 어댑터 연결
-        binding.homeRecentreadBookRv.adapter = readbookRVAdapter
-        binding.homeRecentreadBookRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-
-        readbookRVAdapter.setMyItemClickListener(object : ReadBookRVAdapter.OnItemClickListener {
-            override fun onItemClick(tempReadBookData: RecentReadData) {
-                startActivity(Intent(context, AddBookSelectActivity::class.java))
-            }
-        })
+        homeService.getRecentBook(this)
 
     }
 
@@ -100,6 +85,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         })
 
         binding.homeBannerRecommendRv.layoutManager = GridLayoutManager(context, 2)
+    }
+
+    fun setRecentRead(result: ArrayList<RecentReadResult>){
+        val recentReadRVAdapter = RecentReadRVAdapter(result)
+        //리사이클러뷰에 어댑터 연결
+        binding.homeRecentreadBookRv.adapter = recentReadRVAdapter
+        binding.homeRecentreadBookRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+
+//        readbookRVAdapter.setMyItemClickListener(object : ReadBookRVAdapter.OnItemClickListener {
+//            override fun onItemClick(tempReadBookData: RecentReadData) {
+//                startActivity(Intent(context, AddBookSelectActivity::class.java))
+//            }
+//        })
     }
 
 

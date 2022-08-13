@@ -20,7 +20,6 @@ object HomeService {
         service.getRecommend().enqueue(object: Callback<RecommendResponse> {
             override fun onResponse(call: Call<RecommendResponse>, response: Response<RecommendResponse>) {
                 val resp = response.body()!!
-                Log.d("Recommend/SUCCESS",resp.code.toString())
                 when(resp.code){
                     1000->{
                         fragment.setRecommend(resp.result)
@@ -32,6 +31,28 @@ object HomeService {
             }
             override fun onFailure(call: Call<RecommendResponse>, t: Throwable) {
                 Log.d("Recommend/FAILURE", t.message.toString())
+            }
+        })
+    }
+
+
+    fun getRecentBook(fragment: HomeFragment){
+        val id = 34
+        service.getRecentBook(id).enqueue(object: Callback<RecentReadResponse> {
+            override fun onResponse(call: Call<RecentReadResponse>, response: Response<RecentReadResponse>) {
+                val resp = response.body()!!
+                Log.d("RecentRead/SUCCESS",resp.code.toString())
+                when(resp.code){
+                    1000->{
+                        fragment.setRecentRead(resp.result)
+                    }
+                    else ->{
+
+                    }
+                }
+            }
+            override fun onFailure(call: Call<RecentReadResponse>, t: Throwable) {
+                Log.d("RecentRead/FAILURE", t.message.toString())
             }
         })
     }

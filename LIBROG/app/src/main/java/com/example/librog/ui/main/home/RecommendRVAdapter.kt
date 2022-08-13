@@ -8,9 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.librog.data.remote.RecommendResult
 import com.example.librog.databinding.ItemHomeRecommendBinding
 
-class RecommendRVAdapter(
-    private val recommendList: ArrayList<RecommendResult>
-) : RecyclerView.Adapter<RecommendRVAdapter.ViewHolder>() {
+class RecommendRVAdapter(private val recommendList: ArrayList<RecommendResult>) : RecyclerView.Adapter<RecommendRVAdapter.ViewHolder>() {
 
     private lateinit var context: Context
     interface OnItemClickListener {

@@ -121,7 +121,7 @@
             android:layout_height="128dp"
             android:layout_marginTop="17dp"
             android:layout_marginStart="20dp"
-            tools:listitem="@layout/item_home_book"
+            tools:listitem="@layout/item_home_recent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/home_banner_recentread_tv"/>
