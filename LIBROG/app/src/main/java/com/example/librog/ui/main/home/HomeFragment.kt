@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.home
 
 import android.content.Intent
+import android.net.Uri
 import android.service.autofill.UserData
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,7 +25,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var readBookData = ArrayList<RecentReadData>()
-    private var recommendData = ArrayList<RecommendData>()
     private val service= UserDataService
     private val homeService = HomeService
 
@@ -37,15 +37,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             add(RecentReadData(R.drawable.home_item_book2,"공정하다는 착각","마이크 센델","2022.05.06"))
         }
 
-        recommendData.apply{
-            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1))
-            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1))
-            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1,))
-            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1,))
-        }
-
         initRVAdapter()
         service.getUserNotice(this)
+        homeService.getRecommend(this)
 
     }
     private fun initRVAdapter(){
@@ -60,18 +54,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         })
 
-
-        val recommendRVAdapter = RecommendRVAdapter(recommendData)
-        //리사이클러뷰에 어댑터 연결
-        binding.homeBannerRecommendRv.adapter = recommendRVAdapter
-        binding.homeBannerRecommendRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-
-        recommendRVAdapter.setMyItemClickListener(object : RecommendRVAdapter.OnItemClickListener {
-            override fun onItemClick(tempReadBookData: RecommendData) {
-                startActivity(Intent(context, AddBookSelectActivity::class.java))
-            }
-        })
-        binding.homeBannerRecommendRv.layoutManager = GridLayoutManager(context, 2)
     }
 
 
@@ -105,7 +87,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     fun setRecommend(result: ArrayList<RecommendResult>){
+        val recommendRVAdapter = RecommendRVAdapter(result)
+        //리사이클러뷰에 어댑터 연결
+        binding.homeBannerRecommendRv.adapter = recommendRVAdapter
+        binding.homeBannerRecommendRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
+        recommendRVAdapter.setMyItemClickListener(object : RecommendRVAdapter.OnItemClickListener {
+            override fun onItemClick(recommendData: RecommendResult) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recommendData.connectUrl))
+                startActivity(intent)
+            }
+        })
+
+        binding.homeBannerRecommendRv.layoutManager = GridLayoutManager(context, 2)
     }
 
 
