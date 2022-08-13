@@ -2,6 +2,7 @@ package com.example.librog.ui.main.home
 
 import android.content.Intent
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -31,6 +32,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         recommendData.apply{
             add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1))
+            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1))
+            add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1,))
             add(RecommendData("노르웨이의 숲","무라카미 하루키",R.drawable.home_item_book1,))
         }
 
@@ -49,6 +52,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 startActivity(Intent(context, AddBookSelectActivity::class.java))
             }
         })
+
+
+        val recommendRVAdapter = RecommendRVAdapter(recommendData)
+        //리사이클러뷰에 어댑터 연결
+        binding.homeBannerRecommendRv.adapter = recommendRVAdapter
+        binding.homeBannerRecommendRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+
+        recommendRVAdapter.setMyItemClickListener(object : RecommendRVAdapter.OnItemClickListener {
+            override fun onItemClick(tempReadBookData: RecommendData) {
+                startActivity(Intent(context, AddBookSelectActivity::class.java))
+            }
+        })
+        binding.homeBannerRecommendRv.layoutManager = GridLayoutManager(context, 2)
     }
 
 

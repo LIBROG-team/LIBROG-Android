@@ -37,8 +37,10 @@ class RecommendRVAdapter(
 
     inner class ViewHolder(val binding: ItemHomeRecommendBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(readBook: RecommendData){
-
+        fun bind(recommendData: RecommendData){
+            binding.itemHomeRcBook.setImageResource(recommendData.imgUrl!!)
+            binding.itemHomeRcTitle.text = recommendData.title
+            binding.itemHomeRcAuthor.text = recommendData.author
         }
 
     }
