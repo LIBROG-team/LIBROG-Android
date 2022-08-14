@@ -24,4 +24,8 @@ interface HistoryInterface {
 
     @POST("/records/addition")
     fun addUserBookRecord(@Body userBookRecord: UserBookRecord): Call<AddBookResponse>
+
+    @GET("/records/{readingRecordIdx}")
+    fun getDetailReadingRecordByIdx(@Path("readingRecordIdx") readingRecordIdx: Int): Call<DetailReadingRecordResponse>
+
 }
