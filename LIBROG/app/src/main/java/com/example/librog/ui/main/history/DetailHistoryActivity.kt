@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.history
 
 
+import android.content.Intent
 import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
@@ -10,6 +11,7 @@ import com.example.librog.data.remote.history.DetailReadingRecordResult
 import com.example.librog.data.remote.history.HistoryInterface
 import com.example.librog.databinding.ActivityDetailHistoryBinding
 import com.example.librog.ui.BaseActivity
+import com.example.librog.ui.main.addbook.AddBookSelectActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +20,6 @@ class DetailHistoryActivity :
     BaseActivity<ActivityDetailHistoryBinding>(ActivityDetailHistoryBinding::inflate) {
 
     private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
-
 
     override fun initAfterBinding() {
         val readingRecordIdx = intent.getIntExtra("readingRecordIdx", -1)
@@ -89,5 +90,14 @@ class DetailHistoryActivity :
                 .into(detailHistoryBookThumbnailIv)
         }
     }
+
+    // 독서기록 수정 버튼, 독서기록 수정 api 구현 필요
+    private fun initClickListener(){
+        binding.detailHistoryFixIv.setOnClickListener {
+            val intent = Intent(applicationContext, AddBookSelectActivity::class.java)
+
+        }
+    }
+
 
 }
