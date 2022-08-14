@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.librog.data.local.AppDatabase
-import com.example.librog.data.remote.data.DataService
 import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.data.remote.data.UserStatResult
 import com.example.librog.databinding.FragmentMypageBinding
