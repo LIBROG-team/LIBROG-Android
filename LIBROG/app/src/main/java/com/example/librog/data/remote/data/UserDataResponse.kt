@@ -20,6 +20,7 @@ data class UserStatResult(
 )
 
 
+//홈 배너
 data class HomeNoticeResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
     @SerializedName("code") val code: Int,
@@ -34,6 +35,9 @@ data class HomeNoticeResult(
     @SerializedName("connectUrl") val connectUrl: String,
     @SerializedName("noticeImgUrl") val noticeImgUrl: String,
 )
+
+//홈 최근 읽은 책 2.7
+
 
 
 

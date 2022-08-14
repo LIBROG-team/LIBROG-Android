@@ -47,6 +47,11 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
                 startActivity(intent)
             }
         }
+
+        binding.profileSettingBtn.setOnClickListener {
+            val intent = Intent(activity, SettingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getIdx(): Int{

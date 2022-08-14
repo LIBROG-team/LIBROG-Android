@@ -3,7 +3,7 @@ package com.example.librog.data.remote.data.auth
 import com.google.gson.annotations.SerializedName
 
 //회원가입
-class SignUpResponse(
+data class SignUpResponse(
     @SerializedName(value = "isSuccess")val isSuccess : Boolean,
     @SerializedName(value = "code")val code:Int,
     @SerializedName(value = "message")val message:String,
@@ -16,7 +16,7 @@ data class SignUpResult(
 
 
 //카카오 로그인
-class AuthResponse2(
+data class AuthResponse2(
     @SerializedName(value = "isSuccess")val isSuccess : Boolean,
     @SerializedName(value = "code")val code:Int,
     @SerializedName(value = "message")val message:String,
@@ -34,7 +34,7 @@ data class KakaoResult(
 
 
 //앱 로그인
-class AppLoginResponse(
+data class AppLoginResponse(
     @SerializedName(value = "isSuccess")val isSuccess : Boolean,
     @SerializedName(value = "code")val code:Int,
     @SerializedName(value = "message")val message:String,

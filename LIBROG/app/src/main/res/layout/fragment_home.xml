@@ -197,5 +197,16 @@
             android:lineSpacingExtra="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_banner_line2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_banner_recommend_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="29dp"
+            tools:listitem="@layout/item_home_recommend"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/home_banner_recommend_tv"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

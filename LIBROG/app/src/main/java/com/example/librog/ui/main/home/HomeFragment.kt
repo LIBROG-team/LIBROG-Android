@@ -1,14 +1,19 @@
 package com.example.librog.ui.main.home
 
 import android.content.Intent
+import android.net.Uri
+import android.service.autofill.UserData
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.librog.R
 import com.example.librog.data.RecentReadData
+import com.example.librog.data.RecommendData
 import com.example.librog.data.entities.User
-import com.example.librog.data.remote.data.DataService
+import com.example.librog.data.remote.HomeService
+import com.example.librog.data.remote.RecommendResult
 import com.example.librog.data.remote.data.HomeNoticeResult
 import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.databinding.FragmentHomeBinding
@@ -19,8 +24,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    private var readBookData = ArrayList<RecentReadData>() //album data class
-    private val service = UserDataService
+    private var readBookData = ArrayList<RecentReadData>()
+    private val service= UserDataService
+    private val homeService = HomeService
+
+
     override fun initAfterBinding() {
         (activity as MainActivity).showBottomNav()
 
@@ -30,7 +38,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         initRVAdapter()
-        service.getUserStat(this)
+        service.getUserNotice(this)
+        homeService.getRecommend(this)
 
     }
     private fun initRVAdapter(){
@@ -44,6 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 startActivity(Intent(context, AddBookSelectActivity::class.java))
             }
         })
+
     }
 
 
@@ -67,13 +77,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val bannerAdapter = HomeNoticeVPAdapter(this)
 
         for (item in result){
-            bannerAdapter.addFragment(HomeNoticeFragment(item.noticeImgUrl,item.connectUrl))
+            bannerAdapter.addFragment(HomeNoticeFragment(item))
         }
 
         binding.homeBannerNoticeVp.adapter = bannerAdapter
         binding.homeBannerNoticeVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         setIndicator()
+    }
+
+    fun setRecommend(result: ArrayList<RecommendResult>){
+        val recommendRVAdapter = RecommendRVAdapter(result)
+        //리사이클러뷰에 어댑터 연결
+        binding.homeBannerRecommendRv.adapter = recommendRVAdapter
+        binding.homeBannerRecommendRv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+
+        recommendRVAdapter.setMyItemClickListener(object : RecommendRVAdapter.OnItemClickListener {
+            override fun onItemClick(recommendData: RecommendResult) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recommendData.connectUrl))
+                startActivity(intent)
+            }
+        })
+
+        binding.homeBannerRecommendRv.layoutManager = GridLayoutManager(context, 2)
     }
 
 
