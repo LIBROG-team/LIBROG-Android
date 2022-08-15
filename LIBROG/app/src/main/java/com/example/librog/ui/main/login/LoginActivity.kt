@@ -44,11 +44,12 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
-    private fun saveIdx(idx:Int){
+    private fun saveIdx(idx:Int,type:String){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         val editor = spf.edit()
 
         editor.putInt("idx",idx)
+        editor.putString("type",type)
         editor.apply()
     }
 
@@ -68,7 +69,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
 
     override fun onLoginSuccess(result: AppLoginResult) {
-        saveIdx(result.userIdx)
+        saveIdx(result.userIdx,"app")
         finish()
     }
 
@@ -109,7 +110,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
-                saveIdx(result.idx)
+                saveIdx(result.idx,"kakao")
 
                 //최초 로그인시에만 유저 정보 DB에 저장
                 val AppDB = AppDatabase.getInstance(this)!!
