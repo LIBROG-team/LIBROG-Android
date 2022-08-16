@@ -25,7 +25,7 @@ data class RecentReadResponse(
     @SerializedName(value = "isSuccess")val isSuccess : Boolean,
     @SerializedName(value = "code")val code:Int,
     @SerializedName(value = "message")val message:String,
-    @SerializedName(value = "result")val result: ArrayList<RecentReadResult>,
+    @SerializedName(value = "result")val result: ArrayList<RecentReadResult>
 )
 
 data class RecentReadResult(
@@ -35,5 +35,21 @@ data class RecentReadResult(
     @SerializedName(value = "author")val author : ArrayList<String>,
     @SerializedName(value = "publishedDate")val publishedDate : String,
     @SerializedName(value = "bookImgUrl")val bookImgUrl : String,
-    @SerializedName(value = "recordedDate")val recordedDate : String,
+    @SerializedName(value = "recordedDate")val recordedDate : String
+)
+
+data class MainPotResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: MainPotResult
+)
+
+data class MainPotResult(
+    @SerializedName(value = "name")val name : String,
+    @SerializedName(value = "engName")val engName : String,
+    @SerializedName(value = "flowerImgUrl")val flowerImgUrl : String,
+    @SerializedName(value = "type")val type : String,
+    @SerializedName(value = "startDate")val startDate : String,
+    @SerializedName(value = "lastDate")val lastDate : String
 )

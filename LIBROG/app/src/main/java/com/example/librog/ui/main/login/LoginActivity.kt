@@ -69,7 +69,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onLoginSuccess(result: AppLoginResult) {
         saveIdx(result.userIdx)
-        finish()
+        startNextActivity(MainActivity::class.java)
     }
 
     override fun onLoginFailure(message : String) {
@@ -110,7 +110,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             1500-> {
                 showToast("kakao 로그인 성공")
                 saveIdx(result.idx)
-                finish()
+                startNextActivity(MainActivity::class.java)
             }
         }
     }

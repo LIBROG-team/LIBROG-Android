@@ -51,15 +51,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_status_tv"/>
 
-        <ImageView
-            android:id="@+id/home_circle_flower_logo"
-            android:layout_width="91.01dp"
-            android:layout_height="187dp"
-            app:layout_constraintStart_toStartOf="@+id/main_circle_flower_iv"
-            app:layout_constraintEnd_toEndOf="@+id/main_circle_flower_iv"
-            app:layout_constraintTop_toTopOf="@+id/main_circle_flower_iv"
-            app:layout_constraintBottom_toBottomOf="@+id/main_circle_flower_iv"
-            android:src="@drawable/ic_lib_home_logo"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/home_circle_flower_logo"-->
+<!--            android:layout_width="319dp"-->
+<!--            android:layout_height="165dp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/main_circle_flower_iv"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/main_circle_flower_iv"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/main_circle_flower_iv"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/main_circle_flower_iv"-->
+<!--            android:src="@drawable/ic_lib_home_logo"/>-->
+            <ImageView
+                android:id="@+id/home_circle_flower_img"
+                android:layout_width="165dp"
+                android:layout_height="319dp"
+                app:layout_constraintStart_toStartOf="@+id/main_circle_flower_iv"
+                app:layout_constraintEnd_toEndOf="@+id/main_circle_flower_iv"
+                app:layout_constraintTop_toTopOf="@+id/main_circle_flower_iv"
+                app:layout_constraintBottom_toBottomOf="@+id/main_circle_flower_iv"
+                />
 
         <TextView
             android:id="@+id/home_flower_tv"

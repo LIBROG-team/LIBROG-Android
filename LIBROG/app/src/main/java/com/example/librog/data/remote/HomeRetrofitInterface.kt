@@ -11,4 +11,7 @@ interface HomeRetrofitInterface {
 
     @GET("records/bookRecords/{userIdx}")
     fun getRecentBook(@Path("userIdx") userIdx: Int): Call<RecentReadResponse>
+
+    @GET("flowerpots/flowerpotMain/{userIdx}")
+    fun getMainPot(@Path("userIdx") userIdx: Int): Call<MainPotResponse>
 }
