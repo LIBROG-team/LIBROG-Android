@@ -25,6 +25,7 @@ import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
+import com.example.librog.ui.main.splash.SplashActivity
 import com.kakao.sdk.common.util.SdkLogLevel
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,8 +52,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             }
             else {
                 logout()
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
+                requireActivity().finish()
             }
         }
 
@@ -110,7 +110,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun getUserProfile(userIdx: Int){
-        val userId = 1 //임시
         userService.getUserProfile(userIdx).enqueue(object: Callback<UserProfileResponse> {
             override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
                 val resp = response.body()!!
