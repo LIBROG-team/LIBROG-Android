@@ -74,8 +74,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         recentReadRVAdapter.setMyItemClickListener(object : RecentReadRVAdapter.OnItemClickListener {
             override fun onItemClick(recentReadResult: RecentReadResult) {
-                saveRecentIdx(recentReadResult.readingRecordIdx)
-                startActivity(Intent(context, DetailHistoryActivity::class.java))
+                val intent = Intent(context, DetailHistoryActivity::class.java)
+                intent.putExtra("readingRecordIdx", recentReadResult.readingRecordIdx)
+                startActivity(intent)
             }
         })
     }
@@ -117,7 +118,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun setMainPot(result: MainPotResult){
         binding.homeFlowerTv.text = result.name
-        Glide.with(this).load(result.flowerImgUrl).circleCrop().into(binding.homeCircleFlowerImg)
+        Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
         showToast(result.flowerImgUrl)
     }
 
