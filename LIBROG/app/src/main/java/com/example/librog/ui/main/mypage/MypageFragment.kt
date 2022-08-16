@@ -12,21 +12,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.librog.ApplicationClass
 import com.example.librog.data.local.AppDatabase
-import com.example.librog.data.remote.data.DataService
-import com.example.librog.data.remote.data.UserDataService
-import com.example.librog.data.remote.data.UserStatResult
+import com.example.librog.data.remote.data.*
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
 import com.kakao.sdk.common.util.SdkLogLevel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
     lateinit var AppDB: AppDatabase
     private val userDataService = UserDataService
+    private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
         AppDB =AppDatabase.getInstance(requireContext())!!
@@ -68,15 +71,13 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
 
         } else { //로그인 상태
             binding.mypageLoginBtn.text = "로그아웃"
-            binding.profileName.text=AppDB.userDao().getUserName(id)
-            Glide.with(this).load(AppDB.userDao().getUserImg(id)).circleCrop().into(binding.profileIv)
-
         }
+
+        //유저 프로필 불러오기
+        getUserProfile(getIdx())
+
         //유저 통계 불러오기
         userDataService.getUserStat(this,getIdx())
-        //로그인 계정 확인
-        initLoginStatus()
-
     }
 
     private fun logout(){
@@ -87,16 +88,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         binding.mypageLoginBtn.text = "로그인"
     }
 
-    private fun initLoginStatus(){
-        if (getIdx()==-1){
-            binding.kakaoLoginStatus.text = "연결하기"
-            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#969696"))
-        }
-        else {
-            binding.kakaoLoginStatus.text = "연결완료"
-            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
-        }
-    }
 
     //UserDataService에서 호출
     fun setData(result: UserStatResult) {
@@ -106,6 +97,35 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         binding.mypageQuoteCnt.text = result.quoteCnt.toString()
         binding.mypageContentCnt.text = result.contentCnt.toString()
     }
+
+    private fun getUserProfile(userIdx: Int){
+        val userId = 2 //임시
+        userService.getUserProfile(userId).enqueue(object: Callback<UserProfileResponse> {
+            override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
+                val resp = response.body()!!
+                setUserProfile(resp.result!!)
+            }
+            override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun setUserProfile(result: UserProfileResult){
+        Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
+        binding.profileName.text = result.name
+        binding.profileIntro.text = result.introduction
+
+        if (result.type=="kakao"){
+            binding.kakaoLoginStatus.text = "연결완료"
+            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+        }
+        else {
+            binding.appLoginStatus.text = "연결완료"
+            binding.appLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+        }
+
+    }
+
 
 }
 
