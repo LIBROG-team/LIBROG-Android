@@ -45,8 +45,9 @@ class AuthService {
         authService.login(appLoginInfo).enqueue(object: Callback<AppLoginResponse>{
 
             override fun onResponse(call: Call<AppLoginResponse>, response: Response<AppLoginResponse>) {
+                Log.d("login/Response/response.message",response.code().toString())
                 val resp: AppLoginResponse = response.body()!!
-                Log.d("login/SUCCESS",response.toString())
+                Log.d("login/Response/resp.message",resp.code.toString())
                 when(resp.code){
                     1000 ->{
                         loginView.onLoginSuccess(resp.result!!)
