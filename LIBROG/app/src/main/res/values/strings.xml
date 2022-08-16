@@ -107,8 +107,14 @@
     <string name="detail_history_author_name">작가 이름</string>
     <string name="detail_history_description">책 설명</string>
     <string name="detail_history_rating_description">이 책의 별점</string>
-    <string name="detail_history_rating">%d/%d</string>
+    <string name="detail_history_rating">%d / %d</string>
     <string name="detail_history_quote">인상 깊은 한 줄</string>
     <string name="detail_history_contents">독후감</string>
+
+    <!-- 독서기록 -->
+    <string name="history_sort_recent">최근 기록 순</string>
+    <string name="history_sort_rating">별점 높은 순</string>
+    <string name="history_sort_title">제목 순</string>
+
 
 </resources>

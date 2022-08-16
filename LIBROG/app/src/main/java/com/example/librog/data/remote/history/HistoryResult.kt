@@ -23,9 +23,9 @@ data class HistoryResult(
 
 
 data class FilteredHistoryResult(
-    @SerializedName("readingRecordIdx") var readingRecordIdx: Int?,
-    @SerializedName("bookIdx") var bookIdx: Int?,
-    @SerializedName("flowerPotIdx") var flowerPotIdx: Int?,
+    @SerializedName("readingRecordIdx") var readingRecordIdx: Int,
+    @SerializedName("bookIdx") var bookIdx: Int,
+    @SerializedName("flowerPotIdx") var flowerPotIdx: Int,
     @SerializedName("date") var date: String?,
     @SerializedName("starRating") var starRating: Int?,
     @SerializedName("status") var status: String?,
@@ -61,4 +61,24 @@ data class UserBookRecord(
     @SerializedName("starRating") var starRating: Int?,
     @SerializedName("quote") var quote: String?,
     @SerializedName("content") var content: String?,
+)
+
+
+// 2.8 독서기록 상세 정보
+data class DetailReadingRecordResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: DetailReadingRecordResult
+)
+
+data class DetailReadingRecordResult(
+    @SerializedName("readingRecordIdx") var readingRecordIdx: Int,
+    @SerializedName("bookImgUrl") var bookImgUrl: String?,
+    @SerializedName("name") var name: String,
+    @SerializedName("author") var author: ArrayList<String>?,
+    @SerializedName("bookInstruction") var bookInstruction: String?,
+    @SerializedName("starRating") var starRating: Int,
+    @SerializedName("quote") var quote: String?,
+    @SerializedName("content") var content: String?
 )

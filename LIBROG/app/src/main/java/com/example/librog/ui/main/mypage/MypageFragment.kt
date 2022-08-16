@@ -14,7 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.data.local.AppDatabase
+
 import com.example.librog.data.remote.data.*
+import com.example.librog.data.remote.data.UserDataService
+import com.example.librog.data.remote.data.UserStatResult
+
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment

@@ -6,17 +6,21 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.example.librog.ApplicationClass
 import com.example.librog.R
-import com.example.librog.data.DetailTempFlowerpotData
 import com.example.librog.data.entities.BookImgUrl
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.Flowerpot
 import com.example.librog.data.remote.history.FilteredHistoryResult
-import com.example.librog.data.remote.history.HistoryService
+import com.example.librog.data.remote.history.HistoryInterface
+import com.example.librog.data.remote.history.HistoryResponse
 import com.example.librog.databinding.ActivityDetailFlowerpotBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
 import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DetailFlowerpotActivity :
@@ -25,14 +29,45 @@ class DetailFlowerpotActivity :
     private var flowerpotBookList = ArrayList<BookImgUrl>()
     private var adapter = DetailFlowerpotRVAdapter(flowerpotBookList)
     private var gson = Gson()
-    private val historyService = HistoryService
+    private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
 
 
     override fun initAfterBinding() {
         val idx = intent.getIntExtra("flowerpotIdx", 1)
-        historyService.getFlowerpotBookRecord(this, idx)
+        getFlowerpotBookRecord(idx)
         initLayout()
 
+    }
+
+    // API 명세서 2.2 화분별 독서 기록 조회 API
+    private fun getFlowerpotBookRecord(idx: Int) {
+        historyService.getFlowerpotBookRecord(idx).enqueue(object :
+            Callback<HistoryResponse> {
+            override fun onResponse(
+                call: Call<HistoryResponse>,
+                response: Response<HistoryResponse>
+            ) {
+                val resp = response.body()!!
+                when (resp.code) {
+                    1000 -> {
+                        Log.d("resp", resp.result.toString())
+                        initData(resp.result)
+                    }
+                    3006 -> {
+                        noBookInFlowerpot()
+                    }
+                    else -> {
+                        Log.d("resp", "${resp.code} + resp.message")
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<HistoryResponse>, t: Throwable) {
+
+            }
+
+        })
     }
 
 
