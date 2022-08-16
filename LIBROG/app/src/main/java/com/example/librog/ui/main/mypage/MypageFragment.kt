@@ -27,12 +27,10 @@ import retrofit2.Response
 
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
-    lateinit var AppDB: AppDatabase
     private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
-        AppDB =AppDatabase.getInstance(requireContext())!!
         initViews()
         initClickListener()
         Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
@@ -74,8 +72,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
 
         //유저 프로필 불러오기
-        getUserProfile(getIdx())
-
+        getUserProfile(id)
         //유저 통계 불러오기
         userDataService.getUserStat(this,getIdx())
     }
@@ -89,7 +86,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
 
-    //UserDataService에서 호출
+    //유저 통계 표시 (UserDataService에서 호출)
     fun setData(result: UserStatResult) {
         binding.mypageFlowerCnt.text = result.flowerCnt.toString()
         binding.mypageReadingCnt.text = result.readingCnt.toString()
@@ -115,6 +112,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         binding.profileName.text = result.name
         binding.profileIntro.text = result.introduction
 
+        //로그인 상태 확인
         if (result.type=="kakao"){
             binding.kakaoLoginStatus.text = "연결완료"
             binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
@@ -123,10 +121,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             binding.appLoginStatus.text = "연결완료"
             binding.appLoginStatus.setTextColor(Color.parseColor("#64BE78"))
         }
-
     }
-
-
 }
 
 
