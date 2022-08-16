@@ -20,3 +20,20 @@ data class RecommendResult(
     @SerializedName(value = "connectUrl") val connectUrl: String,
 
 )
+
+data class RecentReadResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: ArrayList<RecentReadResult>,
+)
+
+data class RecentReadResult(
+    @SerializedName(value = "userIdx")val userIdx : Int,
+    @SerializedName(value = "readingRecordIdx")val readingRecordIdx : Int,
+    @SerializedName(value = "bookName")val bookName : String,
+    @SerializedName(value = "author")val author : ArrayList<String>,
+    @SerializedName(value = "publishedDate")val publishedDate : String,
+    @SerializedName(value = "bookImgUrl")val bookImgUrl : String,
+    @SerializedName(value = "recordedDate")val recordedDate : String,
+)

@@ -8,6 +8,7 @@ import com.example.librog.data.remote.data.auth.*
 import com.example.librog.databinding.ActivityLoginBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.MainActivity
+import com.example.librog.ui.main.mypage.FindPwdActivity
 import com.example.librog.ui.main.signup.SignUpActivity
 //import com.example.librog.ui.main.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient
@@ -37,6 +38,9 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
         binding.loginKakaoSignInBtn.setOnClickListener {
             kakaoLogin()
+        }
+        binding.loginFindPwdBtn.setOnClickListener {
+            startNextActivity(FindPwdActivity::class.java)
         }
     }
 
@@ -106,11 +110,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             1500-> {
                 showToast("kakao 로그인 성공")
                 saveIdx(result.idx)
-
-                //최초 로그인시에만 유저 정보 DB에 저장
-                val AppDB = AppDatabase.getInstance(this)!!
-                if(!AppDB.userDao().isUserExist(result.idx))
-                    AppDB.userDao().insertUserKakaoLogin(result.email,result.idx, result.name, result.profileImgUrl)
                 finish()
             }
         }
