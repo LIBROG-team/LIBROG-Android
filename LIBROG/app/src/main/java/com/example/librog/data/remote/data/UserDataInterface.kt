@@ -10,4 +10,7 @@ interface UserDataInterface {
 
     @GET("/contents/notice")
     fun getHomeNotice(): Call<HomeNoticeResponse>
+
+    @GET("/users/profile/{userIdx}")
+    fun getUserProfile(@Path("userIdx") userIdx: Int): Call<UserProfileResponse>
 }

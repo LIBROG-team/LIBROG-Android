@@ -59,11 +59,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         return spf!!.getInt("idx",-1)
     }
 
-    private fun getType(): String{
-        val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getString("type","0")!!
-    }
-
 
     private fun initViews(){
         val id = getIdx()
@@ -96,22 +91,10 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         if (getIdx()==-1){
             binding.kakaoLoginStatus.text = "연결하기"
             binding.kakaoLoginStatus.setTextColor(Color.parseColor("#969696"))
-            binding.appLoginStatus.text = "연결하기"
-            binding.appLoginStatus.setTextColor(Color.parseColor("#969696"))
-
-            }
-
+        }
         else {
-            when (getType()) {
-                "kakao" -> {
-                    binding.kakaoLoginStatus.text = "연결완료"
-                    binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
-                }
-                "app"->{
-                    binding.appLoginStatus.text = "연결완료"
-                    binding.appLoginStatus.setTextColor(Color.parseColor("#64BE78"))
-                }
-            }
+            binding.kakaoLoginStatus.text = "연결완료"
+            binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
         }
     }
 
@@ -125,4 +108,5 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
 }
+
 

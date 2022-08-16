@@ -33,12 +33,24 @@ data class HomeNoticeResult(
     @SerializedName("title") val title: String,
     @SerializedName("author") val author: String,
     @SerializedName("connectUrl") val connectUrl: String,
-    @SerializedName("noticeImgUrl") val noticeImgUrl: String,
+    @SerializedName("noticeImgUrl") val noticeImgUrl: String
 )
 
-//홈 최근 읽은 책 2.7
+data class UserProfileResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean?,
+    @SerializedName("code") val code: Int?,
+    @SerializedName("message") val message: String?,
+    @SerializedName("result") val result: UserProfileResult?
+)
 
-
+//마이페이지 유저 프로필 조회
+data class UserProfileResult(
+    @SerializedName("idx") val idx: Int,
+    @SerializedName("profileImgUrl") val profileImgUrl: String,
+    @SerializedName("name") val name: String,
+    @SerializedName("introduction") val introduction: String,
+    @SerializedName("type") val type: String?
+)
 
 
 
