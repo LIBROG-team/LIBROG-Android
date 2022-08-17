@@ -3,6 +3,7 @@ package com.example.librog.ui.main.mypage
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -24,6 +25,7 @@ import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
+import com.example.librog.ui.main.splash.SplashActivity
 import com.kakao.sdk.common.util.SdkLogLevel
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,10 +33,12 @@ import retrofit2.Response
 
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
+    private lateinit var appDB: AppDatabase
     private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
+        appDB =AppDatabase.getInstance(requireContext())!!
         initViews()
         initClickListener()
         Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
@@ -48,8 +52,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             }
             else {
                 logout()
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
+                requireActivity().finish()
             }
         }
 
@@ -76,9 +79,16 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
 
         //유저 프로필 불러오기
-        getUserProfile(id)
+        if (id!=-1)
+            getUserProfile(id)
         //유저 통계 불러오기
         userDataService.getUserStat(this,getIdx())
+
+        Log.d("Img",getImgUri())
+        if(getImgUri()!="0"){
+            val uri:Uri = Uri.parse(getImgUri())
+            binding.profileIv.setImageURI(uri)
+        }
     }
 
     private fun logout(){
@@ -100,8 +110,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun getUserProfile(userIdx: Int){
-        val userId = 2 //임시
-        userService.getUserProfile(userId).enqueue(object: Callback<UserProfileResponse> {
+        userService.getUserProfile(userIdx).enqueue(object: Callback<UserProfileResponse> {
             override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
                 val resp = response.body()!!
                 setUserProfile(resp.result!!)
@@ -116,6 +125,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         binding.profileName.text = result.name
         binding.profileIntro.text = result.introduction
 
+
         //로그인 상태 확인
         if (result.type=="kakao"){
             binding.kakaoLoginStatus.text = "연결완료"
@@ -126,6 +136,13 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             binding.appLoginStatus.setTextColor(Color.parseColor("#64BE78"))
         }
     }
+
+    private fun getImgUri(): String{
+        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("imgUri","0")!!
+    }
+
+
 }
 
 

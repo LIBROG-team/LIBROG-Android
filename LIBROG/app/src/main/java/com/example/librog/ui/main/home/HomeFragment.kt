@@ -8,22 +8,24 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.librog.data.remote.HomeService
-import com.example.librog.data.remote.RecentReadResult
-import com.example.librog.data.remote.RecommendResult
-import com.example.librog.data.remote.data.HomeNoticeResult
-import com.example.librog.data.remote.data.UserDataService
+import com.bumptech.glide.Glide
+import com.example.librog.ApplicationClass
+import com.example.librog.data.remote.*
+import com.example.librog.data.remote.data.*
 import com.example.librog.databinding.FragmentHomeBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.MainActivity
-import com.example.librog.ui.main.addbook.AddBookSelectActivity
 import com.example.librog.ui.main.history.DetailHistoryActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val service= UserDataService
     private val homeService = HomeService
+    private val mainPotService = ApplicationClass.retrofit.create(HomeRetrofitInterface::class.java)
 
 
     override fun initAfterBinding() {
@@ -32,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         service.getUserNotice(this)
         homeService.getRecommend(this)
         homeService.getRecentBook(this)
-
+        getMainPot(1)
     }
 
     fun setNotice(result: ArrayList<HomeNoticeResult>){
@@ -72,20 +74,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         recentReadRVAdapter.setMyItemClickListener(object : RecentReadRVAdapter.OnItemClickListener {
             override fun onItemClick(recentReadResult: RecentReadResult) {
-                saveRecentIdx(recentReadResult.readingRecordIdx)
-                startActivity(Intent(context, DetailHistoryActivity::class.java))
+                val intent = Intent(context, DetailHistoryActivity::class.java)
+                intent.putExtra("readingRecordIdx", recentReadResult.readingRecordIdx)
+                startActivity(intent)
             }
         })
     }
 
-    //readingRecord 조회할 때 클릭한 데이터 뜨도록
-    private fun saveRecentIdx(recentId: Int){
-        val spf = activity?.getSharedPreferences("bookId", AppCompatActivity.MODE_PRIVATE)
-        val editor = spf?.edit()
-
-        editor?.putInt("recentRead",recentId)
-        editor?.apply()
-    }
 
     private fun setIndicator(){
         val viewPager2 = binding.homeBannerNoticeVp
@@ -100,6 +95,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             p.setMargins(0, 0, 20, 0)
             tab.requestLayout()
         }
+    }
+
+    private fun getMainPot(userIdx: Int){
+        mainPotService.getMainPot(userIdx).enqueue(object: Callback<MainPotResponse> {
+            override fun onResponse(call: Call<MainPotResponse>, response: Response<MainPotResponse>) {
+                val resp = response.body()!!
+                setMainPot(resp.result)
+            }
+            override fun onFailure(call: Call<MainPotResponse>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun setMainPot(result: MainPotResult){
+        binding.homeFlowerTv.text = result.name
+        Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
     }
 
 

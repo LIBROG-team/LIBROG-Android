@@ -6,12 +6,13 @@ import android.os.Looper
 import com.example.librog.databinding.ActivitySplashBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.MainActivity
+import com.example.librog.ui.main.login.LoginActivity
 
 class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate), SplashView {
 
     override fun initAfterBinding() {
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
 //            autoLogin()
         }, 2000)

@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.librog.data.entities.*
-import com.example.librog.ui.main.login.LoginActivity
 
 @Database(
     entities = [User::class, Book::class, FlowerData::class, Flowerpot::class, ReadingRecord::class],
@@ -15,9 +14,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun flowerpotDao(): FlowerpotDao
     abstract fun userDao(): UserDao
     abstract fun bookDao(): BookDao
-
     companion object {
         private var instance: AppDatabase? = null
+
 
         @Synchronized
         fun getInstance(context: Context): AppDatabase? {
