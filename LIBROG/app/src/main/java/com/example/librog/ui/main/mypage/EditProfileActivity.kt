@@ -18,11 +18,11 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     private lateinit var imgUri: Uri
     private var isImgNull = true
     override fun initAfterBinding() {
-        if(getImgUri()!="0"){
-            val uri:Uri = Uri.parse(getImgUri())
-            binding.editProfileIv.setImageURI(uri)
-            showToast(getImgUri())
-        }
+//        if(getImgUri()!="0"){
+//            val uri:Uri = Uri.parse(getImgUri())
+//            binding.editProfileIv.setImageURI(uri)
+//            showToast(getImgUri())
+//        }
         initClickListener()
     }
 
@@ -43,8 +43,8 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         }
 
         binding.profileEditFinishBtn.setOnClickListener {
-            if (!isImgNull)
-                saveUri(imgUri)
+//            if (!isImgNull)
+//                saveUri(imgUri)
             finish()
         }
 
@@ -95,16 +95,16 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
             }
     }}
 
-    private fun saveUri(imageUri:Uri){
-        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
-        val editor = spf.edit()
-
-        editor.putString("imgUri",imageUri.toString())
-        editor.apply()
-    }
-
-    private fun getImgUri(): String{
-        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
-        return spf!!.getString("imgUri","0")!!
-    }
+//    private fun saveUri(imageUri:Uri){
+//        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+//        val editor = spf.edit()
+//
+//        editor.putString("imgUri",imageUri.toString())
+//        editor.apply()
+//    }
+//
+//    private fun getImgUri(): String{
+//        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+//        return spf!!.getString("imgUri","0")!!
+//    }
 }

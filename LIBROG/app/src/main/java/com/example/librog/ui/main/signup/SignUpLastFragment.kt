@@ -4,6 +4,7 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -27,6 +28,8 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     lateinit var pwd:String
     lateinit var name: String
     lateinit var introduce: String
+    lateinit var imgUri: Uri
+    var isUriNull =true
 
     companion object {
         const val IMAGE_REQUEST_CODE = 100
@@ -71,6 +74,7 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         name = spf.getString("name","0").toString()
         introduce = binding.suNicknameEt.text.toString()
 
+
         showToast(email)
         return SignUpInfo(email,pwd,name,"",introduce)
     }
@@ -108,7 +112,9 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         super.onActivityResult(requestCode, resultCode, data) //URI 객체로 이미지 전달받음
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
             binding.suProfileIv.setImageURI(data?.data)
-            showToast(data?.data.toString())
+
+            imgUri = data?.data!!
+            isUriNull=false
         }
     }
 

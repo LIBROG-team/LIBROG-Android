@@ -81,14 +81,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         })
     }
 
-    //readingRecord 조회할 때 클릭한 데이터 뜨도록
-    private fun saveRecentIdx(recentId: Int){
-        val spf = activity?.getSharedPreferences("bookId", AppCompatActivity.MODE_PRIVATE)
-        val editor = spf?.edit()
-
-        editor?.putInt("recentRead",recentId)
-        editor?.apply()
-    }
 
     private fun setIndicator(){
         val viewPager2 = binding.homeBannerNoticeVp
@@ -119,7 +111,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun setMainPot(result: MainPotResult){
         binding.homeFlowerTv.text = result.name
         Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
-        showToast(result.flowerImgUrl)
     }
 
 
