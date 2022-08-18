@@ -1,7 +1,9 @@
 package com.example.librog.data.remote.data
 
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.Path
 
 interface UserDataInterface {
@@ -13,4 +15,7 @@ interface UserDataInterface {
 
     @GET("/users/profile/{userIdx}")
     fun getUserProfile(@Path("userIdx") userIdx: Int): Call<UserProfileResponse>
+
+    @PATCH("/users/introduce/edit")
+    fun editIntroduce(@Body editIntroduceInfo: EditIntroduceInfo): Call<EditIntroduceResponse>
 }

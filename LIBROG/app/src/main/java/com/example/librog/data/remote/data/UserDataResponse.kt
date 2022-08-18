@@ -36,14 +36,15 @@ data class HomeNoticeResult(
     @SerializedName("noticeImgUrl") val noticeImgUrl: String
 )
 
+//마이페이지 유저 프로필 조회
 data class UserProfileResponse(
-    @SerializedName("isSuccess") val isSuccess: Boolean?,
-    @SerializedName("code") val code: Int?,
-    @SerializedName("message") val message: String?,
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
     @SerializedName("result") val result: UserProfileResult?
 )
 
-//마이페이지 유저 프로필 조회
+
 data class UserProfileResult(
     @SerializedName("idx") val idx: Int,
     @SerializedName("profileImgUrl") val profileImgUrl: String,
@@ -52,44 +53,31 @@ data class UserProfileResult(
     @SerializedName("type") val type: String?
 )
 
+//자기소개 변경
+data class EditIntroduceResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: EditIntroduceResult?
+)
+
+
+data class EditIntroduceResult(
+    @SerializedName("fieldCount") val fieldCount: Int,
+    @SerializedName("affectedRows") val affectedRows: Int,
+    @SerializedName("insertId") val insertId: Int,
+    @SerializedName("info") val info: String,
+    @SerializedName("serverStatus") val serverStatus: Int,
+    @SerializedName("warningStatus") val warningStatus: Int,
+    @SerializedName("changedRows") val changedRows: Int,
+)
+
+data class EditIntroduceInfo(
+    @SerializedName("introduction") val introduction: String,
+    @SerializedName("idx") val idx: Int
+)
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////홈 최근 읽은 책
-//data class RecentReadResponse(
-//    @SerializedName("isSuccess") val isSuccess: Boolean?,
-//    @SerializedName("code") val code: Int?,
-//    @SerializedName("message") val message: String?,
-//    @SerializedName("result") val result: RecentReadResult
-//)
-//
-//data class RecentReadResult(
-//    @SerializedName("userIdx") var userIdx: Int,
-//    @SerializedName("readingRecordIdx") var readingRecordIdx: Int,
-//    @SerializedName("bookName") var bookName: String,
-//    @SerializedName("author") var author: ArrayList<String>?,
-//    @SerializedName("publishedDate") var publishedDate: String,
-//    @SerializedName("bookImgUrl") var bookImgUrl: String,
-//    @SerializedName("recordDate") var recordDate: String
-//)
 

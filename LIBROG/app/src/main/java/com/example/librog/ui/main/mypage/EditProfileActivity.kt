@@ -6,17 +6,28 @@ import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
+import com.example.librog.data.remote.HomeRetrofitInterface
+import com.example.librog.data.remote.MainPotResponse
+import com.example.librog.data.remote.data.EditIntroduceInfo
+import com.example.librog.data.remote.data.EditIntroduceResponse
+import com.example.librog.data.remote.data.UserDataInterface
+import com.example.librog.data.remote.data.auth.AppLoginInfo
 import com.example.librog.databinding.ActivityEditProfileBinding
 
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.signup.SignUpActivity
 import com.example.librog.ui.main.signup.SignUpLastFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEditProfileBinding::inflate) {
     private lateinit var imgUri: Uri
     private var isImgNull = true
+    private val service = ApplicationClass.retrofit.create(UserDataInterface::class.java)
     override fun initAfterBinding() {
 //        if(getImgUri()!="0"){
 //            val uri:Uri = Uri.parse(getImgUri())
@@ -45,7 +56,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         binding.profileEditFinishBtn.setOnClickListener {
 //            if (!isImgNull)
 //                saveUri(imgUri)
-            finish()
+            editIntroduce(getIntroduceInfo()) //자기소개 수정 api 호출
         }
 
         binding.editBackBtn.setOnClickListener {
@@ -94,6 +105,37 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
             imgUri.let { contentResolver.takePersistableUriPermission(it, takeFlags)
             }
     }}
+
+    private fun editIntroduce(editIntroduceInfo: EditIntroduceInfo){
+        service.editIntroduce(editIntroduceInfo).enqueue(object: Callback<EditIntroduceResponse> {
+            override fun onResponse(call: Call<EditIntroduceResponse>, response: Response<EditIntroduceResponse>) {
+                val resp = response.body()!!
+                when (resp.code){
+                    1000->{
+                        Log.d("editIntro/success",resp.message)
+                        finish()
+                    }
+                    2004->{
+                        showToast(resp.message)
+                        Log.d("editIntro/fail",resp.message)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<EditIntroduceResponse>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun getIntroduceInfo(): EditIntroduceInfo{
+        val introduction= binding.editIntroduceEt.text.toString()
+
+        return EditIntroduceInfo(introduction, getIdx())
+    }
+
+    private fun getIdx(): Int{
+        val spf = getSharedPreferences("userInfo",MODE_PRIVATE)
+        return spf!!.getInt("idx",-1)
+    }
 
 //    private fun saveUri(imageUri:Uri){
 //        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
