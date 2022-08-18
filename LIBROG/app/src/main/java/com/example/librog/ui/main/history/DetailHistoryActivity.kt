@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.history
 
 
+import android.content.Intent
 import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
@@ -19,7 +20,6 @@ class DetailHistoryActivity :
 
     private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
 
-
     override fun initAfterBinding() {
         val readingRecordIdx = intent.getIntExtra("readingRecordIdx", -1)
 
@@ -29,6 +29,7 @@ class DetailHistoryActivity :
         }
 
         getDetailReadingRecordByIdx(readingRecordIdx)
+        initClickListener(readingRecordIdx)
 
     }
 
@@ -55,7 +56,7 @@ class DetailHistoryActivity :
             }
 
             override fun onFailure(call: Call<DetailReadingRecordResponse>, t: Throwable) {
-                showToast(t.message?:"DetailHistoryActivity Error")
+                showToast(t.message ?: "DetailHistoryActivity Error")
                 finish()
             }
 
@@ -79,15 +80,31 @@ class DetailHistoryActivity :
             detailHistoryStarRatingTv.text =
                 String.format(getString(R.string.detail_history_rating), result.starRating, 5)
             binding.detailHistoryContentWriteTv.text = result.content ?: ""
-            binding.detailHistoryQuoteWriteTv.text = result.quote?: ""
+            binding.detailHistoryQuoteWriteTv.text = result.quote ?: ""
             binding.detailHistoryRatingBarRb.rating = result.starRating.toFloat()
-            binding.detailHistoryRatingBarRb.setOnRatingChangeListener { ratingBar, rating, fromUser ->
-                ratingBar.rating = result.starRating.toFloat()
+
+            binding.detailHistoryRatingBarRb.setOnRatingChangeListener { _, f1, _ ->
+                binding.detailHistoryRatingBarRb.rating = result.starRating.toFloat()
             }
             Glide.with(applicationContext)
                 .load(result.bookImgUrl)
                 .into(detailHistoryBookThumbnailIv)
         }
+
     }
 
+    private fun initClickListener(readingRecordIdx: Int) {
+        binding.detailHistoryFixIv.setOnClickListener {
+            val intent = Intent(this, HistoryFixActivity::class.java)
+            intent.putExtra("readingRecordIdx", readingRecordIdx)
+            startActivity(intent)
+        }
+        binding.detailHistoryBackBtnIv.setOnClickListener {
+            finish()
+        }
+    }
+
+
 }
+
+

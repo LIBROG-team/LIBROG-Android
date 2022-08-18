@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.entities.Book
-import com.example.librog.data.entities.ReadingRecord
 import com.example.librog.data.remote.book.Documents
 import com.example.librog.data.remote.history.AddBookResponse
 import com.example.librog.data.remote.history.HistoryInterface
@@ -30,7 +29,6 @@ class AddBookSelectActivity :
     private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
     private lateinit var curBook: Book
     private lateinit var curUserBookRecord: UserBookRecord
-    lateinit var readingRecord: ReadingRecord
 
     override fun initAfterBinding() {
         val userIdx = getIdx()
@@ -83,7 +81,7 @@ class AddBookSelectActivity :
         binding.addBookSelectTitleTv.text = curBook.name
         binding.addBookSelectWriterTv.text = curBook.author
         binding.addBookSelectExplainTv.text = bookData.contents
-
+        binding.addBookSelectBackTv.text = curBook.name
 
     }
 
@@ -119,7 +117,7 @@ class AddBookSelectActivity :
                 when (resp.code) {
                     1000 -> {
                         Log.d("AddBookSelect", resp.toString())
-                        readingRecord.bookIdx = resp.result.createdRecordId!!
+                        showToast(resp.message)
                     }
                     2025 -> {
                         showToast(resp.message)
