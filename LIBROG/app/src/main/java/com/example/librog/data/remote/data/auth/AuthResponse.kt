@@ -42,6 +42,11 @@ data class KakaoResult(
     @SerializedName(value = "type")val type: String
  )
 
+//카카오 로그인(입력값)
+data class AccessToken(
+    @SerializedName(value = "accessToken") val accessToken: String
+)
+
 
 //앱 로그인(응답값)
 data class AppLoginResponse(
@@ -63,14 +68,28 @@ data class AppLoginInfo(
 )
 
 
-//<-------------------------response에 넣어주는 값----------------------->
-
-
-
-//카카오 로그인 시 유저가 입력하는 정보
-data class AccessToken(
-    @SerializedName(value = "accessToken") val accessToken: String
+//비밀번호 변경(응답값)
+data class ChangePwd(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: ChangePwdResult?
 )
+
+data class ChangePwdResult(
+    @SerializedName(value = "userIdx")val userIdx : Int,
+    @SerializedName(value = "newPassword")val newPassword:String
+)
+
+data class ChangePwdInfo(
+    @SerializedName(value = "userIdx")val userIdx : Int,
+    @SerializedName(value = "oldPassword")val oldPassword:String,
+    @SerializedName(value = "newPassword")val newPassword:String
+)
+
+
+
+
 
 
 

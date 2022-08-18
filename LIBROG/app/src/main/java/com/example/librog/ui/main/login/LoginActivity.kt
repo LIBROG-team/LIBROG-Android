@@ -44,11 +44,12 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
-    private fun saveIdx(idx:Int){
+    private fun saveUserInfo(idx:Int,token:String){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         val editor = spf.edit()
 
         editor.putInt("idx",idx)
+        editor.putString("token",token)
         editor.apply()
     }
 
@@ -68,7 +69,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
 
     override fun onLoginSuccess(result: AppLoginResult) {
-        saveIdx(result.userIdx)
+        saveUserInfo(result.userIdx,result.jwt)
         startNextActivity(MainActivity::class.java)
     }
 
@@ -109,7 +110,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
-                saveIdx(result.idx)
+                saveUserInfo(result.idx,"")
                 startNextActivity(MainActivity::class.java)
             }
         }
