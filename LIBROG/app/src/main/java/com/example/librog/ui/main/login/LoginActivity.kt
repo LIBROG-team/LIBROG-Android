@@ -89,7 +89,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
                 authService.kakaoLogin(kakaoAccessToken)
-                Log.d("accesstoken", AccessToken(token.accessToken).toString())
+                Log.d("accessToken", AccessToken(token.accessToken).toString())
             }
         }
     }
@@ -110,7 +110,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
-                saveUserInfo(result.idx,"")
+                saveUserInfo(result.idx,"0")
                 startNextActivity(MainActivity::class.java)
             }
         }

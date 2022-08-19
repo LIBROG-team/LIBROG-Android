@@ -68,8 +68,41 @@ data class AppLoginInfo(
 )
 
 
+//비밀번호 찾기(응답값)
+data class FindPwdResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: FindPwdResult?
+)
+
+data class FindPwdResult(
+    @SerializedName("fieldCount") val fieldCount: Int,
+    @SerializedName("affectedRows") val affectedRows: Int,
+    @SerializedName("insertId") val insertId: Int,
+    @SerializedName("info") val info: String,
+    @SerializedName("serverStatus") val serverStatus: Int,
+    @SerializedName("warningStatus") val warningStatus: Int,
+    @SerializedName("changedRows") val changedRows: Int
+)
+
+//비밀번호 찾기(입력값)
+data class FindPwdInfo(
+    @SerializedName(value = "email") val email: String
+)
+
+
+
+
+
+
+
+
+
+
+
 //비밀번호 변경(응답값)
-data class ChangePwd(
+data class ChangePwdResponse(
     @SerializedName(value = "isSuccess")val isSuccess : Boolean,
     @SerializedName(value = "code")val code:Int,
     @SerializedName(value = "message")val message:String,

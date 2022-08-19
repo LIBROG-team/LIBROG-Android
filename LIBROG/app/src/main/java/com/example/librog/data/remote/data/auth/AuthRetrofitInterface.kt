@@ -16,6 +16,9 @@ interface AuthRetrofitInterface {
     @POST("/users/kakao/certificate")
     fun kakaoLogin(@Body accessToken: AccessToken): Call<AuthResponse2>
 
+    @PATCH("/users/findMyPassword")
+    fun findPwd(@Body findPwdInfo: FindPwdInfo): Call<FindPwdResponse>
+
     @PATCH("/users/password/change")
-    fun changePwd(@Header ("x-access-token") token:String,@Body changePwdInfo: ChangePwdInfo): Call<AuthResponse2>
+    fun changePwd(@Header ("x-access-token") token:String,@Body changePwdInfo: ChangePwdInfo): Call<ChangePwdResponse>
 }
