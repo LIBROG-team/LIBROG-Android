@@ -154,19 +154,18 @@
         app:layout_constraintTop_toBottomOf="@id/setting_ask_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginStart="34dp"
-        android:text="탈퇴하기"
+        android:text="비밀번호 변경"
         android:textSize="15sp"
         android:fontFamily="@font/pd_semibold"
         app:layout_constraintTop_toBottomOf="@id/setting_sub_line4"
         app:layout_constraintStart_toStartOf="parent"/>
     <ImageView
-        android:id="@+id/setting_leave_btn"
+        android:id="@+id/setting_change_pwd_btn"
         android:layout_width="21dp"
         android:layout_height="21dp"
         android:layout_marginTop="28dp"
@@ -176,6 +175,66 @@
         app:layout_constraintEnd_toEndOf="parent"/>
     <View
         android:id="@+id/setting_sub_line5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D9D9D9"
+        android:layout_marginTop="29dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintTop_toBottomOf="@id/setting_change_pwd_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="34dp"
+        android:text="쿠폰 입력하기"
+        android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line5"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <ImageView
+        android:id="@+id/setting_add_coupon_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="34dp"
+        android:src="@drawable/setting_more_btn"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line5"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <View
+        android:id="@+id/setting_sub_line6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D9D9D9"
+        android:layout_marginTop="29dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/setting_add_coupon_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="34dp"
+        android:text="탈퇴하기"
+        android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line6"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <ImageView
+        android:id="@+id/setting_leave_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="34dp"
+        android:src="@drawable/setting_more_btn"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line6"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <View
+        android:id="@+id/setting_sub_line7"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#D9D9D9"
