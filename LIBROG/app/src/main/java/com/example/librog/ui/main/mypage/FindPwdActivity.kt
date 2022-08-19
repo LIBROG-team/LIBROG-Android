@@ -48,13 +48,9 @@ class FindPwdActivity: BaseActivity<ActivityFindPwdBinding>(ActivityFindPwdBindi
                         Log.d("findPwd/fail",resp.message)
                         showToast("해당 이메일로 가입한 유저가 없습니다.")
                     }
-                    else->{
-                        Log.d("findPwd/fail",resp.message)
-                    }
                 }
             }
             override fun onFailure(call: Call<FindPwdResponse>, t: Throwable) {
-                Log.d("findPwd/fail","onFailure")
             }
         })
     }

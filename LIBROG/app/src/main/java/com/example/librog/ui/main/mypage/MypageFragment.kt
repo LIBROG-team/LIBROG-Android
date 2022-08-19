@@ -33,12 +33,10 @@ import retrofit2.Response
 
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
-    private lateinit var appDB: AppDatabase
     private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
-        appDB =AppDatabase.getInstance(requireContext())!!
         initViews()
         initClickListener()
         Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
@@ -84,11 +82,11 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         //유저 통계 불러오기
         userDataService.getUserStat(this,getIdx())
 
-        Log.d("Img",getImgUri())
-        if(getImgUri()!="0"){
-            val uri:Uri = Uri.parse(getImgUri())
-            binding.profileIv.setImageURI(uri)
-        }
+//        Log.d("Img",getImgUri())
+//        if(getImgUri()!="0"){
+//            val uri:Uri = Uri.parse(getImgUri())
+//            binding.profileIv.setImageURI(uri)
+//        }
     }
 
     private fun logout(){
@@ -137,10 +135,10 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
     }
 
-    private fun getImgUri(): String{
-        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getString("imgUri","0")!!
-    }
+//    private fun getImgUri(): String{
+//        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+//        return spf!!.getString("imgUri","0")!!
+//    }
 
 
 }

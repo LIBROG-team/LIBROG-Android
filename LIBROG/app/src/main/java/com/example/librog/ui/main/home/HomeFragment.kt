@@ -109,8 +109,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setMainPot(result: MainPotResult){
-        binding.homeFlowerTv.text = result.name
-        Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
+//        binding.homeFlowerTv.text = result.name
+//        Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
     }
 
 

@@ -111,6 +111,27 @@ data class ChangePwdInfo(
     @SerializedName(value = "newPassword")val newPassword:String
 )
 
+//회원탈퇴
+data class DeleteUserResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: DeleteUserResult?
+)
+
+//회원탈퇴
+data class DeleteUserResult(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: DeleteUserIdx?
+)
+
+//회원탈퇴
+data class DeleteUserIdx(
+    @SerializedName(value = "deletedUserIdx")val deletedUserIdx: String
+)
+
 
 
 

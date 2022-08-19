@@ -36,6 +36,7 @@ data class HomeNoticeResult(
     @SerializedName("noticeImgUrl") val noticeImgUrl: String
 )
 
+
 //마이페이지 유저 프로필 조회
 data class UserProfileResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
@@ -53,6 +54,7 @@ data class UserProfileResult(
     @SerializedName("type") val type: String?
 )
 
+
 //자기소개 변경
 data class EditIntroduceResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
@@ -60,7 +62,6 @@ data class EditIntroduceResponse(
     @SerializedName("message") val message: String,
     @SerializedName("result") val result: EditIntroduceResult?
 )
-
 
 data class EditIntroduceResult(
     @SerializedName("fieldCount") val fieldCount: Int,

@@ -1,5 +1,6 @@
 package com.example.librog.data.remote.data.auth
 
+import com.example.librog.data.remote.data.UserProfileResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -18,4 +19,7 @@ interface AuthRetrofitInterface {
 
     @PATCH("/users/password/change")
     fun changePwd(@Header ("x-access-token") token:String,@Body changePwdInfo: ChangePwdInfo): Call<ChangePwdResponse>
+
+    @DELETE("/users/userDelete/{userIdx}")
+    fun deleteUser(@Path("userIdx") userIdx: Int): Call<DeleteUserResponse>
 }
