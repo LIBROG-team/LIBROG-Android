@@ -28,6 +28,11 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             startNextActivity(EditProfileActivity::class.java)
         }
 
+        //비밀번호 변경
+        binding.settingChangePwdBtn.setOnClickListener {
+            startNextActivity(ChangePwdActivity::class.java)
+        }
+
         //탈퇴하기
         binding.settingLeaveBtn.setOnClickListener{
             binding.leaveConfirmPanel.visibility = View.VISIBLE

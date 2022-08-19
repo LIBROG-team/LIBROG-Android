@@ -46,6 +46,9 @@
             android:name=".ui.main.mypage.FindPwdActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.main.mypage.ChangePwdActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.main.splash.SplashActivity"
             android:exported="true"
             android:noHistory="true">
