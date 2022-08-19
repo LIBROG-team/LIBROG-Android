@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.main.history.HistoryFixActivity">
 
     <ImageView
-        android:id="@+id/add_book_select_back_btn"
+        android:id="@+id/history_fix_back_btn_iv"
         android:layout_width="21dp"
         android:layout_height="21dp"
         android:layout_marginStart="23dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/add_book_select_back_tv"
+        android:id="@+id/history_fix_top_text_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -27,28 +27,37 @@
         android:fontFamily="@font/pd_bold"
         android:lineSpacingExtra="21.84dp"
         android:maxLines="1"
-        android:text="@string/addbook_main_text"
+        android:text="@string/addbook_select_title"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/add_book_select_back_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/add_book_select_back_btn"
+        app:layout_constraintBottom_toBottomOf="@id/history_fix_back_btn_iv"
+        app:layout_constraintEnd_toStartOf="@id/history_fix_delete_iv"
+        app:layout_constraintStart_toEndOf="@id/history_fix_back_btn_iv"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/history_fix_delete_iv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/icon_bin"
+        app:layout_constraintBottom_toBottomOf="@id/history_fix_top_text_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_fix_top_text_tv" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="19dp"
         android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@id/add_book_select_finish_btn"
-        app:layout_constraintTop_toBottomOf="@id/add_book_select_back_tv">
+        app:layout_constraintBottom_toTopOf="@id/history_fix_finish_btn"
+        app:layout_constraintTop_toBottomOf="@id/history_fix_top_text_tv">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/add_book_select_frame"
+                android:id="@+id/history_fix_frame"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="#D9F1F1F1"
@@ -60,7 +69,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <FrameLayout
-                android:id="@+id/add_book_select_area1"
+                android:id="@+id/history_fix_area1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -69,14 +78,14 @@
                 android:background="@drawable/addbook_select_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/add_book_select_frame">
+                app:layout_constraintTop_toTopOf="@+id/history_fix_frame">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/add_book_select_book_iv"
+                        android:id="@+id/history_fix_book_thumbnail_iv"
                         android:layout_width="77dp"
                         android:layout_height="111dp"
                         android:layout_marginVertical="13dp"
@@ -96,11 +105,11 @@
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/add_book_select_book_iv"
+                        app:layout_constraintStart_toEndOf="@id/history_fix_book_thumbnail_iv"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/add_book_select_title_tv"
+                            android:id="@+id/history_fix_title_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
@@ -108,25 +117,25 @@
                             android:maxLines="2"
                             android:text="@string/addbook_select_title"
                             android:textSize="15sp"
-                            app:layout_constraintBottom_toTopOf="@id/add_book_select_writer_tv"
-                            app:layout_constraintStart_toEndOf="@id/add_book_select_book_iv"
+                            app:layout_constraintBottom_toTopOf="@id/history_fix_author_tv"
+                            app:layout_constraintStart_toEndOf="@id/history_fix_book_thumbnail_iv"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_chainStyle="packed" />
 
                         <TextView
-                            android:id="@+id/add_book_select_writer_tv"
+                            android:id="@+id/history_fix_author_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/pd_medium"
                             android:text="@string/addbook_select_writer"
                             android:textSize="14sp"
-                            app:layout_constraintBottom_toTopOf="@id/add_book_select_explain_tv"
-                            app:layout_constraintStart_toStartOf="@id/add_book_select_title_tv"
-                            app:layout_constraintTop_toBottomOf="@id/add_book_select_title_tv" />
+                            app:layout_constraintBottom_toTopOf="@id/history_fix_explain_tv"
+                            app:layout_constraintStart_toStartOf="@id/history_fix_title_tv"
+                            app:layout_constraintTop_toBottomOf="@id/history_fix_title_tv" />
 
                         <TextView
-                            android:id="@+id/add_book_select_explain_tv"
+                            android:id="@+id/history_fix_explain_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="9dp"
@@ -138,8 +147,8 @@
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/add_book_select_writer_tv"
-                            app:layout_constraintTop_toBottomOf="@id/add_book_select_writer_tv" />
+                            app:layout_constraintStart_toStartOf="@id/history_fix_author_tv"
+                            app:layout_constraintTop_toBottomOf="@id/history_fix_author_tv" />
                     </LinearLayout>
 
 
@@ -148,7 +157,7 @@
 
 
             <ImageView
-                android:id="@+id/add_book_select_area2"
+                android:id="@+id/history_fix_area2"
                 android:layout_width="match_parent"
                 android:layout_height="93dp"
                 android:layout_marginStart="16dp"
@@ -157,10 +166,10 @@
                 android:background="@drawable/addbook_select_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/add_book_select_area1" />
+                app:layout_constraintTop_toBottomOf="@id/history_fix_area1" />
 
             <TextView
-                android:id="@+id/add_book_select_rate_tv"
+                android:id="@+id/history_fix_rate_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -168,11 +177,11 @@
                 android:fontFamily="@font/pd_semibold"
                 android:text="@string/addbook_select_rate_text"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@id/add_book_select_area2"
-                app:layout_constraintTop_toTopOf="@id/add_book_select_area2" />
+                app:layout_constraintStart_toStartOf="@id/history_fix_area2"
+                app:layout_constraintTop_toTopOf="@id/history_fix_area2" />
 
             <TextView
-                android:id="@+id/add_book_select_rate_n_tv"
+                android:id="@+id/history_fix_rate_n_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -180,18 +189,18 @@
                 android:text="@string/addbook_select_rate_n"
                 android:textColor="@color/green"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@id/add_book_select_rate_tv"
-                app:layout_constraintStart_toEndOf="@id/add_book_select_rate_tv"
-                app:layout_constraintTop_toTopOf="@id/add_book_select_rate_tv" />
+                app:layout_constraintBottom_toBottomOf="@id/history_fix_rate_tv"
+                app:layout_constraintStart_toEndOf="@id/history_fix_rate_tv"
+                app:layout_constraintTop_toTopOf="@id/history_fix_rate_tv" />
 
             <com.willy.ratingbar.BaseRatingBar
-                android:id="@+id/add_book_select_rb"
+                android:id="@+id/history_fix_rb"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="@id/add_book_select_area2"
-                app:layout_constraintStart_toStartOf="@id/add_book_select_area2"
-                app:layout_constraintTop_toBottomOf="@+id/add_book_select_rate_tv"
+                app:layout_constraintEnd_toEndOf="@id/history_fix_area2"
+                app:layout_constraintStart_toStartOf="@id/history_fix_area2"
+                app:layout_constraintTop_toBottomOf="@+id/history_fix_rate_tv"
                 app:srb_clearRatingEnabled="true"
                 app:srb_clickable="true"
                 app:srb_drawableEmpty="@drawable/book_select_star_off"
@@ -207,7 +216,7 @@
                 app:srb_stepSize="1" />
 
             <ImageView
-                android:id="@+id/add_book_select_area3"
+                android:id="@+id/history_fix_area3"
                 android:layout_width="match_parent"
                 android:layout_height="93dp"
                 android:layout_marginStart="16dp"
@@ -216,10 +225,10 @@
                 android:background="@drawable/addbook_select_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/add_book_select_area2" />
+                app:layout_constraintTop_toBottomOf="@id/history_fix_area2" />
 
             <TextView
-                android:id="@+id/add_book_select_line_tv"
+                android:id="@+id/history_fix_line_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -228,27 +237,28 @@
                 android:singleLine="true"
                 android:text="@string/addbook_select_line"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@id/add_book_select_area3"
-                app:layout_constraintTop_toTopOf="@id/add_book_select_area3" />
+                app:layout_constraintStart_toStartOf="@id/history_fix_area3"
+                app:layout_constraintTop_toTopOf="@id/history_fix_area3" />
 
             <EditText
-                android:id="@+id/add_book_select_line_write_et"
+                android:id="@+id/history_fix_line_write_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
+                android:bufferType="editable"
                 android:fontFamily="@font/pd_regular"
                 android:inputType="text"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@id/add_book_select_area3"
-                app:layout_constraintStart_toStartOf="@id/add_book_select_area3"
-                app:layout_constraintTop_toBottomOf="@+id/add_book_select_line_tv" />
+                app:layout_constraintEnd_toEndOf="@id/history_fix_area3"
+                app:layout_constraintStart_toStartOf="@id/history_fix_area3"
+                app:layout_constraintTop_toBottomOf="@+id/history_fix_line_tv" />
 
 
             <ImageView
-                android:id="@+id/add_book_select_area4"
+                android:id="@+id/history_fix_area4"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginStart="16dp"
@@ -259,10 +269,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/add_book_select_area3" />
+                app:layout_constraintTop_toBottomOf="@id/history_fix_area3" />
 
             <TextView
-                android:id="@+id/add_book_select_review_tv"
+                android:id="@+id/history_fix_review_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginStart="16dp"
@@ -270,8 +280,8 @@
                 android:fontFamily="@font/pd_semibold"
                 android:text="독후감"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@id/add_book_select_area4"
-                app:layout_constraintTop_toTopOf="@id/add_book_select_area4" />
+                app:layout_constraintStart_toStartOf="@id/history_fix_area4"
+                app:layout_constraintTop_toTopOf="@id/history_fix_area4" />
 
             <FrameLayout
                 android:layout_width="349dp"
@@ -280,14 +290,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:scrollbars="vertical"
-                app:layout_constraintEnd_toEndOf="@id/add_book_select_area4"
-                app:layout_constraintStart_toStartOf="@id/add_book_select_area4"
-                app:layout_constraintTop_toBottomOf="@id/add_book_select_review_tv">
+                app:layout_constraintEnd_toEndOf="@id/history_fix_area4"
+                app:layout_constraintStart_toStartOf="@id/history_fix_area4"
+                app:layout_constraintTop_toBottomOf="@id/history_fix_review_tv">
 
                 <EditText
-                    android:id="@+id/add_book_select_review_write_et"
+                    android:id="@+id/history_fix_review_write_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:bufferType="editable"
                     android:fontFamily="@font/pd_regular"
                     android:scrollbars="vertical"
                     android:textSize="14sp" />
@@ -299,7 +310,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_book_select_finish_btn"
+        android:id="@+id/history_fix_finish_btn"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_marginStart="16dp"

@@ -17,6 +17,7 @@ import com.example.librog.data.remote.history.HistoryResponse
 import com.example.librog.databinding.ActivityDetailFlowerpotBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
+import com.example.librog.ui.main.history.DetailHistoryActivity
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,7 +28,8 @@ class DetailFlowerpotActivity :
     BaseActivity<ActivityDetailFlowerpotBinding>(ActivityDetailFlowerpotBinding::inflate) {
 
     private var flowerpotBookList = ArrayList<BookImgUrl>()
-    private var adapter = DetailFlowerpotRVAdapter(flowerpotBookList)
+    private var readingRecordIdxList = ArrayList<Int>()
+    private lateinit var adapter:DetailFlowerpotRVAdapter
     private var gson = Gson()
     private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
 
@@ -36,7 +38,6 @@ class DetailFlowerpotActivity :
         val idx = intent.getIntExtra("flowerpotIdx", 1)
         getFlowerpotBookRecord(idx)
         initLayout()
-
     }
 
     // API 명세서 2.2 화분별 독서 기록 조회 API
@@ -54,7 +55,7 @@ class DetailFlowerpotActivity :
                         initData(resp.result)
                     }
                     3006 -> {
-                        noBookInFlowerpot()
+                        hideFlowerpotRV()
                     }
                     else -> {
                         Log.d("resp", "${resp.code} + resp.message")
@@ -71,16 +72,19 @@ class DetailFlowerpotActivity :
     }
 
 
-
-    fun noBookInFlowerpot(){
+    fun hideFlowerpotRV(){
         binding.detailFlowerpotBookListRv.visibility = View.GONE
         binding.detailFlowerpotNoBookTv.visibility = View.VISIBLE
     }
 
+
     fun initData(result: ArrayList<FilteredHistoryResult>) {
         flowerpotBookList.clear()
+        readingRecordIdxList.clear()
+
         binding.detailFlowerpotNoBookTv.visibility = View.GONE
         binding.detailFlowerpotBookListRv.visibility = View.VISIBLE
+
 
         for (item in result) {
 
@@ -88,19 +92,19 @@ class DetailFlowerpotActivity :
                 Log.d("resp", item.bookImgUrl.toString())
 
                 flowerpotBookList.add(
-                    BookImgUrl(bookIdx = item.bookIdx!!, imgUrl = item.bookImgUrl!!)
+                    BookImgUrl(bookIdx = item.bookIdx, imgUrl = item.bookImgUrl!!)
                 )
             } else {
                 Log.d("resp", "test")
 
                 flowerpotBookList.add(
                     BookImgUrl(
-                        bookIdx = item.bookIdx!!,
-                        imgUrl = "https://sadad64.shop/images/sunflower_test.png"
+                        bookIdx = item.bookIdx,
+                        imgUrl = item.bookImgUrl ?: "https://sadad64.shop/images/sunflower_test.png"
                     )
                 )
             }
-
+            readingRecordIdxList.add(item.readingRecordIdx)
         }
         adapter.notifyDataSetChanged()
     }
@@ -142,6 +146,8 @@ class DetailFlowerpotActivity :
 
         }
 
+        adapter = DetailFlowerpotRVAdapter(flowerpotBookList, readingRecordIdxList)
+
         binding.detailFlowerpotBookListRv.adapter = adapter
         binding.detailFlowerpotBookListRv.layoutManager = GridLayoutManager(this, 3)
         binding.detailFlowerpotBackBtnIv.setOnClickListener {
@@ -150,8 +156,10 @@ class DetailFlowerpotActivity :
 
         //화분에 기록된 책 클릭한 경우 임시로 Toast 메시지
         adapter.setMyItemClickListener(object : DetailFlowerpotRVAdapter.OnItemClickListener {
-            override fun onItemClick(bookImgUrl: BookImgUrl) {
-                showToast("Book Clicked")
+            override fun onItemClick(bookImgUrl: BookImgUrl, readingRecordIdx: Int) {
+                val intent = Intent(applicationContext, DetailHistoryActivity::class.java)
+                intent.putExtra("readingRecordIdx", readingRecordIdx)
+                startActivity(intent)
             }
         })
 
