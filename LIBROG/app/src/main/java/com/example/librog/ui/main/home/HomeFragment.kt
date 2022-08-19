@@ -1,15 +1,20 @@
 package com.example.librog.ui.main.home
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
+import com.example.librog.R
 import com.example.librog.data.remote.*
 import com.example.librog.data.remote.data.*
 import com.example.librog.databinding.FragmentHomeBinding
@@ -34,7 +39,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         service.getUserNotice(this)
         homeService.getRecommend(this)
         homeService.getRecentBook(this)
-        getMainPot(1)
+        getMainPot()
     }
 
     fun setNotice(result: ArrayList<HomeNoticeResult>){
@@ -97,11 +102,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun getMainPot(userIdx: Int){
-        mainPotService.getMainPot(userIdx).enqueue(object: Callback<MainPotResponse> {
+    private fun getMainPot(){
+        mainPotService.getMainPot(getIdx()).enqueue(object: Callback<MainPotResponse> {
             override fun onResponse(call: Call<MainPotResponse>, response: Response<MainPotResponse>) {
                 val resp = response.body()!!
-                setMainPot(resp.result)
+                Log.d("getMainPot",resp.code.toString())
+                when (resp.code){
+                    1000->{
+                        setMainPot(resp.result!!)
+                    }
+                }
             }
             override fun onFailure(call: Call<MainPotResponse>, t: Throwable) {
             }
@@ -109,8 +119,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setMainPot(result: MainPotResult){
-//        binding.homeFlowerTv.text = result.name
-//        Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
+        binding.homeFlowerTv.text = result.name
+        Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
+        binding.mainCircleFlowerIv.backgroundTintList = ColorStateList.valueOf(Color.parseColor(result.backgroundColor))
+
+    }
+
+    private fun getIdx(): Int{
+        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getInt("idx",-1)
     }
 
 

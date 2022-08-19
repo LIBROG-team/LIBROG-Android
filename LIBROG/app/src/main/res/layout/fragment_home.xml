@@ -43,15 +43,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_countday_tv" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <View
             android:id="@+id/main_circle_flower_iv"
             android:layout_width="275dp"
             android:layout_height="275dp"
-            android:src="@drawable/flower_image"
             android:layout_marginTop="54dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/home_flower_border"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_status_tv"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_status_tv" />
 
         <ImageView
             android:id="@+id/home_circle_flower_img"
