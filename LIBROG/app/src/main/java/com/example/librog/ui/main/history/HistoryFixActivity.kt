@@ -2,7 +2,6 @@ package com.example.librog.ui.main.history
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -35,21 +34,22 @@ class HistoryFixActivity :
     }
 
     private fun afterUserInput(readingRecordIdx: Int): FixBookRecordData {
-        val curBookdata = FixBookRecordData(
+
+        return FixBookRecordData(
             binding.historyFixRb.rating.toInt(),
             binding.historyFixLineWriteEt.text.toString(),
             binding.historyFixReviewWriteEt.text.toString(),
             readingRecordIdx
         )
-
-        return curBookdata
     }
 
 
-    private fun initDeleteDialog(readingRecordIdx: Int){
+    private fun initDeleteDialog(readingRecordIdx: Int) {
         AlertDialog.Builder(this)
             .setMessage("${binding.historyFixTitleTv.text}를 삭제하시겠습니까?")
-            .setPositiveButton("확인") { _, _ -> deleteReadingRecord(readingRecordIdx) }
+            .setPositiveButton("확인") { _, _ ->
+                deleteReadingRecord(DeleteBookRecordData(readingRecordIdx))
+            }
             .setNegativeButton("취소", null)
             .show()
 
@@ -58,11 +58,18 @@ class HistoryFixActivity :
     private fun initClickListener(readingRecordIdx: Int) {
         binding.historyFixDeleteIv.setOnClickListener {
             initDeleteDialog(readingRecordIdx)
+            hideKeyboard(it)
+        }
+
+        binding.historyFixBackBtnIv.setOnClickListener {
+            finish()
         }
 
         binding.historyFixFinishBtn.setOnClickListener {
             fixReadingRecord(afterUserInput(readingRecordIdx))
-            Log.d("Test",afterUserInput(readingRecordIdx).toString())
+            hideKeyboard(it)
+            finish()
+
         }
 
     }
@@ -76,12 +83,11 @@ class HistoryFixActivity :
                 when (resp.code) {
                     1000 -> {
                         showToast("독서기록 수정에 성공하였습니다.")
-                        finish()
+
                     }
 
                     else -> {
                         showToast(resp.message)
-                        finish()
                     }
                 }
             }
@@ -97,27 +103,31 @@ class HistoryFixActivity :
 
 
     //2.5 독서기록 삭제 DELETE api
-    private fun deleteReadingRecord(readingRecordIdx: Int){
-        historyService.deleteReadingRecord(readingRecordIdx).enqueue(object : Callback<DeleteRecordResponse>{
-            override fun onResponse(
-                call: Call<DeleteRecordResponse>,
-                response: Response<DeleteRecordResponse>
-            ) {
-                val resp = response.body()!!
-                when(resp.code){
-                    1000 ->{
-                        showToast("${binding.historyFixTitleTv.text} 삭제에 성공하였습니다.")
-                    }
-                    else -> {
-                        showToast(resp.message)
+    private fun deleteReadingRecord(readingRecordIdx: DeleteBookRecordData) {
+        historyService.deleteReadingRecord(readingRecordIdx)
+            .enqueue(object : Callback<DeleteRecordResponse> {
+                override fun onResponse(
+                    call: Call<DeleteRecordResponse>,
+                    response: Response<DeleteRecordResponse>
+                ) {
+                    val resp = response.body()!!
+                    when (resp.code) {
+                        1000 -> {
+                            showToast("${binding.historyFixTitleTv.text} 삭제에 성공하였습니다.")
+                            finish()
+                        }
+                        else -> {
+                            showToast(resp.message)
+                        }
                     }
                 }
-            }
 
-            override fun onFailure(call: Call<DeleteRecordResponse>, t: Throwable) {
-            }
+                override fun onFailure(call: Call<DeleteRecordResponse>, t: Throwable) {
+                    t.printStackTrace()
+                    finish()
+                }
 
-        })
+            })
     }
 
     private fun initData(readingRecordIdx: Int) {

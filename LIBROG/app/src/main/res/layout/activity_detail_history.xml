@@ -183,7 +183,7 @@
             app:srb_clickable="false"
             app:srb_drawableEmpty="@drawable/book_select_star_off"
             app:srb_drawableFilled="@drawable/book_select_star_on"
-            app:srb_isIndicator="false"
+            app:srb_isIndicator="true"
             app:srb_minimumStars="1"
             app:srb_numStars="5"
             app:srb_rating="4"

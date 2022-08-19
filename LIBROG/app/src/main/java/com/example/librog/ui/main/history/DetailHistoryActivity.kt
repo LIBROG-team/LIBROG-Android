@@ -19,9 +19,11 @@ class DetailHistoryActivity :
     BaseActivity<ActivityDetailHistoryBinding>(ActivityDetailHistoryBinding::inflate) {
 
     private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
+    private var tempIdx = 0
 
     override fun initAfterBinding() {
         val readingRecordIdx = intent.getIntExtra("readingRecordIdx", -1)
+        tempIdx = readingRecordIdx
 
         if (readingRecordIdx == -1) {
             Log.e("Error", "Error")
@@ -31,6 +33,12 @@ class DetailHistoryActivity :
         getDetailReadingRecordByIdx(readingRecordIdx)
         initClickListener(readingRecordIdx)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getDetailReadingRecordByIdx(tempIdx)
+        initClickListener(tempIdx)
     }
 
     // API 명세서 2.8 독서기록 상세조회 api
@@ -48,8 +56,10 @@ class DetailHistoryActivity :
                     }
 
                     3015 -> {
-                        showToast(resp.message)
                         finish()
+                    }
+                    else -> {
+                        showToast(resp.message)
                     }
 
                 }
@@ -79,13 +89,14 @@ class DetailHistoryActivity :
             detailHistoryBookContentsTv.text = result.bookInstruction
             detailHistoryStarRatingTv.text =
                 String.format(getString(R.string.detail_history_rating), result.starRating, 5)
-            binding.detailHistoryContentWriteTv.text = result.content ?: ""
-            binding.detailHistoryQuoteWriteTv.text = result.quote ?: ""
-            binding.detailHistoryRatingBarRb.rating = result.starRating.toFloat()
+            detailHistoryContentWriteTv.text = result.content ?: ""
+            detailHistoryQuoteWriteTv.text = result.quote ?: ""
+            detailHistoryRatingBarRb.rating = result.starRating.toFloat()
 
-            binding.detailHistoryRatingBarRb.setOnRatingChangeListener { _, f1, _ ->
-                binding.detailHistoryRatingBarRb.rating = result.starRating.toFloat()
-            }
+// ratingbar 속성에서 srb_isIndicator = true로 변경하면 사용자가 드래그해도 변경되지 않음.
+//            detailHistoryRatingBarRb.setOnRatingChangeListener { _, f1, _ ->
+//                detailHistoryRatingBarRb.rating = result.starRating.toFloat()
+//            }
             Glide.with(applicationContext)
                 .load(result.bookImgUrl)
                 .into(detailHistoryBookThumbnailIv)
@@ -99,6 +110,7 @@ class DetailHistoryActivity :
             intent.putExtra("readingRecordIdx", readingRecordIdx)
             startActivity(intent)
         }
+
         binding.detailHistoryBackBtnIv.setOnClickListener {
             finish()
         }

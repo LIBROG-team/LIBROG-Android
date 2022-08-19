@@ -28,6 +28,6 @@ interface HistoryInterface {
     @PATCH("/records/fix")
     fun fixReadingRecord(@Body fixBookRecordData: FixBookRecordData): Call<FixResponse>
 
-    @DELETE("/records/removal")
-    fun deleteReadingRecord(@Body recordsIdx: Int): Call<DeleteRecordResponse>
+    @HTTP(method = "DELETE", path ="/records/removal", hasBody = true)
+    fun deleteReadingRecord(@Body recordsIdx: DeleteBookRecordData): Call<DeleteRecordResponse>
 }
