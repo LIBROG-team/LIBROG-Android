@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.home
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -46,8 +47,14 @@ class RecentReadRVAdapter(private val recentReadList: ArrayList<RecentReadResult
             binding.itemHomeBookTitleTv.text = recentReadData.bookName
 
             var authorTotal = ""
+            var authorLength=recentReadData.author.size
+
             for (item in recentReadData.author){
-                authorTotal+=item
+                if (authorLength>1)
+                    authorTotal+=String.format("%s, ",item)
+                else
+                    authorTotal+=item
+                authorLength--
             }
             binding.itemHomeBookWriterTv.text=authorTotal
 
