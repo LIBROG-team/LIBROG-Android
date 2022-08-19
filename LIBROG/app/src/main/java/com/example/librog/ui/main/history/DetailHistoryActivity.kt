@@ -11,7 +11,6 @@ import com.example.librog.data.remote.history.DetailReadingRecordResult
 import com.example.librog.data.remote.history.HistoryInterface
 import com.example.librog.databinding.ActivityDetailHistoryBinding
 import com.example.librog.ui.BaseActivity
-import com.example.librog.ui.main.addbook.AddBookSelectActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +29,7 @@ class DetailHistoryActivity :
         }
 
         getDetailReadingRecordByIdx(readingRecordIdx)
+        initClickListener(readingRecordIdx)
 
     }
 
@@ -56,7 +56,7 @@ class DetailHistoryActivity :
             }
 
             override fun onFailure(call: Call<DetailReadingRecordResponse>, t: Throwable) {
-                showToast(t.message?:"DetailHistoryActivity Error")
+                showToast(t.message ?: "DetailHistoryActivity Error")
                 finish()
             }
 
@@ -80,24 +80,31 @@ class DetailHistoryActivity :
             detailHistoryStarRatingTv.text =
                 String.format(getString(R.string.detail_history_rating), result.starRating, 5)
             binding.detailHistoryContentWriteTv.text = result.content ?: ""
-            binding.detailHistoryQuoteWriteTv.text = result.quote?: ""
+            binding.detailHistoryQuoteWriteTv.text = result.quote ?: ""
             binding.detailHistoryRatingBarRb.rating = result.starRating.toFloat()
-            binding.detailHistoryRatingBarRb.setOnRatingChangeListener { ratingBar, rating, fromUser ->
-                ratingBar.rating = result.starRating.toFloat()
+
+            binding.detailHistoryRatingBarRb.setOnRatingChangeListener { _, f1, _ ->
+                binding.detailHistoryRatingBarRb.rating = result.starRating.toFloat()
             }
             Glide.with(applicationContext)
                 .load(result.bookImgUrl)
                 .into(detailHistoryBookThumbnailIv)
         }
+
     }
 
-    // 독서기록 수정 버튼, 독서기록 수정 api 구현 필요
-    private fun initClickListener(){
+    private fun initClickListener(readingRecordIdx: Int) {
         binding.detailHistoryFixIv.setOnClickListener {
-            val intent = Intent(applicationContext, AddBookSelectActivity::class.java)
-
+            val intent = Intent(this, HistoryFixActivity::class.java)
+            intent.putExtra("readingRecordIdx", readingRecordIdx)
+            startActivity(intent)
+        }
+        binding.detailHistoryBackBtnIv.setOnClickListener {
+            finish()
         }
     }
 
 
 }
+
+
