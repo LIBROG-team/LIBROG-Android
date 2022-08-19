@@ -16,11 +16,11 @@ data class SignUpResult(
 
 //회원가입(입력값)
 data class SignUpInfo(
-    @SerializedName(value = "email")val email: String,
-    @SerializedName(value = "password")val password: String,
-    @SerializedName(value = "name")val name: String,
-    @SerializedName(value = "profileImgUrl")val profileImgUrl: String,
-    @SerializedName(value = "introduction")val introduction: String,
+    @SerializedName(value = "email") val email: String,
+    @SerializedName(value = "password") val password: String,
+    @SerializedName(value = "name") val name: String,
+    @SerializedName(value = "profileImg") val profileImg: String,
+    @SerializedName(value = "introduction") val introduction: String,
 )
 
 
@@ -90,15 +90,6 @@ data class FindPwdResult(
 data class FindPwdInfo(
     @SerializedName(value = "email") val email: String
 )
-
-
-
-
-
-
-
-
-
 
 
 //비밀번호 변경(응답값)

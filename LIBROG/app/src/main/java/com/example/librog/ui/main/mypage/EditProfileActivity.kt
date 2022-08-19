@@ -11,9 +11,7 @@ import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.HomeRetrofitInterface
 import com.example.librog.data.remote.MainPotResponse
-import com.example.librog.data.remote.data.EditIntroduceInfo
-import com.example.librog.data.remote.data.EditIntroduceResponse
-import com.example.librog.data.remote.data.UserDataInterface
+import com.example.librog.data.remote.data.*
 import com.example.librog.data.remote.data.auth.AppLoginInfo
 import com.example.librog.databinding.ActivityEditProfileBinding
 
@@ -28,12 +26,14 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     private lateinit var imgUri: Uri
     private var isImgNull = true
     private val service = ApplicationClass.retrofit.create(UserDataInterface::class.java)
+
     override fun initAfterBinding() {
 //        if(getImgUri()!="0"){
 //            val uri:Uri = Uri.parse(getImgUri())
 //            binding.editProfileIv.setImageURI(uri)
 //            showToast(getImgUri())
 //        }
+        getUserProfile(getIdx())
         initClickListener()
     }
 
@@ -135,6 +135,22 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     private fun getIdx(): Int{
         val spf = getSharedPreferences("userInfo",MODE_PRIVATE)
         return spf!!.getInt("idx",-1)
+    }
+
+    private fun getUserProfile(userIdx: Int){
+        service.getUserProfile(userIdx).enqueue(object: Callback<UserProfileResponse> {
+            override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
+                val resp = response.body()!!
+                initProfile(resp.result!!)
+            }
+            override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun initProfile(result: UserProfileResult){
+        binding.editIntroduceEt.setText(result.introduction)
+        binding.editNicknameEt.setText(result.name)
     }
 
 //    private fun saveUri(imageUri:Uri){

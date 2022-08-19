@@ -75,15 +75,17 @@
         app:layout_constraintStart_toStartOf="parent"/>
     <EditText
         android:id="@+id/edit_nickname_et"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp"
         android:layout_marginTop="22dp"
         android:background="@null"
         android:text="리브로그"
         android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_nickname_title" />
     <View
         android:id="@+id/edit_nickname_underscore_view"
@@ -108,15 +110,17 @@
         app:layout_constraintStart_toStartOf="parent"/>
     <EditText
         android:id="@+id/edit_introduce_et"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
         android:layout_marginTop="22dp"
         android:background="@null"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp"
         android:hint="자기소개를 입력해주세요"
         android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_introduce_title" />
 
     <View
