@@ -16,13 +16,13 @@ data class FixBookRecordResult(
     @SerializedName("fieldCount") var fieldCount: Int,
     @SerializedName("affectedRows") var affectedRows: Int,
     @SerializedName("insertId") var insertId: Int,
-    @SerializedName("info") var info: Int,
+    @SerializedName("info") var info: String,
     @SerializedName("serverStatus") var serverStatus: Int,
     @SerializedName("warningStatus") var warningStatus: Int,
     @SerializedName("changedRows") var changedRows: Int,
 )
 
-// PATCH 통신 시 추가하는 데이터
+// PATCH 통신 시 보내는 데이터
 data class FixBookRecordData(
     @SerializedName("starRating") var starRating: Int,
     @SerializedName("quote") var quote: String?,
@@ -104,7 +104,7 @@ data class DeleteBookRecordResult(
     @SerializedName("fieldCount") var fieldCount: Int,
     @SerializedName("affectedRows") var affectedRows: Int,
     @SerializedName("insertId") var insertId: Int,
-    @SerializedName("info") var info: Int,
+    @SerializedName("info") var info: String,
     @SerializedName("serverStatus") var serverStatus: Int,
     @SerializedName("warningStatus") var warningStatus: Int,
 )

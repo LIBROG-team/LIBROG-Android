@@ -41,6 +41,10 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
         initClickListener(userIdx)
     }
 
+    override fun onResume() {
+        super.onResume()
+        initAfterBinding()
+    }
 
     // API 명세서 2.9 유저 전체 독서기록 필터(최근 순) api
     private fun getHistoryFilteredByRecent(userIdx: Int) {
@@ -133,7 +137,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
                     clickSortTv()
                     return
                 }
-                Toast.makeText(activity, "$readingRecordIdx", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(context, DetailHistoryActivity::class.java)
                 intent.putExtra("readingRecordIdx", readingRecordIdx)
