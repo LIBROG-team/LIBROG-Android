@@ -57,7 +57,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         binding.profileEditFinishBtn.setOnClickListener {
 //            if (!isImgNull)
 //                saveUri(imgUri)
-            editIntroduce(getIntroduceInfo()) //자기소개 수정 api 호출
+            editProfile(getIntroduceInfo()) //자기소개 수정 api 호출
         }
 
         binding.editBackBtn.setOnClickListener {
@@ -107,9 +107,9 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
             }
     }}
 
-    private fun editIntroduce(editIntroduceInfo: EditIntroduceInfo){
-        service.editIntroduce(editIntroduceInfo).enqueue(object: Callback<EditIntroduceResponse> {
-            override fun onResponse(call: Call<EditIntroduceResponse>, response: Response<EditIntroduceResponse>) {
+    private fun editProfile(editProfileInfo: EditProfileInfo){
+        service.editProfile(editProfileInfo).enqueue(object: Callback<EditProfileResponse> {
+            override fun onResponse(call: Call<EditProfileResponse>, response: Response<EditProfileResponse>) {
                 val resp = response.body()!!
                 when (resp.code){
                     1000->{
@@ -122,15 +122,17 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
                     }
                 }
             }
-            override fun onFailure(call: Call<EditIntroduceResponse>, t: Throwable) {
+            override fun onFailure(call: Call<EditProfileResponse>, t: Throwable) {
             }
         })
     }
 
-    private fun getIntroduceInfo(): EditIntroduceInfo{
+    private fun getIntroduceInfo(): EditProfileInfo{
+        val id=getIdx()
+        val name = binding.editNicknameEt.text.toString()
         val introduction= binding.editIntroduceEt.text.toString()
 
-        return EditIntroduceInfo(introduction, getIdx())
+        return EditProfileInfo(id,name,introduction,"")
     }
 
     private fun getIdx(): Int{

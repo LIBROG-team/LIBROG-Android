@@ -108,6 +108,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         val editor = spf!!.edit()
         editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
         editor.apply()
+
         binding.mypageLoginBtn.text = "로그인"
     }
 

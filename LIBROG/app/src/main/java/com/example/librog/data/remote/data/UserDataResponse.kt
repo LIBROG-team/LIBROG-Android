@@ -56,26 +56,17 @@ data class UserProfileResult(
 
 
 //자기소개 변경
-data class EditIntroduceResponse(
+data class EditProfileResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
     @SerializedName("code") val code: Int,
     @SerializedName("message") val message: String,
-    @SerializedName("result") val result: EditIntroduceResult?
 )
 
-data class EditIntroduceResult(
-    @SerializedName("fieldCount") val fieldCount: Int,
-    @SerializedName("affectedRows") val affectedRows: Int,
-    @SerializedName("insertId") val insertId: Int,
-    @SerializedName("info") val info: String,
-    @SerializedName("serverStatus") val serverStatus: Int,
-    @SerializedName("warningStatus") val warningStatus: Int,
-    @SerializedName("changedRows") val changedRows: Int,
-)
-
-data class EditIntroduceInfo(
+data class EditProfileInfo(
+    @SerializedName("idx") val idx: Int,
+    @SerializedName("name") val name: String,
     @SerializedName("introduction") val introduction: String,
-    @SerializedName("idx") val idx: Int
+    @SerializedName("profileImg") val profileImg: String?
 )
 
 

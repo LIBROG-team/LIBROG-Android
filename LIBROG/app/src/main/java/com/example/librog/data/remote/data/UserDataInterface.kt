@@ -16,6 +16,6 @@ interface UserDataInterface {
     @GET("/users/profile/{userIdx}")
     fun getUserProfile(@Path("userIdx") userIdx: Int): Call<UserProfileResponse>
 
-    @PATCH("/users/introduce/edit")
-    fun editIntroduce(@Body editIntroduceInfo: EditIntroduceInfo): Call<EditIntroduceResponse>
+    @PATCH("users/profile/edit")
+    fun editProfile(@Body editProfileInfo: EditProfileInfo): Call<EditProfileResponse>
 }
