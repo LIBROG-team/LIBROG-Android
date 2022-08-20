@@ -7,7 +7,7 @@ import com.example.librog.data.remote.data.HomeNoticeResult
 import com.example.librog.databinding.FragmentHomeNoticeBinding
 import com.example.librog.ui.BaseFragment
 
-class HomeNoticeFragment(private val item:HomeNoticeResult): BaseFragment<FragmentHomeNoticeBinding>(FragmentHomeNoticeBinding::inflate) {
+class HomeNoticeFragment(val item:HomeNoticeResult): BaseFragment<FragmentHomeNoticeBinding>(FragmentHomeNoticeBinding::inflate) {
     override fun initAfterBinding() {
         Glide.with(this).load(item.noticeImgUrl).into(binding.homeBannerNoticeIv)
         binding.homeBannerNoticeIv.setOnClickListener {

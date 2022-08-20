@@ -7,7 +7,9 @@ import android.net.Uri
 import android.util.Log
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,10 +38,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun initAfterBinding() {
         (activity as MainActivity).showBottomNav()
 
+        val userIdx = getUserIdx(this)
         service.getUserNotice(this)
         homeService.getRecommend(this)
         homeService.getRecentBook(this)
+
         getMainPot()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        service.getUserNotice(this)
     }
 
     fun setNotice(result: ArrayList<HomeNoticeResult>){
@@ -130,5 +139,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         return spf!!.getInt("idx",-1)
     }
 
+
+    private fun getUserIdx(fragment: Fragment): Int {
+        val spf =
+            fragment.activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getInt("idx", -1)
+    }
 
 }

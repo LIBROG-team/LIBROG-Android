@@ -10,10 +10,13 @@ import com.example.librog.data.entities.BookImgUrl
 import com.example.librog.databinding.ItemDetailFlowerpotBinding
 
 
-class DetailFlowerpotRVAdapter(private val items: ArrayList<BookImgUrl>): RecyclerView.Adapter<DetailFlowerpotRVAdapter.ViewHolder>() {
+class DetailFlowerpotRVAdapter(
+    private val items: ArrayList<BookImgUrl>,
+    private val readingRecordIdxList: ArrayList<Int>
+) : RecyclerView.Adapter<DetailFlowerpotRVAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(bookImgUrl: BookImgUrl)
+        fun onItemClick(bookImgUrl: BookImgUrl, readingRecordIdx: Int)
     }
 
     private lateinit var mItemClickListener: OnItemClickListener
@@ -22,8 +25,9 @@ class DetailFlowerpotRVAdapter(private val items: ArrayList<BookImgUrl>): Recycl
         mItemClickListener = itemClickListener
     }
 
-    inner class ViewHolder(val binding: ItemDetailFlowerpotBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(item: BookImgUrl){
+    inner class ViewHolder(val binding: ItemDetailFlowerpotBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: BookImgUrl) {
             Glide.with(context)
                 .load(item.imgUrl)
                 .into(binding.itemDetailFlowerpotIv)
@@ -31,7 +35,8 @@ class DetailFlowerpotRVAdapter(private val items: ArrayList<BookImgUrl>): Recycl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemDetailFlowerpotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemDetailFlowerpotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         context = parent.context
         return ViewHolder(binding)
     }
@@ -39,7 +44,7 @@ class DetailFlowerpotRVAdapter(private val items: ArrayList<BookImgUrl>): Recycl
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
         holder.binding.itemDetailFlowerpotIv.setOnClickListener {
-            mItemClickListener.onItemClick(items[position])
+            mItemClickListener.onItemClick(items[position], readingRecordIdxList[position])
         }
     }
 

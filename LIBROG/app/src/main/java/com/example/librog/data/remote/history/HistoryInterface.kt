@@ -1,10 +1,7 @@
 package com.example.librog.data.remote.history
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface HistoryInterface {
     @GET("/records/bookRecords/{userIdx}")
@@ -28,4 +25,9 @@ interface HistoryInterface {
     @GET("/records/{readingRecordIdx}")
     fun getDetailReadingRecordByIdx(@Path("readingRecordIdx") readingRecordIdx: Int): Call<DetailReadingRecordResponse>
 
+    @PATCH("/records/fix")
+    fun fixReadingRecord(@Body fixBookRecordData: FixBookRecordData): Call<FixResponse>
+
+    @HTTP(method = "DELETE", path ="/records/removal", hasBody = true)
+    fun deleteReadingRecord(@Body recordsIdx: DeleteBookRecordData): Call<DeleteRecordResponse>
 }

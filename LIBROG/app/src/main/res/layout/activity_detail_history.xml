@@ -19,14 +19,18 @@
 
     <TextView
         android:id="@+id/detail_history_top_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
         android:fontFamily="@font/pd_bold"
+        android:maxLines="1"
         android:text="@string/detail_history_top_text"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/detail_history_back_btn_iv"
+        app:layout_constraintEnd_toStartOf="@id/detail_history_fix_iv"
         app:layout_constraintStart_toEndOf="@id/detail_history_back_btn_iv"
         app:layout_constraintTop_toTopOf="@id/detail_history_back_btn_iv" />
 
@@ -111,8 +115,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/pd_regular"
                 android:lineHeight="16sp"
+                android:maxLines="5"
                 android:text="@string/detail_history_description"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
@@ -177,7 +183,7 @@
             app:srb_clickable="false"
             app:srb_drawableEmpty="@drawable/book_select_star_off"
             app:srb_drawableFilled="@drawable/book_select_star_on"
-            app:srb_isIndicator="false"
+            app:srb_isIndicator="true"
             app:srb_minimumStars="1"
             app:srb_numStars="5"
             app:srb_rating="4"
