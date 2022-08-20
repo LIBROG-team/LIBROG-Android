@@ -95,12 +95,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             getUserProfile(id)
         //유저 통계 불러오기
         userDataService.getUserStat(this,getIdx())
-
-//        Log.d("Img",getImgUri())
-//        if(getImgUri()!="0"){
-//            val uri:Uri = Uri.parse(getImgUri())
-//            binding.profileIv.setImageURI(uri)
-//        }
     }
 
     private fun logout(){
@@ -115,11 +109,13 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
 
     //유저 통계 표시 (UserDataService에서 호출)
     fun setData(result: UserStatResult) {
-        binding.mypageFlowerCnt.text = result.flowerCnt.toString()
-        binding.mypageReadingCnt.text = result.readingCnt.toString()
-        binding.mypageStarCnt.text = result.starRatingCnt.toString()
-        binding.mypageQuoteCnt.text = result.quoteCnt.toString()
-        binding.mypageContentCnt.text = result.contentCnt.toString()
+        binding.apply{
+            mypageFlowerCnt.text = result.flowerCnt.toString()
+            mypageReadingCnt.text = result.readingCnt.toString()
+            mypageStarCnt.text = result.starRatingCnt.toString()
+            mypageQuoteCnt.text = result.quoteCnt.toString()
+            mypageContentCnt.text = result.contentCnt.toString()
+        }
     }
 
     private fun getUserProfile(userIdx: Int){
@@ -134,10 +130,14 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun setUserProfile(result: UserProfileResult){
-        if (result.profileImgUrl== "https://librog.shop/source/profileImg/defaultImg.png")
+        if (getImgUri()=="0"){
             binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
-        else
-            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
+        }
+        else{
+            val uri:Uri = Uri.parse(getImgUri())
+            binding.profileIv.setImageURI(uri)
+        }
+        //Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
         binding.profileNameTv.text = result.name
         binding.profileIntroTv.text = result.introduction
 
@@ -153,10 +153,10 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
     }
 
-//    private fun getImgUri(): String{
-//        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-//        return spf!!.getString("imgUri","0")!!
-//    }
+    private fun getImgUri(): String{
+        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("imgUri","0")!!
+    }
 
 
 }

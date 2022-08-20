@@ -9,19 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
-import com.example.librog.data.local.AppDatabase
-import com.example.librog.data.remote.HomeRetrofitInterface
-import com.example.librog.data.remote.MainPotResponse
 import com.example.librog.data.remote.data.*
-import com.example.librog.data.remote.data.auth.AppLoginInfo
 import com.example.librog.databinding.ActivityEditProfileBinding
 
 import com.example.librog.ui.BaseActivity
-import com.example.librog.ui.main.signup.SignUpActivity
 import com.example.librog.ui.main.signup.SignUpLastFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEditProfileBinding::inflate) {
     private lateinit var imgUri: Uri
@@ -29,11 +25,6 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     private val service = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
-//        if(getImgUri()!="0"){
-//            val uri:Uri = Uri.parse(getImgUri())
-//            binding.editProfileIv.setImageURI(uri)
-//            showToast(getImgUri())
-//        }
         getUserProfile(getIdx())
         initClickListener()
     }
@@ -49,14 +40,15 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         }
 
         binding.editImgOptionDefaultTv.setOnClickListener {
-            binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
             isImgNull=true
+            binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
             hideBanner()
         }
 
         binding.profileEditFinishBtn.setOnClickListener {
-//            if (!isImgNull)
-//                saveUri(imgUri)
+            if (!isImgNull)
+                saveUri(imgUri)
+            else setDefaultImg() //기본이미지로 설정
             editProfile(getIntroduceInfo()) //자기소개 수정 api 호출
         }
 
@@ -95,10 +87,9 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         super.onActivityResult(requestCode, resultCode, data) //URI 객체로 이미지 전달받음
         if (requestCode == SignUpLastFragment.IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
             binding.editProfileIv.setImageURI(data?.data)
-            showToast(data?.data.toString())
+
             isImgNull=false
             imgUri = data?.data!!
-
             val contentResolver = applicationContext.contentResolver
             val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION or
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION
@@ -154,22 +145,34 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     private fun initProfile(result: UserProfileResult){
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        if (result.profileImgUrl== "https://librog.shop/source/profileImg/defaultImg.png")
+        if (getImgUri()=="0"){
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
-        else
-            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.editProfileIv)
+        }
+        else{
+            val uri:Uri = Uri.parse(getImgUri())
+            binding.editProfileIv.setImageURI(uri)
+        }
+
     }
 
-//    private fun saveUri(imageUri:Uri){
-//        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
-//        val editor = spf.edit()
-//
-//        editor.putString("imgUri",imageUri.toString())
-//        editor.apply()
-//    }
-//
-//    private fun getImgUri(): String{
-//        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
-//        return spf!!.getString("imgUri","0")!!
-//    }
+    private fun saveUri(imageUri:Uri){
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("imgUri",imageUri.toString())
+        editor.apply()
+    }
+
+    private fun getImgUri(): String{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getString("imgUri","0")!!
+    }
+
+    private fun setDefaultImg(){
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        val editor = spf!!.edit()
+        editor.remove("imgUri")
+        editor.apply()
+    }
+
 }
