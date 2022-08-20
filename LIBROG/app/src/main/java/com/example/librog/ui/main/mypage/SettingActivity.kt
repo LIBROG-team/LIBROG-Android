@@ -1,5 +1,7 @@
 package com.example.librog.ui.main.mypage
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +34,32 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         binding.settingChangePwdBtn.setOnClickListener {
             startNextActivity(ChangePwdActivity::class.java)
         }
+        leavePanelClickListener()
 
+        //홈페이지 방문
+        binding.settingHomepageBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://blog.naver.com/librog"))
+            startActivity(intent)
+        }
+        //홈페이지 방문
+        binding.settingHomepageBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://blog.naver.com/librog"))
+            startActivity(intent)
+        }
+        //개인정보취급방침
+        binding.settingPrivateBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://librog.shop/blog/privacypolicy.html"))
+            startActivity(intent)
+        }
+        //쿠폰입력
+        binding.settingAddCouponBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://librog.shop/blog/promotion.html"))
+            startActivity(intent)
+        }
+
+    }
+
+    private fun leavePanelClickListener(){
         //탈퇴하기
         binding.settingLeaveBtn.setOnClickListener{
             binding.leaveConfirmPanel.visibility = View.VISIBLE
@@ -49,7 +76,6 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         binding.leaveFinishBtn.setOnClickListener {
             startNextActivity(SplashActivity::class.java)
         }
-
     }
 
     private fun deleteUser(){

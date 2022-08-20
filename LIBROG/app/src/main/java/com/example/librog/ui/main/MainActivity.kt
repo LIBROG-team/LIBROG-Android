@@ -1,5 +1,6 @@
 package com.example.librog.ui.main
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import android.content.pm.PackageManager
 
 import android.content.pm.PackageInfo
 import android.util.Base64
+import androidx.core.app.ActivityCompat
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -71,4 +73,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
             Log.e("name not found", e.toString())
         }
     }
+
+
 }

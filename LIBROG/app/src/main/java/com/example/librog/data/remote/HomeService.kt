@@ -44,7 +44,7 @@ object HomeService {
                 Log.d("RecentRead/SUCCESS",resp.code.toString())
                 when(resp.code){
                     1000->{
-                        fragment.setRecentRead(resp.result)
+                        fragment.setRecentRead(resp.result!!)
                     }
                     else ->{
 

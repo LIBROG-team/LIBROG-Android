@@ -25,7 +25,7 @@ class AuthService {
             //응답 왔을 때 처리
             override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
                 val resp: SignUpResponse = response.body()!!
-                Log.d("SIGNUP/SUCCESS",response.toString())
+                Log.d("SIGNUP/SUCCESS",resp.code.toString())
                 when(resp.code){
                     1000 ->signUpView.onSignUpSuccess(resp.message) //액티비티에서 상태 처리
                     else ->{

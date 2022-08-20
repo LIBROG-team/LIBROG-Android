@@ -1,5 +1,6 @@
 package com.example.librog.ui.main.login
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -24,8 +25,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         val AppDB = AppDatabase.getInstance(this)!!
         val users = AppDB.userDao().getUserList()
         Log.d("userlist",users.toString())
-        alreadyLogin()
-
     }
 
     private fun initClickListener(){
@@ -45,11 +44,17 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
-    private fun saveUserInfo(idx:Int,token:String){
+    private fun saveUserIdx(idx:Int){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         val editor = spf.edit()
 
         editor.putInt("idx",idx)
+        editor.apply()
+    }
+
+    private fun saveUserToken(token: String){
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        val editor = spf.edit()
         editor.putString("token",token)
         editor.apply()
     }
@@ -70,7 +75,9 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
 
     override fun onLoginSuccess(result: AppLoginResult) {
-        saveUserInfo(result.userIdx,result.jwt)
+        saveUserIdx(result.userIdx)
+        saveUserToken(result.jwt)
+        Log.d("accessToken/app", result.jwt)
         startNextActivity(MainActivity::class.java)
     }
 
@@ -86,11 +93,13 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 Log.e(TAG, "로그인 실패", error)
             }
             else if (token != null) {
+                saveUserToken(token.accessToken)
+                showToast(token.accessToken)
                 val authService = AuthService()
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
                 authService.kakaoLogin(kakaoAccessToken)
-                Log.d("accessToken", AccessToken(token.accessToken).toString())
+                Log.d("accessToken/kakao", AccessToken(token.accessToken).toString())
             }
         }
     }
@@ -111,7 +120,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
-                saveUserInfo(result.idx,"0")
+                saveUserIdx(result.idx)
                 startNextActivity(MainActivity::class.java)
             }
         }
@@ -121,16 +130,5 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         Log.d("kakaoUser", result.toString())
     }
 
-    private fun alreadyLogin(){
-        if (getIdx()!=-1){
-            startNextActivity(MainActivity::class.java)
-            showToast("로그인 되었습니다.")
-        }
-    }
-
-    private fun getIdx(): Int{
-        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
-        return spf!!.getInt("idx",-1)
-    }
 
 }

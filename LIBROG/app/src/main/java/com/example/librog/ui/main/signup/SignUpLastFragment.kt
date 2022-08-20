@@ -64,8 +64,6 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         name = spf.getString("name","0").toString()
         introduce = binding.suNicknameEt.text.toString()
 
-
-        showToast(email)
         return SignUpInfo(email,pwd,name,"",introduce)
     }
 
