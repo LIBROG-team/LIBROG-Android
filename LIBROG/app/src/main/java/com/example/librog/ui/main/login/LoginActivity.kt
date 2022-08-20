@@ -24,6 +24,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         val AppDB = AppDatabase.getInstance(this)!!
         val users = AppDB.userDao().getUserList()
         Log.d("userlist",users.toString())
+        alreadyLogin()
 
     }
 
@@ -118,6 +119,18 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onKakaoLoginFailure(code: Int, result: KakaoResult) {
         Log.d("kakaoUser", result.toString())
+    }
+
+    private fun alreadyLogin(){
+        if (getIdx()!=-1){
+            startNextActivity(MainActivity::class.java)
+            showToast("로그인 되었습니다.")
+        }
+    }
+
+    private fun getIdx(): Int{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getInt("idx",-1)
     }
 
 }

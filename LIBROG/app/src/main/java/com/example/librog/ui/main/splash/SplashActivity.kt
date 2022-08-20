@@ -33,4 +33,6 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding:
     override fun onAutoLoginFailure(code: Int, message: String) {
 //        startActivityWithClear(LoginActivity::class.java)
     }
+
+
 }
