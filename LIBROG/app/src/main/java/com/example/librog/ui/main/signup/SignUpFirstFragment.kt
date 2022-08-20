@@ -23,14 +23,9 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
         }
     }
 
-
-
-
     private fun signUp(){
         validationCheck()
     }
-
-
 
     private fun changeFragment(){
 
@@ -57,7 +52,7 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
             error="비밀번호를 입력해주세요"
         }
         else if (binding.suPwdEt.text.toString().length>21 || binding.suPwdEt.text.toString().length<7){
-            error = "비밀번호는 8~20자리를 입력해주세요"
+            error = "비밀번호는 8~20자리로 입력해주세요"
         }
         else if (binding.suNameEt.text.toString().isEmpty()){
             error="이름을 입력해주세요"
