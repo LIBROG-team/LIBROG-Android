@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
+import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
 
 import com.example.librog.data.remote.data.*
@@ -56,6 +57,19 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
 
         binding.profileSettingBtn.setOnClickListener {
             val intent = Intent(activity, SettingActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileIv.setOnClickListener {
+            val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+        binding.profileNameTv.setOnClickListener {
+            val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+        binding.profileIntroTv.setOnClickListener {
+            val intent = Intent(activity, EditProfileActivity::class.java)
             startActivity(intent)
         }
     }
@@ -119,9 +133,12 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun setUserProfile(result: UserProfileResult){
-        Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
-        binding.profileName.text = result.name
-        binding.profileIntro.text = result.introduction
+        if (result.profileImgUrl== "https://librog.shop/source/profileImg/defaultImg.png")
+            binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
+        else
+            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
+        binding.profileNameTv.text = result.name
+        binding.profileIntroTv.text = result.introduction
 
 
         //로그인 상태 확인

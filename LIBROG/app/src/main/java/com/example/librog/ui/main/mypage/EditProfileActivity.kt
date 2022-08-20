@@ -152,7 +152,10 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     private fun initProfile(result: UserProfileResult){
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.editProfileIv)
+        if (result.profileImgUrl== "https://librog.shop/source/profileImg/defaultImg.png")
+            binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
+        else
+            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.editProfileIv)
     }
 
 //    private fun saveUri(imageUri:Uri){

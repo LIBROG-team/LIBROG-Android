@@ -51,7 +51,7 @@
             app:layout_constraintTop_toBottomOf="@id/profile_line1"
             />
         <TextView
-            android:id="@+id/profile_name"
+            android:id="@+id/profile_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
@@ -61,7 +61,7 @@
             app:layout_constraintStart_toEndOf="@id/profile_iv"
             app:layout_constraintTop_toBottomOf="@id/profile_line1"/>
         <TextView
-            android:id="@+id/profile_intro"
+            android:id="@+id/profile_intro_tv"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
@@ -69,7 +69,7 @@
             android:text="자기소개"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/profile_iv"
-            app:layout_constraintTop_toBottomOf="@id/profile_name"/>
+            app:layout_constraintTop_toBottomOf="@id/profile_name_tv"/>
         <View
             android:id="@+id/profile_line2"
             android:layout_width="350dp"
@@ -78,7 +78,7 @@
             android:layout_marginStart="14dp"
             android:layout_marginEnd="14dp"
             android:background="#D9D9D9"
-            app:layout_constraintTop_toBottomOf="@id/profile_intro"
+            app:layout_constraintTop_toBottomOf="@id/profile_intro_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
         <TextView
