@@ -40,9 +40,9 @@ object UserDataService {
             override fun onResponse(call: Call<HomeNoticeResponse>, response: Response<HomeNoticeResponse>) {
                 val resp = response.body()!!
                 Log.d("HomeNotice/SUCCESS",resp.code.toString())
-                when(val code = resp.code){
+                when(resp.code){
                     1000->{
-                        fragment.setNotice(resp.result)
+                        fragment.setNotice(resp.result!!)
                     }
                     else ->{
 

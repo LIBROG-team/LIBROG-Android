@@ -25,7 +25,7 @@ data class HomeNoticeResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
     @SerializedName("code") val code: Int,
     @SerializedName("message") val message: String,
-    @SerializedName("result") val result: ArrayList<HomeNoticeResult>
+    @SerializedName("result") val result: ArrayList<HomeNoticeResult>?
 )
 
 data class HomeNoticeResult(

@@ -16,8 +16,8 @@ class ApplicationClass : Application() {
         const val TAG: String = "TEMPLATE-APP"                      // Log, SharedPreference
         const val APP_DATABASE = "$TAG-DB"
 
-        //const val DEV_URL: String = "https://dev.siejwkaodj.shop";       // 테스트 서버 주소
-        const val DEV_URL: String = "https://dev.librog.shop";       // 테스트 서버 주소
+        const val DEV_URL: String = "https://dev.siejwkaodj.shop";       // 테스트 서버 주소
+        //const val DEV_URL: String = "https://dev.librog.shop";       // 테스트 서버 주소
         const val PROD_URL: String = "https://prod.librog.shop"    // 실서버 주소
         const val BASE_URL: String = DEV_URL
 

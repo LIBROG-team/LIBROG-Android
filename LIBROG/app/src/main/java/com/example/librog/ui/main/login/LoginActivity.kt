@@ -77,6 +77,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     override fun onLoginSuccess(result: AppLoginResult) {
         saveUserIdx(result.userIdx)
         saveUserToken(result.jwt)
+        Log.d("accessToken/app", result.jwt)
         startNextActivity(MainActivity::class.java)
     }
 
@@ -98,7 +99,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
                 authService.kakaoLogin(kakaoAccessToken)
-                Log.d("accessToken", AccessToken(token.accessToken).toString())
+                Log.d("accessToken/kakao", AccessToken(token.accessToken).toString())
             }
         }
     }
