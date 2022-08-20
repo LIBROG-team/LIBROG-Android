@@ -154,19 +154,18 @@
         app:layout_constraintTop_toBottomOf="@id/setting_ask_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginStart="34dp"
-        android:text="탈퇴하기"
+        android:text="비밀번호 변경"
         android:textSize="15sp"
         android:fontFamily="@font/pd_semibold"
         app:layout_constraintTop_toBottomOf="@id/setting_sub_line4"
         app:layout_constraintStart_toStartOf="parent"/>
     <ImageView
-        android:id="@+id/setting_leave_btn"
+        android:id="@+id/setting_change_pwd_btn"
         android:layout_width="21dp"
         android:layout_height="21dp"
         android:layout_marginTop="28dp"
@@ -182,11 +181,161 @@
         android:layout_marginTop="29dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
+        app:layout_constraintTop_toBottomOf="@id/setting_change_pwd_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="34dp"
+        android:text="쿠폰 입력하기"
+        android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line5"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <ImageView
+        android:id="@+id/setting_add_coupon_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="34dp"
+        android:src="@drawable/setting_more_btn"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line5"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <View
+        android:id="@+id/setting_sub_line6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D9D9D9"
+        android:layout_marginTop="29dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/setting_add_coupon_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="34dp"
+        android:text="탈퇴하기"
+        android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line6"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <ImageView
+        android:id="@+id/setting_leave_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="34dp"
+        android:src="@drawable/setting_more_btn"
+        app:layout_constraintTop_toBottomOf="@id/setting_sub_line6"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <View
+        android:id="@+id/setting_sub_line7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D9D9D9"
+        android:layout_marginTop="29dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
         app:layout_constraintTop_toBottomOf="@id/setting_leave_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <FrameLayout
+        android:id="@+id/leave_confirm_panel"
+        android:layout_width="260dp"
+        android:layout_height="114dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="15dp"
+        android:visibility="invisible"
+        android:background="@drawable/alert_panel_border">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="회원 탈퇴를 진행하시겠습니까?"
+            android:textColor="@color/black"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="25dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/leave_okay_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="확인"
+                android:layout_marginEnd="20dp"
+                android:textColor="#2C98F0"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/leave_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="취소"
+                android:textColor="#2C98F0"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/leave_okay_btn"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/leave_finish_panel"
+        android:layout_width="260dp"
+        android:layout_height="114dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="15dp"
+        android:visibility="invisible"
+        android:background="@drawable/alert_panel_border">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="회원 탈퇴가 완료되었습니다."
+            android:textColor="#757575"
+            android:fontFamily="@font/pd_semibold"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="25dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="로그인 페이지로 이동합니다."
+            android:textColor="#757575"
+            android:layout_marginTop="46dp"
+            android:layout_marginStart="25dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/leave_finish_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="확인"
+                android:layout_marginEnd="30dp"
+                android:textColor="#2C98F0"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 
 

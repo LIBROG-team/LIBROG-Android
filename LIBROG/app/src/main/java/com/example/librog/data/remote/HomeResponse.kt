@@ -42,7 +42,7 @@ data class MainPotResponse(
     @SerializedName(value = "isSuccess")val isSuccess : Boolean,
     @SerializedName(value = "code")val code:Int,
     @SerializedName(value = "message")val message:String,
-    @SerializedName(value = "result")val result: MainPotResult
+    @SerializedName(value = "result")val result: MainPotResult?
 )
 
 data class MainPotResult(
@@ -50,6 +50,7 @@ data class MainPotResult(
     @SerializedName(value = "engName")val engName : String,
     @SerializedName(value = "flowerImgUrl")val flowerImgUrl : String,
     @SerializedName(value = "type")val type : String,
+    @SerializedName(value = "backgroundColor")val backgroundColor : String,
     @SerializedName(value = "startDate")val startDate : String,
     @SerializedName(value = "lastDate")val lastDate : String
 )

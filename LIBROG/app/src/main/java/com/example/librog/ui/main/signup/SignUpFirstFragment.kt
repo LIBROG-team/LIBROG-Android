@@ -28,10 +28,6 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
 
     private fun signUp(){
         validationCheck()
-//        val authService = AuthService()
-//        authService.setSignUpView(this)
-//        Log.d("SIGNUP/",getSignUpInfo().toString())
-//        authService.signUp(getSignUpInfo()) //api호출
     }
 
 

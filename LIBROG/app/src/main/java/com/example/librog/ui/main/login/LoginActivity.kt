@@ -24,6 +24,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         val AppDB = AppDatabase.getInstance(this)!!
         val users = AppDB.userDao().getUserList()
         Log.d("userlist",users.toString())
+        alreadyLogin()
 
     }
 
@@ -44,11 +45,12 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
-    private fun saveIdx(idx:Int){
+    private fun saveUserInfo(idx:Int,token:String){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         val editor = spf.edit()
 
         editor.putInt("idx",idx)
+        editor.putString("token",token)
         editor.apply()
     }
 
@@ -68,7 +70,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
 
     override fun onLoginSuccess(result: AppLoginResult) {
-        saveIdx(result.userIdx)
+        saveUserInfo(result.userIdx,result.jwt)
         startNextActivity(MainActivity::class.java)
     }
 
@@ -88,7 +90,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
                 authService.kakaoLogin(kakaoAccessToken)
-                Log.d("accesstoken", AccessToken(token.accessToken).toString())
+                Log.d("accessToken", AccessToken(token.accessToken).toString())
             }
         }
     }
@@ -109,7 +111,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
-                saveIdx(result.idx)
+                saveUserInfo(result.idx,"0")
                 startNextActivity(MainActivity::class.java)
             }
         }
@@ -117,6 +119,18 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onKakaoLoginFailure(code: Int, result: KakaoResult) {
         Log.d("kakaoUser", result.toString())
+    }
+
+    private fun alreadyLogin(){
+        if (getIdx()!=-1){
+            startNextActivity(MainActivity::class.java)
+            showToast("로그인 되었습니다.")
+        }
+    }
+
+    private fun getIdx(): Int{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getInt("idx",-1)
     }
 
 }

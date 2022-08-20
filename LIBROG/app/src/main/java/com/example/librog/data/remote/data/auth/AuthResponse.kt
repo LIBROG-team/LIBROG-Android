@@ -16,11 +16,11 @@ data class SignUpResult(
 
 //회원가입(입력값)
 data class SignUpInfo(
-    @SerializedName(value = "email")val email: String,
-    @SerializedName(value = "password")val password: String,
-    @SerializedName(value = "name")val name: String,
-    @SerializedName(value = "profileImgUrl")val profileImgUrl: String,
-    @SerializedName(value = "introduction")val introduction: String,
+    @SerializedName(value = "email") val email: String,
+    @SerializedName(value = "password") val password: String,
+    @SerializedName(value = "name") val name: String,
+    @SerializedName(value = "profileImg") val profileImg: String,
+    @SerializedName(value = "introduction") val introduction: String,
 )
 
 
@@ -41,6 +41,11 @@ data class KakaoResult(
     @SerializedName(value = "profileImgUrl")val profileImgUrl: String,
     @SerializedName(value = "type")val type: String
  )
+
+//카카오 로그인(입력값)
+data class AccessToken(
+    @SerializedName(value = "accessToken") val accessToken: String
+)
 
 
 //앱 로그인(응답값)
@@ -63,14 +68,73 @@ data class AppLoginInfo(
 )
 
 
-//<-------------------------response에 넣어주는 값----------------------->
-
-
-
-//카카오 로그인 시 유저가 입력하는 정보
-data class AccessToken(
-    @SerializedName(value = "accessToken") val accessToken: String
+//비밀번호 찾기(응답값)
+data class FindPwdResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: FindPwdResult?
 )
+
+data class FindPwdResult(
+    @SerializedName("fieldCount") val fieldCount: Int,
+    @SerializedName("affectedRows") val affectedRows: Int,
+    @SerializedName("insertId") val insertId: Int,
+    @SerializedName("info") val info: String,
+    @SerializedName("serverStatus") val serverStatus: Int,
+    @SerializedName("warningStatus") val warningStatus: Int,
+    @SerializedName("changedRows") val changedRows: Int
+)
+
+//비밀번호 찾기(입력값)
+data class FindPwdInfo(
+    @SerializedName(value = "email") val email: String
+)
+
+
+//비밀번호 변경(응답값)
+data class ChangePwdResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: ChangePwdResult?
+)
+
+data class ChangePwdResult(
+    @SerializedName(value = "userIdx")val userIdx : Int,
+    @SerializedName(value = "newPassword")val newPassword:String
+)
+
+data class ChangePwdInfo(
+    @SerializedName(value = "userIdx")val userIdx : Int,
+    @SerializedName(value = "oldPassword")val oldPassword:String,
+    @SerializedName(value = "newPassword")val newPassword:String
+)
+
+//회원탈퇴
+data class DeleteUserResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: DeleteUserResult?
+)
+
+//회원탈퇴
+data class DeleteUserResult(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: DeleteUserIdx?
+)
+
+//회원탈퇴
+data class DeleteUserIdx(
+    @SerializedName(value = "deletedUserIdx")val deletedUserIdx: String
+)
+
+
+
+
 
 
 
