@@ -49,10 +49,6 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
 
         binding.suLastFinishBtn.setOnClickListener {
             signUp()
-            if (!isImgNull)
-                appDB.userDao().insertImgUrl(email,imgUri.toString())
-            else
-                appDB.userDao().insertImgUrl(email,"0")
         }
     }
 
@@ -77,6 +73,10 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
 
     override fun onSignUpSuccess(message: String) {
         saveEmail()
+        if (!isImgNull)
+            appDB.userDao().insertImgUrl(email,imgUri.toString())
+        else
+            appDB.userDao().insertImgUrl(email,"0")
         activity?.finish()
     }
 

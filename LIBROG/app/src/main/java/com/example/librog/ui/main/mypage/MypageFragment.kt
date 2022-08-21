@@ -26,24 +26,19 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     lateinit var appDB: AppDatabase
     private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
+    private var userId=0
 
     override fun initAfterBinding() {
         appDB = AppDatabase.getInstance(requireActivity())!!
+        userId=getIdx()
         initViews()
         initClickListener()
-        Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
     }
 
     private fun initClickListener(){
         binding.mypageLoginBtn.setOnClickListener {
-            if (binding.mypageLoginBtn.text =="로그인"){
-                val intent = Intent(activity, LoginActivity::class.java)
-                startActivity(intent)
-            }
-            else {
-                logout()
-                requireActivity().finish()
-            }
+            logout()
+            requireActivity().finish()
         }
 
         binding.profileSettingBtn.setOnClickListener {
@@ -72,20 +67,25 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
 
 
     private fun initViews(){
-        val id = getIdx()
-
-        if (id==-1){ //기본값(로그아웃 상태)
-            binding.mypageLoginBtn.text = "로그인"
-
-        } else { //로그인 상태
-            binding.mypageLoginBtn.text = "로그아웃"
-        }
-
-        //유저 프로필 불러오기
-        if (id!=-1)
-            getUserProfile(id)
+        getUserProfile()
         //유저 통계 불러오기
-        userDataService.getUserStat(this,getIdx())
+        getUserStat()
+    }
+
+    private fun getUserStat(){
+
+        userService.getUserStat(userId).enqueue(object: Callback<UserStatResponse> {
+            override fun onResponse(call: Call<UserStatResponse>, response: Response<UserStatResponse>) {
+                val resp = response.body()!!
+                when(resp.code){
+                    1000->{
+                        setData(resp.result)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<UserStatResponse>, t: Throwable) {
+            }
+        })
     }
 
     private fun logout(){
@@ -109,8 +109,8 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
     }
 
-    private fun getUserProfile(userIdx: Int){
-        userService.getUserProfile(userIdx).enqueue(object: Callback<UserProfileResponse> {
+    private fun getUserProfile(){
+        userService.getUserProfile(userId).enqueue(object: Callback<UserProfileResponse> {
             override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
                 val resp = response.body()!!
                 setUserProfile(resp.result!!)
@@ -121,6 +121,8 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun setUserProfile(result: UserProfileResult){
+        binding.profileNameTv.text = result.name
+        binding.profileIntroTv.text = result.introduction
         val imgUrl=appDB.userDao().getImgUrl(getEmail())
         if (imgUrl=="0"){
             binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
@@ -130,8 +132,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             binding.profileIv.setImageURI(uri)
         }
         //Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
-        binding.profileNameTv.text = result.name
-        binding.profileIntroTv.text = result.introduction
 
 
         //로그인 상태 확인

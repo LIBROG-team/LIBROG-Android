@@ -37,15 +37,14 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://blog.naver.com/librog"))
             startActivity(intent)
         }
-        //홈페이지 방문
-        binding.settingHomepageBtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://blog.naver.com/librog"))
-            startActivity(intent)
-        }
         //개인정보취급방침
         binding.settingPrivateBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://librog.shop/blog/privacypolicy.html"))
             startActivity(intent)
+        }
+        //문의하기
+        binding.settingAskBtn.setOnClickListener {
+            showToast("librogmaster@gmail.com")
         }
         //쿠폰입력
         binding.settingAddCouponBtn.setOnClickListener {
