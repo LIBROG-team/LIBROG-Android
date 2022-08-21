@@ -5,8 +5,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
@@ -158,20 +156,6 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         }
 
     }
-
-    private fun saveUri(imageUri:Uri){
-        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
-        val editor = spf.edit()
-
-        editor.putString("imgUri",imageUri.toString())
-        editor.apply()
-    }
-
-    private fun getImgUri(): String{
-        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
-        return spf!!.getString("imgUri","0")!!
-    }
-
     private fun getEmail(): String{
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         return spf!!.getString("email","0")!!

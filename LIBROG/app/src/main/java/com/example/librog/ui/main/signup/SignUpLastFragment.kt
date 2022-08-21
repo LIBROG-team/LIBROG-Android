@@ -120,14 +120,6 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
             }
         }}
 
-    private fun saveUri(imageUri:Uri){
-        val spf = requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-        val editor = spf.edit()
-
-        editor.putString("imgUri",imageUri.toString())
-        editor.apply()
-    }
-
     private fun saveEmail(){
         val spf = requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
         val editor = spf.edit()

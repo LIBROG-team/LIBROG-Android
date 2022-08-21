@@ -4,13 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.ApplicationClass
-import com.example.librog.data.remote.data.UserDataInterface
 import com.example.librog.data.remote.data.auth.AuthRetrofitInterface
 import com.example.librog.data.remote.data.auth.DeleteUserResponse
-import com.example.librog.data.remote.data.auth.FindPwdInfo
-import com.example.librog.data.remote.data.auth.FindPwdResponse
 import com.example.librog.databinding.ActivitySettingBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.splash.SplashActivity

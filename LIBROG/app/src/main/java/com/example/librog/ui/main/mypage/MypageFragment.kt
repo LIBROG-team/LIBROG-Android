@@ -1,18 +1,10 @@
 package com.example.librog.ui.main.mypage
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
@@ -22,12 +14,9 @@ import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.data.remote.data.UserStatResult
 
 import com.example.librog.databinding.FragmentMypageBinding
-import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment
-import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
-import com.example.librog.ui.main.splash.SplashActivity
-import com.kakao.sdk.common.util.SdkLogLevel
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -154,11 +143,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             binding.appLoginStatus.text = "연결완료"
             binding.appLoginStatus.setTextColor(Color.parseColor("#64BE78"))
         }
-    }
-
-    private fun getImgUri(): String{
-        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getString("imgUri","0")!!
     }
 
     private fun getEmail(): String{

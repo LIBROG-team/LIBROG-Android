@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
-import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.*
 import com.example.librog.data.remote.data.*

@@ -1,9 +1,7 @@
 package com.example.librog.ui.main.mypage
 
 import android.util.Log
-import android.view.View
 import com.example.librog.ApplicationClass
-import com.example.librog.data.remote.data.UserDataInterface
 import com.example.librog.data.remote.data.auth.*
 import com.example.librog.databinding.ActivityChangePwdBinding
 import com.example.librog.ui.BaseActivity
