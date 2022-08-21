@@ -1,19 +1,13 @@
 package com.example.librog.ui.main.signup
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import com.example.librog.R
-import com.example.librog.data.remote.data.auth.AuthService
-import com.example.librog.data.remote.data.auth.SignUpInfo
-import com.example.librog.data.remote.data.auth.SignUpView
 import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment
 import java.util.regex.Pattern
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+
 
 
 class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSignupFirstBinding::inflate){

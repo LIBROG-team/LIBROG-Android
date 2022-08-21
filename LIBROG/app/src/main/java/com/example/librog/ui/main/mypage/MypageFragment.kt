@@ -1,18 +1,10 @@
 package com.example.librog.ui.main.mypage
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
@@ -22,37 +14,31 @@ import com.example.librog.data.remote.data.UserDataService
 import com.example.librog.data.remote.data.UserStatResult
 
 import com.example.librog.databinding.FragmentMypageBinding
-import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment
-import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.login.LoginActivity
-import com.example.librog.ui.main.splash.SplashActivity
-import com.kakao.sdk.common.util.SdkLogLevel
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
+    lateinit var appDB: AppDatabase
     private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
+    private var userId=0
 
     override fun initAfterBinding() {
+        appDB = AppDatabase.getInstance(requireActivity())!!
+        userId=getIdx()
         initViews()
         initClickListener()
-        Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
     }
 
     private fun initClickListener(){
         binding.mypageLoginBtn.setOnClickListener {
-            if (binding.mypageLoginBtn.text =="로그인"){
-                val intent = Intent(activity, LoginActivity::class.java)
-                startActivity(intent)
-            }
-            else {
-                logout()
-                requireActivity().finish()
-            }
+            logout()
+            requireActivity().finish()
         }
 
         binding.profileSettingBtn.setOnClickListener {
@@ -81,26 +67,25 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
 
 
     private fun initViews(){
-        val id = getIdx()
-
-        if (id==-1){ //기본값(로그아웃 상태)
-            binding.mypageLoginBtn.text = "로그인"
-
-        } else { //로그인 상태
-            binding.mypageLoginBtn.text = "로그아웃"
-        }
-
-        //유저 프로필 불러오기
-        if (id!=-1)
-            getUserProfile(id)
+        getUserProfile()
         //유저 통계 불러오기
-        userDataService.getUserStat(this,getIdx())
+        getUserStat()
+    }
 
-//        Log.d("Img",getImgUri())
-//        if(getImgUri()!="0"){
-//            val uri:Uri = Uri.parse(getImgUri())
-//            binding.profileIv.setImageURI(uri)
-//        }
+    private fun getUserStat(){
+
+        userService.getUserStat(userId).enqueue(object: Callback<UserStatResponse> {
+            override fun onResponse(call: Call<UserStatResponse>, response: Response<UserStatResponse>) {
+                val resp = response.body()!!
+                when(resp.code){
+                    1000->{
+                        setData(resp.result)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<UserStatResponse>, t: Throwable) {
+            }
+        })
     }
 
     private fun logout(){
@@ -115,15 +100,17 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
 
     //유저 통계 표시 (UserDataService에서 호출)
     fun setData(result: UserStatResult) {
-        binding.mypageFlowerCnt.text = result.flowerCnt.toString()
-        binding.mypageReadingCnt.text = result.readingCnt.toString()
-        binding.mypageStarCnt.text = result.starRatingCnt.toString()
-        binding.mypageQuoteCnt.text = result.quoteCnt.toString()
-        binding.mypageContentCnt.text = result.contentCnt.toString()
+        binding.apply{
+            mypageFlowerCnt.text = result.flowerCnt.toString()
+            mypageReadingCnt.text = result.readingCnt.toString()
+            mypageStarCnt.text = result.starRatingCnt.toString()
+            mypageQuoteCnt.text = result.quoteCnt.toString()
+            mypageContentCnt.text = result.contentCnt.toString()
+        }
     }
 
-    private fun getUserProfile(userIdx: Int){
-        userService.getUserProfile(userIdx).enqueue(object: Callback<UserProfileResponse> {
+    private fun getUserProfile(){
+        userService.getUserProfile(userId).enqueue(object: Callback<UserProfileResponse> {
             override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
                 val resp = response.body()!!
                 setUserProfile(resp.result!!)
@@ -134,12 +121,17 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun setUserProfile(result: UserProfileResult){
-        if (result.profileImgUrl== "https://librog.shop/source/profileImg/defaultImg.png")
-            binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
-        else
-            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
         binding.profileNameTv.text = result.name
         binding.profileIntroTv.text = result.introduction
+        val imgUrl=appDB.userDao().getImgUrl(getEmail())
+        if (imgUrl=="0"){
+            binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
+        }
+        else{
+            val uri:Uri = Uri.parse(imgUrl)
+            binding.profileIv.setImageURI(uri)
+        }
+        //Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
 
 
         //로그인 상태 확인
@@ -153,10 +145,10 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
     }
 
-//    private fun getImgUri(): String{
-//        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-//        return spf!!.getString("imgUri","0")!!
-//    }
+    private fun getEmail(): String{
+        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("email","0")!!
+    }
 
 
 }

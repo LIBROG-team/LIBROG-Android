@@ -1,9 +1,7 @@
 package com.example.librog.ui.main.login
 
-import android.content.Intent
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.auth.*
 import com.example.librog.databinding.ActivityLoginBinding
@@ -11,7 +9,6 @@ import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.MainActivity
 import com.example.librog.ui.main.mypage.FindPwdActivity
 import com.example.librog.ui.main.signup.SignUpActivity
-//import com.example.librog.ui.main.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient
 
 
@@ -75,6 +72,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
 
     override fun onLoginSuccess(result: AppLoginResult) {
+        binding.loginErrorTv.visibility=View.INVISIBLE
         saveUserIdx(result.userIdx)
         saveUserToken(result.jwt)
         Log.d("accessToken/app", result.jwt)
