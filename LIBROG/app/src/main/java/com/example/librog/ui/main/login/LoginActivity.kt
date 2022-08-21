@@ -72,6 +72,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
 
     override fun onLoginSuccess(result: AppLoginResult) {
+        binding.loginErrorTv.visibility=View.INVISIBLE
         saveUserIdx(result.userIdx)
         saveUserToken(result.jwt)
         Log.d("accessToken/app", result.jwt)
