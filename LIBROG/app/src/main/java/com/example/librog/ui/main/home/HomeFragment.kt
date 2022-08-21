@@ -40,10 +40,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         Log.d("userDB",appDB.userDao().getUserList().toString())
         (activity as MainActivity).showBottomNav()
 
-        val userIdx = getUserIdx(this)
         service.getUserNotice(this)
         homeService.getRecommend(this)
-        homeService.getRecentBook(this)
+        homeService.getRecentBook(this,getIdx())
 
         getMainPot()
     }
@@ -141,11 +140,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         return spf!!.getInt("idx",-1)
     }
 
-
-    private fun getUserIdx(fragment: Fragment): Int {
-        val spf =
-            fragment.activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getInt("idx", -1)
-    }
 
 }

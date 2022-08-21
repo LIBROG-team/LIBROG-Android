@@ -145,6 +145,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
 
     private fun initProfile(result: UserProfileResult){
         val imgUrl=appDB.userDao().getImgUrl(getEmail())
+        
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
         if (imgUrl=="0"){
