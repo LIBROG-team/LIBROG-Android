@@ -49,7 +49,10 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         binding.profileEditFinishBtn.setOnClickListener {
             if (!isImgNull)
                 appDB.userDao().updateImgUrl(getEmail(),imgUri.toString())
-            else setDefaultImg() //기본이미지로 설정
+            else {
+                setDefaultImg()
+                appDB.userDao().updateImgUrl(getEmail(),"0")
+            }//기본이미지로 설정
             editProfile(getIntroduceInfo()) //자기소개 수정 api 호출
         }
 
