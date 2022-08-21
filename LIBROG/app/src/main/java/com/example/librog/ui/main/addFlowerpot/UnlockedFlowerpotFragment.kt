@@ -1,7 +1,13 @@
 package com.example.librog.ui.main.addFlowerpot
 
+import android.content.Context
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,23 +28,76 @@ class UnlockedFlowerpotFragment :
     BaseFragment<FragmentUnlockedFlowerpotBinding>(FragmentUnlockedFlowerpotBinding::inflate) {
     private var unlockedFpList = ArrayList<UnlockedFpResult>()
     private val dataService = ApplicationClass.retrofit.create(DataInterface::class.java)
-
+    private lateinit var imm: InputMethodManager
     private lateinit var adapter: UnlockedFlowerpotRVAdapter
 
 
     override fun initAfterBinding() {
         val userIdx = getUserIdx()
         unlockedFpList.clear()
+        imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
         getUnlockedFpResult(userIdx)
         initUnlockedRV()
+        initClickListener(userIdx)
     }
 
-    private fun setUnlockedFpList(result: ArrayList<UnlockedFpResult>){
+    private fun initClickListener(userIdx: Int) {
+        binding.unlockedFlowerpotSearchCl.setOnClickListener {
+            binding.unlockedFlowerpotSearchEt.requestFocus()
+            imm.showSoftInput(binding.unlockedFlowerpotSearchEt, InputMethodManager.SHOW_IMPLICIT)
+        }
+
+
+        binding.unlockedFlowerpotCancelCl.setOnClickListener {
+            binding.unlockedFlowerpotSearchEt.text.clear()
+            unlockedFpList.clear()
+            getUnlockedFpResult(userIdx)
+        }
+
+
+        binding.unlockedFlowerpotSearchEt.setOnEditorActionListener { v, actionId, _ ->
+            var handled = false
+
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                unlockedFpList.clear()
+                val input = binding.unlockedFlowerpotSearchEt.text.toString()
+                hideKeyboard(v)
+                searchUnlockedFpResult(userIdx, input)
+                handled = true
+            }
+            handled
+        }
+
+        binding.unlockedFlowerpotSearchEt.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                unlockedFpList.clear()
+                val input = binding.unlockedFlowerpotSearchEt.text.toString()
+                searchUnlockedFpResult(userIdx, input)
+            }
+
+        })
+    }
+
+
+
+    private fun hideKeyboard(v: View) {
+        imm.hideSoftInputFromWindow(v.windowToken, 0)
+    }
+
+    private fun setUnlockedFpList(result: ArrayList<UnlockedFpResult>) {
         unlockedFpList.addAll(result)
         adapter.notifyDataSetChanged()
     }
 
-    //획득 화분 정보 가져오기
+    //획득 화분 정보 가져오기 api
     private fun getUnlockedFpResult(userIdx: Int) {
 
         dataService.getUnlockedFpResult(userIdx).enqueue(object : Callback<DataResponse2> {
@@ -62,22 +121,46 @@ class UnlockedFlowerpotFragment :
             }
 
             override fun onFailure(call: Call<DataResponse2>, t: Throwable) {
+                t.printStackTrace()
             }
 
         })
 
     }
 
+    // 획득 화분 검색 api
+    private fun searchUnlockedFpResult(userIdx: Int, name: String) {
+        dataService.searchUnlockedFpResult(userIdx, name).enqueue(object : Callback<DataResponse2> {
+            override fun onResponse(call: Call<DataResponse2>, response: Response<DataResponse2>) {
+                val resp = response.body()!!
+                when (resp.code) {
+                    1000 -> {
+                        setUnlockedFpList(resp.result)
+                    }
+                    else -> {
+                        showToast(resp.message)
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<DataResponse2>, t: Throwable) {
+                t.printStackTrace()
+            }
+
+        })
+    }
 
     private fun initUnlockedRV() {
         adapter = UnlockedFlowerpotRVAdapter(unlockedFpList)
         binding.unlockedFlowerpotRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.unlockedFlowerpotRv.adapter = adapter
-        binding.unlockedFlowerpotRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        binding.unlockedFlowerpotRv.addItemDecoration(
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
-        adapter.setOnItemClickListener(object : UnlockedFlowerpotRVAdapter.OnItemClickListener{
-            override fun onItemClick(fp: UnlockedFpResult){
+        adapter.setOnItemClickListener(object : UnlockedFlowerpotRVAdapter.OnItemClickListener {
+            override fun onItemClick(fp: UnlockedFpResult) {
                 val intent = Intent(context, DetailUnlockedFpActivity::class.java)
                 intent.putExtra("selectedItem", fp.idx)
                 startActivity(intent)
@@ -89,9 +172,9 @@ class UnlockedFlowerpotFragment :
     }
 
 
-    private fun getUserIdx(): Int{
+    private fun getUserIdx(): Int {
         val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
-        return spf!!.getInt("idx",-1)
+        return spf!!.getInt("idx", -1)
     }
 
 }
