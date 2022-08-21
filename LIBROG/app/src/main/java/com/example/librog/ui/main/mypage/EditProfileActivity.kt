@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.*
 import com.example.librog.databinding.ActivityEditProfileBinding
 
@@ -22,9 +23,11 @@ import retrofit2.Response
 class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEditProfileBinding::inflate) {
     private lateinit var imgUri: Uri
     private var isImgNull = true
+    lateinit var appDB: AppDatabase
     private val service = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
+        appDB = AppDatabase.getInstance(this)!!
         getUserProfile(getIdx())
         initClickListener()
     }
@@ -47,7 +50,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
 
         binding.profileEditFinishBtn.setOnClickListener {
             if (!isImgNull)
-                saveUri(imgUri)
+                appDB.userDao().updateImgUrl(getEmail(),imgUri.toString())
             else setDefaultImg() //기본이미지로 설정
             editProfile(getIntroduceInfo()) //자기소개 수정 api 호출
         }
@@ -143,13 +146,14 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     }
 
     private fun initProfile(result: UserProfileResult){
+        val imgUrl=appDB.userDao().getImgUrl(getEmail())
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        if (getImgUri()=="0"){
+        if (imgUrl=="0"){
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
         }
         else{
-            val uri:Uri = Uri.parse(getImgUri())
+            val uri:Uri = Uri.parse(imgUrl)
             binding.editProfileIv.setImageURI(uri)
         }
 
@@ -166,6 +170,11 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
     private fun getImgUri(): String{
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         return spf!!.getString("imgUri","0")!!
+    }
+
+    private fun getEmail(): String{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getString("email","0")!!
     }
 
     private fun setDefaultImg(){

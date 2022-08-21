@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.R
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.auth.AuthService
 import com.example.librog.data.remote.data.auth.SignUpInfo
 import com.example.librog.data.remote.data.auth.SignUpView
@@ -19,12 +20,14 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     lateinit var name: String
     lateinit var introduce: String
     lateinit var imgUri: Uri
+    lateinit var appDB: AppDatabase
     var isImgNull =true
 
     companion object {
         const val IMAGE_REQUEST_CODE = 100
     }
     override fun initAfterBinding() {
+        appDB = AppDatabase.getInstance(requireActivity())!!
         initClickListener()
     }
 
@@ -47,7 +50,9 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         binding.suLastFinishBtn.setOnClickListener {
             signUp()
             if (!isImgNull)
-                saveUri(imgUri)
+                appDB.userDao().insertImgUrl(email,imgUri.toString())
+            else
+                appDB.userDao().insertImgUrl(email,"0")
         }
     }
 
@@ -71,6 +76,7 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     }
 
     override fun onSignUpSuccess(message: String) {
+        saveEmail()
         activity?.finish()
     }
 
@@ -119,6 +125,14 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         val editor = spf.edit()
 
         editor.putString("imgUri",imageUri.toString())
+        editor.apply()
+    }
+
+    private fun saveEmail(){
+        val spf = requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("email",email)
         editor.apply()
     }
 

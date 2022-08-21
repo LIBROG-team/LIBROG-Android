@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.*
 import com.example.librog.data.remote.data.*
 import com.example.librog.databinding.FragmentHomeBinding
@@ -30,12 +31,15 @@ import retrofit2.Response
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+    lateinit var appDB: AppDatabase
     private val service= UserDataService
     private val homeService = HomeService
     private val mainPotService = ApplicationClass.retrofit.create(HomeRetrofitInterface::class.java)
 
 
     override fun initAfterBinding() {
+        appDB= AppDatabase.getInstance(requireContext())!!
+        Log.d("userDB",appDB.userDao().getUserList().toString())
         (activity as MainActivity).showBottomNav()
 
         val userIdx = getUserIdx(this)

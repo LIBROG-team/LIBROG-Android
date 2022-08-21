@@ -34,10 +34,12 @@ import retrofit2.Response
 
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
+    lateinit var appDB: AppDatabase
     private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
+        appDB = AppDatabase.getInstance(requireActivity())!!
         initViews()
         initClickListener()
         Toast.makeText(requireContext(), getIdx().toString(), Toast.LENGTH_SHORT).show()
@@ -130,11 +132,12 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun setUserProfile(result: UserProfileResult){
-        if (getImgUri()=="0"){
+        val imgUrl=appDB.userDao().getImgUrl(getEmail())
+        if (imgUrl=="0"){
             binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
         }
         else{
-            val uri:Uri = Uri.parse(getImgUri())
+            val uri:Uri = Uri.parse(imgUrl)
             binding.profileIv.setImageURI(uri)
         }
         //Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
@@ -156,6 +159,11 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     private fun getImgUri(): String{
         val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
         return spf!!.getString("imgUri","0")!!
+    }
+
+    private fun getEmail(): String{
+        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("email","0")!!
     }
 
 
