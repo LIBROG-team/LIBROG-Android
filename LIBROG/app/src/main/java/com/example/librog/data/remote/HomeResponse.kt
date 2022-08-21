@@ -50,7 +50,7 @@ data class MainPotResult(
     @SerializedName(value = "engName")val engName : String,
     @SerializedName(value = "flowerImgUrl")val flowerImgUrl : String,
     @SerializedName(value = "type")val type : String,
-    @SerializedName(value = "backgroundColor")val backgroundColor : String,
+    @SerializedName(value = "backgroundColor")val backgroundColor : String?,
     @SerializedName(value = "startDate")val startDate : String,
     @SerializedName(value = "lastDate")val lastDate : String
 )
