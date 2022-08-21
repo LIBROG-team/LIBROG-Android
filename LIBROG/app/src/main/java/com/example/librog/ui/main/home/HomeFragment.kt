@@ -128,9 +128,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setMainPot(result: MainPotResult){
+        val bgColor = result.backgroundColor ?: "#D9D9D9"
         binding.homeFlowerTv.text = result.name
         Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
-        binding.mainCircleFlowerIv.backgroundTintList = ColorStateList.valueOf(Color.parseColor(result.backgroundColor))
+        binding.mainCircleFlowerIv.backgroundTintList = ColorStateList.valueOf(Color.parseColor(bgColor))
 
     }
 
