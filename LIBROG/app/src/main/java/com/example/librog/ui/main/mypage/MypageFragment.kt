@@ -33,6 +33,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         userId=getIdx()
         initViews()
         initClickListener()
+        showToast(userId.toString())
     }
 
     private fun initClickListener(){
