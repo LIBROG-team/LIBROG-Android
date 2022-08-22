@@ -23,6 +23,14 @@ data class DataResponse3(
     @SerializedName("result") val result: ArrayList<LockedFpResult>
 )
 
+data class DataResponse4(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: ArrayList<DetailFpResult>
+
+)
+
 data class FpResult(
     @SerializedName("flowerDataIdx") var flowerDataIdx: Int?,
     @SerializedName("flowerPotIdx") var flowerPotIdx: Int?,
@@ -53,4 +61,14 @@ data class LockedFpResult(
     @SerializedName("type") var type: String,
     @SerializedName("condition") var condition: String,
     @SerializedName("flowerImgUrl") var flowerImgUrl: String
+)
+
+
+data class DetailFpResult(
+    @SerializedName("flowerDataIdx") var idx: Int,
+    @SerializedName("name") var name: String,
+    @SerializedName("engName") var engName: String?,
+    @SerializedName("content") var content: String?,
+    @SerializedName("flowerImgUrl") var flowerImgUrl: String?
+
 )

@@ -22,5 +22,7 @@ interface DataInterface {
     @GET("/flowerpots/{userIdx}/searchUnacqFlower?flowerName=")
     fun searchLockedFpResult(@Path("userIdx") userIdx: Int, @Query("flowerName") name:String): Call<DataResponse3>
 
+    @GET("/flowerpots/flowerPotInfo/{flowerDataIdx}")
+    fun getDetailFp(@Path("flowerDataIdx") flowerDataIdx: Int): Call<DataResponse4>
 
 }

@@ -9,12 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.mypage.MypageFragment">
+
         <TextView
             android:id="@+id/profile_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/menu_mypage"
             android:textSize="27sp"
+            android:fontFamily="@font/pd_bold"
+            android:textColor="@color/black"
             android:layout_marginStart="29dp"
             android:layout_marginTop="41dp"
             app:layout_constraintTop_toTopOf="parent"

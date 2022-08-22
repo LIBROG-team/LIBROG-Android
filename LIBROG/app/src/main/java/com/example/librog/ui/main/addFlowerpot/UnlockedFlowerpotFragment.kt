@@ -2,19 +2,14 @@ package com.example.librog.ui.main.addFlowerpot
 
 import android.content.Context
 import android.content.Intent
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
+
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.librog.ApplicationClass
-import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.remote.data.DataInterface
 import com.example.librog.data.remote.data.DataResponse2
 import com.example.librog.data.remote.data.UnlockedFpResult
@@ -69,21 +64,6 @@ class UnlockedFlowerpotFragment :
             handled
         }
 
-        binding.unlockedFlowerpotSearchEt.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                unlockedFpList.clear()
-                val input = binding.unlockedFlowerpotSearchEt.text.toString()
-                searchUnlockedFpResult(userIdx, input)
-            }
-
-        })
     }
 
 
@@ -162,7 +142,7 @@ class UnlockedFlowerpotFragment :
         adapter.setOnItemClickListener(object : UnlockedFlowerpotRVAdapter.OnItemClickListener {
             override fun onItemClick(fp: UnlockedFpResult) {
                 val intent = Intent(context, DetailUnlockedFpActivity::class.java)
-                intent.putExtra("selectedItem", fp.idx)
+                intent.putExtra("selectedFP", fp.idx)
                 startActivity(intent)
             }
 
