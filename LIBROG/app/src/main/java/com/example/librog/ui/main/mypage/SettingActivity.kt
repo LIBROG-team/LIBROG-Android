@@ -4,13 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.ApplicationClass
-import com.example.librog.data.remote.data.UserDataInterface
 import com.example.librog.data.remote.data.auth.AuthRetrofitInterface
 import com.example.librog.data.remote.data.auth.DeleteUserResponse
-import com.example.librog.data.remote.data.auth.FindPwdInfo
-import com.example.librog.data.remote.data.auth.FindPwdResponse
 import com.example.librog.databinding.ActivitySettingBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.splash.SplashActivity
@@ -41,15 +37,14 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://blog.naver.com/librog"))
             startActivity(intent)
         }
-        //홈페이지 방문
-        binding.settingHomepageBtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://blog.naver.com/librog"))
-            startActivity(intent)
-        }
         //개인정보취급방침
         binding.settingPrivateBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://librog.shop/blog/privacypolicy.html"))
             startActivity(intent)
+        }
+        //문의하기
+        binding.settingAskBtn.setOnClickListener {
+            showToast("librogmaster@gmail.com")
         }
         //쿠폰입력
         binding.settingAddCouponBtn.setOnClickListener {

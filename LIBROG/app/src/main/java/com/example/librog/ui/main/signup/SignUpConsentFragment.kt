@@ -1,12 +1,9 @@
 package com.example.librog.ui.main.signup
 
 import android.graphics.Color
-import android.text.Spannable
-import android.text.SpannableStringBuilder
 import android.view.View
 import com.example.librog.R
 import com.example.librog.databinding.FragmentSignupConsentBinding
-import com.example.librog.databinding.FragmentSignupFirstBinding
 import com.example.librog.ui.BaseFragment
 
 class SignUpConsentFragment : BaseFragment<FragmentSignupConsentBinding>(FragmentSignupConsentBinding::inflate) {

@@ -13,26 +13,6 @@ object UserDataService {
 
     private val userDataService=retrofit.create(UserDataInterface::class.java)
 
-    fun getUserStat(fragment: MypageFragment, userIdx: Int){
-
-        userDataService.getUserStat(userIdx).enqueue(object: Callback<UserStatResponse> {
-            override fun onResponse(call: Call<UserStatResponse>, response: Response<UserStatResponse>) {
-                val resp = response.body()!!
-                Log.d("GETUSERDATA/SUCCESS",resp.code.toString())
-                when(val code = resp.code){
-                    1000->{
-                        fragment.setData(resp.result)
-                    }
-                    else ->{
-
-                    }
-                }
-            }
-            override fun onFailure(call: Call<UserStatResponse>, t: Throwable) {
-                Log.d("GETUSERDATA/FAILURE", t.message.toString())
-            }
-        })
-    }
 
     fun getUserNotice(fragment: HomeFragment){
 

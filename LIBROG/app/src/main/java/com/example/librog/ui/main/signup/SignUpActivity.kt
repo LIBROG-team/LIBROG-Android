@@ -1,11 +1,7 @@
 package com.example.librog.ui.main.signup
 
 import android.graphics.Color
-import android.view.View
 import com.example.librog.R
-import com.example.librog.data.remote.data.auth.AuthService
-import com.example.librog.data.remote.data.auth.SignUpInfo
-import com.example.librog.data.remote.data.auth.SignUpView
 import com.example.librog.databinding.ActivitySignupBinding
 import com.example.librog.ui.BaseActivity
 

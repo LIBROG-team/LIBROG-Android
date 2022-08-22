@@ -56,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:layout_marginStart="43dp"
-            android:text="리브로그"
             android:textSize="17sp"
             app:layout_constraintStart_toEndOf="@id/profile_iv"
             app:layout_constraintTop_toBottomOf="@id/profile_line1"/>
@@ -66,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
             android:layout_marginStart="43dp"
-            android:text="자기소개"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/profile_iv"
             app:layout_constraintTop_toBottomOf="@id/profile_name_tv"/>
@@ -276,7 +274,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="8"/>
+                    android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -299,7 +297,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="13"/>
+                    android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -322,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="6"/>
+                    android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -345,7 +343,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="6"/>
+                    android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -368,7 +366,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="2"/>
+                    android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -396,6 +394,7 @@
             android:layout_marginBottom="49dp"
             android:background="@drawable/btn_profile_login_border"
             android:textColor="@color/white"
+            android:text="로그아웃"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

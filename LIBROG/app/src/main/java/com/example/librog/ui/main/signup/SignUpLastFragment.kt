@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.R
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.auth.AuthService
 import com.example.librog.data.remote.data.auth.SignUpInfo
 import com.example.librog.data.remote.data.auth.SignUpView
@@ -19,12 +20,14 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     lateinit var name: String
     lateinit var introduce: String
     lateinit var imgUri: Uri
-    var isUriNull =true
+    lateinit var appDB: AppDatabase
+    var isImgNull =true
 
     companion object {
         const val IMAGE_REQUEST_CODE = 100
     }
     override fun initAfterBinding() {
+        appDB = AppDatabase.getInstance(requireActivity())!!
         initClickListener()
     }
 
@@ -39,6 +42,7 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         }
 
         binding.imgOptionDefaultTv.setOnClickListener {
+            isImgNull=true
             binding.suProfileIv.setImageResource(R.drawable.ic_profile_logo)
             hideBanner()
         }
@@ -68,6 +72,11 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     }
 
     override fun onSignUpSuccess(message: String) {
+        saveEmail()
+        if (!isImgNull)
+            appDB.userDao().insertImgUrl(email,imgUri.toString())
+        else
+            appDB.userDao().insertImgUrl(email,"0")
         activity?.finish()
     }
 
@@ -91,9 +100,9 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     }
 
     private fun pickImageGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_REQUEST_CODE) //인텐트를 통해 갤러리에 요청 코드 보냄
+        startActivityForResult(intent, SignUpLastFragment.IMAGE_REQUEST_CODE) //인텐트를 통해 갤러리에 요청 코드 보냄
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -101,9 +110,22 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
             binding.suProfileIv.setImageURI(data?.data)
 
+            isImgNull=false
             imgUri = data?.data!!
-            isUriNull=false
-        }
+            val contentResolver = requireActivity().applicationContext.contentResolver
+            val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+
+            imgUri.let { contentResolver.takePersistableUriPermission(it, takeFlags)
+            }
+        }}
+
+    private fun saveEmail(){
+        val spf = requireActivity().getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("email",email)
+        editor.apply()
     }
 
 
