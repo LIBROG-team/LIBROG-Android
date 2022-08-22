@@ -59,7 +59,7 @@
         android:layout_marginTop="83dp"
         android:layout_marginStart="91dp"
         app:civ_border_overlay="false"
-        android:src="@drawable/ic_sign_up_camera"
+        android:src="@drawable/ic_profile_camera"
         app:layout_constraintStart_toStartOf="@id/edit_profile_iv"
         app:layout_constraintTop_toTopOf="@id/edit_profile_iv"
         />
