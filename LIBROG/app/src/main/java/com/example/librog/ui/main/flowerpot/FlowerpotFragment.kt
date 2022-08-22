@@ -2,7 +2,6 @@ package com.example.librog.ui.main.flowerpot
 
 import android.content.Intent
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,7 +9,6 @@ import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.entities.FlowerData
 import com.example.librog.data.entities.Flowerpot
-import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.DataInterface
 import com.example.librog.data.remote.data.DataResponse1
 import com.example.librog.data.remote.data.FpResult
@@ -108,12 +106,12 @@ class FlowerpotFragment :
                         item.flowerDataIdx!!,
                         item.name!!,
                         item.engName!!,
-                        item.flowerImgUrl!!,
-                        item.flowerImgUrl!!,
+                        item.flowerImgUrl?: "",
+                        item.flowerImgUrl?:"",
                         item.maxExp!!,
                         item.bloomingPeriod!!,
-                        item.content!!,
-                        item.type!!,
+                        item.content ?: "",
+                        item.type?:"",
                         "active"
 
                     )

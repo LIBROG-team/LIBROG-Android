@@ -1,6 +1,13 @@
 package com.example.librog.ui.main.addFlowerpot
 
+import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.ApplicationClass
@@ -20,15 +27,80 @@ class LockedFlowerpotFragment :
     private var lockedFpList = ArrayList<LockedFpResult>()
     private val dataService = ApplicationClass.retrofit.create(DataInterface::class.java)
     private lateinit var adapter: LockedFlowerpotRVAdapter
+    private lateinit var imm: InputMethodManager
 
     override fun initAfterBinding() {
         val userIdx = getUserIdx()
         lockedFpList.clear()
+        imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
         getLockedFpResult(userIdx)
         initLockedRv()
+        initClickListener(userIdx)
+
     }
 
-    // 미획득 화분 정보 가져오기
+    private fun initClickListener(userIdx: Int) {
+        binding.lockedFlowerpotSearchCl.setOnClickListener {
+            binding.lockedFlowerpotSearchEt.requestFocus()
+            imm.showSoftInput(binding.lockedFlowerpotSearchEt, InputMethodManager.SHOW_IMPLICIT)
+        }
+
+
+        binding.lockedFlowerpotCancelCl.setOnClickListener {
+            binding.lockedFlowerpotSearchEt.text.clear()
+            lockedFpList.clear()
+            getLockedFpResult(userIdx)
+        }
+
+
+        binding.lockedFlowerpotSearchEt.setOnEditorActionListener { v, actionId, _ ->
+            var handled = false
+
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                lockedFpList.clear()
+
+                val input = binding.lockedFlowerpotSearchEt.text.toString()
+                hideKeyboard(v)
+                searchLockedFpResult(userIdx, input)
+                handled = true
+            }
+            handled
+        }
+
+    }
+
+    private fun searchLockedFpResult(userIdx: Int, name: String) {
+        dataService.searchLockedFpResult(userIdx, name).enqueue(object : Callback<DataResponse3>{
+            override fun onResponse(call: Call<DataResponse3>, response: Response<DataResponse3>) {
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1000 ->{
+                        setLockedFpList(resp.result)
+                    }
+                    else ->{
+                        showToast(resp.message)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<DataResponse3>, t: Throwable) {
+                t.printStackTrace()
+            }
+
+        })
+    }
+
+
+    private fun hideKeyboard(v: View) {
+        imm.hideSoftInputFromWindow(v.windowToken, 0)
+    }
+
+
+
+    // 미획득 화분 정보 가져오기 api
     private fun getLockedFpResult(userIdx: Int) {
         dataService.getLockedFpResult(userIdx).enqueue(object : Callback<DataResponse3> {
             override fun onResponse(call: Call<DataResponse3>, response: Response<DataResponse3>) {
@@ -38,10 +110,14 @@ class LockedFlowerpotFragment :
                     1000 -> {
                         setLockedFpList(resp.result)
                     }
+                    else ->{
+                        showToast(resp.message)
+                    }
                 }
             }
 
             override fun onFailure(call: Call<DataResponse3>, t: Throwable) {
+                t.printStackTrace()
             }
 
         })
