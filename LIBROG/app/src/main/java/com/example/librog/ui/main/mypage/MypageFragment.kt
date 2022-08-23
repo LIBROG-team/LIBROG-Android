@@ -31,6 +31,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     override fun initAfterBinding() {
         appDB = AppDatabase.getInstance(requireActivity())!!
         userId=getIdx()
+        showToast(userId.toString())
         initViews()
         initClickListener()
     }

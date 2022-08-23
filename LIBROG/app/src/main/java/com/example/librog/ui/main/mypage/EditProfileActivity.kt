@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
@@ -151,8 +152,11 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        if (imgUrl=="0"||imgUrl==null){
+        if (imgUrl=="0"){
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
+        }
+        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
+            Glide.with(this).load(result.profileImgUrl).into(binding.editProfileIv)
         }
         else{
             val uri:Uri = Uri.parse(imgUrl)

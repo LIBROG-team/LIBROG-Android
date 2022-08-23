@@ -17,11 +17,12 @@ private const val TAG = "LoginActivity"
 
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
     lateinit var name: String
+    lateinit var appDB: AppDatabase
     override fun initAfterBinding() {
 
         initClickListener()
-        val AppDB = AppDatabase.getInstance(this)!!
-        val users = AppDB.userDao().getUserList()
+        appDB = AppDatabase.getInstance(this)!!
+        val users = appDB.userDao().getUserList()
         Log.d("userlist",users.toString())
     }
 
@@ -115,6 +116,9 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             1500-> {
                 showToast("kakao 로그인 성공")
                 saveUserIdx(result.idx, "kakao")
+                //카카오 로그인 최초 한 번만 (카카오 계정 이미지 가져오도록)
+                if (!appDB.userDao().isUserExist(result.email))
+                    appDB.userDao().insertImgUrl(result.email,"1")
                 startNextActivity(MainActivity::class.java)
             }
         }

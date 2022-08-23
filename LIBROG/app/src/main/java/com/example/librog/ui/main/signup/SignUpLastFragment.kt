@@ -102,7 +102,7 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-        startActivityForResult(intent, SignUpLastFragment.IMAGE_REQUEST_CODE) //인텐트를 통해 갤러리에 요청 코드 보냄
+        startActivityForResult(intent, IMAGE_REQUEST_CODE) //인텐트를 통해 갤러리에 요청 코드 보냄
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
