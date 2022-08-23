@@ -3,8 +3,10 @@ package com.example.librog.ui.main.mypage
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
@@ -32,6 +34,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         appDB = AppDatabase.getInstance(requireActivity())!!
         userId=getIdx()
         showToast(userId.toString())
+        Log.d("img",appDB.userDao().getUserList().toString())
         initViews()
         initClickListener()
     }
@@ -123,10 +126,13 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     private fun setUserProfile(result: UserProfileResult){
         binding.profileNameTv.text = result.name
         binding.profileIntroTv.text = result.introduction
-
         val imgUrl=appDB.userDao().getImgUrl(getEmail())
         if (imgUrl=="0"||imgUrl==null){
             binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
+        }
+        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
+            Glide.with(this).load(result.profileImgUrl).into(binding.profileIv)
+            showToast(result.profileImgUrl)
         }
         else{
             val uri:Uri = Uri.parse(imgUrl)

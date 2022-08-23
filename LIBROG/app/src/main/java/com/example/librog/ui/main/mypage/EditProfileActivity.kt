@@ -27,6 +27,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
 
     override fun initAfterBinding() {
         appDB = AppDatabase.getInstance(this)!!
+        Log.d("img",isImgNull.toString())
         getUserProfile(getIdx())
         initClickListener()
     }
@@ -54,6 +55,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
                 setDefaultImg()
                 appDB.userDao().updateImgUrl(getEmail(),"0")
             }//기본이미지로 설정
+            Log.d("img",isImgNull.toString())
             editProfile(getIntroduceInfo()) //자기소개 수정 api 호출
         }
 
@@ -152,7 +154,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        if (imgUrl=="0"){
+        if (imgUrl=="0"||imgUrl==null){
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
         }
         else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지

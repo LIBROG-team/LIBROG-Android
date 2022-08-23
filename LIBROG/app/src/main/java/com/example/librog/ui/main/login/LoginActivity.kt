@@ -82,6 +82,8 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         binding.loginErrorTv.visibility=View.INVISIBLE
         saveUserIdx(result.userIdx,"app")
         saveUserToken(result.jwt)
+        if (!appDB.userDao().isUserExist(getEmail()))
+            appDB.userDao().insertImgUrl(getEmail(),"0")
         Log.d("accessToken/app", result.jwt)
         startNextActivity(MainActivity::class.java)
     }
@@ -146,6 +148,11 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
         editor.apply()
 
+    }
+
+    private fun getEmail(): String{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getString("email","0")!!
     }
 
 

@@ -4,7 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.ApplicationClass
+import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.auth.AuthRetrofitInterface
 import com.example.librog.data.remote.data.auth.DeleteUserResponse
 import com.example.librog.databinding.ActivitySettingBinding
@@ -16,8 +18,9 @@ import retrofit2.Response
 
 class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBinding::inflate) {
     private val service = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
-
+    lateinit var appDB: AppDatabase
     override fun initAfterBinding() {
+        appDB = AppDatabase.getInstance(this)!!
         binding.settingBackBtn.setOnClickListener {
             finish()
         }
@@ -69,6 +72,8 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         }
         //탈퇴 완료
         binding.leaveFinishBtn.setOnClickListener {
+            appDB.userDao().deleteUser(getEmail())
+            removeIdx()
             startNextActivity(SplashActivity::class.java)
         }
     }
@@ -94,5 +99,17 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
     private fun getIdx(): Int{
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         return spf!!.getInt("idx",-1)
+    }
+
+    private fun getEmail(): String{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getString("email","0")!!
+    }
+
+    private fun removeIdx(){
+        val spf = getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        val editor = spf!!.edit()
+        editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
+        editor.apply()
     }
 }

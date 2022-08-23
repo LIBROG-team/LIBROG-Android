@@ -34,5 +34,7 @@ interface UserDao {
     @Query("SELECT EXISTS (SELECT * FROM User WHERE email=:email)")
     fun isUserExist(email: String) : Boolean
 
+    @Query("DELETE FROM User WHERE email=:email")
+    fun deleteUser(email: String)
 
 }
