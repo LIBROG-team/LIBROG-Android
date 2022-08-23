@@ -12,6 +12,7 @@ import com.example.librog.data.remote.data.auth.DeleteUserResponse
 import com.example.librog.databinding.ActivitySettingBinding
 import com.example.librog.ui.BaseActivity
 import com.example.librog.ui.main.splash.SplashActivity
+import com.kakao.sdk.user.UserApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -87,6 +88,9 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
                     1000->{
                         binding.leaveConfirmPanel.visibility=View.INVISIBLE
                         binding.leaveFinishPanel.visibility=View.VISIBLE
+                        if (getLoginType()=="kakao"){
+                            kakaoLogout()
+                        }
                     }
 
                 }
@@ -111,5 +115,31 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         val editor = spf!!.edit()
         editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
         editor.apply()
+    }
+
+    fun kakaoLogout(){
+        UserApiClient.instance.logout { error ->
+            if (error != null) {
+                Log.e("kakaoLogout", "로그아웃 실패. SDK에서 토큰 삭제됨", error)
+            }
+            else {
+                Log.i("kakaoLogout", "로그아웃 성공. SDK에서 토큰 삭제됨")
+            }
+
+        }
+
+        UserApiClient.instance.unlink { error ->
+            if (error != null) {
+                Log.e("kakaoLogout", "연결 끊기 실패", error)
+            }
+            else {
+                Log.i("kakaoLogout", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+            }
+        }
+    }
+
+    private fun getLoginType(): String{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getString("type","0")!!
     }
 }

@@ -99,12 +99,12 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             }
             else if (token != null) {
                 saveUserToken(token.accessToken)
-                showToast(token.accessToken)
+                Log.d("kakaoToken",token.accessToken)
+
                 val authService = AuthService()
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
                 authService.kakaoLogin(kakaoAccessToken)
-                Log.d("accessToken/kakao", AccessToken(token.accessToken).toString())
             }
         }
     }
@@ -112,6 +112,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
 
     override fun onKakaoLoginSuccess(code: Int, result: KakaoResult) {
+        Log.d("kakaoLogin/success",code.toString())
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
@@ -126,21 +127,8 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     }
 
     override fun onKakaoLoginFailure(code: Int, result: KakaoResult) {
-        Log.d("kakaoUser", result.toString())
+
     }
-
-    fun kakaoLogout(){
-        UserApiClient.instance.logout { error ->
-            if (error != null) {
-                Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
-            }
-            else {
-                Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
-            }
-
-        }
-    }
-
 
     private fun saveEmail(email:String){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
