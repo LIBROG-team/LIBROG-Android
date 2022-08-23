@@ -60,7 +60,7 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
 
     private fun leavePanelClickListener(){
         //탈퇴하기
-        binding.settingLeaveBtn.setOnClickListener{
+        binding.settingLeaveArea.setOnClickListener{
             binding.leaveConfirmPanel.visibility = View.VISIBLE
         }
         //탈퇴 확인

@@ -17,6 +17,7 @@ import com.example.librog.data.remote.data.UserStatResult
 
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.BaseFragment
+import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
 import com.example.librog.ui.main.login.LoginActivity
 
 import retrofit2.Call
@@ -26,7 +27,6 @@ import retrofit2.Response
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
     lateinit var appDB: AppDatabase
-    private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
     private var userId=0
 
@@ -60,6 +60,12 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
         binding.profileIntroTv.setOnClickListener {
             val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        //식물도감 버튼 클릭
+        binding.profilePlantListBtn.setOnClickListener {
+            val intent = Intent(activity, AddFlowerpotActivity::class.java)
             startActivity(intent)
         }
     }
@@ -145,10 +151,14 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         if (result.type=="kakao"){
             binding.kakaoLoginStatus.text = "연결완료"
             binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+            binding.profileKakaoLoginIcon.setImageResource(R.drawable.ic_login_kakao_on)
+            binding.profileAppLoginIcon.setImageResource(R.drawable.ic_login_app_off)
         }
         else {
             binding.appLoginStatus.text = "연결완료"
             binding.appLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+            binding.profileKakaoLoginIcon.setImageResource(R.drawable.ic_login_kakao_off)
+            binding.profileAppLoginIcon.setImageResource(R.drawable.ic_login_app_on)
         }
     }
 
