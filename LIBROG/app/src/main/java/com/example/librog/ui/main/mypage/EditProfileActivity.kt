@@ -21,13 +21,14 @@ import retrofit2.Response
 
 class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEditProfileBinding::inflate) {
     private lateinit var imgUri: Uri
-    private var isImgNull = true
+    private var isImgUpdated = false //앨범 선택 여부
+    private var isDefaultImg = false //기본 이미지 선택 여부
     lateinit var appDB: AppDatabase
     private val service = ApplicationClass.retrofit.create(UserDataInterface::class.java)
 
     override fun initAfterBinding() {
         appDB = AppDatabase.getInstance(this)!!
-        Log.d("img",isImgNull.toString())
+
         getUserProfile(getIdx())
         initClickListener()
     }
@@ -43,19 +44,19 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         }
 
         binding.editImgOptionDefaultTv.setOnClickListener {
-            isImgNull=true
+            isDefaultImg=true
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
             hideBanner()
         }
 
         binding.profileEditFinishBtn.setOnClickListener {
-            if (!isImgNull)
+            if (isImgUpdated)
                 appDB.userDao().updateImgUrl(getEmail(),imgUri.toString())
-            else {
+            if (isDefaultImg) {
                 setDefaultImg()
                 appDB.userDao().updateImgUrl(getEmail(),"0")
             }//기본이미지로 설정
-            Log.d("img",isImgNull.toString())
+
             editProfile(getIntroduceInfo()) //자기소개 수정 api 호출
         }
 
@@ -95,7 +96,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         if (requestCode == SignUpLastFragment.IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
             binding.editProfileIv.setImageURI(data?.data)
 
-            isImgNull=false
+            isImgUpdated=true
             imgUri = data?.data!!
             val contentResolver = applicationContext.contentResolver
             val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION or
@@ -154,12 +155,12 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        if (imgUrl=="0"||imgUrl=="1"){
+        if (imgUrl=="0"){
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
         }
-//        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
-//            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.editProfileIv)
-//        }
+        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
+            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.editProfileIv)
+        }
         else{
             val uri:Uri = Uri.parse(imgUrl)
             binding.editProfileIv.setImageURI(uri)
