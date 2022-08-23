@@ -22,32 +22,32 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             finish()
         }
         //프로필 변경
-        binding.settingProfileBtn.setOnClickListener {
+        binding.settingProfileArea.setOnClickListener {
             startNextActivity(EditProfileActivity::class.java)
         }
 
         //비밀번호 변경
-        binding.settingChangePwdBtn.setOnClickListener {
+        binding.settingChangePwdArea.setOnClickListener {
             startNextActivity(ChangePwdActivity::class.java)
         }
         leavePanelClickListener()
 
         //홈페이지 방문
-        binding.settingHomepageBtn.setOnClickListener {
+        binding.settingHomepageArea.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://blog.naver.com/librog"))
             startActivity(intent)
         }
         //개인정보취급방침
-        binding.settingPrivateBtn.setOnClickListener {
+        binding.settingPrivateArea.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://librog.shop/blog/privacypolicy.html"))
             startActivity(intent)
         }
         //문의하기
-        binding.settingAskBtn.setOnClickListener {
+        binding.settingAskArea.setOnClickListener {
             showToast("librogmaster@gmail.com")
         }
         //쿠폰입력
-        binding.settingAddCouponBtn.setOnClickListener {
+        binding.settingCouponArea.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://librog.shop/blog/promotion.html"))
             startActivity(intent)
         }

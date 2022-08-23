@@ -33,7 +33,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         userId=getIdx()
         initViews()
         initClickListener()
-        showToast(userId.toString())
     }
 
     private fun initClickListener(){
@@ -74,7 +73,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun getUserStat(){
-
         userService.getUserStat(userId).enqueue(object: Callback<UserStatResponse> {
             override fun onResponse(call: Call<UserStatResponse>, response: Response<UserStatResponse>) {
                 val resp = response.body()!!
@@ -124,8 +122,9 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     private fun setUserProfile(result: UserProfileResult){
         binding.profileNameTv.text = result.name
         binding.profileIntroTv.text = result.introduction
+
         val imgUrl=appDB.userDao().getImgUrl(getEmail())
-        if (imgUrl=="0"){
+        if (imgUrl=="0"||imgUrl==null){
             binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
         }
         else{

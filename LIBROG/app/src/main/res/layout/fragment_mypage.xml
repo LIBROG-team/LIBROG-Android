@@ -17,6 +17,7 @@
             android:textSize="27sp"
             android:layout_marginStart="29dp"
             android:layout_marginTop="41dp"
+            android:fontFamily="@font/pd_bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
         <ImageView
@@ -57,6 +58,7 @@
             android:layout_marginTop="36dp"
             android:layout_marginStart="43dp"
             android:textSize="17sp"
+            android:fontFamily="@font/pd_semibold"
             app:layout_constraintStart_toEndOf="@id/profile_iv"
             app:layout_constraintTop_toBottomOf="@id/profile_line1"/>
         <TextView
@@ -99,12 +101,12 @@
             app:layout_constraintEnd_toEndOf="parent">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_app_login_icon"
-                android:src="@drawable/ic_profile_app_login"
+                android:src="@drawable/ic_login_app_off"
                 android:layout_width="40dp"
                 android:layout_height="40dp"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_kakao_login_icon"
-                android:src="@drawable/ic_profile_kakao_login"
+                android:src="@drawable/ic_login_kakao_on"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="21dp"/>
@@ -225,30 +227,30 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:text="@string/profile_pot"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
                 android:text="@string/profile_book"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
                 android:text="@string/profile_rate"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
                 android:text="@string/profile_record_line"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
                 android:text="@string/profile_record"/>
         </LinearLayout>
@@ -275,6 +277,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
+                    android:fontFamily="@font/pd_semibold"
                     android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -298,6 +301,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
+                    android:fontFamily="@font/pd_semibold"
                     android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -321,6 +325,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
+                    android:fontFamily="@font/pd_semibold"
                     android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -344,6 +349,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
+                    android:fontFamily="@font/pd_semibold"
                     android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -367,6 +373,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
+                    android:fontFamily="@font/pd_semibold"
                     android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -397,7 +404,7 @@
             android:textColor="@color/white"
             android:text="로그아웃"
             android:textSize="16sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/pd_semibold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_line5"

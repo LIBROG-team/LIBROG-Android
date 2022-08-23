@@ -151,7 +151,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        if (imgUrl=="0"){
+        if (imgUrl=="0"||imgUrl==null){
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
         }
         else{

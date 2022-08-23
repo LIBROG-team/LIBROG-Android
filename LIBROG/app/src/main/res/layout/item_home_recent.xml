@@ -35,7 +35,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/white"
-        android:fontFamily="@font/pd_bold"
+        android:fontFamily="@font/pd_medium"
         android:lineSpacingExtra="16.8dp"
         app:layout_constraintEnd_toEndOf="@id/item_home_book_frame_iv"
         app:layout_constraintTop_toTopOf="@+id/item_home_book_frame_iv"/>
@@ -49,7 +49,7 @@
         android:textSize="12sp"
         android:ellipsize="end"
         android:textColor="@color/white"
-        android:fontFamily="@font/pd_regular"
+        android:fontFamily="@font/pd_medium"
         android:lineSpacingExtra="14.4dp"
         app:layout_constraintStart_toEndOf="@+id/item_home_book_iv"
         app:layout_constraintTop_toBottomOf="@+id/item_home_book_title_tv"
@@ -63,9 +63,8 @@
         android:text="@string/home_book_date"
         android:textSize="12sp"
         android:textColor="@color/white"
-        android:fontFamily="@font/pd_regular"
         android:lineSpacingExtra="13.2dp"
-        android:letterSpacing="-0.01"
+        android:letterSpacing="0.01"
         app:layout_constraintStart_toEndOf="@+id/item_home_book_iv"
         app:layout_constraintTop_toBottomOf="@+id/item_home_book_writer_tv" />
 

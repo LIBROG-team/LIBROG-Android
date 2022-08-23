@@ -2,6 +2,7 @@ package com.example.librog.ui.main.login
 
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.auth.*
 import com.example.librog.databinding.ActivityLoginBinding
@@ -39,13 +40,18 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         binding.loginFindPwdBtn.setOnClickListener {
             startNextActivity(FindPwdActivity::class.java)
         }
+
+        binding.loginAppLogo.setOnClickListener {
+            logout()
+        }
     }
 
-    private fun saveUserIdx(idx:Int){
+    private fun saveUserIdx(idx:Int, type:String){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         val editor = spf.edit()
 
         editor.putInt("idx",idx)
+        editor.putString("type",type)
         editor.apply()
     }
 
@@ -73,7 +79,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onLoginSuccess(result: AppLoginResult) {
         binding.loginErrorTv.visibility=View.INVISIBLE
-        saveUserIdx(result.userIdx)
+        saveUserIdx(result.userIdx,"app")
         saveUserToken(result.jwt)
         Log.d("accessToken/app", result.jwt)
         startNextActivity(MainActivity::class.java)
@@ -102,6 +108,22 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
+
+
+    override fun onKakaoLoginSuccess(code: Int, result: KakaoResult) {
+        when (code){
+            1500-> {
+                showToast("kakao 로그인 성공")
+                saveUserIdx(result.idx, "kakao")
+                startNextActivity(MainActivity::class.java)
+            }
+        }
+    }
+
+    override fun onKakaoLoginFailure(code: Int, result: KakaoResult) {
+        Log.d("kakaoUser", result.toString())
+    }
+
     fun kakaoLogout(){
         UserApiClient.instance.logout { error ->
             if (error != null) {
@@ -114,18 +136,12 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
-    override fun onKakaoLoginSuccess(code: Int, result: KakaoResult) {
-        when (code){
-            1500-> {
-                showToast("kakao 로그인 성공")
-                saveUserIdx(result.idx)
-                startNextActivity(MainActivity::class.java)
-            }
-        }
-    }
+    private fun logout(){
+        val spf =getSharedPreferences("userInfo", MODE_PRIVATE)
+        val editor = spf!!.edit()
+        editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
+        editor.apply()
 
-    override fun onKakaoLoginFailure(code: Int, result: KakaoResult) {
-        Log.d("kakaoUser", result.toString())
     }
 
 
