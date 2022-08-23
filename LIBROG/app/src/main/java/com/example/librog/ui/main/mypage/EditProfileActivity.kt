@@ -154,12 +154,12 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         
         binding.editIntroduceEt.setText(result.introduction)
         binding.editNicknameEt.setText(result.name)
-        if (imgUrl=="0"||imgUrl==null){
+        if (imgUrl=="0"||imgUrl=="1"){
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
         }
-        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
-            Glide.with(this).load(result.profileImgUrl).into(binding.editProfileIv)
-        }
+//        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
+//            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.editProfileIv)
+//        }
         else{
             val uri:Uri = Uri.parse(imgUrl)
             binding.editProfileIv.setImageURI(uri)

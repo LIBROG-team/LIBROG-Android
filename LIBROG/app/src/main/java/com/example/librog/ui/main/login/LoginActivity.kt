@@ -17,6 +17,7 @@ private const val TAG = "LoginActivity"
 
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
     lateinit var name: String
+    lateinit var userEmail: String
     lateinit var appDB: AppDatabase
     override fun initAfterBinding() {
 
@@ -42,9 +43,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             startNextActivity(FindPwdActivity::class.java)
         }
 
-        binding.loginAppLogo.setOnClickListener {
-            logout()
-        }
     }
 
     private fun saveUserIdx(idx:Int, type:String){
@@ -66,7 +64,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     private fun getAppLoginInfo() : AppLoginInfo {
         val email: String = binding.loginIdEt.text.toString()
         val pwd: String = binding.loginPwdEt.text.toString()
-
+        saveEmail(email)
         return AppLoginInfo(email, pwd)
     }
 
@@ -118,6 +116,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             1500-> {
                 showToast("kakao 로그인 성공")
                 saveUserIdx(result.idx, "kakao")
+                saveEmail(result.email)
                 //카카오 로그인 최초 한 번만 (카카오 계정 이미지 가져오도록)
                 if (!appDB.userDao().isUserExist(result.email))
                     appDB.userDao().insertImgUrl(result.email,"1")
@@ -142,12 +141,13 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         }
     }
 
-    private fun logout(){
-        val spf =getSharedPreferences("userInfo", MODE_PRIVATE)
-        val editor = spf!!.edit()
-        editor.remove("idx") //키값에 저장된값 삭제-> idx=-1
-        editor.apply()
 
+    private fun saveEmail(email:String){
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("email",email)
+        editor.apply()
     }
 
     private fun getEmail(): String{
