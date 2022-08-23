@@ -14,4 +14,7 @@ interface HomeRetrofitInterface {
 
     @GET("flowerpots/flowerpotMain/{userIdx}")
     fun getMainPot(@Path("userIdx") userIdx: Int): Call<MainPotResponse>
+
+    @GET("/records/mainpage/{userIdx}")
+    fun getDailyStatus(@Path("userIdx") userIdx: Int): Call<MainDailyResponse>
 }

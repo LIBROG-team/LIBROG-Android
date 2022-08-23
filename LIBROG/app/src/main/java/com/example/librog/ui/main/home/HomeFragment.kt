@@ -44,6 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeService.getRecentBook(this,getIdx())
 
         getMainPot()
+        getDailyStatus()
     }
 
     override fun onStart() {
@@ -133,6 +134,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         Glide.with(this).load(result.flowerImgUrl).into(binding.homeCircleFlowerImg)
         binding.mainCircleFlowerIv.backgroundTintList = ColorStateList.valueOf(Color.parseColor(bgColor))
 
+    }
+
+    private fun getDailyStatus(){
+        mainPotService.getDailyStatus(getIdx()).enqueue(object: Callback<MainDailyResponse> {
+            override fun onResponse(call: Call<MainDailyResponse>, response: Response<MainDailyResponse>) {
+                val resp = response.body()!!
+                Log.d("getMainDaily",resp.code.toString())
+                when (resp.code){
+                    1000->{
+                        setDailyStatus(resp.result!!)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<MainDailyResponse>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun setDailyStatus(result: MainDailyResult){
+        binding.homeCountdayTv.text = String.format("독서 %d일차",result.daycnt)
+        binding.homeStatusTv.text = result.content
     }
 
     private fun getIdx(): Int{
