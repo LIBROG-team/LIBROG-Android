@@ -19,6 +19,7 @@
         android:layout_marginStart="14dp"
         android:textSize="13sp"
         android:fontFamily="@font/pd_medium"
+        android:lineSpacingExtra="2.51dp"
         app:layout_constraintStart_toEndOf="@id/item_home_rc_book"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -29,6 +30,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
         android:textSize="12sp"
+        android:lineSpacingExtra="2.4dp"
         app:layout_constraintStart_toEndOf="@id/item_home_rc_book"
         app:layout_constraintTop_toBottomOf="@+id/item_home_rc_title"
         />
@@ -39,6 +41,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
         android:textSize="12sp"
+        android:lineSpacingExtra="2.4dp"
         app:layout_constraintStart_toEndOf="@id/item_home_rc_book"
         app:layout_constraintTop_toBottomOf="@+id/item_home_rc_author"
         />

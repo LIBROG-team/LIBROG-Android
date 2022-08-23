@@ -25,6 +25,8 @@
         android:textColor="@color/black"
         android:fontFamily="@font/pd_semibold"
         android:text="색다른 독서 기록의 시작"
+        android:lineSpacingExtra="8dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_app_logo"/>
     <TextView
@@ -36,6 +38,8 @@
         android:textColor="@color/green"
         android:fontFamily="@font/pd_semibold"
         android:text="리브로그"
+        android:lineSpacingExtra="8dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_introduce1_tv"/>
     <TextView
@@ -46,6 +50,8 @@
         android:textColor="@color/black"
         android:fontFamily="@font/pd_semibold"
         android:text="에 오신 것을 환영합니다"
+        android:lineSpacingExtra="8dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toEndOf="@id/login_introduce2_tv"
         app:layout_constraintTop_toBottomOf="@id/login_introduce1_tv"/>
 
@@ -59,6 +65,8 @@
         android:textColor="@color/black"
         android:fontFamily="@font/pd_semibold"
         android:text="이메일"
+        android:lineSpacingExtra="2.9dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_introduce2_tv"/>
 
@@ -75,6 +83,8 @@
         android:fontFamily="@font/pd_semibold"
         android:inputType="text"
         android:textSize="14sp"
+        android:lineSpacingExtra="2.71dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_email_title" />
@@ -101,6 +111,8 @@
         android:textColor="@color/black"
         android:fontFamily="@font/pd_semibold"
         android:text="비밀번호"
+        android:lineSpacingExtra="2.9dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_id_underscore_view"/>
 
@@ -117,6 +129,8 @@
         android:fontFamily="@font/pd_semibold"
         android:inputType="text"
         android:textSize="14sp"
+        android:lineSpacingExtra="2.71dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_pwd_title" />
@@ -144,6 +158,8 @@
         android:textSize="13sp"
         android:visibility="invisible"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="2.51dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_pwd_underscore_view" />
@@ -160,6 +176,7 @@
         android:fontFamily="@font/pd_semibold"
         android:textColor="@color/green"
         android:textSize="15sp"
+        android:lineSpacingExtra="2.9dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_pwd_underscore_view"/>
@@ -180,6 +197,8 @@
             android:textSize="13sp"
             android:textColor="#B5B5B5"
             android:fontFamily="@font/pd_medium"
+            android:lineSpacingExtra="2.51dp"
+            android:letterSpacing="-0.04"
             android:text="회원가입" />
         <View
             android:layout_width="1dp"
@@ -195,6 +214,8 @@
             android:textSize="13sp"
             android:textColor="#B5B5B5"
             android:fontFamily="@font/pd_medium"
+            android:lineSpacingExtra="2.51dp"
+            android:letterSpacing="-0.04"
             android:text="비밀번호 찾기" />
 
     </LinearLayout>
@@ -206,6 +227,7 @@
         android:text="SNS 계정을 연동하여 간편하게 로그인 할 수 있어요"
         android:textColor="#6A6A6A"
         android:textSize="12sp"
+        android:lineSpacingExtra="2.32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_functions" />
