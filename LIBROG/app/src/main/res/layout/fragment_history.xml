@@ -58,7 +58,7 @@
             android:layout_height="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginStart="82dp"
-            android:src="@drawable/btn_history_sort_detail"
+            android:src="@drawable/ic_sort_history"
             app:layout_constraintStart_toStartOf="@id/history_sort_box_iv"
             app:layout_constraintTop_toTopOf="@id/history_sort_box_iv"/>
 

@@ -13,6 +13,7 @@
         android:layout_marginStart="34dp"
         android:text="약관동의"
         android:textSize="20sp"
+        android:fontFamily="@font/pd_semibold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
@@ -23,6 +24,7 @@
         android:layout_marginStart="34dp"
         android:text="아래 약관에 동의하신 후 [다음]을 눌러주세요"
         android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
         app:layout_constraintTop_toBottomOf="@id/su_consent_title"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
@@ -34,6 +36,7 @@
         android:visibility="invisible"
         android:text="* 필수 동의 내용에 동의하지 않으시면 서비스 이용이 불가합니다."
         android:textColor="#FF3030"
+        android:fontFamily="@font/pd_semibold"
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/su_consent_explain1"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -43,44 +46,45 @@
         android:id="@+id/check_top_unchecked"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="13dp"
         android:layout_marginStart="36dp"
         android:background="@drawable/sign_up_uncheck_border"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/su_consent_explain1"/>
+        app:layout_constraintTop_toBottomOf="@+id/su_consent_warning_tv"/>
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/check_top_checked"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="13dp"
         android:layout_marginStart="36dp"
         android:background="@drawable/sign_up_check_border"
         android:src="@drawable/su_consent_check"
         android:visibility="invisible"
         android:paddingHorizontal="2dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/su_consent_explain1"/>
+        app:layout_constraintTop_toBottomOf="@+id/su_consent_warning_tv"/>
 
     <TextView
         android:id="@+id/check_top_tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="14dp"
         android:layout_marginStart="64dp"
         android:text="개인정보처리 및 취급 동의"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/su_consent_explain1"
+        android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
+        app:layout_constraintTop_toBottomOf="@+id/su_consent_warning_tv"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/check_top_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:layout_marginStart="5dp"
         android:text="(필수)"
-        android:textSize="12sp"
+        android:textSize="15sp"
         android:textColor="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/su_consent_explain1"
+        android:fontFamily="@font/pd_semibold"
+        app:layout_constraintTop_toTopOf="@+id/check_top_tv1"
         app:layout_constraintStart_toEndOf="@id/check_top_tv1"/>
     <FrameLayout
         android:id="@+id/su_consent_frame1"
@@ -93,18 +97,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/check_top_tv1">
+
         <TextView
             android:id="@+id/su_consent_content1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="21dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="12dp"
+            android:layout_marginBottom="21dp"
+            android:fontFamily="@font/pd_medium"
             android:text="소리다.이것은 그와 이것을 방황하여도, 같지 싶이 어디 우리는 것이다. 그들의 그것은 충분히 청춘의 무엇을 속에서 눈에 그리하였는가? 힘차게 무엇을 거선의 목숨이 창공에 운다. 이상의 설레는 피고, 들어 보배를 뼈 불어 그들은 위하여서. 고행을 아니한 그들은 우리는 얼마나 무엇을 있는 때문이다. 만물은 우리의 가지에 피어나는 얼마나 전인 말이다. 꽃 위하여 평화스러운 풀이 인간에 부패뿐이다. 광야에서 귀는 못할 스며들어 바이며, 우리의 풀밭에 새가 일월과 쓸쓸하랴? 같이, 두기 우리 아름답고 것이다. 같이, 원대하고, 현저하게 것이다. 풍부하게 있는 위하여 커다란 피다."
             android:textSize="11sp"
-            android:layout_gravity="center_horizontal"
-            />
+            android:lineSpacingExtra="3dp"/>
     </FrameLayout>
     <View
         android:id="@+id/check_bottom_unchecked"
@@ -135,19 +141,20 @@
         android:layout_marginTop="41dp"
         android:layout_marginStart="64dp"
         android:text="서비스 이용 동의"
-        android:textSize="12sp"
+        android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
         app:layout_constraintTop_toBottomOf="@id/su_consent_frame1"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/check_bottom_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
         android:layout_marginStart="5dp"
         android:text="(필수)"
-        android:textSize="12sp"
+        android:textSize="15sp"
         android:textColor="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/su_consent_frame1"
+        android:fontFamily="@font/pd_semibold"
+        app:layout_constraintTop_toTopOf="@+id/check_bottom_tv1"
         app:layout_constraintStart_toEndOf="@id/check_bottom_tv1"/>
     <FrameLayout
         android:id="@+id/su_consent_content2"
@@ -167,8 +174,10 @@
             android:layout_marginBottom="21dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:text="소리다.이것은 그와 이것을 방황하여도, 같지 싶이 어디 우리는 것이다. 그들의 그것은 충분히 청춘의 무엇을 속에서 눈에 그리하였는가? 힘차게 무엇을 거선의 목숨이 창공에 운다. 이상의 설레는 피고, 들어 보배를 뼈 불어 그들은 위하여서. 고행을 아니한 그들은 우리는 얼마나 무엇을 있는 때문이다. 만물은 우리의 가지에 피어나는 얼마나 전인 말이다. 꽃 위하여 평화스러운 풀이 인간에 부패뿐이다. 광야에서 귀는 못할 스며들어 바이며, 우리의 풀밭에 새가 일월과 쓸쓸하랴? 같이, 두기 우리 아름답고 것이다. 같이, 원대하고, 현저하게 것이다. 풍부하게 있는 위하여 커다란 피다."
+            android:text="개인정보 수집 및 이용 동의\n리브로그에서는 아래 목적으로 개인정보를 수집 및 이용하며, 회원의개인정보를 안전하게 취급하는데 최선을 다하겠습니다.\n 1. 목적 : 사용자 식별 및 서비스 이용에 필요한 정보 조회\n 2. 수집항목 : 이메일 주소\n 3. 보유기간 : 회원 탈퇴시 지체없이 파기\n위 개인정보 수집에 대한 동의를 거부할 권리가 있으며, 거부시에는 서비스 이용이 제한될 수 있습니다."
             android:textSize="11sp"
+            android:fontFamily="@font/pd_medium"
+            android:lineSpacingExtra="2.2dp"
             android:layout_gravity="center_horizontal"
             />
     </FrameLayout>
@@ -201,6 +210,7 @@
         android:text="다음"
         android:textColor="#969696"
         android:textSize="15sp"
+        android:fontFamily="@font/pd_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

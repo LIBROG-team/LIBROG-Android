@@ -37,7 +37,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun initAfterBinding() {
         appDB= AppDatabase.getInstance(requireContext())!!
-        Log.d("userDB",appDB.userDao().getUserList().toString())
         (activity as MainActivity).showBottomNav()
 
         service.getUserNotice(this)

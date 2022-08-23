@@ -30,7 +30,11 @@ interface UserDao {
     @Query("SELECT profileImgUrl FROM User WHERE email=:email")
     fun getImgUrl(email: String) : String
 
+    //존재할 경우만 DB에 넣어주도록
+    @Query("SELECT EXISTS (SELECT * FROM User WHERE email=:email)")
+    fun isUserExist(email: String) : Boolean
 
-
+    @Query("DELETE FROM User WHERE email=:email")
+    fun deleteUser(email: String)
 
 }
