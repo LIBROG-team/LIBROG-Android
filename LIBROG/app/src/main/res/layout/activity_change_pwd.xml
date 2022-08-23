@@ -21,6 +21,7 @@
         android:layout_marginTop="39dp"
         android:textSize="20sp"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="3.87dp"
         app:layout_constraintStart_toEndOf="@id/change_pwd_back_btn"
         app:layout_constraintTop_toTopOf="parent"/>
     <View
@@ -40,6 +41,7 @@
         android:textSize="18sp"
         android:text="기존 비밀번호와"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="7dp"
         app:layout_constraintTop_toBottomOf="@+id/change_pwd_title_line"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -52,6 +54,7 @@
         android:text="변경하실 비밀번호"
         android:textColor="@color/green"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="7dp"
         app:layout_constraintTop_toBottomOf="@id/change_pwd_explain1_tv"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -62,6 +65,7 @@
         android:textSize="18sp"
         android:text="를 입력해주세요."
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="7dp"
         app:layout_constraintTop_toBottomOf="@id/change_pwd_explain1_tv"
         app:layout_constraintStart_toEndOf="@+id/change_pwd_explain2_tv"
         />
@@ -76,6 +80,7 @@
         android:textColor="@color/black"
         android:fontFamily="@font/pd_medium"
         android:text="기존 비밀번호"
+        android:lineSpacingExtra="2.9dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_pwd_explain3_tv"/>
 
@@ -92,6 +97,7 @@
         android:inputType="text"
         android:textSize="12sp"
         android:fontFamily="@font/pd_medium"
+        android:lineSpacingExtra="2.32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/change_origin_pwd_title" />
@@ -118,6 +124,7 @@
         android:textColor="@color/black"
         android:fontFamily="@font/pd_medium"
         android:text="변경할 비밀번호"
+        android:lineSpacingExtra="2.9dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/find_origin_pwd_underscore_view"/>
 
@@ -133,6 +140,7 @@
         android:hint="변경할 비밀번호를 입력해주세요"
         android:inputType="text"
         android:textSize="12sp"
+        android:lineSpacingExtra="2.32dp"
         android:fontFamily="@font/pd_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,6 +167,7 @@
         android:text="소셜 로그인 계정은 비밀번호 재설정이 불가능합니다."
         android:textSize="12sp"
         android:textColor="#6A6A6A"
+        android:lineSpacingExtra="2.4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/find_new_pwd_underscore_view"/>
 
@@ -174,6 +183,8 @@
         android:textColor="@color/green"
         android:fontFamily="@font/pd_semibold"
         android:textSize="15sp"
+        android:lineSpacingExtra="3dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

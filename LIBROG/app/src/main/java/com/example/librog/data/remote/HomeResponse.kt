@@ -54,3 +54,15 @@ data class MainPotResult(
     @SerializedName(value = "startDate")val startDate : String,
     @SerializedName(value = "lastDate")val lastDate : String
 )
+
+data class MainDailyResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: MainDailyResult?
+)
+
+data class MainDailyResult(
+    @SerializedName(value = "daycnt")val daycnt: Int,
+    @SerializedName(value = "content")val content:String
+)

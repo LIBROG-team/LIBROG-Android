@@ -14,6 +14,7 @@
         android:text="약관동의"
         android:textSize="20sp"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="2.87dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
@@ -25,6 +26,7 @@
         android:text="아래 약관에 동의하신 후 [다음]을 눌러주세요"
         android:textSize="15sp"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="2.9dp"
         app:layout_constraintTop_toBottomOf="@id/su_consent_title"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
@@ -38,6 +40,7 @@
         android:textColor="#FF3030"
         android:fontFamily="@font/pd_semibold"
         android:textSize="12sp"
+        android:lineSpacingExtra="2.32dp"
         app:layout_constraintTop_toBottomOf="@id/su_consent_explain1"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -73,6 +76,7 @@
         android:text="개인정보처리 및 취급 동의"
         android:textSize="15sp"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="5.91dp"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_warning_tv"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
@@ -84,6 +88,7 @@
         android:textSize="15sp"
         android:textColor="@color/green"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="5.91dp"
         app:layout_constraintTop_toTopOf="@+id/check_top_tv1"
         app:layout_constraintStart_toEndOf="@id/check_top_tv1"/>
     <FrameLayout
@@ -143,6 +148,7 @@
         android:text="서비스 이용 동의"
         android:textSize="15sp"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="5.91dp"
         app:layout_constraintTop_toBottomOf="@id/su_consent_frame1"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
@@ -154,6 +160,7 @@
         android:textSize="15sp"
         android:textColor="@color/green"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="5.91dp"
         app:layout_constraintTop_toTopOf="@+id/check_bottom_tv1"
         app:layout_constraintStart_toEndOf="@id/check_bottom_tv1"/>
     <FrameLayout

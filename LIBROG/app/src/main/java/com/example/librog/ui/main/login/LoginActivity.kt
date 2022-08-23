@@ -1,5 +1,6 @@
 package com.example.librog.ui.main.login
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -48,7 +49,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     private fun saveUserIdx(idx:Int, type:String){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         val editor = spf.edit()
-
         editor.putInt("idx",idx)
         editor.putString("type",type)
         editor.apply()
@@ -83,7 +83,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         if (!appDB.userDao().isUserExist(getEmail()))
             appDB.userDao().insertImgUrl(getEmail(),"0")
         Log.d("accessToken/app", result.jwt)
-        startNextActivity(MainActivity::class.java)
+
+        val intent = Intent(this,MainActivity::class.java)
+        finishAffinity()
+        startActivity(intent)
     }
 
     override fun onLoginFailure(message : String) {
@@ -121,7 +124,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 //카카오 로그인 최초 한 번만 (카카오 계정 이미지 가져오도록)
                 if (!appDB.userDao().isUserExist(result.email))
                     appDB.userDao().insertImgUrl(result.email,"1")
-                startNextActivity(MainActivity::class.java)
+
+                val intent = Intent(this,MainActivity::class.java)
+                finishAffinity()
+                startActivity(intent)
             }
         }
     }

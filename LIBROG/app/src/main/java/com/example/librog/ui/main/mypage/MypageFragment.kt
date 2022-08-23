@@ -42,7 +42,9 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     private fun initClickListener(){
         binding.mypageLoginBtn.setOnClickListener {
             logout()
-            requireActivity().finish()
+            val intent = Intent(activity,LoginActivity::class.java)
+            requireActivity().finishAffinity()
+            startActivity(intent)
         }
 
         binding.profileSettingBtn.setOnClickListener {
