@@ -54,3 +54,17 @@ data class MainPotResult(
     @SerializedName(value = "startDate")val startDate : String,
     @SerializedName(value = "lastDate")val lastDate : String
 )
+
+
+// 2.12 메인화면 문구, 독서일자 조회 api
+data class MainPageResponse(
+    @SerializedName(value = "isSuccess")val isSuccess : Boolean,
+    @SerializedName(value = "code")val code:Int,
+    @SerializedName(value = "message")val message:String,
+    @SerializedName(value = "result")val result: MainPageResult,
+)
+
+data class MainPageResult(
+    @SerializedName("daycnt") val dayCnt: Int,
+    @SerializedName("content") val content: String?,
+)

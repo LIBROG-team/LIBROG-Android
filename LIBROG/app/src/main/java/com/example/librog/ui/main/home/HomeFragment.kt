@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
+import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.*
 import com.example.librog.data.remote.data.*
@@ -26,6 +27,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -45,6 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeService.getRecentBook(this,getIdx())
 
         getMainPot()
+        getMainPageTopText(getIdx())
     }
 
     override fun onStart() {
@@ -135,6 +138,40 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.mainCircleFlowerIv.backgroundTintList = ColorStateList.valueOf(Color.parseColor(bgColor))
 
     }
+
+    private fun getMainPageTopText(userIdx: Int){
+        mainPotService.getMainPageTopText(userIdx).enqueue(object : Callback<MainPageResponse>{
+            override fun onResponse(
+                call: Call<MainPageResponse>,
+                response: Response<MainPageResponse>
+            ) {
+                val resp = response.body()!!
+                when(resp.code){
+                    1000 ->{
+                        setMainPageTopText(resp.result)
+                    }
+
+                    else ->{
+                        showToast(resp.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<MainPageResponse>, t: Throwable) {
+                showToast(t.message.toString())
+            }
+
+
+        })
+    }
+
+    private fun setMainPageTopText(result: MainPageResult) {
+
+
+        binding.homeCountdayTv.text= String.format(getString(R.string.home_day_count), result.dayCnt)
+        binding.homeStatusTv.text = result.content ?: ""
+    }
+
 
     private fun getIdx(): Int{
         val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
