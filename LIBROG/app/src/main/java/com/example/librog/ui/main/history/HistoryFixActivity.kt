@@ -46,7 +46,7 @@ class HistoryFixActivity :
 
     private fun initDeleteDialog(readingRecordIdx: Int) {
         AlertDialog.Builder(this)
-            .setMessage("${binding.historyFixTitleTv.text}를 삭제하시겠습니까?")
+            .setMessage("${binding.historyFixTitleTv.text}을(를) 삭제하시겠습니까?")
             .setPositiveButton("확인") { _, _ ->
                 deleteReadingRecord(DeleteBookRecordData(readingRecordIdx))
             }

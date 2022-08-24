@@ -77,6 +77,8 @@
     <string name="detail_flowerpot_exp_num">%d / %d</string>
     <string name="detail_flowerpot_book_list">화분에 기록된 책</string>
     <string name="detail_flowerpot_no_book">화분에 책이 없습니다.</string>
+    <string name="detail_flowerpot_delete">라넌큘러스 화분 삭제</string>
+    <string name="detail_flowerpot_edit">화분에 기록된 책 편집</string>
 
     <!-- 화분추가 -->
     <string name="add_flowerpot_top_text">화분추가</string>

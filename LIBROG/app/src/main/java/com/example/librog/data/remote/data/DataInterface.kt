@@ -1,9 +1,7 @@
 package com.example.librog.data.remote.data
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface DataInterface {
     @GET("/flowerpots/{userIdx}")
@@ -24,5 +22,11 @@ interface DataInterface {
 
     @GET("/flowerpots/flowerPotInfo/{flowerDataIdx}")
     fun getDetailFp(@Path("flowerDataIdx") flowerDataIdx: Int): Call<DataResponse4>
+
+    @POST("/flowerpots/flowerpotAdd/{userFlowerListIdx}")
+    fun addFlowerpot(@Path("userFlowerListIdx") userFlowerListIdx: Int): Call<AddFpResponse>
+
+    @DELETE("/flowerpots/flowerpotDelete/{flowerpotIdx}")
+    fun deleteFlowerpot(@Path ("flowerpotIdx") flowerpotIdx: Int): Call<DeleteFpResponse>
 
 }

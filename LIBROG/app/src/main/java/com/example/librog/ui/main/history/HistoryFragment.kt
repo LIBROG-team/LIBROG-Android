@@ -181,6 +181,9 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
             binding.historySelectedSortTv.text = binding.historyBannerTitleTv.text
             getHistoryFilteredByTitle(userIdx)
         }
+        binding.historyBannerSelected.setOnClickListener{
+            clickSortTv()
+        }
     }
 
 
