@@ -140,7 +140,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         }
         else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
             Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
-            showToast(result.profileImgUrl)
         }
         else{
             val uri:Uri = Uri.parse(imgUrl)

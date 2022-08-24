@@ -23,7 +23,7 @@
             android:id="@+id/add_flowerpot_back_btn_iv"
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/ic_back_arrow"
+            android:src="@drawable/ic_arrow_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

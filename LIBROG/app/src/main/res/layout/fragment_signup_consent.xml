@@ -60,10 +60,8 @@
         android:layout_height="20dp"
         android:layout_marginTop="13dp"
         android:layout_marginStart="36dp"
-        android:background="@drawable/sign_up_check_border"
         android:src="@drawable/su_consent_check"
         android:visibility="invisible"
-        android:paddingHorizontal="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_warning_tv"/>
 
@@ -133,10 +131,8 @@
         android:layout_height="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginStart="36dp"
-        android:background="@drawable/sign_up_check_border"
         android:src="@drawable/su_consent_check"
         android:visibility="invisible"
-        android:paddingHorizontal="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_frame1"/>
     <TextView

@@ -134,7 +134,6 @@
                             android:layout_marginVertical="9dp"
                             android:ellipsize="end"
                             android:fontFamily="@font/pd_regular"
-                            android:lineHeight="16sp"
                             android:maxLines="5"
                             android:text="@string/addbook_select_explain"
                             android:textSize="12sp"
