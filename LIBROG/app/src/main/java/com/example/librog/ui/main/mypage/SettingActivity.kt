@@ -32,7 +32,18 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
 
         //비밀번호 변경
         binding.settingChangePwdArea.setOnClickListener {
-            startNextActivity(ChangePwdActivity::class.java)
+            when (getLoginType()){
+                "kakao"->{
+                    binding.changedPwdDeniedPanel.visibility = View.VISIBLE
+                    setClickable(false)
+                }
+                else->startNextActivity(ChangePwdActivity::class.java)
+            }
+        }
+
+        binding.changePwdDeniedBtn.setOnClickListener {
+            binding.changedPwdDeniedPanel.visibility = View.INVISIBLE
+            setClickable(true)
         }
         leavePanelClickListener()
 
