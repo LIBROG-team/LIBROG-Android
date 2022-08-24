@@ -25,7 +25,7 @@
         android:layout_marginEnd="23dp"
         android:ellipsize="end"
         android:fontFamily="@font/pd_bold"
-        android:lineSpacingExtra="21.84dp"
+        android:lineSpacingExtra="7.09dp"
         android:maxLines="1"
         android:text="@string/addbook_select_title"
         android:textSize="18sp"
@@ -117,6 +117,7 @@
                             android:maxLines="2"
                             android:text="@string/addbook_select_title"
                             android:textSize="15sp"
+                            android:lineSpacingExtra="5.91dp"
                             app:layout_constraintBottom_toTopOf="@id/history_fix_author_tv"
                             app:layout_constraintStart_toEndOf="@id/history_fix_book_thumbnail_iv"
                             app:layout_constraintTop_toTopOf="parent"
@@ -130,6 +131,7 @@
                             android:fontFamily="@font/pd_medium"
                             android:text="@string/addbook_select_writer"
                             android:textSize="14sp"
+                            android:lineSpacingExtra="4.28dp"
                             app:layout_constraintBottom_toTopOf="@id/history_fix_explain_tv"
                             app:layout_constraintStart_toStartOf="@id/history_fix_title_tv"
                             app:layout_constraintTop_toBottomOf="@id/history_fix_title_tv" />
@@ -141,7 +143,7 @@
                             android:layout_marginVertical="9dp"
                             android:ellipsize="end"
                             android:fontFamily="@font/pd_regular"
-                            android:lineHeight="16sp"
+                            android:lineSpacingExtra="4dp"
                             android:maxLines="5"
                             android:text="@string/addbook_select_explain"
                             android:textSize="12sp"
@@ -177,6 +179,7 @@
                 android:fontFamily="@font/pd_semibold"
                 android:text="@string/addbook_select_rate_text"
                 android:textSize="15sp"
+                android:lineSpacingExtra="5.91dp"
                 app:layout_constraintStart_toStartOf="@id/history_fix_area2"
                 app:layout_constraintTop_toTopOf="@id/history_fix_area2" />
 
@@ -189,6 +192,8 @@
                 android:text="@string/addbook_select_rate_n"
                 android:textColor="@color/green"
                 android:textSize="16sp"
+                android:lineSpacingExtra="6.3dp"
+                android:letterSpacing="-0.02"
                 app:layout_constraintBottom_toBottomOf="@id/history_fix_rate_tv"
                 app:layout_constraintStart_toEndOf="@id/history_fix_rate_tv"
                 app:layout_constraintTop_toTopOf="@id/history_fix_rate_tv" />
@@ -237,6 +242,8 @@
                 android:singleLine="true"
                 android:text="@string/addbook_select_line"
                 android:textSize="15sp"
+                android:lineSpacingExtra="5.91dp"
+                android:letterSpacing="-0.01"
                 app:layout_constraintStart_toStartOf="@id/history_fix_area3"
                 app:layout_constraintTop_toTopOf="@id/history_fix_area3" />
 
@@ -252,6 +259,7 @@
                 android:fontFamily="@font/pd_regular"
                 android:inputType="text"
                 android:textSize="14sp"
+                android:lineSpacingExtra="4.35dp"
                 app:layout_constraintEnd_toEndOf="@id/history_fix_area3"
                 app:layout_constraintStart_toStartOf="@id/history_fix_area3"
                 app:layout_constraintTop_toBottomOf="@+id/history_fix_line_tv" />
@@ -280,6 +288,8 @@
                 android:fontFamily="@font/pd_semibold"
                 android:text="독후감"
                 android:textSize="15sp"
+                android:lineSpacingExtra="5.91dp"
+                android:letterSpacing="0.02"
                 app:layout_constraintStart_toStartOf="@id/history_fix_area4"
                 app:layout_constraintTop_toTopOf="@id/history_fix_area4" />
 
@@ -301,7 +311,8 @@
                     android:bufferType="editable"
                     android:fontFamily="@font/pd_regular"
                     android:scrollbars="vertical"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"/>
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -321,6 +332,8 @@
         android:text="완료"
         android:textColor="@color/white"
         android:textSize="15sp"
+        android:lineSpacingExtra="2.9dp"
+        android:letterSpacing="0.01"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

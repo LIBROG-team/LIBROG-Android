@@ -9,7 +9,7 @@
         android:id="@+id/su_consent_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="45dp"
         android:layout_marginStart="34dp"
         android:text="약관동의"
         android:textSize="20sp"

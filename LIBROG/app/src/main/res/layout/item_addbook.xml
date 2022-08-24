@@ -38,6 +38,7 @@
             android:textColor="@color/black"
             android:maxLines="1"
             android:ellipsize="end"
+            android:lineSpacingExtra="2.9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +52,7 @@
             android:text="@string/addbook_select_writer"
             android:textSize="14sp"
             android:textColor="@color/black"
+            android:lineSpacingExtra="2.71dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +66,7 @@
             android:text="@string/addbook_select_explain"
             android:textSize="12sp"
             android:maxLines="3"
-            android:lineHeight="16sp"
+            android:lineSpacingExtra="4dp"
             android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -37,6 +37,7 @@
             android:text="@string/add_flowerpot_top_text"
             android:textColor="@color/black"
             android:textSize="18sp"
+
             app:layout_constraintBottom_toBottomOf="@id/add_flowerpot_back_btn_iv"
             app:layout_constraintStart_toEndOf="@id/add_flowerpot_back_btn_iv"
             app:layout_constraintTop_toTopOf="@id/add_flowerpot_back_btn_iv" />

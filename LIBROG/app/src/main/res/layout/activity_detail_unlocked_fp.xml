@@ -27,6 +27,7 @@
         android:text="@string/add_flowerpot_top_text"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:lineSpacingExtra="3.48dp"
         app:layout_constraintBottom_toBottomOf="@id/detail_unlocked_back_btn_iv"
         app:layout_constraintStart_toEndOf="@id/detail_unlocked_back_btn_iv"
         app:layout_constraintTop_toTopOf="@id/detail_unlocked_back_btn_iv" />
@@ -40,6 +41,8 @@
         android:text="@string/add_flowerpot_name"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:lineSpacingExtra="3.87dp"
+        android:letterSpacing="0.02"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detail_unlocked_main_tv" />
@@ -54,6 +57,8 @@
         android:text="@string/add_flowerpot_eng_name"
         android:textColor="@color/dark_gray"
         android:textSize="16sp"
+        android:lineSpacingExtra="3.09dp"
+        android:letterSpacing="0.02"
         app:layout_constraintEnd_toEndOf="@id/detail_unlocked_name_tv"
         app:layout_constraintStart_toStartOf="@id/detail_unlocked_name_tv"
         app:layout_constraintTop_toBottomOf="@id/detail_unlocked_name_tv" />
@@ -94,6 +99,7 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/pd_regular"
                 android:letterSpacing="0.01"
+                android:lineSpacingExtra="4dp"
                 android:text="@string/detail_unlocked_content"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -130,6 +136,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/pd_bold"
             android:letterSpacing="0.01"
+            android:lineSpacingExtra="2.9dp"
             android:text="@string/detail_unlocked_select"
             android:textColor="@color/white"
             android:textSize="17sp"
