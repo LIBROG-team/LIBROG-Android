@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
+import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.*
 import com.example.librog.data.remote.data.*
@@ -26,6 +27,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -44,6 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeService.getRecentBook(this,getIdx())
 
         getMainPot()
+
         getDailyStatus()
     }
 
@@ -136,6 +139,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     }
 
+
     private fun getDailyStatus(){
         mainPotService.getDailyStatus(getIdx()).enqueue(object: Callback<MainDailyResponse> {
             override fun onResponse(call: Call<MainDailyResponse>, response: Response<MainDailyResponse>) {
@@ -156,6 +160,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.homeCountdayTv.text = String.format("독서 %d일차",result.daycnt)
         binding.homeStatusTv.text = result.content
     }
+
 
     private fun getIdx(): Int{
         val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
