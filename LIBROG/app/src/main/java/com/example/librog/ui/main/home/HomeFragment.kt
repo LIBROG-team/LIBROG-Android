@@ -39,7 +39,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun initAfterBinding() {
         appDB= AppDatabase.getInstance(requireContext())!!
-        Log.d("userDB",appDB.userDao().getUserList().toString())
         (activity as MainActivity).showBottomNav()
 
         service.getUserNotice(this)
@@ -47,7 +46,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeService.getRecentBook(this,getIdx())
 
         getMainPot()
-        getMainPageTopText(getIdx())
+
+        getDailyStatus()
     }
 
     override fun onStart() {
@@ -139,37 +139,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     }
 
-    private fun getMainPageTopText(userIdx: Int){
-        mainPotService.getMainPageTopText(userIdx).enqueue(object : Callback<MainPageResponse>{
-            override fun onResponse(
-                call: Call<MainPageResponse>,
-                response: Response<MainPageResponse>
-            ) {
-                val resp = response.body()!!
-                when(resp.code){
-                    1000 ->{
-                        setMainPageTopText(resp.result)
-                    }
 
-                    else ->{
-                        showToast(resp.message)
+    private fun getDailyStatus(){
+        mainPotService.getDailyStatus(getIdx()).enqueue(object: Callback<MainDailyResponse> {
+            override fun onResponse(call: Call<MainDailyResponse>, response: Response<MainDailyResponse>) {
+                val resp = response.body()!!
+                Log.d("getMainDaily",resp.code.toString())
+                when (resp.code){
+                    1000->{
+                        setDailyStatus(resp.result!!)
                     }
                 }
             }
-
-            override fun onFailure(call: Call<MainPageResponse>, t: Throwable) {
-                showToast(t.message.toString())
+            override fun onFailure(call: Call<MainDailyResponse>, t: Throwable) {
             }
-
-
         })
     }
 
-    private fun setMainPageTopText(result: MainPageResult) {
-
-
-        binding.homeCountdayTv.text= String.format(getString(R.string.home_day_count), result.dayCnt)
-        binding.homeStatusTv.text = result.content ?: ""
+    private fun setDailyStatus(result: MainDailyResult){
+        binding.homeCountdayTv.text = String.format("독서 %d일차",result.daycnt)
+        binding.homeStatusTv.text = result.content
     }
 
 

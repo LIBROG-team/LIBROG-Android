@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.main.mypage.MypageFragment">
 
         <TextView
@@ -17,6 +17,7 @@
             android:text="@string/menu_mypage"
             android:textSize="27sp"
             android:fontFamily="@font/pd_bold"
+            android:lineSpacingExtra="5.22dp"
             android:textColor="@color/black"
             android:layout_marginStart="29dp"
             android:layout_marginTop="41dp"
@@ -60,6 +61,8 @@
             android:layout_marginTop="36dp"
             android:layout_marginStart="43dp"
             android:textSize="17sp"
+            android:fontFamily="@font/pd_semibold"
+            android:lineSpacingExtra="3.29dp"
             app:layout_constraintStart_toEndOf="@id/profile_iv"
             app:layout_constraintTop_toBottomOf="@id/profile_line1"/>
         <TextView
@@ -69,6 +72,7 @@
             android:layout_marginTop="9dp"
             android:layout_marginStart="43dp"
             android:textSize="12sp"
+            android:lineSpacingExtra="4dp"
             app:layout_constraintStart_toEndOf="@id/profile_iv"
             app:layout_constraintTop_toBottomOf="@id/profile_name_tv"/>
         <View
@@ -89,6 +93,7 @@
             android:text="로그인 된 계정을 확인할 수 있어요"
             android:textSize="12sp"
             android:textColor="#6A6A6A"
+            android:lineSpacingExtra="2.32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_line2"/>
@@ -102,12 +107,12 @@
             app:layout_constraintEnd_toEndOf="parent">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_app_login_icon"
-                android:src="@drawable/ic_profile_app_login"
+                android:src="@drawable/ic_login_app_off"
                 android:layout_width="40dp"
                 android:layout_height="40dp"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_kakao_login_icon"
-                android:src="@drawable/ic_profile_kakao_login"
+                android:src="@drawable/ic_login_kakao_on"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="21dp"/>
@@ -126,6 +131,7 @@
                 android:layout_height="wrap_content"
                 android:text="연결하기"
                 android:textSize="10sp"
+                android:lineSpacingExtra="1.93dp"
                 android:textColor="#969696"/>
             <TextView
                 android:id="@+id/kakao_login_status"
@@ -134,6 +140,7 @@
                 android:layout_marginStart="26dp"
                 android:text="연결하기"
                 android:textSize="10sp"
+                android:lineSpacingExtra="1.93dp"
                 android:textColor="#969696"/>
         </LinearLayout>
         <View
@@ -158,6 +165,7 @@
                 android:text="식물도감"
                 android:textColor="@color/black"
                 android:textSize="15sp"
+                android:lineSpacingExtra="2.9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_line3" />
@@ -194,12 +202,13 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_profile_pot"/>
+                android:src="@drawable/ic_profile_leaf"/>
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="29dp"
-                android:src="@drawable/ic_profile_bookmark"/>
+                android:src="@drawable/ic_profile_bookmark" />
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -227,31 +236,36 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
+                android:lineSpacingExtra="2.9dp"
                 android:text="@string/profile_pot"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
+                android:lineSpacingExtra="2.9dp"
                 android:text="@string/profile_book"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
+                android:lineSpacingExtra="2.9dp"
                 android:text="@string/profile_rate"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
+                android:lineSpacingExtra="2.9dp"
                 android:text="@string/profile_record_line"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_marginTop="37dp"
+                android:lineSpacingExtra="2.9dp"
                 android:text="@string/profile_record"/>
         </LinearLayout>
         <LinearLayout
@@ -270,19 +284,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="총 "/>
+                    android:text="총 "
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:id="@+id/mypage_flower_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="0"/>
+                    android:fontFamily="@font/pd_semibold"
+                    android:text="0"
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="개"/>
+                    android:text="개"
+                    android:lineSpacingExtra="3.09dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -293,19 +311,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="총 "/>
+                    android:text="총 "
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:id="@+id/mypage_reading_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="0"/>
+                    android:fontFamily="@font/pd_semibold"
+                    android:text="0"
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="권"/>
+                    android:text="권"
+                    android:lineSpacingExtra="3.09dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -316,19 +338,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="총 "/>
+                    android:text="총 "
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:id="@+id/mypage_star_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="0"/>
+                    android:fontFamily="@font/pd_semibold"
+                    android:text="0"
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="개"/>
+                    android:text="개"
+                    android:lineSpacingExtra="3.09dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -339,19 +365,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="총 "/>
+                    android:text="총 "
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:id="@+id/mypage_quote_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="0"/>
+                    android:fontFamily="@font/pd_semibold"
+                    android:text="0"
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="개"/>
+                    android:text="개"
+                    android:lineSpacingExtra="3.09dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -362,19 +392,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="총 "/>
+                    android:text="총 "
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:id="@+id/mypage_content_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/green"
-                    android:text="0"/>
+                    android:fontFamily="@font/pd_semibold"
+                    android:text="0"
+                    android:lineSpacingExtra="3.09dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="개"/>
+                    android:text="개"
+                    android:lineSpacingExtra="3.09dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -399,7 +433,8 @@
             android:textColor="@color/white"
             android:text="로그아웃"
             android:textSize="16sp"
-            android:textStyle="bold"
+            android:lineSpacingExtra="2.9dp"
+            android:fontFamily="@font/pd_semibold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_line5"

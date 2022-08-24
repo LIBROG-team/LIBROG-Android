@@ -40,9 +40,6 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding:
             startActivityWithClear(MainActivity::class.java)
             showToast("로그인 되었습니다.")
         }
-        else {
-            startActivityWithClear(LoginActivity::class.java)
-        }
     }
 
     private fun getIdx(): Int{

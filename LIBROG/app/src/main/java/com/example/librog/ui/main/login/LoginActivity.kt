@@ -1,7 +1,9 @@
 package com.example.librog.ui.main.login
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.librog.data.local.AppDatabase
 import com.example.librog.data.remote.data.auth.*
 import com.example.librog.databinding.ActivityLoginBinding
@@ -16,11 +18,13 @@ private const val TAG = "LoginActivity"
 
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
     lateinit var name: String
+    lateinit var userEmail: String
+    lateinit var appDB: AppDatabase
     override fun initAfterBinding() {
 
         initClickListener()
-        val AppDB = AppDatabase.getInstance(this)!!
-        val users = AppDB.userDao().getUserList()
+        appDB = AppDatabase.getInstance(this)!!
+        val users = appDB.userDao().getUserList()
         Log.d("userlist",users.toString())
     }
 
@@ -39,13 +43,14 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         binding.loginFindPwdBtn.setOnClickListener {
             startNextActivity(FindPwdActivity::class.java)
         }
+
     }
 
-    private fun saveUserIdx(idx:Int){
+    private fun saveUserIdx(idx:Int, type:String){
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         val editor = spf.edit()
-
         editor.putInt("idx",idx)
+        editor.putString("type",type)
         editor.apply()
     }
 
@@ -59,7 +64,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     private fun getAppLoginInfo() : AppLoginInfo {
         val email: String = binding.loginIdEt.text.toString()
         val pwd: String = binding.loginPwdEt.text.toString()
-
+        saveEmail(email)
         return AppLoginInfo(email, pwd)
     }
 
@@ -73,10 +78,15 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onLoginSuccess(result: AppLoginResult) {
         binding.loginErrorTv.visibility=View.INVISIBLE
-        saveUserIdx(result.userIdx)
+        saveUserIdx(result.userIdx,"app")
         saveUserToken(result.jwt)
+        if (!appDB.userDao().isUserExist(getEmail()))
+            appDB.userDao().insertImgUrl(getEmail(),"0")
         Log.d("accessToken/app", result.jwt)
-        startNextActivity(MainActivity::class.java)
+
+        val intent = Intent(this,MainActivity::class.java)
+        finishAffinity()
+        startActivity(intent)
     }
 
     override fun onLoginFailure(message : String) {
@@ -92,40 +102,51 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             }
             else if (token != null) {
                 saveUserToken(token.accessToken)
-                showToast(token.accessToken)
+                Log.d("kakaoToken",token.accessToken)
+
                 val authService = AuthService()
                 val kakaoAccessToken = AccessToken(token.accessToken)
                 authService.setLoginView(this)
                 authService.kakaoLogin(kakaoAccessToken)
-                Log.d("accessToken/kakao", AccessToken(token.accessToken).toString())
             }
         }
     }
 
-    fun kakaoLogout(){
-        UserApiClient.instance.logout { error ->
-            if (error != null) {
-                Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
-            }
-            else {
-                Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨")
-            }
 
-        }
-    }
 
     override fun onKakaoLoginSuccess(code: Int, result: KakaoResult) {
+        Log.d("kakaoLogin/success",code.toString())
         when (code){
             1500-> {
                 showToast("kakao 로그인 성공")
-                saveUserIdx(result.idx)
-                startNextActivity(MainActivity::class.java)
+                saveUserIdx(result.idx, "kakao")
+                saveEmail(result.email)
+                //카카오 로그인 최초 한 번만 (카카오 계정 이미지 가져오도록)
+                if (!appDB.userDao().isUserExist(result.email))
+                    appDB.userDao().insertImgUrl(result.email,"1")
+
+                val intent = Intent(this,MainActivity::class.java)
+                finishAffinity()
+                startActivity(intent)
             }
         }
     }
 
     override fun onKakaoLoginFailure(code: Int, result: KakaoResult) {
-        Log.d("kakaoUser", result.toString())
+
+    }
+
+    private fun saveEmail(email:String){
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("email",email)
+        editor.apply()
+    }
+
+    private fun getEmail(): String{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getString("email","0")!!
     }
 
 

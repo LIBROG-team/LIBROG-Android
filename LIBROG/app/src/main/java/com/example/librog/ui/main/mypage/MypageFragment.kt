@@ -3,8 +3,10 @@ package com.example.librog.ui.main.mypage
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.librog.ApplicationClass
 import com.example.librog.R
 import com.example.librog.data.local.AppDatabase
@@ -15,6 +17,7 @@ import com.example.librog.data.remote.data.UserStatResult
 
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.BaseFragment
+import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
 import com.example.librog.ui.main.login.LoginActivity
 
 import retrofit2.Call
@@ -24,13 +27,14 @@ import retrofit2.Response
 
 class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate){
     lateinit var appDB: AppDatabase
-    private val userDataService = UserDataService
     private val userService = ApplicationClass.retrofit.create(UserDataInterface::class.java)
     private var userId=0
 
     override fun initAfterBinding() {
         appDB = AppDatabase.getInstance(requireActivity())!!
         userId=getIdx()
+        showToast(userId.toString())
+        Log.d("img",appDB.userDao().getUserList().toString())
         initViews()
         initClickListener()
     }
@@ -38,7 +42,9 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     private fun initClickListener(){
         binding.mypageLoginBtn.setOnClickListener {
             logout()
-            requireActivity().finish()
+            val intent = Intent(activity,LoginActivity::class.java)
+            requireActivity().finishAffinity()
+            startActivity(intent)
         }
 
         binding.profileSettingBtn.setOnClickListener {
@@ -58,6 +64,12 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
             val intent = Intent(activity, EditProfileActivity::class.java)
             startActivity(intent)
         }
+
+        //식물도감 버튼 클릭
+        binding.profilePlantListBtn.setOnClickListener {
+            val intent = Intent(activity, AddFlowerpotActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getIdx(): Int{
@@ -73,7 +85,6 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     }
 
     private fun getUserStat(){
-
         userService.getUserStat(userId).enqueue(object: Callback<UserStatResponse> {
             override fun onResponse(call: Call<UserStatResponse>, response: Response<UserStatResponse>) {
                 val resp = response.body()!!
@@ -127,6 +138,10 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         if (imgUrl=="0"){
             binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
         }
+        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
+            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
+            showToast(result.profileImgUrl)
+        }
         else{
             val uri:Uri = Uri.parse(imgUrl)
             binding.profileIv.setImageURI(uri)
@@ -138,10 +153,14 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         if (result.type=="kakao"){
             binding.kakaoLoginStatus.text = "연결완료"
             binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+            binding.profileKakaoLoginIcon.setImageResource(R.drawable.ic_login_kakao_on)
+            binding.profileAppLoginIcon.setImageResource(R.drawable.ic_login_app_off)
         }
         else {
             binding.appLoginStatus.text = "연결완료"
             binding.appLoginStatus.setTextColor(Color.parseColor("#64BE78"))
+            binding.profileKakaoLoginIcon.setImageResource(R.drawable.ic_login_kakao_off)
+            binding.profileAppLoginIcon.setImageResource(R.drawable.ic_login_app_on)
         }
     }
 

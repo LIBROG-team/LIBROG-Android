@@ -8,7 +8,7 @@
         android:id="@+id/find_pwd_back_btn"
         android:layout_width="21dp"
         android:layout_height="21dp"
-        android:src="@drawable/addbook_select_back_btn"
+        android:src="@drawable/ic_arrow_right"
         android:layout_marginStart="16dp"
         android:layout_marginTop="41dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="39dp"
         android:textSize="20sp"
-        android:fontFamily="@font/pd_bold"
+        android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="3.87dp"
         app:layout_constraintStart_toEndOf="@id/find_pwd_back_btn"
         app:layout_constraintTop_toTopOf="parent"/>
     <View
@@ -40,6 +41,7 @@
         android:textSize="18sp"
         android:text="가입하신 "
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="7dp"
         app:layout_constraintTop_toBottomOf="@+id/find_pwd_title_line"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -52,6 +54,7 @@
         android:text="이메일"
         android:textColor="@color/green"
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="7dp"
         app:layout_constraintTop_toBottomOf="@+id/find_pwd_title_line"
         app:layout_constraintStart_toEndOf="@+id/find_pwd_explain1_tv"
         />
@@ -62,6 +65,7 @@
         android:textSize="18sp"
         android:text="을 입력해주세요."
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="7dp"
         app:layout_constraintTop_toBottomOf="@+id/find_pwd_title_line"
         app:layout_constraintStart_toEndOf="@id/find_pwd_explain2_tv"
         />
@@ -73,6 +77,7 @@
         android:textSize="18sp"
         android:text="이메일로 임시 비밀번호가 발급됩니다."
         android:fontFamily="@font/pd_semibold"
+        android:lineSpacingExtra="7dp"
         app:layout_constraintTop_toBottomOf="@id/find_pwd_explain1_tv"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -85,8 +90,9 @@
         android:layout_marginStart="37dp"
         android:textSize="15sp"
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:fontFamily="@font/pd_medium"
         android:text="아이디(이메일)"
+        android:lineSpacingExtra="2.9dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/find_pwd_explain3_tv"/>
 
@@ -102,6 +108,8 @@
         android:hint="이메일 주소를 입력해주세요"
         android:inputType="text"
         android:textSize="12sp"
+        android:fontFamily="@font/pd_medium"
+        android:lineSpacingExtra="2.32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/find_pwd_title" />
@@ -127,6 +135,7 @@
         android:text="소셜 로그인 계정은 비밀번호 재설정이 불가능합니다."
         android:textSize="12sp"
         android:textColor="#6A6A6A"
+        android:lineSpacingExtra="2.32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/find_pwd_underscore_view"/>
 
@@ -138,6 +147,7 @@
         android:text="임시 비밀번호를 발급받으신 후에는 가급적 빠른 시일 안에\n안전한 비밀번호로 변경해주세요."
         android:textSize="12sp"
         android:textColor="#6A6A6A"
+        android:lineSpacingExtra="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/find_pwd_warning1_tv"/>
 
@@ -152,6 +162,8 @@
         android:text="이메일 전송"
         android:textColor="@color/green"
         android:textSize="15sp"
+        android:lineSpacingExtra="2.9dp"
+        android:letterSpacing="-0.04"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
