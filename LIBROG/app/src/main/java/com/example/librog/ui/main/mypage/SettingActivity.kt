@@ -62,6 +62,7 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         //탈퇴하기
         binding.settingLeaveArea.setOnClickListener{
             binding.leaveConfirmPanel.visibility = View.VISIBLE
+            setClickable(false)
         }
         //탈퇴 확인
         binding.leaveOkayBtn.setOnClickListener {
@@ -70,6 +71,7 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         //탈퇴 취소
         binding.leaveCancelBtn.setOnClickListener {
             binding.leaveConfirmPanel.visibility=View.INVISIBLE
+            setClickable(true)
         }
         //탈퇴 완료
         binding.leaveFinishBtn.setOnClickListener {
@@ -77,6 +79,21 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             removeIdx()
             startNextActivity(SplashActivity::class.java)
         }
+    }
+
+    private fun setClickable(isClickable: Boolean){
+        when (isClickable){
+            true->binding.settingDisableArea.visibility=View.INVISIBLE
+            false->binding.settingDisableArea.visibility=View.VISIBLE
+        }
+        binding.settingProfileArea.isClickable=isClickable
+        binding.settingHomepageArea.isClickable=isClickable
+        binding.settingPrivateArea.isClickable=isClickable
+        binding.settingAskArea.isClickable=isClickable
+        binding.settingChangePwdArea.isClickable=isClickable
+        binding.settingCouponArea.isClickable=isClickable
+        binding.settingLeaveArea.isClickable=isClickable
+        binding.settingBackBtn.isClickable=isClickable
     }
 
     private fun deleteUser(){
