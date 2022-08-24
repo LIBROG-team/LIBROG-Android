@@ -27,6 +27,7 @@ class FlowerpotFragment :
     private var flowerpotList = ArrayList<Flowerpot>()
     private val dataService = ApplicationClass.retrofit.create(DataInterface::class.java)
     private lateinit var adapter: FlowerpotRVAdapter
+    private var listSize = 1
 
     override fun initAfterBinding() {
         getFpList(getUserIdx())
@@ -59,6 +60,7 @@ class FlowerpotFragment :
                 intent.putExtra("flowerData", fdJson)
                 intent.putExtra("flowerpot", fpJson)
                 intent.putExtra("flowerpotIdx", flowerpot.idx)
+                intent.putExtra("userFpCount", listSize)
                 startActivity(intent)
             }
         })
@@ -78,16 +80,10 @@ class FlowerpotFragment :
                 when (resp.code) {
                     1000 -> {
                         setData(resp.result)
-                    }
-
-                    2019 -> {
-
-                    }
-                    2020 -> {
-
+                        listSize = resp.result.size
                     }
                     else -> {
-
+                        listSize = 0
                     }
                 }
 
