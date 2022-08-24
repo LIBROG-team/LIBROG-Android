@@ -34,7 +34,9 @@ class DetailUnlockedFpActivity : BaseActivity<ActivityDetailUnlockedFpBinding>(A
         binding.detailUnlockedBackBtnIv.setOnClickListener {
             finish()
         }
+        binding.detailUnlockedSelectIv.setOnClickListener {
 
+        }
     }
 
     private fun getDetailFp(flowerDataIdx: Int){
