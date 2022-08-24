@@ -295,7 +295,7 @@
 
     <FrameLayout
         android:id="@+id/leave_confirm_panel"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="114dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -307,7 +307,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="17sp"
             android:text="회원 탈퇴를 진행하시겠습니까?"
             android:textColor="@color/black"
             android:layout_marginTop="24dp"
@@ -317,9 +317,9 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/leave_okay_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:text="확인"
                 android:layout_marginEnd="20dp"
                 android:textColor="#2C98F0"
@@ -328,13 +328,13 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
             <TextView
                 android:id="@+id/leave_cancel_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:text="취소"
                 android:textColor="#2C98F0"
                 android:layout_marginBottom="15dp"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/leave_okay_btn"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -342,7 +342,7 @@
 
     <FrameLayout
         android:id="@+id/leave_finish_panel"
-        android:layout_width="260dp"
+        android:layout_width="300dp"
         android:layout_height="114dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -354,7 +354,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:text="회원 탈퇴가 완료되었습니다."
             android:textColor="#757575"
             android:fontFamily="@font/pd_semibold"
@@ -363,7 +363,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="16sp"
             android:text="로그인 페이지로 이동합니다."
             android:textColor="#757575"
             android:layout_marginTop="46dp"
@@ -373,9 +373,9 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/leave_finish_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:text="확인"
                 android:layout_marginEnd="30dp"
                 android:textColor="#2C98F0"

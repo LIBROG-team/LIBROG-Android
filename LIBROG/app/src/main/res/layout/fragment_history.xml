@@ -19,8 +19,8 @@
             android:layout_marginTop="37dp"
             android:text="@string/menu_history"
             android:fontFamily="@font/pd_bold"
-            android:textColor="@color/black"
             android:textSize="27sp"
+            android:lineSpacingExtra="5.22dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <View
@@ -121,6 +121,7 @@
             android:layout_marginStart="21dp"
             android:text="@string/history_sort_recent"
             android:textSize="14sp"
+            android:lineSpacingExtra="2.8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/history_sort_banner_tip" />
         <View
@@ -139,6 +140,7 @@
             android:layout_marginStart="21dp"
             android:text="@string/history_sort_rating"
             android:textSize="14sp"
+            android:lineSpacingExtra="2.8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/history_banner_line1" />
         <View
@@ -157,6 +159,7 @@
             android:layout_marginStart="21dp"
             android:text="@string/history_sort_title"
             android:textSize="14sp"
+            android:lineSpacingExtra="2.8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/history_banner_line2" />
         <View

@@ -78,6 +78,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onLoginSuccess(result: AppLoginResult) {
         binding.loginErrorTv.visibility=View.INVISIBLE
+
         saveUserIdx(result.userIdx,"app")
         saveUserToken(result.jwt)
         if (!appDB.userDao().isUserExist(getEmail()))
@@ -111,8 +112,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             }
         }
     }
-
-
 
     override fun onKakaoLoginSuccess(code: Int, result: KakaoResult) {
         Log.d("kakaoLogin/success",code.toString())

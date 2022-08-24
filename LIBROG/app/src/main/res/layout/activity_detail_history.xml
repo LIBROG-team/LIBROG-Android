@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_back_arrow"
+        android:src="@drawable/ic_arrow_right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +29,7 @@
         android:text="@string/detail_history_top_text"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:lineSpacingExtra="3.48dp"
         app:layout_constraintBottom_toBottomOf="@id/detail_history_back_btn_iv"
         app:layout_constraintEnd_toStartOf="@id/detail_history_fix_iv"
         app:layout_constraintStart_toEndOf="@id/detail_history_back_btn_iv"
@@ -98,6 +99,7 @@
                 android:text="@string/detail_history_book_name"
                 android:textColor="@color/black"
                 android:textSize="15sp"
+                android:lineSpacingExtra="2.9dp"
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
@@ -108,7 +110,8 @@
                 android:fontFamily="@font/pd_medium"
                 android:text="@string/detail_history_author_name"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:lineSpacingExtra="2.71dp"/>
 
             <TextView
                 android:id="@+id/detail_history_book_contents_tv"
@@ -117,7 +120,7 @@
                 android:layout_marginTop="9dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/pd_regular"
-                android:lineHeight="16sp"
+                android:lineSpacingExtra="4dp"
                 android:maxLines="5"
                 android:text="@string/detail_history_description"
                 android:textColor="@color/black"
@@ -155,6 +158,7 @@
             android:fontFamily="@font/pd_semibold"
             android:text="@string/detail_history_rating_description"
             android:textSize="15sp"
+            android:lineSpacingExtra="2.9dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -167,6 +171,8 @@
             android:text="@string/addbook_select_rate_n"
             android:textColor="@color/green"
             android:textSize="16sp"
+            android:lineSpacingExtra="2.09dp"
+            android:letterSpacing="-0.02"
             app:layout_constraintBottom_toBottomOf="@id/detail_history_rating_frame_tv"
             app:layout_constraintStart_toEndOf="@id/detail_history_rating_frame_tv"
             app:layout_constraintTop_toTopOf="@id/detail_history_rating_frame_tv" />
@@ -223,6 +229,8 @@
             android:singleLine="true"
             android:text="@string/detail_history_quote"
             android:textSize="15sp"
+            android:lineSpacingExtra="2.9dp"
+            android:letterSpacing="-0.01"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -237,6 +245,7 @@
             android:fontFamily="@font/pd_regular"
             android:text="@string/detail_history_quote"
             android:textSize="14sp"
+            android:lineSpacingExtra="2.71dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detail_history_quote_frame_tv" />
@@ -271,6 +280,7 @@
             android:fontFamily="@font/pd_semibold"
             android:text="@string/detail_history_contents"
             android:textSize="15sp"
+            android:lineSpacingExtra="2.9dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -284,6 +294,7 @@
             android:fontFamily="@font/pd_regular"
             android:text="@string/detail_history_contents"
             android:textSize="14sp"
+            android:lineSpacingExtra="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

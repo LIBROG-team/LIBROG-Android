@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:gravity="bottom"
     tools:context=".ui.main.home.HomeFragment"
-    app:umanoPanelHeight="100dp"
+    app:umanoPanelHeight="80dp"
     app:umanoDragView="@id/home_slide_layout"
     app:umanoOverlay="true"
     app:umanoShadowHeight="20dp">
