@@ -62,6 +62,7 @@ class FlowerpotFragment :
 
         binding.flowerpotAddflowerpotBtn.setOnClickListener {
             val intent = Intent(context, AddFlowerpotActivity::class.java)
+            intent.putExtra("title", "화분추가")
             startActivity(intent)
         }
     }

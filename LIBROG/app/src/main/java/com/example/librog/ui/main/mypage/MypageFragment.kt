@@ -18,6 +18,7 @@ import com.example.librog.data.remote.data.UserStatResult
 import com.example.librog.databinding.FragmentMypageBinding
 import com.example.librog.ui.BaseFragment
 import com.example.librog.ui.main.addFlowerpot.AddFlowerpotActivity
+import com.example.librog.ui.main.history.DetailHistoryActivity
 import com.example.librog.ui.main.login.LoginActivity
 
 import retrofit2.Call
@@ -68,6 +69,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         //식물도감 버튼 클릭
         binding.profilePlantListBtn.setOnClickListener {
             val intent = Intent(activity, AddFlowerpotActivity::class.java)
+            intent.putExtra("title", "식물도감")
             startActivity(intent)
         }
     }
