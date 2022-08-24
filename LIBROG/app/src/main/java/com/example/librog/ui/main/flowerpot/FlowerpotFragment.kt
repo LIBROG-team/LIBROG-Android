@@ -29,19 +29,23 @@ class FlowerpotFragment :
     private lateinit var adapter: FlowerpotRVAdapter
 
     override fun initAfterBinding() {
-        val userIdx = getUserIdx()
-        flowerDataList.clear()
-        flowerpotList.clear()
-        getFpList(userIdx)
+        getFpList(getUserIdx())
+        initLayout()
+        initClickListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initAfterBinding()
+    }
 
 
+    private fun initLayout(){
         adapter = FlowerpotRVAdapter(flowerDataList, flowerpotList)
         binding.flowerpotListRv.adapter = adapter
         binding.flowerpotListRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.flowerpotListRv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         binding.flowerpotTotalTv.text = String.format(getString(R.string.flowerpot_total), flowerpotList.size)
-
-        initClickListener()
 
     }
 
@@ -73,7 +77,6 @@ class FlowerpotFragment :
                 val resp = response.body()!!
                 when (resp.code) {
                     1000 -> {
-                        Log.d("resp", resp.result.size.toString())
                         setData(resp.result)
                     }
 
@@ -99,6 +102,9 @@ class FlowerpotFragment :
 
     // 백엔드 api에서 받은 result 결과를 FlowerData, Flowerpot 형식에 맞게 추가하고 recyclerview에 적용
     fun setData(result: ArrayList<FpResult>){
+        flowerDataList.clear()
+        flowerpotList.clear()
+
         for (item in result) {
             if (item.flowerDataIdx != null){
                 flowerDataList.add(
@@ -134,11 +140,7 @@ class FlowerpotFragment :
 
                 adapter.notifyDataSetChanged()
 
-            } else {
-                // 유저에 화분이 존재하지 않는 경우
-//                binding.flowerpotListRv.visibility = View.GONE
             }
-
 
         }
     }

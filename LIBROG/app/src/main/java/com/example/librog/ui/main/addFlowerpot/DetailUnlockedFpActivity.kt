@@ -19,20 +19,23 @@ class DetailUnlockedFpActivity : BaseActivity<ActivityDetailUnlockedFpBinding>(A
     override fun initAfterBinding() {
         val userIdx = getUserIdx()
         val fpIdx = intent.getIntExtra("selectedFP", -1)
-
-        if (fpIdx == -1){
+        val userFlowerListIdx = intent.getIntExtra("userFlowerListIdx", -1)
+        if (fpIdx == -1 || userFlowerListIdx == -1){
             Log.e("Error", "화분 상세 오류")
             finish()
         }
 
-        initClickListener(userIdx)
+        initClickListener(userIdx, userFlowerListIdx)
         getDetailFp(fpIdx)
 
     }
 
-    private fun initClickListener(userIdx: Int) {
+    private fun initClickListener(userIdx: Int, userFlowerListIdx: Int) {
         binding.detailUnlockedBackBtnIv.setOnClickListener {
             finish()
+        }
+        binding.detailUnlockedSelectIv.setOnClickListener {
+            addUserFlowerpot(userFlowerListIdx)
         }
 
     }
@@ -56,6 +59,31 @@ class DetailUnlockedFpActivity : BaseActivity<ActivityDetailUnlockedFpBinding>(A
 
             override fun onFailure(call: Call<DataResponse4>, t: Throwable) {
                 t.printStackTrace()
+            }
+
+        })
+    }
+
+    private fun addUserFlowerpot(userFlowerListIdx: Int){
+        dataService.addFlowerpot(userFlowerListIdx).enqueue(object : Callback<AddFpResponse>{
+            override fun onResponse(
+                call: Call<AddFpResponse>,
+                response: Response<AddFpResponse>
+            ) {
+                val resp = response.body()!!
+                when(resp.code){
+                    1000 ->{
+                        showToast("화분 추가에 성공하였습니다.")
+                        finish()
+                    }
+                    else ->{
+                        Log.d("addUserFlowerpot", resp.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<AddFpResponse>, t: Throwable) {
+                Log.e("addUserFlowerpot",t.message.toString())
             }
 
         })

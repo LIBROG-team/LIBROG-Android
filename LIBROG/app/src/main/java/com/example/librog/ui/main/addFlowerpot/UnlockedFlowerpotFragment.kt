@@ -67,7 +67,6 @@ class UnlockedFlowerpotFragment :
     }
 
 
-
     private fun hideKeyboard(v: View) {
         imm.hideSoftInputFromWindow(v.windowToken, 0)
     }
@@ -76,6 +75,7 @@ class UnlockedFlowerpotFragment :
         unlockedFpList.addAll(result)
         adapter.notifyDataSetChanged()
     }
+
 
     //획득 화분 정보 가져오기 api
     private fun getUnlockedFpResult(userIdx: Int) {
@@ -143,6 +143,7 @@ class UnlockedFlowerpotFragment :
             override fun onItemClick(fp: UnlockedFpResult) {
                 val intent = Intent(context, DetailUnlockedFpActivity::class.java)
                 intent.putExtra("selectedFP", fp.idx)
+                intent.putExtra("userFlowerListIdx", fp.userFlowerListIdx)
                 startActivity(intent)
             }
 

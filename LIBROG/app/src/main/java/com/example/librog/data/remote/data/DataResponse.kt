@@ -52,7 +52,8 @@ data class UnlockedFpResult(
     @SerializedName("name") var name: String?,
     @SerializedName("type") var type: String?,
     @SerializedName("bloomingPeriod") var bloomingPeriod: String?,
-    @SerializedName("flowerImgUrl") var flowerImgUrl: String?
+    @SerializedName("flowerImgUrl") var flowerImgUrl: String?,
+    @SerializedName("userFlowerListIdx") var userFlowerListIdx: Int
 )
 
 data class LockedFpResult(
@@ -71,4 +72,35 @@ data class DetailFpResult(
     @SerializedName("content") var content: String?,
     @SerializedName("flowerImgUrl") var flowerImgUrl: String?
 
+)
+
+
+// POST 통신에서 사용되는 기본 데이터 클래스
+data class AddFpResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: AddFpResult
+)
+
+data class AddFpResult(
+    @SerializedName("fieldCount") var fieldCount: Int,
+    @SerializedName("affectedRows") var affectedRows: Int,
+    @SerializedName("insertId") var insertId: Int,
+    @SerializedName("info") var info: String,
+    @SerializedName("serverStatus") var serverStatus: Int,
+    @SerializedName("warningStatus") var warningStatus: Int,
+)
+
+data class DeleteFpResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: DeleteFpResult
+)
+
+data class DeleteFpResult(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String
 )
