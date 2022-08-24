@@ -2,7 +2,6 @@ package com.example.librog.ui.main.flowerpot
 
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
@@ -39,6 +38,7 @@ class DetailFlowerpotActivity :
     private val historyService = ApplicationClass.retrofit.create(HistoryInterface::class.java)
     private val dataService = ApplicationClass.retrofit.create(DataInterface::class.java)
     private var fpIdx = 1
+    private var userFpCount = 1
     private lateinit var curFd: FlowerData
     private lateinit var curFp: Flowerpot
     private var isInitialAccess = true
@@ -46,7 +46,9 @@ class DetailFlowerpotActivity :
     override fun initAfterBinding() {
         val curFdJson = intent.getStringExtra("flowerData")
         val curFpJson = intent.getStringExtra("flowerpot")
+
         fpIdx = intent.getIntExtra("flowerpotIdx", 1)
+        userFpCount = intent.getIntExtra("userFpCount", 1)
         curFd = gson.fromJson(curFdJson, FlowerData::class.java)
         curFp = gson.fromJson(curFpJson, Flowerpot::class.java)
 
@@ -263,13 +265,20 @@ class DetailFlowerpotActivity :
             AlertDialog.Builder(this)
                 .setMessage("화분을 삭제하시겠습니까? 해당 화분의 독서 기록이 영구히 삭제됩니다.")
                 .setPositiveButton("확인") { _, _ ->
-                    deleteFlowerpot(idx)
-                    hideBanner()
-                    finish()
+
+                    if (userFpCount > 1) {
+                        deleteFlowerpot(idx)
+                        hideBanner()
+                        finish()
+                    }
+                    else{
+                        showToast("화분 개수는 1개 이상이어야 합니다.")
+                        hideBanner()
+                    }
                 }
-                .setNegativeButton("취소", DialogInterface.OnClickListener { _, _ ->
+                .setNegativeButton("취소") { _, _ ->
                     hideBanner()
-                })
+                }
                 .show()
 
 
@@ -325,7 +334,7 @@ class DetailFlowerpotActivity :
     }
 
     private fun getUserIdx(): Int {
-        val spf = getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         return spf!!.getInt("idx", -1)
     }
 
