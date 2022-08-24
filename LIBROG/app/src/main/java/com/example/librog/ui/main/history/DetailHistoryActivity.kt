@@ -37,8 +37,7 @@ class DetailHistoryActivity :
 
     override fun onResume() {
         super.onResume()
-        getDetailReadingRecordByIdx(tempIdx)
-        initClickListener(tempIdx)
+        getDetailReadingRecordByIdxOnResume(tempIdx)
     }
 
     // API 명세서 2.8 독서기록 상세조회 api
@@ -117,6 +116,48 @@ class DetailHistoryActivity :
     }
 
 
+    private fun getDetailReadingRecordByIdxOnResume(readingRecordIdx: Int) {
+        historyService.getDetailReadingRecordByIdx(readingRecordIdx).enqueue(object :
+            Callback<DetailReadingRecordResponse> {
+            override fun onResponse(
+                call: Call<DetailReadingRecordResponse>,
+                response: Response<DetailReadingRecordResponse>
+            ) {
+                val resp = response.body()!!
+                when (resp.code) {
+                    1000 -> {
+                        bindOnResume(resp.result)
+                    }
+
+                    3015 -> {
+                        finish()
+                    }
+                    else -> {
+                        showToast(resp.message)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<DetailReadingRecordResponse>, t: Throwable) {
+                showToast(t.message ?: "DetailHistoryActivity Error")
+                finish()
+            }
+
+        })
+
+    }
+
+    fun bindOnResume(result: DetailReadingRecordResult) {
+        binding.apply {
+            detailHistoryStarRatingTv.text =
+                String.format(getString(R.string.detail_history_rating), result.starRating, 5)
+            detailHistoryContentWriteTv.text = result.content ?: ""
+            detailHistoryQuoteWriteTv.text = result.quote ?: ""
+            detailHistoryRatingBarRb.rating = result.starRating.toFloat()
+        }
+
+    }
 }
 
 
