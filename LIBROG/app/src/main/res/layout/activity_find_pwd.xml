@@ -4,6 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <View
+        android:id="@+id/find_pwd_disable_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8A414141"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
     <ImageView
         android:id="@+id/find_pwd_back_btn"
         android:layout_width="21dp"
@@ -167,6 +175,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+    <FrameLayout
+        android:id="@+id/find_pwd_panel"
+        android:layout_width="300dp"
+        android:layout_height="114dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="15dp"
+        android:visibility="invisible"
+        android:background="@drawable/alert_panel_border">
+        <TextView
+            android:id="@+id/find_pwd_panel_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#757575"
+            android:fontFamily="@font/pd_semibold"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="25dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/find_pwd_panel_btn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="확인"
+                android:layout_marginEnd="30dp"
+                android:textColor="#2C98F0"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,8 @@ class AddFlowerpotActivity : BaseActivity<ActivityAddFlowerpotBinding>(ActivityA
 
     override fun initAfterBinding() {
         val vpAdapter = AddFlowerpotVPAdapter(this)
+        val title = intent.getStringExtra("title")
+        binding.addFlowerpotTopTv.text = title
         binding.addFlowerpotVp.adapter = vpAdapter
         binding.addFlowerpotBackBtnIv.setOnClickListener {
             finish()

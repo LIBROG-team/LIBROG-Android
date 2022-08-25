@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.mypage
 
 import android.util.Log
+import android.view.View
 import com.example.librog.ApplicationClass
 import com.example.librog.data.remote.data.auth.AuthRetrofitInterface
 import com.example.librog.data.remote.data.auth.FindPwdInfo
@@ -22,6 +23,9 @@ class FindPwdActivity: BaseActivity<ActivityFindPwdBinding>(ActivityFindPwdBindi
             findPwd(getFindPwdInfo())
             Log.d("findPwd/start","이메일 전송 버튼 누름")
         }
+        binding.findPwdPanelBtn.setOnClickListener {
+            setClickable(true)
+        }
     }
 
     private fun getFindPwdInfo(): FindPwdInfo{
@@ -37,21 +41,51 @@ class FindPwdActivity: BaseActivity<ActivityFindPwdBinding>(ActivityFindPwdBindi
                 when (resp.code){
                     1000->{
                         Log.d("findPwd/success",resp.message)
-                        showToast("해당 이메일로 임시 비밀번호를 전송했습니다.")
-                        finish()
+                        setResult("해당 이메일로 임시 비밀번호를 전송했습니다.",true)
                     }
                     3025->{
                         Log.d("findPwd/fail",resp.message)
-                        showToast(resp.message)
+                        setResult("소셜 로그인 계정은 비밀번호를 변경할 수 없습니다.",false)
                     }
                     4000->{
                         Log.d("findPwd/fail",resp.message)
-                        showToast("해당 이메일로 가입한 유저가 없습니다.")
+                        setResult("해당 이메일로 가입한 유저가 없습니다.",false)
+                    }
+                    else->{
+                        setResult(resp.message,false)
                     }
                 }
             }
             override fun onFailure(call: Call<FindPwdResponse>, t: Throwable) {
             }
         })
+    }
+
+    private fun setResult(message:String,isSuccess:Boolean){
+        setClickable(false)
+        binding.findPwdPanel.visibility = View.VISIBLE
+        binding.findPwdPanelTv.text = message
+        when (isSuccess){
+            true->{
+                binding.findPwdPanelBtn.setOnClickListener {
+                    finish()
+                }
+            }
+            false->{
+                binding.findPwdPanelBtn.setOnClickListener {
+                    binding.findPwdPanel.visibility = View.INVISIBLE
+                    setClickable(true)
+                }
+            }
+        }
+    }
+
+    private fun setClickable(isClickable: Boolean){
+        when (isClickable){
+            true->binding.findPwdDisableArea.visibility= View.INVISIBLE
+            false->binding.findPwdDisableArea.visibility= View.VISIBLE
+        }
+        binding.findPwdBackBtn.isClickable=isClickable
+        binding.findPwdEmailEt.isClickable=isClickable
     }
 }
