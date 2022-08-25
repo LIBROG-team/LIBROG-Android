@@ -29,4 +29,6 @@ interface DataInterface {
     @DELETE("/flowerpots/flowerpotDelete/{flowerpotIdx}")
     fun deleteFlowerpot(@Path ("flowerpotIdx") flowerpotIdx: Int): Call<DeleteFpResponse>
 
+    @POST("/flowerpots/new/{userIdx}")
+    fun checkUnlockedFp(@Path("userIdx") userIdx: Int): Call<CheckUnlockedFpResponse>
 }

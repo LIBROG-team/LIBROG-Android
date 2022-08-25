@@ -2,6 +2,7 @@ package com.example.librog.ui.main.addFlowerpot
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -10,11 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.ApplicationClass
+import com.example.librog.data.remote.data.CheckUnlockedFpResponse
 import com.example.librog.data.remote.data.DataInterface
 import com.example.librog.data.remote.data.DataResponse2
 import com.example.librog.data.remote.data.UnlockedFpResult
 import com.example.librog.databinding.FragmentUnlockedFlowerpotBinding
 import com.example.librog.ui.BaseFragment
+import okhttp3.internal.notify
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +34,7 @@ class UnlockedFlowerpotFragment :
         val userIdx = getUserIdx()
         unlockedFpList.clear()
         imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
+        checkUnlockedFp(userIdx)
         getUnlockedFpResult(userIdx)
         initUnlockedRV()
         initClickListener(userIdx)
@@ -72,6 +75,7 @@ class UnlockedFlowerpotFragment :
     }
 
     private fun setUnlockedFpList(result: ArrayList<UnlockedFpResult>) {
+        unlockedFpList.clear()
         unlockedFpList.addAll(result)
         adapter.notifyDataSetChanged()
     }
@@ -137,7 +141,8 @@ class UnlockedFlowerpotFragment :
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.unlockedFlowerpotRv.adapter = adapter
         binding.unlockedFlowerpotRv.addItemDecoration(
-            DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        )
 
         adapter.setOnItemClickListener(object : UnlockedFlowerpotRVAdapter.OnItemClickListener {
             override fun onItemClick(fp: UnlockedFpResult) {
@@ -152,6 +157,34 @@ class UnlockedFlowerpotFragment :
 
     }
 
+
+    private fun checkUnlockedFp(userIdx: Int) {
+        dataService.checkUnlockedFp(userIdx).enqueue(object : Callback<CheckUnlockedFpResponse> {
+            override fun onResponse(
+                call: Call<CheckUnlockedFpResponse>,
+                response: Response<CheckUnlockedFpResponse>
+            ) {
+                val resp = response.body()!!
+                when (resp.code) {
+                    1000 -> {
+                        if (resp.result.added.isNotEmpty()) {
+                            showToast("새로 획득한 화분이 있습니다.")
+                            getUnlockedFpResult(userIdx)
+                        }
+                    }
+                    else -> {
+                        showToast(resp.message)
+                    }
+                }
+            }
+
+
+            override fun onFailure(call: Call<CheckUnlockedFpResponse>, t: Throwable) {
+            }
+
+        })
+
+    }
 
     private fun getUserIdx(): Int {
         val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
