@@ -1,19 +1,17 @@
 package com.example.librog.ui.main.addFlowerpot
 
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librog.ApplicationClass
 import com.example.librog.data.remote.data.DataInterface
 import com.example.librog.data.remote.data.DataResponse3
 import com.example.librog.data.remote.data.LockedFpResult
+import com.example.librog.data.remote.data.CheckUnlockedFpResponse
 import com.example.librog.databinding.FragmentLockedFlowerpotBinding
 import com.example.librog.ui.BaseFragment
 import retrofit2.Call

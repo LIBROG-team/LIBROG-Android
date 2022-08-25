@@ -104,3 +104,15 @@ data class DeleteFpResult(
     @SerializedName("code") val code: Int,
     @SerializedName("message") val message: String
 )
+
+// 조건에 맞는 화분 획득
+data class CheckUnlockedFpResponse(
+    @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("code") val code: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("result") val result: CheckUnlockedFpResult
+)
+
+data class CheckUnlockedFpResult(
+    @SerializedName("added") val added: ArrayList<Int>
+)
