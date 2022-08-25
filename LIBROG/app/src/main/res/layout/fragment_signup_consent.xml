@@ -89,32 +89,36 @@
         android:lineSpacingExtra="5.91dp"
         app:layout_constraintTop_toTopOf="@+id/check_top_tv1"
         app:layout_constraintStart_toEndOf="@id/check_top_tv1"/>
-    <FrameLayout
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/su_consent_frame1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:layout_marginTop="9dp"
         android:layout_marginStart="34dp"
         android:layout_marginEnd="34dp"
-        android:background="@drawable/su_consent_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/check_top_tv1">
-
-        <TextView
-            android:id="@+id/su_consent_content1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="21dp"
-            android:fontFamily="@font/pd_medium"
-            android:text="소리다.이것은 그와 이것을 방황하여도, 같지 싶이 어디 우리는 것이다. 그들의 그것은 충분히 청춘의 무엇을 속에서 눈에 그리하였는가? 힘차게 무엇을 거선의 목숨이 창공에 운다. 이상의 설레는 피고, 들어 보배를 뼈 불어 그들은 위하여서. 고행을 아니한 그들은 우리는 얼마나 무엇을 있는 때문이다. 만물은 우리의 가지에 피어나는 얼마나 전인 말이다. 꽃 위하여 평화스러운 풀이 인간에 부패뿐이다. 광야에서 귀는 못할 스며들어 바이며, 우리의 풀밭에 새가 일월과 쓸쓸하랴? 같이, 두기 우리 아름답고 것이다. 같이, 원대하고, 현저하게 것이다. 풍부하게 있는 위하여 커다란 피다."
-            android:textSize="11sp"
-            android:lineSpacingExtra="3dp"/>
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/check_top_tv1"
+        android:background="@drawable/su_consent_background">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/su_consent_content1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="21dp"
+                android:fontFamily="@font/pd_medium"
+                android:text="@string/consent_content"
+                android:textSize="11sp"
+                android:lineSpacingExtra="3dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
     <View
         android:id="@+id/check_bottom_unchecked"
         android:layout_width="20dp"

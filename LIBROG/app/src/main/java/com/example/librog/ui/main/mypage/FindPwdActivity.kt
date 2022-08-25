@@ -40,17 +40,9 @@ class FindPwdActivity: BaseActivity<ActivityFindPwdBinding>(ActivityFindPwdBindi
                 val resp = response.body()!!
                 when (resp.code){
                     1000->{
-                        Log.d("findPwd/success",resp.message)
                         setResult("해당 이메일로 임시 비밀번호를 전송했습니다.",true)
                     }
-                    3025->{
-                        Log.d("findPwd/fail",resp.message)
-                        setResult("소셜 로그인 계정은 비밀번호를 변경할 수 없습니다.",false)
-                    }
-                    4000->{
-                        Log.d("findPwd/fail",resp.message)
-                        setResult("해당 이메일로 가입한 유저가 없습니다.",false)
-                    }
+
                     else->{
                         setResult(resp.message,false)
                     }
