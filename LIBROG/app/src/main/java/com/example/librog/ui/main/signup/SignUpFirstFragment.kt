@@ -57,10 +57,7 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
         else{
             changeFragment()
         }
-
         showError(error)
-
-
     }
 
     private fun saveSignUp(){
