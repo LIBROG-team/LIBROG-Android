@@ -31,7 +31,7 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
     override fun initAfterBinding() {
         appDB = AppDatabase.getInstance(requireActivity())!!
         userId=getIdx()
-        showToast(userId.toString())
+        Log.d("userIdx",userId.toString())
         Log.d("img",appDB.userDao().getUserList().toString())
         getUserProfile()
         //유저 통계 불러오기
@@ -125,21 +125,17 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         binding.profileNameTv.text = result.name
         binding.profileIntroTv.text = result.introduction
         val imgUrl=appDB.userDao().getImgUrl(getEmail())
-        if (imgUrl=="0"){
-            binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
+        when (imgUrl){
+            "0"->binding.profileIv.setImageResource(R.drawable.ic_profile_logo)
+            "1"->Glide.with(this).load(getKakaoImg()).circleCrop().into(binding.profileIv)
+            else->{
+                val uri:Uri = Uri.parse(imgUrl)
+                binding.profileIv.setImageURI(uri)
+            }
         }
-        else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
-            Glide.with(this).load(getKakaoImg()).circleCrop().into(binding.profileIv)
-        }
-        else{
-            val uri:Uri = Uri.parse(imgUrl)
-            binding.profileIv.setImageURI(uri)
-        }
-        //Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.profileIv)
-
 
         //로그인 상태 확인
-        when (result.type){
+        when (getType()){
             "kakao"->{
                 binding.kakaoLoginStatus.text = "연결완료"
                 binding.kakaoLoginStatus.setTextColor(Color.parseColor("#64BE78"))
@@ -168,6 +164,8 @@ class MypageFragment : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding
         val spf = activity?.getSharedPreferences("userInfo",AppCompatActivity.MODE_PRIVATE)
         return spf!!.getInt("idx",-1)
     }
+    private fun getType(): String{
+        val spf = activity?.getSharedPreferences("userInfo", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("type","0")!!
+    }
 }
-
-

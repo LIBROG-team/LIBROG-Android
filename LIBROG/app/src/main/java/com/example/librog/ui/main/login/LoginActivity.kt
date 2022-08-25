@@ -1,6 +1,7 @@
 package com.example.librog.ui.main.login
 
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -78,7 +79,8 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
 
     override fun onLoginSuccess(result: AppLoginResult) {
         binding.loginErrorTv.visibility=View.INVISIBLE
-
+        binding.loginIdUnderscoreView.setBackgroundColor((Color.parseColor("#64BE78")))
+        binding.loginPwdUnderscoreView.setBackgroundColor((Color.parseColor("#64BE78")))
         saveUserIdx(result.userIdx,"app")
         saveUserToken(result.jwt)
         if (!appDB.userDao().isUserExist(getEmail()))
@@ -93,6 +95,8 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
     override fun onLoginFailure(message : String) {
         binding.loginErrorTv.visibility = View.VISIBLE
         binding.loginErrorTv.text = message
+        binding.loginIdUnderscoreView.setBackgroundColor((Color.parseColor("#FF0000")))
+        binding.loginPwdUnderscoreView.setBackgroundColor((Color.parseColor("#FF0000")))
     }
 
 
