@@ -33,9 +33,6 @@
     <string name="signup_password_confirm_hint">비밀번호 확인</string>
 
     <!--홈 화면-->
-    <string name="home_day_count">독서 %d일차</string>
-    <string name="home_status_message">꾸준히 실천하고 계시군요!</string>
-    <string name="home_pot_flower">해바라기</string>
     <string name="home_banner_title">최근 읽은 책</string>
     <string name="home_book_title">%s</string>
     <string name="home_book_writer">%s</string>
@@ -77,7 +74,7 @@
     <string name="detail_flowerpot_exp_num">%d / %d</string>
     <string name="detail_flowerpot_book_list">화분에 기록된 책</string>
     <string name="detail_flowerpot_no_book">화분에 책이 없습니다.</string>
-    <string name="detail_flowerpot_delete">라넌큘러스 화분 삭제</string>
+    <string name="detail_flowerpot_delete">%s 화분 삭제</string>
     <string name="detail_flowerpot_edit">화분에 기록된 책 편집</string>
 
     <!-- 화분추가 -->

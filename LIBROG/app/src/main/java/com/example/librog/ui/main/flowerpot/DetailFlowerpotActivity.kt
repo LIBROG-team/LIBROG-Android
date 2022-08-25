@@ -208,6 +208,9 @@ class DetailFlowerpotActivity :
         binding.apply {
             detailFlowerpotNameTv.text = curFd.name
 
+            detailFlowerpotDeleteTv.text = String.format(
+                applicationContext.getString(R.string.detail_flowerpot_delete), curFd.name
+            )
             Glide.with(applicationContext)
                 .load(curFd.flowerpotImgUrl)
                 .into(detailFlowerpotFlowerimgIv)
@@ -270,8 +273,7 @@ class DetailFlowerpotActivity :
                         deleteFlowerpot(idx)
                         hideBanner()
                         finish()
-                    }
-                    else{
+                    } else {
                         showToast("화분 개수는 1개 이상이어야 합니다.")
                         hideBanner()
                     }
@@ -284,10 +286,6 @@ class DetailFlowerpotActivity :
 
         }
 
-        binding.detailFlowerpotEditRecordTv.setOnClickListener {
-            // RecyclerView 다중 선택 필요
-            hideBanner()
-        }
 
         binding.detailFlowerpotDarkBackgroundView.setOnClickListener {
             hideBanner()

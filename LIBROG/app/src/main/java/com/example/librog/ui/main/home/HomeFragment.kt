@@ -157,7 +157,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setDailyStatus(result: MainDailyResult){
-        binding.homeCountdayTv.text = String.format("독서 %d일차",result.daycnt)
+        binding.homeCountdayTv.text = "독서 ${result.daycnt}일차"
         binding.homeStatusTv.text = result.content
     }
 
