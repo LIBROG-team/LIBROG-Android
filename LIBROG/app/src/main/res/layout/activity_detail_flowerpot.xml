@@ -261,28 +261,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_delete_tv" />
 
-        <TextView
-            android:id="@+id/detail_flowerpot_edit_record_tv"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/pd_medium"
-            android:text="@string/detail_flowerpot_edit"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_line1" />
-
-        <View
-            android:id="@+id/detail_flowerpot_line2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="15dp"
-            android:background="#F4F4F4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_flowerpot_edit_record_tv" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
