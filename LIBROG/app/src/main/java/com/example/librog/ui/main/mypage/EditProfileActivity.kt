@@ -159,7 +159,7 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
             binding.editProfileIv.setImageResource(R.drawable.ic_profile_logo)
         }
         else if (imgUrl=="1"){ //유저가 이미지를 수정하지 않을 시 카카오 계정 이미지
-            Glide.with(this).load(result.profileImgUrl).circleCrop().into(binding.editProfileIv)
+            Glide.with(this).load(getKakaoImg()).circleCrop().into(binding.editProfileIv)
         }
         else{
             val uri:Uri = Uri.parse(imgUrl)
@@ -177,6 +177,11 @@ class EditProfileActivity: BaseActivity<ActivityEditProfileBinding>(ActivityEdit
         val editor = spf!!.edit()
         editor.remove("imgUri")
         editor.apply()
+    }
+
+    private fun getKakaoImg(): String{
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        return spf!!.getString("kakaoImg","0")!!
     }
 
 }

@@ -122,7 +122,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
                 saveEmail(result.email)
                 //카카오 로그인 최초 한 번만 (카카오 계정 이미지 가져오도록)
                 if (!appDB.userDao().isUserExist(result.email))
-                    appDB.userDao().insertImgUrl(result.email,"1")
+                    {
+                        appDB.userDao().insertImgUrl(result.email,"1")
+                        saveKakaoImgUrl(result.profileImgUrl)
+                    }
 
                 val intent = Intent(this,MainActivity::class.java)
                 finishAffinity()
@@ -140,6 +143,14 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         val editor = spf.edit()
 
         editor.putString("email",email)
+        editor.apply()
+    }
+
+    private fun saveKakaoImgUrl(url:String){
+        val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("kakaoImg",url)
         editor.apply()
     }
 
