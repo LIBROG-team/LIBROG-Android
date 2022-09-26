@@ -34,18 +34,16 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         binding.settingChangePwdArea.setOnClickListener {
             when (getLoginType()){
                 "kakao"->{
-                    binding.changedPwdDeniedPanel.visibility = View.VISIBLE
-                    setClickable(false)
+                    android.app.AlertDialog.Builder(this)
+                        .setMessage("카카오계정은 비밀번호 변경이 불가합니다.")
+                        .setPositiveButton("확인") { _, _ ->
+                        }
+                        .show()
                 }
                 else->startNextActivity(ChangePwdActivity::class.java)
             }
         }
 
-        binding.changePwdDeniedBtn.setOnClickListener {
-            binding.changedPwdDeniedPanel.visibility = View.INVISIBLE
-            setClickable(true)
-        }
-        leavePanelClickListener()
 
         //홈페이지 방문
         binding.settingHomepageArea.setOnClickListener {
@@ -66,46 +64,15 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://librog.shop/blog/promotion.html"))
             startActivity(intent)
         }
+        //회원탈퇴
+        binding.settingLeaveArea.setOnClickListener {
+            resignConfirm()
+        }
 
     }
 
-    private fun leavePanelClickListener(){
-        //탈퇴하기
-        binding.settingLeaveArea.setOnClickListener{
-            binding.leaveConfirmPanel.visibility = View.VISIBLE
-            setClickable(false)
-        }
-        //탈퇴 확인
-        binding.leaveOkayBtn.setOnClickListener {
-            deleteUser()
-        }
-        //탈퇴 취소
-        binding.leaveCancelBtn.setOnClickListener {
-            binding.leaveConfirmPanel.visibility=View.INVISIBLE
-            setClickable(true)
-        }
-        //탈퇴 완료
-        binding.leaveFinishBtn.setOnClickListener {
-            appDB.userDao().deleteUser(getEmail())
-            removeIdx()
-            startNextActivity(SplashActivity::class.java)
-        }
-    }
 
-    private fun setClickable(isClickable: Boolean){
-        when (isClickable){
-            true->binding.settingDisableArea.visibility=View.INVISIBLE
-            false->binding.settingDisableArea.visibility=View.VISIBLE
-        }
-        binding.settingProfileArea.isClickable=isClickable
-        binding.settingHomepageArea.isClickable=isClickable
-        binding.settingPrivateArea.isClickable=isClickable
-        binding.settingAskArea.isClickable=isClickable
-        binding.settingChangePwdArea.isClickable=isClickable
-        binding.settingCouponArea.isClickable=isClickable
-        binding.settingLeaveArea.isClickable=isClickable
-        binding.settingBackBtn.isClickable=isClickable
-    }
+
 
     private fun deleteUser(){
         service.deleteUser(getIdx()).enqueue(object: Callback<DeleteUserResponse> {
@@ -114,11 +81,10 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
                 val resp = response.body()!!
                 when (resp.code){
                     1000->{
-                        binding.leaveConfirmPanel.visibility=View.INVISIBLE
-                        binding.leaveFinishPanel.visibility=View.VISIBLE
                         if (getLoginType()=="kakao"){
                             kakaoLogout()
                         }
+                        resignComplete()
                     }
 
                 }
@@ -170,4 +136,27 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         val spf = getSharedPreferences("userInfo", MODE_PRIVATE)
         return spf!!.getString("type","0")!!
     }
+
+    private fun resignConfirm(){
+        android.app.AlertDialog.Builder(this)
+            .setMessage("회원탈퇴를 진행하시겠습니까?")
+            .setNegativeButton("취소"){ _, _->
+            }
+            .setPositiveButton("확인") { _, _ ->
+                deleteUser()
+            }
+            .show()
+    }
+
+    private fun resignComplete(){
+        android.app.AlertDialog.Builder(this)
+            .setMessage("회원 탈퇴가 완료되었습니다.\n로그인 페이지로 이동합니다.")
+            .setPositiveButton("확인") { _, _ ->
+                appDB.userDao().deleteUser(getEmail())
+                removeIdx()
+                startNextActivity(SplashActivity::class.java)
+            }
+            .show()
+    }
+
 }
