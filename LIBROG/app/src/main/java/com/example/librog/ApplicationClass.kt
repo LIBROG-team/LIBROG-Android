@@ -42,6 +42,6 @@ class ApplicationClass : Application() {
 
         mSharedPreferences = applicationContext.getSharedPreferences(TAG, Context.MODE_PRIVATE)
 
-        KakaoSdk.init(this,"61775cb2c32cd4a6566c35d7b463cb8f")
+        KakaoSdk.init(this,BuildConfig.KAKAO_LOGIN_APP_KEY)
     }
 }
