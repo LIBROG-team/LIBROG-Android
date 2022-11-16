@@ -6,27 +6,27 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.librog.ui.main.home.HomeFragment"
+        android:name="com.libdev.librog.ui.main.home.HomeFragment"
         android:label="homeFragment" />
 
     <fragment
         android:id="@+id/flowerpotFragment"
-        android:name="com.example.librog.ui.main.flowerpot.FlowerpotFragment"
+        android:name="com.libdev.librog.ui.main.flowerpot.FlowerpotFragment"
         android:label="flowerpotFragment" />
 
     <fragment
         android:id="@+id/addBookFragment"
-        android:name="com.example.librog.ui.main.addbook.AddBookFragment"
+        android:name="com.libdev.librog.ui.main.addbook.AddBookFragment"
         android:label="addBookFragment" />
 
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.librog.ui.main.history.HistoryFragment"
+        android:name="com.libdev.librog.ui.main.history.HistoryFragment"
         android:label="historyFragment" />
 
     <fragment
         android:id="@+id/mypageFragment"
-        android:name="com.example.librog.ui.main.mypage.MypageFragment"
+        android:name="com.libdev.librog.ui.main.mypage.MypageFragment"
         android:label="mypageFragment" />
 
 </navigation>

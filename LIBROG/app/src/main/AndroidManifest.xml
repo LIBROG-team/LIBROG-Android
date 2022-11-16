@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.librog">
+    package="com.libdev.librog">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".ApplicationClass"
+        android:name="com.libdev.librog.ApplicationClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,43 +17,43 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="32">
         <activity
-            android:name=".ui.main.history.HistoryFixActivity"
+            android:name="com.libdev.librog.ui.main.history.HistoryFixActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.history.DetailHistoryActivity"
+            android:name="com.libdev.librog.ui.main.history.DetailHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.addFlowerpot.DetailUnlockedFpActivity"
+            android:name="com.libdev.librog.ui.main.addFlowerpot.DetailUnlockedFpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.addFlowerpot.AddFlowerpotActivity"
+            android:name="com.libdev.librog.ui.main.addFlowerpot.AddFlowerpotActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.flowerpot.DetailFlowerpotActivity"
+            android:name="com.libdev.librog.ui.main.flowerpot.DetailFlowerpotActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.addbook.AddBookSelectActivity"
+            android:name="com.libdev.librog.ui.main.addbook.AddBookSelectActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.login.LoginActivity"
+            android:name="com.libdev.librog.ui.main.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.signup.SignUpActivity"
+            android:name="com.libdev.librog.ui.main.signup.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.mypage.SettingActivity"
+            android:name="com.libdev.librog.ui.main.mypage.SettingActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.mypage.EditProfileActivity"
+            android:name="com.libdev.librog.ui.main.mypage.EditProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.mypage.FindPwdActivity"
+            android:name="com.libdev.librog.ui.main.mypage.FindPwdActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.mypage.ChangePwdActivity"
+            android:name="com.libdev.librog.ui.main.mypage.ChangePwdActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.main.splash.SplashActivity"
+            android:name="com.libdev.librog.ui.main.splash.SplashActivity"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
@@ -63,7 +63,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.libdev.librog.ui.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
