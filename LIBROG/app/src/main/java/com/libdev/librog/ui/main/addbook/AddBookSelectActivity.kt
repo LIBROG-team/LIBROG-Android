@@ -117,7 +117,7 @@ class AddBookSelectActivity :
                 when (resp.code) {
                     1000 -> {
                         Log.d("AddBookSelect", resp.toString())
-                        showToast(resp.message)
+                        showToast("성공적으로 기록에 추가하였습니다.")
                     }
                     2025 -> {
                         showToast(resp.message)

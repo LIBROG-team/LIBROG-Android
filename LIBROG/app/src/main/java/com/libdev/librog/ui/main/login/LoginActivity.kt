@@ -12,6 +12,7 @@ import com.libdev.librog.ui.main.MainActivity
 import com.libdev.librog.ui.main.mypage.FindPwdActivity
 import com.libdev.librog.ui.main.signup.SignUpActivity
 import com.kakao.sdk.user.UserApiClient
+import com.libdev.librog.ui.main.splash.SplashActivity
 
 
 private const val TAG = "LoginActivity"

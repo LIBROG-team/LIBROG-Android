@@ -302,6 +302,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pd_regular"
                         android:scrollbars="vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:textSize="14sp"
                         android:lineSpacingExtra="4dp"
                         app:layout_constraintTop_toTopOf="parent"

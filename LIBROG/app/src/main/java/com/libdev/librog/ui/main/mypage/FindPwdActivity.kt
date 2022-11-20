@@ -8,6 +8,7 @@ import com.libdev.librog.data.remote.data.auth.FindPwdInfo
 import com.libdev.librog.data.remote.data.auth.FindPwdResponse
 import com.libdev.librog.databinding.ActivityFindPwdBinding
 import com.libdev.librog.ui.BaseActivity
+import com.libdev.librog.ui.main.splash.SplashActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,9 +23,6 @@ class FindPwdActivity: BaseActivity<ActivityFindPwdBinding>(ActivityFindPwdBindi
         binding.findPwdFinishBtn.setOnClickListener {
             findPwd(getFindPwdInfo())
             Log.d("findPwd/start","이메일 전송 버튼 누름")
-        }
-        binding.findPwdPanelBtn.setOnClickListener {
-            setClickable(true)
         }
     }
 
@@ -54,30 +52,13 @@ class FindPwdActivity: BaseActivity<ActivityFindPwdBinding>(ActivityFindPwdBindi
     }
 
     private fun setResult(message:String,isSuccess:Boolean){
-        setClickable(false)
-        binding.findPwdPanel.visibility = View.VISIBLE
-        binding.findPwdPanelTv.text = message
-        when (isSuccess){
-            true->{
-                binding.findPwdPanelBtn.setOnClickListener {
+        android.app.AlertDialog.Builder(this)
+            .setMessage(message)
+            .setPositiveButton("확인") { _, _ ->
+                if (isSuccess){
                     finish()
                 }
             }
-            false->{
-                binding.findPwdPanelBtn.setOnClickListener {
-                    binding.findPwdPanel.visibility = View.INVISIBLE
-                    setClickable(true)
-                }
-            }
-        }
-    }
-
-    private fun setClickable(isClickable: Boolean){
-        when (isClickable){
-            true->binding.findPwdDisableArea.visibility= View.INVISIBLE
-            false->binding.findPwdDisableArea.visibility= View.VISIBLE
-        }
-        binding.findPwdBackBtn.isClickable=isClickable
-        binding.findPwdEmailEt.isClickable=isClickable
+            .show()
     }
 }

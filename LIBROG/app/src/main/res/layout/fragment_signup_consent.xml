@@ -47,8 +47,8 @@
 
     <View
         android:id="@+id/check_top_border"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/su_consent_warning_tv"/>
@@ -130,8 +130,8 @@
     </androidx.core.widget.NestedScrollView>
     <View
         android:id="@+id/check_bottom_border"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
