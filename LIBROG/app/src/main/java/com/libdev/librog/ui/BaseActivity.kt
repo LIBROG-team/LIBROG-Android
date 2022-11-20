@@ -1,6 +1,7 @@
 package com.libdev.librog.ui
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = inflate(layoutInflater)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(binding.root)
 
         imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?

@@ -37,9 +37,9 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
             login()
         }
 
-        binding.loginKakaoSignInBtn.setOnClickListener {
-            kakaoLogin()
-        }
+//        binding.loginKakaoSignInBtn.setOnClickListener {
+//            kakaoLogin()
+//        }
         binding.loginFindPwdBtn.setOnClickListener {
             startNextActivity(FindPwdActivity::class.java)
         }

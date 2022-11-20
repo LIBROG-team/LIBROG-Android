@@ -16,39 +16,38 @@ class SignUpConsentFragment : BaseFragment<FragmentSignupConsentBinding>(Fragmen
     }
 
     private fun checkBtnClickListener(){
-        binding.checkTopUnchecked.setOnClickListener {
-            isChecked1=true
-            binding.checkTopChecked.visibility = View.VISIBLE
-            binding.checkTopUnchecked.visibility = View.INVISIBLE
-            binding.checkTopTv1.setTextColor(Color.parseColor("#000000"))
-            binding.checkTopTv2.setTextColor(Color.parseColor("#64BE78"))
 
+        binding.checkTopBorder.setOnClickListener {
+            if (!isChecked1){
+                binding.checkTopChecked.visibility = View.VISIBLE
+                binding.checkTopUnchecked.visibility = View.INVISIBLE
+                binding.checkTopTv1.setTextColor(Color.parseColor("#000000"))
+                binding.checkTopTv2.setTextColor(Color.parseColor("#64BE78"))
+                isChecked1=true
+            }
+            else {
+                binding.checkTopChecked.visibility = View.INVISIBLE
+                binding.checkTopUnchecked.visibility = View.VISIBLE
+                isChecked1=false
+            }
             checkValidation()
         }
 
-        binding.checkTopChecked.setOnClickListener {
-            isChecked1=false
-            binding.checkTopChecked.visibility = View.INVISIBLE
-            binding.checkTopUnchecked.visibility = View.VISIBLE
 
-            checkValidation()
-        }
+        binding.checkBottomBorder.setOnClickListener {
+            if (!isChecked2){
+                binding.checkBottomChecked.visibility = View.VISIBLE
+                binding.checkBottomUnchecked.visibility = View.INVISIBLE
+                binding.checkBottomTv1.setTextColor(Color.parseColor("#000000"))
+                binding.checkBottomTv2.setTextColor(Color.parseColor("#64BE78"))
+                isChecked2=true
 
-        binding.checkBottomUnchecked.setOnClickListener {
-            isChecked2=true
-            binding.checkBottomChecked.visibility = View.VISIBLE
-            binding.checkBottomUnchecked.visibility = View.INVISIBLE
-            binding.checkBottomTv1.setTextColor(Color.parseColor("#000000"))
-            binding.checkBottomTv2.setTextColor(Color.parseColor("#64BE78"))
-
-            checkValidation()
-        }
-
-        binding.checkBottomChecked.setOnClickListener {
-            isChecked2=false
-            binding.checkBottomChecked.visibility = View.INVISIBLE
-            binding.checkBottomUnchecked.visibility = View.VISIBLE
-
+            }
+            else {
+                binding.checkBottomChecked.visibility = View.INVISIBLE
+                binding.checkBottomUnchecked.visibility = View.VISIBLE
+                isChecked2=false
+            }
             checkValidation()
         }
 
@@ -91,9 +90,5 @@ class SignUpConsentFragment : BaseFragment<FragmentSignupConsentBinding>(Fragmen
             .replace(R.id.sign_up_frame, SignUpFirstFragment())
             .commitAllowingStateLoss()
     }
-
-
-
-
 
 }

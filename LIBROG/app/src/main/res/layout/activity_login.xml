@@ -219,27 +219,27 @@
             android:text="비밀번호 찾기" />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/login_sns_explain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="SNS 계정을 연동하여 간편하게 로그인 할 수 있어요"
-        android:textColor="#6A6A6A"
-        android:textSize="12sp"
-        android:lineSpacingExtra="2.32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_functions" />
+<!--    <TextView-->
+<!--        android:id="@+id/login_sns_explain"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="70dp"-->
+<!--        android:text="SNS 계정을 연동하여 간편하게 로그인 할 수 있어요"-->
+<!--        android:textColor="#6A6A6A"-->
+<!--        android:textSize="12sp"-->
+<!--        android:lineSpacingExtra="2.32dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/login_functions" />-->
 
-    <ImageView
-        android:id="@+id/login_kakao_sign_in_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="21dp"
-        android:src="@drawable/ic_login_kakao_on"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_sns_explain"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/login_kakao_sign_in_btn"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="21dp"-->
+<!--        android:src="@drawable/ic_login_kakao_on"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/login_sns_explain"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

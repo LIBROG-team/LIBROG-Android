@@ -1,18 +1,17 @@
 package com.libdev.librog.ui.main
 
+import android.content.pm.PackageManager
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.libdev.librog.R
 import com.libdev.librog.databinding.ActivityMainBinding
 import com.libdev.librog.ui.BaseActivity
-import android.content.pm.PackageManager
-
-import android.util.Base64
-import androidx.navigation.ui.setupWithNavController
 import java.security.MessageDigest
 
 
@@ -31,6 +30,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         Log.d("MAIN/JWT_TO_SERVER", getJwt().toString())
 
         getHashKey()
+
 
     }
 
@@ -62,7 +62,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
                 md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
                 val something = String(Base64.encode(md.digest(), 0))
-                Log.e("Hash key", something)
+                Log.e("Hash keyy", something)
             }
         } catch (e: Exception) {
 

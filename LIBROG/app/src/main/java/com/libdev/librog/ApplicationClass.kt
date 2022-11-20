@@ -3,6 +3,8 @@ package com.libdev.librog
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
+import androidx.appcompat.app.AppCompatDelegate
 import com.libdev.librog.config.XAccessTokenInterceptor
 import com.kakao.sdk.common.KakaoSdk
 import okhttp3.OkHttpClient
@@ -27,7 +29,6 @@ class ApplicationClass : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         val client: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(30000, TimeUnit.MILLISECONDS)
             .connectTimeout(30000, TimeUnit.MILLISECONDS)
@@ -41,6 +42,8 @@ class ApplicationClass : Application() {
             .build()
 
         mSharedPreferences = applicationContext.getSharedPreferences(TAG, Context.MODE_PRIVATE)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
 
         KakaoSdk.init(this,BuildConfig.KAKAO_LOGIN_APP_KEY)
     }

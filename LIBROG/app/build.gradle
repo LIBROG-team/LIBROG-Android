@@ -14,8 +14,8 @@ android {
         applicationId "com.libdev.librog"
         minSdk 23
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "REST_API_KEY", properties['REST_API_KEY']
