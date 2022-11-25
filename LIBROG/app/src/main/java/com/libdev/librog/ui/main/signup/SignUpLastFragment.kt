@@ -77,11 +77,17 @@ class SignUpLastFragment : BaseFragment<FragmentSignupLastBinding>(FragmentSignu
             appDB.userDao().insertImgUrl(email,imgUri.toString())
         else
             appDB.userDao().insertImgUrl(email,"0")
+        showToast("회원가입에 성공하셨습니다");
         activity?.finish()
     }
 
     override fun onSignUpFailure(message: String) {
-        showToast(message)
+        android.app.AlertDialog.Builder(requireContext())
+            .setMessage(message)
+            .setPositiveButton("확인") { _, _ ->
+
+            }
+            .show()
     }
 
 

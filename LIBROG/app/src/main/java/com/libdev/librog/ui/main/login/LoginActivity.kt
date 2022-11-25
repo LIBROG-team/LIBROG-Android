@@ -86,7 +86,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         if (!appDB.userDao().isUserExist(getEmail()))
             appDB.userDao().insertImgUrl(getEmail(),"0")
         Log.d("accessToken/app", result.jwt)
-
+        showToast("앱 로그인 성공")
         val intent = Intent(this,MainActivity::class.java)
         finishAffinity()
         startActivity(intent)

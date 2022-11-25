@@ -168,6 +168,7 @@
         android:text="소셜 로그인 계정은 비밀번호 재설정이 불가능합니다."
         android:textSize="12sp"
         android:textColor="#6A6A6A"
+        android:visibility="invisible"
         android:lineSpacingExtra="2.4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/find_new_pwd_underscore_view"/>

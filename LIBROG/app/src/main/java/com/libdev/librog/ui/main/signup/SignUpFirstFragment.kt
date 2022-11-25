@@ -32,7 +32,7 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
 
     private fun validationCheck(){
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
-        var error="0"
+        var error=""
         if (binding.suIdEt.text.toString().isEmpty()){
             error="이메일을 입력해주세요"
         }
@@ -57,7 +57,8 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
         else{
             changeFragment()
         }
-        showError(error)
+        if (error!="")
+            showError(error)
     }
 
     private fun saveSignUp(){
@@ -76,7 +77,11 @@ class SignUpFirstFragment : BaseFragment<FragmentSignupFirstBinding>(FragmentSig
     }
 
     private fun showError(error:String){
-        binding.suErrorTv.visibility = View.VISIBLE
-        binding.suErrorTv.text = error
+        android.app.AlertDialog.Builder(requireContext())
+            .setMessage(error)
+            .setPositiveButton("확인") { _, _ ->
+
+            }
+            .show()
     }
 }
